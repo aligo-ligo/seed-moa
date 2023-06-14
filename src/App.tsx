@@ -1,7 +1,7 @@
 function App() {
 	return (
 		<>
-			<div>초기세팅</div>
+			<h1 className="text-3xl font-bold underline">Hello world!</h1>
 		</>
 	);
 }
