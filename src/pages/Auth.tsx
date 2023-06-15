@@ -11,7 +11,7 @@ const Auth = () => {
 	return (
 		<section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
 			<AuthForm
-				name={isLogin ? "Login" : "Register"}
+				name={isLogin ? "로그인" : "회원가입"}
 				isLogin={isLogin}
 				url={isLogin ? SIGN_UP_URL : SIGN_IN_URL}
 			/>
