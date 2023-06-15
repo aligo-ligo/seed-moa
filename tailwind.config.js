@@ -39,9 +39,10 @@ export default {
 			},
 			screens: {
 				phone: "340px",
-				desktop: "550px",
+				desktop: "568px",
 			},
 			width: {
+				phone: "340px",
 				desktop: "568px",
 			},
 		},
