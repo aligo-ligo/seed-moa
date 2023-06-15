@@ -24,7 +24,9 @@ function App() {
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
+				<main className="w-desktop mx-auto bg-white min-h-full'">
+					<RouterProvider router={router} />
+				</main>
 				<ReactQueryDevtools />
 			</QueryClientProvider>
 		</>
