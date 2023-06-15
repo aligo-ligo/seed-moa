@@ -1,24 +1,32 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClientOptions } from "./utils/contants";
+import LandingPage from "./pages/landingPage";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: (
-			<div>
-				<h1>Hello World</h1>
-			</div>
-		),
+		element: <LandingPage />,
 	},
 	{
-		path: "about",
-		element: <div>About</div>,
+		path: "signin",
+		element: <div>signin</div>,
+	},
+	{
+		path: "signup",
+		element: <div>signup</div>,
 	},
 ]);
 
 function App() {
+	const queryClient = new QueryClient(QueryClientOptions);
 	return (
 		<>
-			<RouterProvider router={router} />
+			<QueryClientProvider client={queryClient}>
+				<RouterProvider router={router} />
+				<ReactQueryDevtools />
+			</QueryClientProvider>
 		</>
 	);
 }
