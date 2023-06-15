@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionType } from "../types/AuthType";
+import { ActionType } from "../../types/AuthType";
 
 interface AuthInputProps {
 	placeholder: string;

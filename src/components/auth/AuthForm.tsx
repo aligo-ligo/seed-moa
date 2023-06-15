@@ -1,10 +1,10 @@
 import { useReducer, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { ActionType, UserInfoType } from "../types/AuthType";
-import { useAuthService } from "../hooks/useAuth";
+import { ActionType, UserInfoType } from "../../types/AuthType";
+import { useAuthService } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import AuthInput from "./AuthInput";
-import Warnning from "./Warning";
+import Warnning from "../Warning";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",

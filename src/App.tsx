@@ -7,6 +7,9 @@ import Auth from "./pages/Auth";
 import HttpClient from "./network/HttpClient";
 import AuthServiceImpl from "./services/AuthService";
 import { AuthProvider } from "./context/AuthContext";
+import Target from "./pages/Target";
+import TargetServiceImpl from "./services/TargetService";
+import { InfoProvider } from "./context/TargetContext";
 
 const router = createBrowserRouter([
 	{
@@ -21,6 +24,10 @@ const router = createBrowserRouter([
 		path: "signup",
 		element: <Auth />,
 	},
+	{
+		path: "target",
+		element: <Target />,
+	},
 ]);
 
 function App() {
@@ -28,13 +35,16 @@ function App() {
 
 	const client = new HttpClient("http://localhost:8000");
 	const authService = new AuthServiceImpl(client.httpClient);
+	const infoService = new TargetServiceImpl(client.withToken());
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider authService={authService}>
-					<main className="phone:w-phone desktop:w-desktop mx-auto bg-white min-h-full'">
-						<RouterProvider router={router} />
-					</main>
+					<InfoProvider infoService={infoService}>
+						<main className="phone:w-phone desktop:w-desktop mx-auto bg-white min-h-full'">
+							<RouterProvider router={router} />
+						</main>
+					</InfoProvider>
 				</AuthProvider>
 				<ReactQueryDevtools />
 			</QueryClientProvider>

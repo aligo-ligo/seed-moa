@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
+import AuthForm from "../components/auth/AuthForm";
 
 const SIGN_IN_URL = "/signin";
 const SIGN_UP_URL = "/signup";
