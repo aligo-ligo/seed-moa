@@ -10,7 +10,7 @@ const LandingPage = () => {
 				</h1>
 				<h2 className="text-xl desktop:text-2xl font-medium text-gray mb-12 ">
 					공유하여 목표를 달성해보세요!
-				</h2>
+				</h2> 
 			</div>
 			<p className="text-lg desktop:text-2xl font-medium text-gray mb-24 ">
 				현재 187,054개의 티켓을 성취했어요!
