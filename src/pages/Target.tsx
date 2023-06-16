@@ -1,7 +1,9 @@
+import Header from "../components/target/Header";
+
 const Target = () => {
 	return (
-		<div className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
-			Target
+		<div className="flex flex-col items-center h-screen px-6 pb-10">
+			<Header />
 		</div>
 	);
 };
