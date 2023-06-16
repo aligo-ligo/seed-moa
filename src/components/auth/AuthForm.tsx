@@ -118,6 +118,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 							dispatch={dispatch}
 						/>
 					)}
+					//이부분 공통
 					<button
 						className={`w-full text-xl ${
 							isActive ? "bg-mainHover" : "bg-main"
