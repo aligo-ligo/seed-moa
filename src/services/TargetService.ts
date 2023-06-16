@@ -8,7 +8,7 @@ import {
 	UserType,
 } from "../types/TargetTypes";
 
-export default class InfoServiceImpl implements InfoService {
+export default class TargetServiceImpl implements InfoService {
 	constructor(private httpClient: AxiosInstance) {}
 
 	async getUsers(page?: string) {

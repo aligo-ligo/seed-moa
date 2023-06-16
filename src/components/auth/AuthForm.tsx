@@ -1,10 +1,15 @@
 import { useReducer, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
 import { ActionType, UserInfoType } from "../../types/AuthType";
-import { useAuthService } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthInput from "./AuthInput";
-import Warnning from "../Warning";
+import Warnning from "./Warning";
+import { useAuthService } from "../../hooks/useAuth";
+import {
+	EMAIL_INPUT,
+	NICKNAME_INPUT,
+	PASSWORD_INPUT,
+} from "../../utils/contants";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -34,21 +39,6 @@ const authReducer = (state: UserInfoType, action: ActionType) => {
 			throw new Error("Unknown Action");
 	}
 };
-
-const EMAIL_INPUT = {
-	name: "EMAIL",
-	placeholder: "@포함 세글자 이상 이메일을 입력해주세요",
-} as const;
-
-const PASSWORD_INPUT = {
-	name: "PASSWORD",
-	placeholder: "세글자 이상의 비밀번호를 입력해주세요",
-} as const;
-
-const NICKNAME_INPUT = {
-	name: "NICKNAME",
-	placeholder: "한글 3자이상 닉네임을 작성해주세요",
-} as const;
 
 const initialState: UserInfoType = {
 	email: "",
@@ -80,7 +70,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				.then((data) => {
 					if ("accessToken" in data) {
 						localStorage.setItem("accessToken", data.accessToken);
-						localStorage.setItem("userId", data.user.nickName.toString());
+						localStorage.setItem("userNickName", data.user.nickName.toString());
 						navigate("/target");
 					}
 				})
