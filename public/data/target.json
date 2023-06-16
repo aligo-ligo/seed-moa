@@ -1,0 +1,57 @@
+[
+	{
+		"userId": 123,
+		"startDate": "2023-06-16",
+		"endDate": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다.",
+		"routine": ["매일 물 마신다.", "매일 농구 한다.", "야식 먹지 않는다."],
+		"successPercentage": 0,
+		"successVote": 80,
+		"failureVote": 20,
+		"votePercentage": 10
+	},
+	{
+		"userId": 123,
+		"startDate": "2023-06-16",
+		"endDate": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다.",
+		"routine": ["매일 물 마신다.", "매일 농구 한다.", "야식 먹지 않는다."],
+		"successPercentage": 0,
+		"successVote": 80,
+		"failureVote": 20,
+		"votePercentage": 10
+	},
+	{
+		"userId": 123,
+		"startDate": "2023-06-16",
+		"endDate": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다.",
+		"routine": ["매일 물 마신다.", "매일 농구 한다.", "야식 먹지 않는다."],
+		"successPercentage": 0,
+		"successVote": 80,
+		"failureVote": 20,
+		"votePercentage": 10
+	},
+	{
+		"userId": 123,
+		"startDate": "2023-06-16",
+		"endDate": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다.",
+		"routine": ["매일 물 마신다.", "매일 농구 한다.", "야식 먹지 않는다."],
+		"successPercentage": 0,
+		"successVote": 80,
+		"failureVote": 20,
+		"votePercentage": 10
+	},
+	{
+		"userId": 123,
+		"startDate": "2023-06-16",
+		"endDate": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다.",
+		"routine": ["매일 물 마신다.", "매일 농구 한다.", "야식 먹지 않는다."],
+		"successPercentage": 0,
+		"successVote": 80,
+		"failureVote": 20,
+		"votePercentage": 10
+	}
+]

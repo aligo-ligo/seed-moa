@@ -10,6 +10,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Target from "./pages/Target";
 import TargetServiceImpl from "./services/TargetService";
 import { InfoProvider } from "./context/TargetContext";
+import TargetDetail from "./pages/TargetDetail";
 
 const router = createBrowserRouter([
 	{
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
 	{
 		path: "target",
 		element: <Target />,
+	},
+	{
+		path: "target/:id",
+		element: <TargetDetail />,
 	},
 ]);
 
