@@ -10,19 +10,20 @@ const TargetCreate = () => {
 	const [step, setStep] = useState<
 		"goal" | "subGoal" | "duration" | "lastStep"
 	>("goal");
+	console.log("ss", step);
 	return (
 		<div className="flex flex-col items-center h-screen px-6 pb-10">
 			<Step check={step === "goal"}>
-				<Goal />
+				<Goal setStep={setStep} />
 			</Step>
 			<Step check={step === "subGoal"}>
-				<SubGoalRoutine />
+				<SubGoalRoutine setStep={setStep} />
 			</Step>
 			<Step check={step === "duration"}>
-				<Duration />
+				<Duration setStep={setStep} />
 			</Step>
 			<Step check={step === "lastStep"}>
-				<LastStep />
+				<LastStep setStep={setStep} />
 			</Step>
 		</div>
 	);
