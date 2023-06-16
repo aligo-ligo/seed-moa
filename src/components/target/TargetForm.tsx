@@ -8,7 +8,7 @@ const TargetForm = () => {
 	const successPercentage = 40;
 	const votePercentage = 30;
 	return (
-		<div className="mt-10 p-6 w-full min-h-[200px] border-2 border-mainHover rounded-md">
+		<div className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md">
 			<h2 className="font-medium">{goal}</h2>
 			<img src={logo} alt="자그마한 로고 사진" className="w-48 mx-auto" />
 			<div className="flex">
