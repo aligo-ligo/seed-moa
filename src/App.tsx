@@ -11,6 +11,7 @@ import Target from "./pages/Target";
 import TargetServiceImpl from "./services/TargetService";
 import { InfoProvider } from "./context/TargetContext";
 import TargetDetail from "./pages/TargetDetail";
+import TargetCreate from "./pages/TargetCreate";
 
 const router = createBrowserRouter([
 	{
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
 		path: "target/:id",
 		element: <TargetDetail />,
 	},
+	{ path: "target/create", element: <TargetCreate /> },
 ]);
 
 function App() {

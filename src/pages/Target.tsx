@@ -22,7 +22,7 @@ const Target = () => {
 				<button
 					className="mt-24 mx-auto w-1/3 h-14 bg-main rounded-lg"
 					onClick={() => {
-						navigate("/target/1");
+						navigate("/target/create");
 					}}
 				>
 					<FiEdit className="mx-auto text-white text-2xl" />
