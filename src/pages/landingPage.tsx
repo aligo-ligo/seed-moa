@@ -5,7 +5,7 @@ const LandingPage = () => {
 	return (
 		<section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
 			<div className="flex flex-col items-center justify-center">
-				<img src={logo} alt="사진" className="w-3/5"/>
+				<img src={logo} alt="사진" className="w-3/5" />
 				<h1 className="text-3xl desktop:text-4xl font-bold mt-4 mb-4">
 					Aligo Oligo
 				</h1>
@@ -29,6 +29,9 @@ const LandingPage = () => {
 
 				<button className="text-lg desktop:text-xl text-main ">
 					<Link to="signup">회원가입 하기</Link>
+				</button>
+				<button className="text-lg desktop:text-xl text-main ">
+					<Link to="target">임시 target 이동</Link>
 				</button>
 			</div>
 		</section>

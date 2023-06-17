@@ -1,3 +1,5 @@
+import TargetCreateLayout from "../layout/TargetCreateLayout";
+
 type Props = {
 	setStep: React.Dispatch<
 		React.SetStateAction<"goal" | "subGoal" | "duration" | "lastStep">
@@ -7,14 +9,10 @@ type Props = {
 const Goal = ({ setStep }: Props) => {
 	console.log("ss", setStep);
 	return (
-		<div className="flex flex-col p-10 mt-8">
-			<h1 className="text-4xl w-3/4 font-bold">
-				이루고자 하는 목표를 작성해주세요
-			</h1>
-
+		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
 			<input
 				type="text"
-				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 mt-40 border-b-4 border-main"
+				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 mt-40 border-b-2 border-main"
 				placeholder="목표를 작성해주세요"
 			/>
 
@@ -27,7 +25,7 @@ const Goal = ({ setStep }: Props) => {
 			>
 				다음으로 가기
 			</button>
-		</div>
+		</TargetCreateLayout>
 	);
 };
 

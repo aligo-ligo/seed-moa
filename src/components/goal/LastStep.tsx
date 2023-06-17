@@ -1,3 +1,5 @@
+import TargetCreateLayout from "../layout/TargetCreateLayout";
+
 type Props = {
 	setStep: React.Dispatch<
 		React.SetStateAction<"goal" | "subGoal" | "duration" | "lastStep">
@@ -7,16 +9,15 @@ type Props = {
 const LastStep = ({ setStep }: Props) => {
 	console.log("ss", setStep);
 	return (
-		<div>
-			last
+		<TargetCreateLayout title="수정하실껀가요? ">
 			<button
 				onClick={() => {
-					setStep("subGoal");
+					setStep("goal");
 				}}
 			>
 				버튼
 			</button>
-		</div>
+		</TargetCreateLayout>
 	);
 };
 

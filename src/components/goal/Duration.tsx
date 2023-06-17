@@ -1,3 +1,5 @@
+import TargetCreateLayout from "../layout/TargetCreateLayout";
+
 type Props = {
 	setStep: React.Dispatch<
 		React.SetStateAction<"goal" | "subGoal" | "duration" | "lastStep">
@@ -7,8 +9,7 @@ type Props = {
 const Duration = ({ setStep }: Props) => {
 	console.log("ss", setStep);
 	return (
-		<div>
-			Dura
+		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
 			<button
 				onClick={() => {
 					setStep("lastStep");
@@ -16,7 +17,7 @@ const Duration = ({ setStep }: Props) => {
 			>
 				버튼
 			</button>
-		</div>
+		</TargetCreateLayout>
 	);
 };
 

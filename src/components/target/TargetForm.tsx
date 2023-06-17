@@ -5,8 +5,8 @@ const TargetForm = () => {
 	const goal = "나는 이번 달에 5kg할꺼야~";
 
 	// 일의자리수가 0이도록 유틸 함수를 추후에 만들어야할 것 같다.
-	const successPercentage = 40;
-	const votePercentage = 30;
+	const successPercentage = 60;
+	const votePercentage = 50;
 
 	return (
 		<div className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md">

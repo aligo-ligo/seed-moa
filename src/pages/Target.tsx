@@ -13,7 +13,7 @@ const Target = () => {
 			<section className="flex flex-col mt-16">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
 				<div className="flex flex-row">
-					<Carousel className="w-full" useKeyboardArrows>
+					<Carousel className="w-full" useKeyboardArrows showThumbs={false}>
 						<TargetForm />
 						<TargetForm />
 						<TargetForm />
