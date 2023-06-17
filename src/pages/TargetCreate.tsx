@@ -11,7 +11,12 @@ const TargetCreate = () => {
 	const [step, setStep] = useState<
 		"goal" | "subGoal" | "duration" | "lastStep"
 	>("goal");
-	const methods = useForm();
+	const methods = useForm({
+		defaultValues: {
+			subGoal: [{ name: "subGoal" }],
+			routine: [{ name: "routine" }],
+		},
+	});
 
 	console.log("ss", step);
 
