@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 
 type Props = {
@@ -8,12 +9,17 @@ type Props = {
 
 const Goal = ({ setStep }: Props) => {
 	console.log("ss", setStep);
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext();
 	return (
 		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
 			<input
 				type="text"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 mt-40 border-b-2 border-main"
 				placeholder="목표를 작성해주세요"
+				{...register("goal")}
 			/>
 
 			<button

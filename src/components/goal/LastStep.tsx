@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 
 type Props = {
@@ -7,16 +8,14 @@ type Props = {
 };
 
 const LastStep = ({ setStep }: Props) => {
-	console.log("ss", setStep);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useFormContext();
 	return (
 		<TargetCreateLayout title="수정하실껀가요? ">
-			<button
-				onClick={() => {
-					setStep("goal");
-				}}
-			>
-				버튼
-			</button>
+			<button type="submit">버튼</button>
 		</TargetCreateLayout>
 	);
 };

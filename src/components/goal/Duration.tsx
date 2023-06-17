@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 
 type Props = {
@@ -7,7 +8,11 @@ type Props = {
 };
 
 const Duration = ({ setStep }: Props) => {
-	console.log("ss", setStep);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useFormContext();
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
 			<button

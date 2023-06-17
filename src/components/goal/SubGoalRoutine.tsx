@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 
 type Props = {
@@ -7,7 +8,12 @@ type Props = {
 };
 
 const SubGoalRoutine = ({ setStep }: Props) => {
-	console.log("ss", setStep);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useFormContext();
+
 	return (
 		<TargetCreateLayout title="목표를 달성하기 위한 세분화 목표와 루틴을 작성해주세요">
 			<input
