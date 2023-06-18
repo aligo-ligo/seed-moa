@@ -1,5 +1,8 @@
 import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 type Props = {
 	setStep: React.Dispatch<
@@ -8,6 +11,8 @@ type Props = {
 };
 
 const Duration = ({ setStep }: Props) => {
+	const [startDate, setStartDate] = useState<Date | null>(null);
+	console.log("start", startDate);
 	const {
 		register,
 		handleSubmit,
@@ -17,9 +22,14 @@ const Duration = ({ setStep }: Props) => {
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
 			<input
 				type="text"
-				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
+				className=" sr-only placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				placeholder="목표를 작성해주세요"
+			/>
+			<DatePicker
+				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				{...register("duration")}
+				selected={startDate}
+				onChange={(date) => setStartDate(date)}
 			/>
 
 			<button
