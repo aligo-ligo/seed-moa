@@ -13,7 +13,7 @@ const TargetCreate = () => {
 	>("goal");
 	const methods = useForm({
 		defaultValues: {
-			subGoal: [{ name: "subGoal" }],
+			subGoal: [{ name: "subGoal" }, { name: "subGoal" }, { name: "subGoal" }],
 			routine: [{ name: "routine" }],
 		},
 	});
