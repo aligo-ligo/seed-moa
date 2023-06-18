@@ -15,6 +15,14 @@ const LastStep = ({ setStep }: Props) => {
 	} = useFormContext();
 	return (
 		<TargetCreateLayout title="수정하실껀가요? ">
+			<button
+				type="button"
+				onClick={() => {
+					setStep("duration");
+				}}
+			>
+				이전
+			</button>
 			<button type="submit">버튼</button>
 		</TargetCreateLayout>
 	);

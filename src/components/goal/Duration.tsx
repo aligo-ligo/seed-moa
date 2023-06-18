@@ -3,6 +3,7 @@ import TargetCreateLayout from "../layout/TargetCreateLayout";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { formatDate } from "../../utils/formatDate";
 
 type Props = {
 	setStep: React.Dispatch<
@@ -15,9 +16,14 @@ const Duration = ({ setStep }: Props) => {
 	console.log("start", startDate);
 	const {
 		register,
-		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useFormContext();
+
+	const handleDatePickerChange = (date: Date | null) => {
+		setStartDate(date);
+		setValue("duration", formatDate(date), { shouldValidate: true }); // DatePicker 값 업데이트
+	};
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
 			<input
@@ -26,10 +32,14 @@ const Duration = ({ setStep }: Props) => {
 				placeholder="목표를 작성해주세요"
 			/>
 			<DatePicker
+				dateFormat="yyyy-MM-dd"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				{...register("duration")}
 				selected={startDate}
-				onChange={(date) => setStartDate(date)}
+				onChange={(date) => handleDatePickerChange(date)}
+				placeholderText="날짜를 선택해주세요"
+				isClearable
+				withPortal
 			/>
 
 			<button
