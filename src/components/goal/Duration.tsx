@@ -22,7 +22,7 @@ const Duration = ({ setStep }: Props) => {
 
 	const handleDatePickerChange = (date: Date | null) => {
 		setStartDate(date);
-		setValue("duration", formatDate(date), { shouldValidate: true }); // DatePicker 값 업데이트
+		setValue("endDate", formatDate(date), { shouldValidate: true }); // DatePicker 값 업데이트
 	};
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
@@ -34,7 +34,7 @@ const Duration = ({ setStep }: Props) => {
 			<DatePicker
 				dateFormat="yyyy-MM-dd"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
-				{...register("duration")}
+				{...register("endDate")}
 				selected={startDate}
 				onChange={(date) => handleDatePickerChange(date)}
 				placeholderText="날짜를 선택해주세요"
