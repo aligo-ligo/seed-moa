@@ -10,6 +10,7 @@ import {
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
 } from "../../utils/contants";
+import OAuth from "./OAuth";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -128,7 +129,9 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 					>
 						{name}
 					</button>
+					<OAuth />
 				</section>
+
 				<Link to={url} className="text-sm text-mainHover self-center mt-8">
 					<span>{isLogin ? "회원가입" : "로그인"}하러 가기</span>
 				</Link>

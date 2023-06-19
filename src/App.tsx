@@ -12,6 +12,7 @@ import TargetServiceImpl from "./services/TargetService";
 import { InfoProvider } from "./context/TargetContext";
 import TargetDetail from "./pages/TargetDetail";
 import TargetCreate from "./pages/TargetCreate";
+import KakaoLogin from "./pages/KaKaoLogin";
 
 const router = createBrowserRouter([
 	{
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
 	{
 		path: "signup",
 		element: <Auth />,
+	},
+	{
+		path: "kakao",
+		element: <KakaoLogin />,
 	},
 	{
 		path: "target",
