@@ -4,9 +4,17 @@ import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { useInfo } from "../hooks/useInfo";
+import { useQuery } from "@tanstack/react-query";
 
 const Target = () => {
 	const navigate = useNavigate();
+	const infoService = useInfo();
+	const { data: targets } = useQuery(["target", "all"], () => {
+		return infoService?.getAllTarget();
+	});
+	console.log("target", targets);
+
 	return (
 		<div className="flex flex-col h-screen px-6 pb-10">
 			<Header />
@@ -14,9 +22,29 @@ const Target = () => {
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
 				<div className="flex flex-row">
 					<Carousel className="w-full" useKeyboardArrows showThumbs={false}>
-						<TargetForm />
-						<TargetForm />
-						<TargetForm />
+						{targets?.map(
+							({
+								user_id,
+								goal,
+								subgoal_total,
+								success_count,
+								vote_total,
+								success_vote,
+							}) => {
+								return (
+									<TargetForm
+										key={user_id}
+										{...{
+											goal,
+											subgoal_total,
+											success_count,
+											vote_total,
+											success_vote,
+										}}
+									/>
+								);
+							}
+						)}
 					</Carousel>
 				</div>
 				<button

@@ -8,8 +8,9 @@ export interface TargetType {
 	penalty: string;
 	subgoal_total: number;
 	success_count: number;
-	successVote: number;
-	failureVote: number;
+	success_vote: number;
+	failure_vote: number;
+	vote_total: number;
 }
 
 export type TargetStepType =
