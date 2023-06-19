@@ -1,3 +1,10 @@
+export type TargetStepType =
+	| "goal"
+	| "subGoal"
+	| "duration"
+	| "penalty"
+	| "lastStep";
+
 export type SubGoalRoutineType = React.ReactNode & {
 	name: string;
 	value: string;
@@ -13,7 +20,6 @@ export type TargetInfo = {
 export type TargetResponse = {
 	statusCode: number;
 };
-12;
 
 export interface TargetService {
 	postTarget: (targetInfo: TargetInfo) => Promise<TargetResponse>;

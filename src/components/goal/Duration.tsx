@@ -4,11 +4,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { formatDate } from "../../utils/formatDate";
+import { TargetStepType } from "../../types/TargetType";
 
 type Props = {
-	setStep: React.Dispatch<
-		React.SetStateAction<"goal" | "subGoal" | "duration" | "lastStep">
-	>;
+	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
 };
 
 const Duration = ({ setStep }: Props) => {
@@ -26,11 +25,11 @@ const Duration = ({ setStep }: Props) => {
 	};
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
-			<input
+			{/* <input
 				type="text"
 				className=" sr-only placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				placeholder="목표를 작성해주세요"
-			/>
+			/> */}
 			<DatePicker
 				dateFormat="yyyy-MM-dd"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
@@ -45,7 +44,7 @@ const Duration = ({ setStep }: Props) => {
 			<button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
 				onClick={() => {
-					setStep("lastStep");
+					setStep("penalty");
 				}}
 				type="button"
 			>

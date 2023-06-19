@@ -1,10 +1,9 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
+import { TargetStepType } from "../../types/TargetType";
 type Props = {
-	setStep: React.Dispatch<
-		React.SetStateAction<"goal" | "subGoal" | "duration" | "lastStep">
-	>;
+	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
 };
 
 const SubGoalRoutine = ({ setStep }: Props) => {

@@ -5,12 +5,12 @@ import Goal from "../components/goal/Goal";
 import LastStep from "../components/goal/LastStep";
 import Duration from "../components/goal/Duration";
 import SubGoalRoutine from "../components/goal/SubGoalRoutine";
+import Penalty from "../components/goal/Penalty";
+import { TargetStepType } from "../types/TargetType";
 
 const TargetCreate = () => {
 	const [registerData, setRegisterData] = useState();
-	const [step, setStep] = useState<
-		"goal" | "subGoal" | "duration" | "lastStep"
-	>("goal");
+	const [step, setStep] = useState<TargetStepType>("goal");
 	const methods = useForm({
 		defaultValues: {
 			subGoal: [{ name: "subGoal" }, { name: "subGoal" }, { name: "subGoal" }],
@@ -37,6 +37,9 @@ const TargetCreate = () => {
 					</Step>
 					<Step check={step === "duration"}>
 						<Duration setStep={setStep} />
+					</Step>
+					<Step check={step === "penalty"}>
+						<Penalty setStep={setStep} />
 					</Step>
 					<Step check={step === "lastStep"}>
 						<LastStep setStep={setStep} />
