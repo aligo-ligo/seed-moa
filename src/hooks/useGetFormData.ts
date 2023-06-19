@@ -1,11 +1,12 @@
 import { useFormContext } from "react-hook-form";
+import { SubGoalRoutineType } from "../types/TargetType";
 
 export const useGetFormData = () => {
 	const { getValues } = useFormContext();
-	const getGoal = getValues("goal");
-	const getSubGoal = getValues("subGoal");
-	const getRoutine = getValues("routine");
-	const endDate = getValues("endDate");
+	const getGoal: string = getValues("goal");
+	const getSubGoal: SubGoalRoutineType[] = getValues("subGoal");
+	const getRoutine: SubGoalRoutineType[] = getValues("routine");
+	const endDate: string = getValues("endDate");
 
 	return { getGoal, getSubGoal, getRoutine, endDate };
 };
