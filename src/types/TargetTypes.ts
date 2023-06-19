@@ -1,3 +1,5 @@
+import { TargetType } from "./TargetType";
+
 export type UserType = {
 	id: number;
 	uuid: string;
@@ -43,6 +45,7 @@ export type UserSettingType = {
 };
 
 export type UserResponse = Promise<UserType[]>;
+export type TargetResponse = Promise<TargetType[]>;
 export type AccountResponse = Promise<AccountType[]>;
 export type UserSettingResponse = Promise<UserSettingType[]>;
 
@@ -53,7 +56,7 @@ export interface InfoService {
 	getAllUsers: () => UserResponse;
 	getAllAccounts: () => AccountResponse;
 	getAllUserSetting: () => UserSettingResponse;
-	getTargetUser: (q?: string) => UserResponse;
+	getAllTarget: () => TargetResponse;
 	getTargetUserSetting: (q?: string) => UserSettingResponse;
 	getTargetAccount: (q?: string) => AccountResponse;
 	deleteUser: (id: string) => Promise<unknown>;

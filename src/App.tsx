@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
 
-	const client = new HttpClient("http://localhost:8000");
+	const client = new HttpClient("http://localhost:5173");
 	const authService = new AuthServiceImpl(client.httpClient);
 	const infoService = new TargetServiceImpl(client.withToken());
 	return (

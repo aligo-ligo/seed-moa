@@ -38,12 +38,13 @@ export default class HttpClient {
 	withToken() {
 		this.httpClient.interceptors.request.use((config) => {
 			const token = localStorage.getItem(ACCESS_TOKEN);
+			console.log("t", token);
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;
 			}
 			return config;
 		});
-
+		console.log("return 전", this.httpClient);
 		return this.httpClient;
 	}
 }

@@ -58,7 +58,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 								className="text-2xl text-mainDeep"
 								type="button"
 								onClick={() => {
-									subGoalAppend({ subGoal: "subGoal" });
+									subGoalAppend({ name: "subGoal" });
 								}}
 							>
 								<FiPlusSquare />
@@ -95,7 +95,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 								className="text-2xl text-mainDeep"
 								type="button"
 								onClick={() => {
-									routineAppend({ subGoal: "subGoal" });
+									routineAppend({ name: "routine" });
 								}}
 							>
 								<FiPlusSquare />

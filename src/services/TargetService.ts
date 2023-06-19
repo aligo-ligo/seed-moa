@@ -2,6 +2,7 @@ import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import {
 	AccountResponse,
 	InfoService,
+	TargetResponse,
 	UserResponse,
 	UserSettingResponse,
 	UserSettingType,
@@ -9,7 +10,9 @@ import {
 } from "../types/TargetTypes";
 
 export default class TargetServiceImpl implements InfoService {
-	constructor(private httpClient: AxiosInstance) {}
+	constructor(private httpClient: AxiosInstance) {
+		console.log("TargetSerin", httpClient);
+	}
 
 	async getUsers(page?: string) {
 		const { data } = await this.httpClient.get<UserResponse>(
@@ -49,9 +52,9 @@ export default class TargetServiceImpl implements InfoService {
 		return data;
 	}
 
-	async getTargetUser(q?: string) {
-		const { data } = await this.httpClient.get<UserResponse>(
-			`api/users?q=${q}`
+	async getAllTarget() {
+		const { data } = await this.httpClient.get<TargetResponse>(
+			`data/target.json`
 		);
 		return data;
 	}
