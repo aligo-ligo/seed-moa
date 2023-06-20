@@ -1,17 +1,14 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
-type Props = React.Dispatch<SetStateAction<boolean>>;
+import { useContext, useEffect, useRef } from "react";
+import { ModalContext } from "../context/ModalContext";
 
-const useSidebar = (setIsOpen: Props) => {
+const useSidebar = () => {
+	const { closeModal } = useContext(ModalContext);
 	const outside = useRef<any>(null);
 
 	const handlerOutside = (e: any) => {
 		if (!outside.current.contains(e.target)) {
-			toggleSide();
+			closeModal();
 		}
-	};
-
-	const toggleSide = () => {
-		setIsOpen(false);
 	};
 
 	useEffect(() => {
@@ -21,7 +18,7 @@ const useSidebar = (setIsOpen: Props) => {
 		};
 	}, []);
 
-	return { outside, toggleSide };
+	return { outside, closeModal };
 };
 
 export default useSidebar;

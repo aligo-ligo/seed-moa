@@ -1,16 +1,9 @@
-import { SetStateAction } from "react";
 import { FiX } from "react-icons/fi";
 import useSidebar from "../../hooks/useSideBar";
 import { FiChevronRight } from "react-icons/fi";
 
-type Props = {
-	isOpened: boolean;
-	setIsOpen: React.Dispatch<SetStateAction<boolean>>;
-};
-
-const Sidebar = ({ setIsOpen }: Props) => {
-	const { outside, toggleSide } = useSidebar(setIsOpen);
-	console.log("out", outside);
+const Sidebar = () => {
+	const { outside, closeModal } = useSidebar();
 
 	return (
 		<div
@@ -18,7 +11,7 @@ const Sidebar = ({ setIsOpen }: Props) => {
 			ref={outside}
 		>
 			<div className="flex justify-end">
-				<FiX onClick={toggleSide} onKeyDown={toggleSide} />
+				<FiX onClick={closeModal} onKeyDown={closeModal} />
 			</div>
 			<div className="px-4 py-6">
 				<ul className=" font-semibold">안녕하세요 이주영님</ul>
