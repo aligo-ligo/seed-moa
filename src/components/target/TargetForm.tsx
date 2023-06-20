@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/거북.jpeg";
 import { TargetType } from "../../types/TargetType";
 import { calculatePercentage } from "../../utils/calculatePercentage";
@@ -5,25 +6,36 @@ import ProgressBar from "./ProgressBar";
 
 type PropsTargetType = Pick<
 	TargetType,
-	"goal" | "subgoal_total" | "success_count" | "vote_total" | "success_vote"
+	| "user_id"
+	| "goal"
+	| "subgoal_total"
+	| "success_count"
+	| "vote_total"
+	| "success_vote"
 >;
 
 const TargetForm = ({
+	user_id,
 	goal,
 	subgoal_total,
 	success_count,
 	vote_total,
 	success_vote,
 }: PropsTargetType) => {
-	// 일의자리수가 0이도록 유틸 함수를 추후에 만들어야할 것 같다.
+	const navigate = useNavigate();
 
-	console.log(subgoal_total, success_count, vote_total, success_vote);
+	console.log(user_id, subgoal_total, success_count, vote_total, success_vote);
 
 	const successPercentage = calculatePercentage(success_count, subgoal_total);
 	const votePercentage = calculatePercentage(success_vote, vote_total);
 
 	return (
-		<div className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md">
+		<div
+			className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md"
+			onClick={() => {
+				navigate(`${user_id}`);
+			}}
+		>
 			<h2 className="font-medium">{goal}</h2>
 			<img src={logo} alt="자그마한 로고 사진" className="w-48 mx-auto" />
 			<div className="flex">

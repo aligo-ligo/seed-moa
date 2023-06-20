@@ -12,7 +12,7 @@ import { useContext } from "react";
 const Target = () => {
 	const navigate = useNavigate();
 	const infoService = useInfo();
-	const { data: targets } = useQuery(["target", "all"], () => {
+	const { data: targets } = useQuery(["targets", "all"], () => {
 		return infoService?.getAllTarget();
 	});
 	const { isOpen } = useContext(ModalContext);
@@ -41,6 +41,7 @@ const Target = () => {
 									<TargetForm
 										key={user_id}
 										{...{
+											user_id,
 											goal,
 											subgoal_total,
 											success_count,

@@ -57,6 +57,7 @@ export interface InfoService {
 	getAllAccounts: () => AccountResponse;
 	getAllUserSetting: () => UserSettingResponse;
 	getAllTarget: () => TargetResponse;
+	getTarget: (id: string | undefined) => Promise<TargetType>;
 	getTargetUserSetting: (q?: string) => UserSettingResponse;
 	getTargetAccount: (q?: string) => AccountResponse;
 	deleteUser: (id: string) => Promise<unknown>;
