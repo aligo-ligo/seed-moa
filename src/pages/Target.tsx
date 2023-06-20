@@ -16,7 +16,7 @@ const Target = () => {
 	console.log("target", targets);
 
 	return (
-		<div className="flex flex-col h-screen px-6 pb-10">
+		<div className="relative flex flex-col h-screen px-6 pb-10">
 			<Header />
 			<section className="flex flex-col mt-16">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
