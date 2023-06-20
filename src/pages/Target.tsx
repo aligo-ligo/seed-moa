@@ -6,6 +6,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useInfo } from "../hooks/useInfo";
 import { useQuery } from "@tanstack/react-query";
+import { ModalContext } from "../context/ModalContext";
+import { useContext } from "react";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -13,10 +15,14 @@ const Target = () => {
 	const { data: targets } = useQuery(["target", "all"], () => {
 		return infoService?.getAllTarget();
 	});
-	console.log("target", targets);
+	const { isOpen } = useContext(ModalContext);
+	console.log("isOpen", isOpen);
 
 	return (
-		<div className="flex flex-col h-screen px-6 pb-10">
+		<div className={`relative flex flex-col h-screen px-6 pb-10`}>
+			{isOpen && (
+				<div className="absolute inset-0 bg-opacity-50 bg-black z-10">1</div>
+			)}
 			<Header />
 			<section className="flex flex-col mt-16">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>

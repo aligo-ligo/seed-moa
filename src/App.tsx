@@ -13,6 +13,7 @@ import { InfoProvider } from "./context/TargetContext";
 import TargetDetail from "./pages/TargetDetail";
 import TargetCreate from "./pages/TargetCreate";
 import KakaoLogin from "./pages/KaKaoLogin";
+import { ModalProvider } from "./context/ModalContext";
 
 const router = createBrowserRouter([
 	{
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "target",
-		element: <Target />,
+		element: (
+			<ModalProvider>
+				<Target />,
+			</ModalProvider>
+		),
 	},
 	{
 		path: "target/:id",
