@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import LineGraph from "../components/target/LineGraph";
 import ProgressBar from "../components/target/ProgressBar";
 import { calculatePercentage } from "../utils/calculatePercentage";
+import { useState } from "react";
+import { FiX } from "react-icons/fi";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -19,8 +21,54 @@ const TargetDetail = () => {
 		target?.vote_total
 	);
 
+	const [isOpen, setIsOpen] = useState(false);
+
+	console.log(isOpen);
+	const openModal = () => {
+		setIsOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsOpen(false);
+	};
+
 	return (
 		<div className="relative flex flex-col h-screen px-6 pb-10">
+			{isOpen && (
+				<div className="absolute inset-0 bg-opacity-50 bg-black z-10">
+					<div className="flex flex-col items-center justify-center h-full ">
+						<div className="bg-white px-6 py-10 w-2/3 rounded-md">
+							<div className="flex justify-end cursor-pointer">
+								<FiX onClick={closeModal} onKeyDown={closeModal} />
+							</div>
+							<h1 className="font-semibold text-2xl">
+								주변 사람들에게 알리고!
+							</h1>
+							<p>공유해준 분에게 추첨을 통해 스타벅스 쿠폰을 보내드려요</p>
+							<div className="flex items-center mb-8 border-main border-2 border-solid rounded-md py-2 px-4 relative">
+								<input
+									type="text"
+									className="placeholder:text-xs w-full outline-none text-emerald-800"
+								/>
+								<button
+									className="text-sm w-10 h-min bg-orange-400 py-1 px-1 rounded-md text-white"
+									type="button"
+								>
+									복사
+								</button>
+							</div>
+							<div className="flex justify-center">
+								<button
+									className="text-lg w-1/2 h-8 desktop:w-9/12 desktop:h-10 bg-main rounded-md desktop:text-xl text-white"
+									onClick={closeModal}
+								>
+									닫기
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 			<Header />
 			<div>
 				<h1 className="font-semibold text-2xl">{target?.goal}</h1>
@@ -45,7 +93,10 @@ const TargetDetail = () => {
 					</div>
 				</div>
 			</div>
-			<button className="w-1/2 h-12 text-xl bg-main px-10 py-2 rounded-xl text-white mx-auto mt-10">
+			<button
+				className="w-1/2 h-12 text-xl bg-main px-10 py-2 rounded-xl text-white mx-auto mt-10"
+				onClick={openModal}
+			>
 				공유
 			</button>
 		</div>
