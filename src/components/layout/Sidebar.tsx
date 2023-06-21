@@ -1,9 +1,11 @@
 import { FiX } from "react-icons/fi";
 import useSidebar from "../../hooks/useSideBar";
 import { FiChevronRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
 	const { outside, closeModal } = useSidebar();
+	const navigate = useNavigate();
 
 	return (
 		<div
@@ -23,7 +25,14 @@ const Sidebar = () => {
 				</div>
 			</div>
 
-			<div className="px-4 py-6">전체 타켓 보러 가기</div>
+			<div
+				className="px-4 py-6"
+				onClick={() => {
+					navigate("/target");
+				}}
+			>
+				전체 타켓 보러 가기
+			</div>
 			<div className="px-4 py-6">기능 준비중입니다</div>
 		</div>
 	);
