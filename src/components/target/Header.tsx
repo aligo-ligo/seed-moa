@@ -9,7 +9,7 @@ const Header = () => {
 	const nickName = "이주영";
 
 	return (
-		<header className="flex px-4 py-6 justify-between items-center w-full">
+		<header className="flex py-6 justify-between items-center w-full">
 			<div className="flex justify-center items-center gap-2">
 				<FiAlignJustify
 					className="text-2xl cursor-pointer"

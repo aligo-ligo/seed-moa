@@ -1,8 +1,8 @@
 type Props = {
-	completed: number;
+	completed: number | undefined;
 };
 
-const ProgressBar = ({ completed }: Props) => {
+const ProgressBar = ({ completed = 0 }: Props) => {
 	const progressWidth = `w-[${completed}%]`;
 
 	return (

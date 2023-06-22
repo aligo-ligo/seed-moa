@@ -34,11 +34,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "target",
-		element: (
-			<ModalProvider>
-				<Target />,
-			</ModalProvider>
-		),
+		element: <Target />,
 	},
 	{
 		path: "target/:id",
@@ -58,9 +54,11 @@ function App() {
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider authService={authService}>
 					<InfoProvider infoService={infoService}>
-						<main className="phone:w-phone desktop:w-desktop mx-auto bg-white min-h-full overflow-auto scroll-smooth">
-							<RouterProvider router={router} />
-						</main>
+						<ModalProvider>
+							<main className="phone:w-phone desktop:w-desktop mx-auto bg-white min-h-full overflow-auto scroll-smooth">
+								<RouterProvider router={router} />
+							</main>
+						</ModalProvider>
 					</InfoProvider>
 				</AuthProvider>
 				<ReactQueryDevtools />

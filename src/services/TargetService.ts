@@ -8,6 +8,7 @@ import {
 	UserSettingType,
 	UserType,
 } from "../types/TargetTypes";
+import { TargetType } from "../types/TargetType";
 
 export default class TargetServiceImpl implements InfoService {
 	constructor(private httpClient: AxiosInstance) {
@@ -54,7 +55,14 @@ export default class TargetServiceImpl implements InfoService {
 
 	async getAllTarget() {
 		const { data } = await this.httpClient.get<TargetResponse>(
-			`data/target.json`
+			`data/allTargets.json`
+		);
+		return data;
+	}
+
+	async getTarget(id: string | undefined) {
+		const { data } = await this.httpClient.get<TargetType>(
+			`data/target/${id}.json`
 		);
 		return data;
 	}

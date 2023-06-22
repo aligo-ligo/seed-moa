@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import Step from "../components/goal/Step";
 import Goal from "../components/goal/Goal";
 import LastStep from "../components/goal/LastStep";
@@ -21,7 +21,7 @@ const TargetCreate = () => {
 	console.log("ss", step);
 
 	return (
-		<div className="flex flex-col items-center h-screen px-6 pb-10">
+		<div className=" flex flex-col items-center h-screen px-6 pb-10 ">
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit((data) =>
