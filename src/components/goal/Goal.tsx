@@ -16,7 +16,7 @@ const Goal = ({ setStep }: Props) => {
 		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
 			<input
 				type="text"
-				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 mt-40 border-b-2 border-main"
+				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				placeholder="목표를 작성해주세요"
 				{...register("goal")}
 			/>

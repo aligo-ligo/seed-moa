@@ -16,7 +16,7 @@ const Penalty = ({ setStep }: Props) => {
 		<TargetCreateLayout title="실패를 예상하신 분들에게 어떤 보상을 하실껀가요?">
 			<input
 				type="text"
-				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 mt-40 border-b-2 border-main"
+				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				placeholder="벌칙을 작성해주세요"
 				{...register("penalty")}
 			/>
