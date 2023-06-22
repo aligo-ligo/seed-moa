@@ -10,9 +10,10 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 	const {
 		register,
 		watch,
+		trigger,
 		formState: { errors },
 	} = useFormContext();
-
+	console.log("SRErrors", errors);
 	const {
 		fields: subGoal,
 		append: subGoalAppend,
@@ -34,9 +35,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 	const routineWatch = watch("routine");
 	const minGoal = subgoalWatch.length < 4;
 	const minRoutine = routineWatch.length === 1;
-	console.log(minGoal);
 
-	console.log(subgoalWatch);
 	return (
 		<TargetCreateLayout title="목표를 달성하기 위한 세분화 목표와 루틴을 작성해주세요">
 			<section className="mb-10">
@@ -116,8 +115,14 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 
 			<button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={() => {
-					setStep("duration");
+				onClick={async () => {
+					const validate = await trigger(["subGoal", "routine"]);
+
+					if (!validate) {
+						console.log("resSub", errors);
+					} else {
+						setStep("duration");
+					}
 				}}
 				type="button"
 			>

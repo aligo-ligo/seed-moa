@@ -9,8 +9,10 @@ import {
 	EMAIL_INPUT,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
+	validationSchema,
 } from "../../utils/contants";
 import OAuth from "./OAuth";
+import useYupValidationResolver from "../../hooks/useYupValidationResolver";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -57,7 +59,6 @@ interface AuthFormProps {
 
 export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	const [message, setMessage] = useState("");
-	console.log(message);
 	const [userInfo, dispatch] = useReducer(authReducer, initialState);
 	const authService = useAuthService();
 	const navigate = useNavigate();

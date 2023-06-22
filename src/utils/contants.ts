@@ -1,3 +1,4 @@
+import * as yup from "yup";
 export const QueryClientOptions = {
 	defaultOptions: {
 		queries: {
@@ -21,3 +22,9 @@ export const NICKNAME_INPUT = {
 	name: "NICKNAME",
 	placeholder: "한글 3자이상 닉네임을 작성해주세요",
 } as const;
+
+export const validationSchema = yup.object({
+	goal: yup.string().required("Required"),
+	subGoal: yup.string().required("Required"),
+	routine: yup.string().required("Required"),
+});

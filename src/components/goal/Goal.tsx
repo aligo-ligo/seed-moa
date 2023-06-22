@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form";
+import { FieldErrors, useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { TargetStepType } from "../../types/TargetType";
 
@@ -7,11 +7,12 @@ type Props = {
 };
 
 const Goal = ({ setStep }: Props) => {
-	console.log("ss", setStep);
 	const {
 		register,
+		trigger,
 		formState: { errors },
 	} = useFormContext();
+
 	return (
 		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
 			<input
@@ -23,8 +24,14 @@ const Goal = ({ setStep }: Props) => {
 
 			<button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={() => {
-					setStep("subGoal");
+				onClick={async () => {
+					const validate = await trigger(["goal"]);
+
+					if (!validate) {
+						console.log("res", errors);
+					} else {
+						setStep("subGoal");
+					}
 				}}
 				type="button"
 			>
