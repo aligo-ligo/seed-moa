@@ -9,10 +9,8 @@ import {
 	EMAIL_INPUT,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
-	validationSchema,
 } from "../../utils/contants";
 import OAuth from "./OAuth";
-import useYupValidationResolver from "../../hooks/useYupValidationResolver";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -64,31 +62,33 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	const navigate = useNavigate();
 	const isActive = !userInfo.emailValid || !userInfo.passwordValid;
 
+	console.log(userInfo);
+
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		localStorage.setItem("accessToken", "temp");
-		// if (isLogin) {
-		// 	authService
-		// 		?.signIn(userInfo)
-		// 		.then((data) => {
-		// 			if ("accessToken" in data) {
-		// 				localStorage.setItem("accessToken", data.accessToken);
-		// 				localStorage.setItem("userNickName", data.user.nickName.toString());
-		// 				navigate("/target");
-		// 			}
-		// 		})
-		// 		.catch((error) => setMessage(error.signInMessage));
-		// } else {
-		// 	authService
-		// 		?.signUp(userInfo)
-		// 		.then((data) => {
-		// 			if ("accessToken" in data) {
-		// 				setMessage("성공했습니다");
-		// 				navigate("signin");
-		// 			}
-		// 		})
-		// 		.catch((error) => setMessage(error.signUpMessage));
-		// }
+		if (isLogin) {
+			authService
+				?.signIn(userInfo)
+				.then((data) => {
+					if ("accessToken" in data) {
+						localStorage.setItem("accessToken", data.accessToken);
+						localStorage.setItem("userNickName", data.user.nickName.toString());
+						navigate("/target");
+					}
+				})
+				.catch((error) => setMessage(error.signInMessage));
+		} else {
+			authService
+				?.signUp(userInfo)
+				.then((data) => {
+					if ("accessToken" in data) {
+						setMessage("성공했습니다");
+						navigate("signin");
+					}
+				})
+				.catch((error) => setMessage(error.signUpMessage));
+		}
 	};
 	return (
 		<>
