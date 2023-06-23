@@ -10,17 +10,17 @@ export const QueryClientOptions = {
 
 export const EMAIL_INPUT = {
 	name: "EMAIL",
-	placeholder: "@포함 세글자 이상 이메일을 입력해주세요",
+	placeholder: "example@aligo.com",
 } as const;
 
 export const PASSWORD_INPUT = {
 	name: "PASSWORD",
-	placeholder: "세글자 이상의 비밀번호를 입력해주세요",
+	placeholder: "영문+숫자 조합 8자리 이상 입력해주세요",
 } as const;
 
 export const NICKNAME_INPUT = {
 	name: "NICKNAME",
-	placeholder: "한글 3자이상 닉네임을 작성해주세요",
+	placeholder: "닉네임을 입력해주세요",
 } as const;
 
 export const validationSchema = yup.object({

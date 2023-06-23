@@ -59,6 +59,7 @@ interface AuthFormProps {
 export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	const [message, setMessage] = useState("");
 	const [userInfo, dispatch] = useReducer(authReducer, initialState);
+
 	const authService = useAuthService();
 	const navigate = useNavigate();
 	const isActive = !userInfo.emailValid || !userInfo.passwordValid;
