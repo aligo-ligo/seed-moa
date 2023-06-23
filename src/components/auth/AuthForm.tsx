@@ -46,9 +46,9 @@ const initialState: UserInfoType = {
 	email: "",
 	password: "",
 	nickName: "",
-	emailValid: false,
-	passwordValid: false,
-	nickNameValid: false,
+	emailValid: true,
+	passwordValid: true,
+	nickNameValid: true,
 };
 interface AuthFormProps {
 	name: string;
@@ -83,6 +83,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 			authService
 				?.signUp(userInfo)
 				.then((data) => {
+					console.log("authFormSignUp", data);
 					if ("accessToken" in data) {
 						setMessage("성공했습니다");
 						navigate("/target");
@@ -106,12 +107,14 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 						name={EMAIL_INPUT.name}
 						text={userInfo.email}
 						placeholder={EMAIL_INPUT.placeholder}
+						userInfo={userInfo}
 						dispatch={dispatch}
 					/>
 					<AuthInput
 						name={PASSWORD_INPUT.name}
 						text={userInfo.password}
 						placeholder={PASSWORD_INPUT.placeholder}
+						userInfo={userInfo}
 						dispatch={dispatch}
 					/>
 					{!isLogin && (
@@ -119,6 +122,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 							name={NICKNAME_INPUT.name}
 							text={userInfo.nickName}
 							placeholder={NICKNAME_INPUT.placeholder}
+							userInfo={userInfo}
 							dispatch={dispatch}
 						/>
 					)}
