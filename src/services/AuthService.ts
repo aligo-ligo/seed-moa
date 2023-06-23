@@ -6,28 +6,25 @@ export default class AuthServiceImpl implements AuthService {
 	constructor(private httpClient: AxiosInstance) {}
 
 	async signUp({ email, password, nickName }: UserInfoType) {
-		console.log(
-			"서비스 계층에서 들어온 SIGNUP 인자",
-			email,
-			password,
-			nickName
-		);
-		const response = await this.httpClient.post<AuthResponse>("미정", {
+		console.log("Signup 서버로 가는 인자", email, password, nickName);
+		const response = await this.httpClient.post<AuthResponse>("users/signup", {
 			email,
 			password,
 			nickName,
 		});
 		const { data } = response;
+		console.log("signup", data);
 		return data;
 	}
 
 	async signIn({ email, password }: UserInfoType) {
-		console.log("서비스 계층에서 들어온 SIGNIN 인자", email, password);
-		const response = await this.httpClient.post<AuthResponse>("미정", {
+		console.log("SignIn 서버로 가는 인자", email, password);
+		const response = await this.httpClient.post<AuthResponse>("users/signin", {
 			email,
 			password,
 		});
 		const { data } = response;
+		console.log("signin", typeof data);
 		return data;
 	}
 }

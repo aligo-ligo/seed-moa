@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AuthInput from "./AuthInput";
 import Warnning from "./Warning";
 import { useAuthService } from "../../hooks/useAuth";
+
 import {
 	EMAIL_INPUT,
 	NICKNAME_INPUT,
@@ -28,12 +29,12 @@ const authReducer = (state: UserInfoType, action: ActionType) => {
 		}
 		case ACTION_CONST.SET_PASSWORD: {
 			const password = action.data;
-			const passwordValid = password.length >= 4;
+			const passwordValid = password.length >= 9;
 			return { ...state, password, passwordValid };
 		}
 		case ACTION_CONST.SET_NICKNAME: {
 			const nickName = action.data;
-			const nickNameValid = nickName.length >= 3;
+			const nickNameValid = nickName.length >= 3 && nickName.length < 11;
 			return { ...state, nickName, nickNameValid };
 		}
 		default:
@@ -66,7 +67,6 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		localStorage.setItem("accessToken", "temp");
 		if (isLogin) {
 			authService
 				?.signIn(userInfo)
@@ -84,7 +84,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				.then((data) => {
 					if ("accessToken" in data) {
 						setMessage("성공했습니다");
-						navigate("signin");
+						navigate("/target");
 					}
 				})
 				.catch((error) => setMessage(error.signUpMessage));

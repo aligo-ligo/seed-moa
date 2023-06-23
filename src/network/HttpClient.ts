@@ -10,6 +10,7 @@ export default class HttpClient {
 		this.httpClient = axios.create({
 			baseURL: this.baseUrl,
 		});
+
 		this.httpClient.interceptors.response.use(
 			(response) => response,
 			(error) => {
