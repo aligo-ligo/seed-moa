@@ -10,8 +10,10 @@ import {
 	EMAIL_INPUT,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
+	ValidationAuth,
 } from "../../utils/contants";
 import OAuth from "./OAuth";
+import AuthValidation from "./AuthValidation";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -59,12 +61,13 @@ interface AuthFormProps {
 export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	const [message, setMessage] = useState("");
 	const [userInfo, dispatch] = useReducer(authReducer, initialState);
-
+	const { emailValid, passwordValid, nickNameValid } = userInfo;
 	const authService = useAuthService();
 	const navigate = useNavigate();
-	const isActive = !userInfo.emailValid || !userInfo.passwordValid;
 
-	console.log(userInfo);
+	const isActive = isLogin
+		? !emailValid || !passwordValid
+		: !emailValid || !passwordValid || !nickNameValid;
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -103,34 +106,49 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				className="flex flex-col w-2/3 bg-white rounded-md"
 			>
 				<section className="px-5">
-					<AuthInput
-						name={EMAIL_INPUT.name}
-						text={userInfo.email}
-						placeholder={EMAIL_INPUT.placeholder}
-						userInfo={userInfo}
-						dispatch={dispatch}
-					/>
-					<AuthInput
-						name={PASSWORD_INPUT.name}
-						text={userInfo.password}
-						placeholder={PASSWORD_INPUT.placeholder}
-						userInfo={userInfo}
-						dispatch={dispatch}
-					/>
-					{!isLogin && (
+					<div className="mb-8">
 						<AuthInput
-							name={NICKNAME_INPUT.name}
-							text={userInfo.nickName}
-							placeholder={NICKNAME_INPUT.placeholder}
+							name={EMAIL_INPUT.name}
+							text={userInfo.email}
+							placeholder={EMAIL_INPUT.placeholder}
 							userInfo={userInfo}
 							dispatch={dispatch}
 						/>
+						{!emailValid && (
+							<AuthValidation>{ValidationAuth.email}</AuthValidation>
+						)}
+					</div>
+					<div className="mb-8">
+						<AuthInput
+							name={PASSWORD_INPUT.name}
+							text={userInfo.password}
+							placeholder={PASSWORD_INPUT.placeholder}
+							userInfo={userInfo}
+							dispatch={dispatch}
+						/>
+						{!passwordValid && (
+							<AuthValidation>{ValidationAuth.password}</AuthValidation>
+						)}
+					</div>
+					{!isLogin && (
+						<div className="mb-8">
+							<AuthInput
+								name={NICKNAME_INPUT.name}
+								text={userInfo.nickName}
+								placeholder={NICKNAME_INPUT.placeholder}
+								userInfo={userInfo}
+								dispatch={dispatch}
+							/>
+							{!nickNameValid && (
+								<AuthValidation>{ValidationAuth.nickName}</AuthValidation>
+							)}
+						</div>
 					)}
 					//이부분 공통
 					<button
 						className={`w-full text-xl ${
 							isActive ? "bg-mainHover" : "bg-main"
-						}  px-10 py-2 mt-4 text-white rounded-xl `}
+						}  px-10 py-2 mt-4 text-white rounded-xl hover:bg-mainHover ease-in duration-100`}
 						type="submit"
 						disabled={isActive}
 					>
@@ -139,7 +157,10 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 					<OAuth />
 				</section>
 
-				<Link to={url} className="text-sm text-mainHover self-center mt-8">
+				<Link
+					to={url}
+					className="text-sm text-mainHover self-center mt-8 hover:text-main ease-in duration-100"
+				>
 					<span>{isLogin ? "회원가입" : "로그인"}하러 가기</span>
 				</Link>
 				{message && <Warnning message={message} />}

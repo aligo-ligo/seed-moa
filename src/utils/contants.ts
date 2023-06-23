@@ -8,6 +8,13 @@ export const QueryClientOptions = {
 	},
 };
 
+export const ValidationAuth = {
+	email: "올바른 이메일 주소를 입력해주세요",
+	password: "영문+숫자 조합 8자리 이상 입력해주세요",
+	nickName: "3~10자로 입력해주세요",
+	submit: "존재하지 않는 계정이에요",
+};
+
 export const EMAIL_INPUT = {
 	name: "EMAIL",
 	placeholder: "example@aligo.com",

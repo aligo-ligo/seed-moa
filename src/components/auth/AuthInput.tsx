@@ -52,7 +52,7 @@ export default function AuthInput({
 				</span>
 			</label>
 			<div
-				className={`flex items-center mb-8 ${inputClass} border-2 border-solid rounded-md py-2 px-4 relative`}
+				className={`flex items-center  ${inputClass} border-2 border-solid rounded-md py-2 px-4 relative`}
 			>
 				<input
 					name={name}
