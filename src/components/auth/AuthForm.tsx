@@ -13,7 +13,8 @@ import {
 	ValidationAuth,
 } from "../../utils/contants";
 import OAuth from "./OAuth";
-import AuthValidation from "./AuthValidation";
+
+import Validation from "./Validation";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -114,9 +115,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 							userInfo={userInfo}
 							dispatch={dispatch}
 						/>
-						{!emailValid && (
-							<AuthValidation>{ValidationAuth.email}</AuthValidation>
-						)}
+						{!emailValid && <Validation>{ValidationAuth.email}</Validation>}
 					</div>
 					<div className="mb-8">
 						<AuthInput
@@ -127,7 +126,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 							dispatch={dispatch}
 						/>
 						{!passwordValid && (
-							<AuthValidation>{ValidationAuth.password}</AuthValidation>
+							<Validation>{ValidationAuth.password}</Validation>
 						)}
 					</div>
 					{!isLogin && (
@@ -140,7 +139,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 								dispatch={dispatch}
 							/>
 							{!nickNameValid && (
-								<AuthValidation>{ValidationAuth.nickName}</AuthValidation>
+								<Validation>{ValidationAuth.nickName}</Validation>
 							)}
 						</div>
 					)}

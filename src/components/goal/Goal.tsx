@@ -1,6 +1,7 @@
-import { FieldErrors, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { TargetStepType } from "../../types/TargetType";
+import Validation from "../auth/Validation";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -13,6 +14,8 @@ const Goal = ({ setStep }: Props) => {
 		formState: { errors },
 	} = useFormContext();
 
+	console.log("Goal", errors);
+
 	return (
 		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
 			<input
@@ -21,6 +24,7 @@ const Goal = ({ setStep }: Props) => {
 				placeholder="목표를 작성해주세요"
 				{...register("goal")}
 			/>
+			<Validation>{errors?.goal?.message?.toString()}</Validation>
 
 			<button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
