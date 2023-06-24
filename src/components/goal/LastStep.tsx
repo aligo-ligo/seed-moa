@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { useGetFormData } from "../../hooks/useGetFormData";
-import { TargetInfo, TargetStepType } from "../../types/TargetType";
+import { TargetStepType } from "../../types/TargetType";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;

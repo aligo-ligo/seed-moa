@@ -129,15 +129,26 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 			>
 				다음으로 가기
 			</button> */}
-			<button
-				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={() => {
-					setStep("duration");
-				}}
-				type="button"
-			>
-				다음으로 가기
-			</button>
+			<div className="flex gap-4">
+				<button
+					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+					type="button"
+					onClick={() => {
+						setStep("goal");
+					}}
+				>
+					이전
+				</button>
+				<button
+					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+					onClick={() => {
+						setStep("duration");
+					}}
+					type="button"
+				>
+					다음으로 가기
+				</button>
+			</div>
 		</TargetCreateLayout>
 	);
 };

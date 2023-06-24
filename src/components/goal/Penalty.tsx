@@ -33,21 +33,32 @@ const Penalty = ({ setStep }: Props) => {
 			>
 				다음으로 가기
 			</button> */}
-			<button
-				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={async () => {
-					const validate = await trigger(["penalty"]);
+			<div className="flex gap-4">
+				<button
+					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+					type="button"
+					onClick={() => {
+						setStep("duration");
+					}}
+				>
+					이전
+				</button>
+				<button
+					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+					onClick={async () => {
+						const validate = await trigger(["penalty"]);
 
-					if (!validate) {
-						console.log("penalty", errors);
-					} else {
-						setStep("lastStep");
-					}
-				}}
-				type="button"
-			>
-				다음으로 가기
-			</button>
+						if (!validate) {
+							console.log("penalty", errors);
+						} else {
+							setStep("lastStep");
+						}
+					}}
+					type="button"
+				>
+					다음으로 가기
+				</button>
+			</div>
 		</TargetCreateLayout>
 	);
 };
