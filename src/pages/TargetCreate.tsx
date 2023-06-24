@@ -11,7 +11,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
-	goal: yup.string().required(),
+	goal: yup.string().required("목표를 입력해주세요"),
+	// subGoal: yup.array().of(
+	// 	yup
+	// 		.object()
+	// 		.shape({
+	// 			name: yup.string(),
+	// 			value: yup.string().required("세부 목표를 입력해주세요"),
+	// 		})
+	// 		.required("서브 목표를 최소한 하나 이상 입력해주세요")
+	// ),
+	endDate: yup.string().required("목표 달성일을 지정해주세요"),
+	penalty: yup.string().required("벌칙을 지정해주세요"),
+
 	// nickName: yup.string().default("").nullable(),
 	// sex: yup
 	// 	.mixed()

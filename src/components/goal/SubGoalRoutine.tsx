@@ -14,6 +14,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 		formState: { errors },
 	} = useFormContext();
 	console.log("SRErrors", errors);
+
 	const {
 		fields: subGoal,
 		append: subGoalAppend,
@@ -113,7 +114,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 				))}
 			</section>
 
-			<button
+			{/* <button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
 				onClick={async () => {
 					const validate = await trigger(["subGoal", "routine"]);
@@ -123,6 +124,15 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 					} else {
 						setStep("duration");
 					}
+				}}
+				type="button"
+			>
+				다음으로 가기
+			</button> */}
+			<button
+				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+				onClick={() => {
+					setStep("duration");
 				}}
 				type="button"
 			>

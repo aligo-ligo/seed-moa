@@ -25,7 +25,7 @@ export type SubGoalRoutineType = React.ReactNode & {
 	value: string;
 };
 
-export type TargetInfo = {
+export type TargetInfoType= {
 	goal: string;
 	subGoal: SubGoalRoutineType[];
 	routine: SubGoalRoutineType[];

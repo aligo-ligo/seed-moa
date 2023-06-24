@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import { TargetStepType } from "../../types/TargetType";
+import Validation from "../auth/Validation";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -16,6 +17,7 @@ const Duration = ({ setStep }: Props) => {
 	const {
 		register,
 		setValue,
+		trigger,
 		formState: { errors },
 	} = useFormContext();
 
@@ -23,6 +25,7 @@ const Duration = ({ setStep }: Props) => {
 		setStartDate(date);
 		setValue("endDate", formatDate(date), { shouldValidate: true }); // DatePicker 값 업데이트
 	};
+
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
 			{/* <input
@@ -40,11 +43,18 @@ const Duration = ({ setStep }: Props) => {
 				isClearable
 				withPortal
 			/>
+			<Validation>{errors?.endDate?.message?.toString()}</Validation>
 
 			<button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={() => {
-					setStep("penalty");
+				onClick={async () => {
+					const validate = await trigger(["endDate"]);
+
+					if (!validate) {
+						console.log("endDate", errors);
+					} else {
+						setStep("penalty");
+					}
 				}}
 				type="button"
 			>

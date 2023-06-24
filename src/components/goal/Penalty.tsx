@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { TargetStepType } from "../../types/TargetType";
+import Validation from "../auth/Validation";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -10,6 +11,7 @@ const Penalty = ({ setStep }: Props) => {
 	console.log("ss", setStep);
 	const {
 		register,
+		trigger,
 		formState: { errors },
 	} = useFormContext();
 	return (
@@ -20,11 +22,27 @@ const Penalty = ({ setStep }: Props) => {
 				placeholder="벌칙을 작성해주세요"
 				{...register("penalty")}
 			/>
-
+			<Validation>{errors?.penalty?.message?.toString()}</Validation>
+			{/* 
 			<button
 				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
 				onClick={() => {
 					setStep("lastStep");
+				}}
+				type="button"
+			>
+				다음으로 가기
+			</button> */}
+			<button
+				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+				onClick={async () => {
+					const validate = await trigger(["penalty"]);
+
+					if (!validate) {
+						console.log("penalty", errors);
+					} else {
+						setStep("lastStep");
+					}
 				}}
 				type="button"
 			>

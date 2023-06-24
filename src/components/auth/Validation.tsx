@@ -2,7 +2,7 @@ type Props = {
 	children: React.ReactNode;
 };
 
-const AuthValidation = ({ children }: Props) => {
+const Validation = ({ children }: Props) => {
 	return (
 		<div>
 			<p className="text-fail text-sm ml-1 m-2">{children}</p>
@@ -10,4 +10,4 @@ const AuthValidation = ({ children }: Props) => {
 	);
 };
 
-export default AuthValidation;
+export default Validation;
