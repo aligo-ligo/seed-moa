@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
@@ -12,18 +12,18 @@ type Props = {
 };
 
 const Duration = ({ setStep }: Props) => {
-	const [startDate, setStartDate] = useState<Date | null>(null);
-	console.log("start", startDate);
 	const {
 		register,
 		setValue,
 		trigger,
+		getValues,
 		formState: { errors },
 	} = useFormContext();
 
+	const endDate = getValues("endDate");
+
 	const handleDatePickerChange = (date: Date | null) => {
-		setStartDate(date);
-		setValue("endDate", formatDate(date), { shouldValidate: true }); // DatePicker 값 업데이트
+		setValue("endDate", date, { shouldValidate: true }); // DatePicker 값 업데이트
 	};
 
 	return (
@@ -37,7 +37,7 @@ const Duration = ({ setStep }: Props) => {
 				dateFormat="yyyy-MM-dd"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
 				{...register("endDate")}
-				selected={startDate}
+				selected={endDate}
 				onChange={(date) => handleDatePickerChange(date)}
 				placeholderText="날짜를 선택해주세요"
 				isClearable
