@@ -1,4 +1,3 @@
-import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { useGetFormData } from "../../hooks/useGetFormData";
 import { TargetStepType } from "../../types/TargetType";
@@ -8,9 +7,6 @@ type Props = {
 };
 
 const LastStep = ({ setStep }: Props) => {
-	const {
-		formState: { errors },
-	} = useFormContext();
 	const { getGoal, getSubGoal, getRoutine, endDate } = useGetFormData();
 
 	console.log("goal", getGoal);

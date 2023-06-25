@@ -14,33 +14,44 @@ import TargetDetail from "./pages/TargetDetail";
 import TargetCreate from "./pages/TargetCreate";
 import KakaoLogin from "./pages/KaKaoLogin";
 import { ModalProvider } from "./context/ModalContext";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <LandingPage />,
+		errorElement: <NotFound />,
 	},
 	{
 		path: "signin",
 		element: <Auth />,
+		errorElement: <NotFound />,
 	},
 	{
 		path: "signup",
 		element: <Auth />,
+		errorElement: <NotFound />,
 	},
 	{
 		path: "kakao",
 		element: <KakaoLogin />,
+		errorElement: <NotFound />,
 	},
 	{
 		path: "target",
 		element: <Target />,
+		errorElement: <NotFound />,
 	},
 	{
 		path: "target/:id",
 		element: <TargetDetail />,
+		errorElement: <NotFound />,
 	},
-	{ path: "target/create", element: <TargetCreate /> },
+	{
+		path: "target/create",
+		element: <TargetCreate />,
+		errorElement: <NotFound />,
+	},
 ]);
 
 function App() {
@@ -50,6 +61,7 @@ function App() {
 	const client = new HttpClient("http://localhost:5173/");
 	const authService = new AuthServiceImpl(client.httpClient);
 	const infoService = new TargetServiceImpl(client.withToken());
+
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
