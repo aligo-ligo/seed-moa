@@ -11,18 +11,19 @@ export default function KakaoLogin() {
 
 	useEffect(() => {
 		const getKakaoToken = async () => {
-			await axios(`host/signin/kakao?code=${code}`, {
+			await axios(`http://192.168.219.103:8080/users/kakao?code=${code}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
 				},
 			})
 				.then((res) => {
-					const userObj = res.data.data;
-					setTemp(userObj);
-					axios.defaults.headers.common[
-						"Authorization"
-					] = `${userObj.jwtToken}`;
+					console.log("응답", res);
+					// const userObj = res.data.data;
+					// setTemp(userObj);
+					// axios.defaults.headers.common[
+					// 	"Authorization"
+					// ] = `${userObj.jwtToken}`;
 					navigate("/target");
 				})
 				.catch((err) => {

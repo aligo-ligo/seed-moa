@@ -2,8 +2,6 @@ import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useRef, useState } from "react";
-import { formatDate } from "../../utils/formatDate";
 import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
 
@@ -28,11 +26,6 @@ const Duration = ({ setStep }: Props) => {
 
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
-			{/* <input
-				type="text"
-				className=" sr-only placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
-				placeholder="목표를 작성해주세요"
-			/> */}
 			<DatePicker
 				dateFormat="yyyy-MM-dd"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"

@@ -40,29 +40,34 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 	return (
 		<TargetCreateLayout title="목표를 달성하기 위한 세분화 목표와 루틴을 작성해주세요">
 			<section className="mb-10">
-				<h2 className="text-lg font-bold mb-2">세분화 목표</h2>
+				<div className="flex items-center justify-between">
+					<h2 className="text-lg font-bold mb-2">세분화 목표</h2>
+					<button
+						className="text-2xl text-mainDeep pl-4"
+						type="button"
+						onClick={() => {
+							subGoalAppend({ name: "subGoal" });
+						}}
+					>
+						<FiPlusSquare />
+					</button>
+				</div>
 				<h2 className="font-normal mb-1 text-gray">
 					최소 3개 ~ 최대 10개까지 생성 가능
 				</h2>
+
 				{subGoal.map((field, index) => (
 					<>
-						<div className="flex items-center justify-center">
+						<div className="flex items-center justify-center mt-5">
+							<span className="font-semibold text-xl pr-4">{index + 1}</span>
 							<input
 								key={field.id} // important to include key with field's id
 								type="text"
-								className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
+								className="placeholder:text-s w-full h-8 outline-none text-emerald-800 border-b-2 border-main "
 								placeholder="목표를 작성해주세요"
 								{...register(`subGoal.${index}.value` as const)}
 							/>
-							<button
-								className="text-2xl text-mainDeep"
-								type="button"
-								onClick={() => {
-									subGoalAppend({ name: "subGoal" });
-								}}
-							>
-								<FiPlusSquare />
-							</button>
+
 							{!minGoal && (
 								<button
 									className="text-2xl text-mainDeep"
@@ -77,13 +82,26 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 				))}
 			</section>
 			<section className="mb-10">
-				<h2 className="text-lg font-bold mb-2">루틴</h2>
+				<div className="flex items-center justify-between">
+					<h2 className="text-lg font-bold mb-2">루틴</h2>
+					<button
+						className="text-2xl text-mainDeep pl-4"
+						type="button"
+						onClick={() => {
+							routineAppend({ name: "routine" });
+						}}
+					>
+						<FiPlusSquare />
+					</button>
+				</div>
 				<h2 className="font-normal mb-1 text-gray">
 					최소 1개 ~ 최대 10개생성 가능
 				</h2>
+
 				{routine.map((field, index) => (
 					<>
-						<div className="flex items-center justify-center">
+						<div className="flex items-center justify-center mt-5">
+							<span className="font-semibold text-xl pr-4">{index + 1}</span>
 							<input
 								key={field.id} // important to include key with field's id
 								type="text"
@@ -91,15 +109,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 								placeholder="루틴을 작성해주세요"
 								{...register(`routine.${index}.value` as const)}
 							/>
-							<button
-								className="text-2xl text-mainDeep"
-								type="button"
-								onClick={() => {
-									routineAppend({ name: "routine" });
-								}}
-							>
-								<FiPlusSquare />
-							</button>
+
 							{!minRoutine && (
 								<button
 									className="text-2xl text-mainDeep"
