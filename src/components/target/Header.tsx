@@ -4,9 +4,12 @@ import { useContext } from "react";
 import Sidebar from "../layout/Sidebar";
 import { ModalContext } from "../../context/ModalContext";
 
-const Header = () => {
+type Props = {
+	name: string | null;
+};
+
+const Header = ({ name }: Props) => {
 	const { isOpen, openModal } = useContext(ModalContext);
-	const nickName = "이주영";
 
 	return (
 		<header className="flex py-6 justify-between items-center w-full">
@@ -17,7 +20,7 @@ const Header = () => {
 				/>
 				<img src={logo} alt="자그마한 로고 사진" className="w-12" />
 			</div>
-			<h1 className="font-semibold">안녕하세요 {nickName}님</h1>
+			<h1 className="font-semibold">안녕하세요 {name}님</h1>
 			{isOpen && <Sidebar />}
 		</header>
 	);

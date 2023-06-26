@@ -2,6 +2,9 @@ import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
+import { useGetFormData } from "../../hooks/useGetFormData";
+import { useBeforeUnload } from "react-router-dom";
+import { useCallback, useEffect } from "react";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -11,10 +14,24 @@ const Goal = ({ setStep }: Props) => {
 	const {
 		register,
 		trigger,
+		getValues,
+		setValue,
 		formState: { errors },
 	} = useFormContext();
 
+	const getGoal: string = getValues("goal");
+	console.log("getData", getGoal);
+
+	// useBeforeUnload(
+	// 	useCallback(() => {
+	// 		localStorage.setItem("stuff", getGoal);
+	// 	}, [])
+	// );
+
 	console.log("Goal", errors);
+	useEffect(() => {
+		setValue("goal", localStorage.getItem("goal"));
+	}, [setValue]);
 
 	return (
 		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
@@ -34,6 +51,7 @@ const Goal = ({ setStep }: Props) => {
 					if (!validate) {
 						console.log("res", errors);
 					} else {
+						localStorage.setItem("goal", getGoal);
 						setStep("subGoal");
 					}
 				}}

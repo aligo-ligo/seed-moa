@@ -17,13 +17,14 @@ const Target = () => {
 	});
 	const { isOpen } = useContext(ModalContext);
 	console.log("isOpen", isOpen);
+	const name = localStorage.getItem("userNickName");
 
 	return (
 		<div className={`relative flex flex-col h-screen px-6 pb-10`}>
 			{isOpen && (
 				<div className="absolute inset-0 bg-opacity-50 bg-black z-10">1</div>
 			)}
-			<Header />
+			<Header name={name} />
 			<section className="flex flex-col mt-16">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
 				<div className="flex flex-row">

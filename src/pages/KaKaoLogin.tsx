@@ -19,6 +19,14 @@ export default function KakaoLogin() {
 			})
 				.then((res) => {
 					console.log("응답", res);
+					if ("accessToken" in res.data) {
+						localStorage.setItem("accessToken", res.data.accessToken);
+						localStorage.setItem(
+							"userNickName",
+							res.data.user.nickName.toString()
+						);
+						navigate("/target");
+					}
 					// const userObj = res.data.data;
 					// setTemp(userObj);
 					// axios.defaults.headers.common[

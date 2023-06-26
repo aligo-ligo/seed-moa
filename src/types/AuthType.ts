@@ -20,6 +20,7 @@ export type ValidProperties = Pick<
 export type AuthResponse = {
 	accessToken: string;
 	user: {
+		id: string;
 		email: string;
 		nickName: number;
 	};

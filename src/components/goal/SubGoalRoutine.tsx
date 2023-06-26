@@ -2,6 +2,8 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { TargetStepType } from "../../types/TargetType";
+import { useBeforeUnload } from "react-router-dom";
+import { useCallback } from "react";
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
 };
@@ -11,6 +13,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 		register,
 		watch,
 		trigger,
+		getValues,
 		formState: { errors },
 	} = useFormContext();
 	console.log("SRErrors", errors);
@@ -31,6 +34,15 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 		// shouldUnregister: true, 컴포넌트가 사라지면 unRegister이 되도록 !
 		name: "routine", // unique name for your Field Array
 	});
+
+	const getGoal: string = getValues("goal");
+	console.log("getData", getGoal);
+
+	useBeforeUnload(
+		useCallback(() => {
+			localStorage.setItem("goal", getGoal);
+		}, [getGoal])
+	);
 
 	const subgoalWatch = watch("subGoal");
 	const routineWatch = watch("routine");

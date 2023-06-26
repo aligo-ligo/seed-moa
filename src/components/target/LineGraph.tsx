@@ -20,6 +20,14 @@ const resizeImage = (
 const CustomLineChart = () => {
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
+	const test = [
+		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+		23, 45, 48, 4, 8, 78, 7, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+		15, 16, 17, 18, 19, 20, 21, 23, 45, 48, 4, 8, 78, 7, 10, 1, 2, 3, 4, 5, 6,
+		7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 45, 48, 4, 8,
+		78, 7, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+		19, 20, 21, 23, 45, 48, 4, 8, 78, 7, 10,
+	];
 
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");
@@ -32,11 +40,11 @@ const CustomLineChart = () => {
 				chartInstanceRef.current = new Chart(chartCanvas, {
 					type: "line",
 					data: {
-						labels: ["1", "2", "3", "4"],
+						labels: test,
 						datasets: [
 							{
 								label: "Sales of the Week",
-								data: [98, 6, 9],
+								data: [30, 6, 9],
 								backgroundColor: "aqua",
 								borderColor: "aqua",
 								fill: false,
