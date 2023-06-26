@@ -5,37 +5,65 @@ import KakaoLogin from "../pages/KaKaoLogin";
 import Target from "../pages/Target";
 import TargetDetail from "../pages/TargetDetail";
 import TargetCreate from "../pages/TargetCreate";
+import Authorization from "../components/layout/Authorization";
 
-export const routerArray = [
+export const routerChildrenInfo = [
+	{
+		index: true,
+		element: <LandingPage />,
+		withAuthorization: false,
+	},
+	{
+		path: "signin",
+		element: <Auth />,
+		withAuthorization: false,
+	},
+	{
+		path: "signup",
+		element: <Auth />,
+		withAuthorization: false,
+	},
+	{
+		path: "kakao",
+		element: <KakaoLogin />,
+		withAuthorization: false,
+	},
+	{
+		path: "target",
+		element: <Target />,
+		withAuthorization: true,
+	},
+	{
+		path: "target/:id",
+		element: <TargetDetail />,
+		withAuthorization: true,
+	},
+	{
+		path: "target/create",
+		element: <TargetCreate />,
+		withAuthorization: true,
+	},
+];
+
+export const mappingRouterWithAuthorization = routerChildrenInfo.map(
+	(route) => {
+		return route.withAuthorization
+			? {
+					path: route.path,
+					element: <Authorization>{route.element}</Authorization>,
+			  }
+			: {
+					index: true,
+					path: route.path,
+					element: route.element,
+			  };
+	}
+);
+
+export const routerInfo = [
 	{
 		path: "/",
 		errorElement: <NotFound />,
-		children: [
-			{
-				index: true,
-				element: <LandingPage />,
-			},
-			{
-				path: "signin",
-				element: <Auth />,
-			},
-			{
-				path: "signup",
-				element: <Auth />,
-			},
-			{
-				path: "kakao",
-				element: <KakaoLogin />,
-			},
-			{
-				path: "target",
-				element: <Target />,
-			},
-			{
-				path: "target/:id",
-				element: <TargetDetail />,
-			},
-			{ path: "target/create", element: <TargetCreate /> },
-		],
+		children: mappingRouterWithAuthorization,
 	},
 ];

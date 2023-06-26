@@ -10,17 +10,18 @@ import TargetServiceImpl from "./services/TargetService";
 import { InfoProvider } from "./context/TargetContext";
 
 import { ModalProvider } from "./context/ModalContext";
-import { routerArray } from "./utils/router";
+import { routerArray, routerInfo } from "./utils/router";
+import Authorization from "./components/layout/Authorization";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
 
-	// const client = new HttpClient("http://192.168.219.103:8080/");
-	const client = new HttpClient("http://localhost:5173/");
+	const client = new HttpClient("http://192.168.219.103:8080/");
+	// const client = new HttpClient("http://localhost:5173/");
 	const authService = new AuthServiceImpl(client.httpClient);
 	const infoService = new TargetServiceImpl(client.withToken());
 
-	const routerObject = createBrowserRouter(routerArray);
+	const routerObject = createBrowserRouter(routerInfo);
 
 	return (
 		<>
