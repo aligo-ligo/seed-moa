@@ -5,6 +5,8 @@ import Validation from "../auth/Validation";
 import { useGetFormData } from "../../hooks/useGetFormData";
 import { useBeforeUnload } from "react-router-dom";
 import { useCallback, useEffect } from "react";
+import StyledButton from "../common/StyledButton";
+import TargetStepButton from "../logic/TargetStepButton";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -13,7 +15,6 @@ type Props = {
 const Goal = ({ setStep }: Props) => {
 	const {
 		register,
-		trigger,
 		getValues,
 		setValue,
 		formState: { errors },
@@ -35,22 +36,7 @@ const Goal = ({ setStep }: Props) => {
 				{...register("goal")}
 			/>
 			<Validation>{errors?.goal?.message?.toString()}</Validation>
-
-			<button
-				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={async () => {
-					const validate = await trigger(["goal"]);
-
-					if (!validate) {
-						console.log("res", errors);
-					} else {
-						setStep("subGoal");
-					}
-				}}
-				type="button"
-			>
-				다음으로 가기
-			</button>
+			<TargetStepButton present={["goal"]} next="subGoal" setStep={setStep} />
 		</TargetCreateLayout>
 	);
 };

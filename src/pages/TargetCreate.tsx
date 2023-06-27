@@ -35,6 +35,7 @@ const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
 const TargetCreate = () => {
 	const [registerData, setRegisterData] = useState();
 	const [step, setStep] = useState<TargetStepType>("goal");
+
 	const methods = useForm({
 		defaultValues: {
 			subGoal: [{ name: "subGoal" }, { name: "subGoal" }, { name: "subGoal" }],
@@ -44,7 +45,7 @@ const TargetCreate = () => {
 	});
 
 	console.log("최상위", methods.formState.errors);
-
+	console.log("in the top", step);
 	return (
 		<div className=" flex flex-col items-center h-screen px-6 pb-10 ">
 			<FormProvider {...methods}>
