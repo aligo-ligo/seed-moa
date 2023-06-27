@@ -5,13 +5,10 @@ import { QueryClientOptions } from "./utils/contants";
 import HttpClient from "./network/HttpClient";
 import AuthServiceImpl from "./services/AuthService";
 import { AuthProvider } from "./context/AuthContext";
-
 import TargetServiceImpl from "./services/TargetService";
 import { InfoProvider } from "./context/TargetContext";
-
 import { ModalProvider } from "./context/ModalContext";
 import { routerInfo } from "./utils/router";
-import Authorization from "./components/layout/Authorization";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);

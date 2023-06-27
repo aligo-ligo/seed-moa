@@ -36,7 +36,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 	});
 
 	const getGoal: string = getValues("goal");
-	console.log("getData", getGoal);
+	console.log("goal in sub", getGoal);
 
 	useBeforeUnload(
 		useCallback(() => {

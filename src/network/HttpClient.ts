@@ -14,6 +14,7 @@ export default class HttpClient {
 		this.httpClient.interceptors.response.use(
 			(response) => response,
 			(error) => {
+				console.log("error", error);
 				if (error instanceof AxiosError) {
 					const { response } = error;
 					if (response) {
@@ -21,7 +22,7 @@ export default class HttpClient {
 						if (status === 401) {
 							localStorage.removeItem(ACCESS_TOKEN);
 							localStorage.removeItem(USER_ID);
-							window.location.replace("/login");
+							window.location.replace("/signin");
 						} else {
 							throw new HTTPError(
 								response?.status,
@@ -43,9 +44,10 @@ export default class HttpClient {
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;
 			}
+
 			return config;
 		});
-		console.log("return 전", this.httpClient);
+
 		return this.httpClient;
 	}
 }

@@ -22,13 +22,6 @@ const Goal = ({ setStep }: Props) => {
 	const getGoal: string = getValues("goal");
 	console.log("getData", getGoal);
 
-	// useBeforeUnload(
-	// 	useCallback(() => {
-	// 		localStorage.setItem("stuff", getGoal);
-	// 	}, [])
-	// );
-
-	console.log("Goal", errors);
 	useEffect(() => {
 		setValue("goal", localStorage.getItem("goal"));
 	}, [setValue]);
@@ -51,7 +44,6 @@ const Goal = ({ setStep }: Props) => {
 					if (!validate) {
 						console.log("res", errors);
 					} else {
-						localStorage.setItem("goal", getGoal);
 						setStep("subGoal");
 					}
 				}}

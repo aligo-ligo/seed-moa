@@ -6,6 +6,7 @@ import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
 
 import DatePickerContainer from "./DatePickerContainer";
+import { useEffect } from "react";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -21,6 +22,10 @@ const Duration = ({ setStep }: Props) => {
 	} = useFormContext();
 
 	const endDate = getValues("endDate");
+
+	useEffect(() => {
+		setValue("endDate", localStorage.getItem("endDate"));
+	}, [setValue]);
 
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
