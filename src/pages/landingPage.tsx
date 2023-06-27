@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/거북.jpeg";
 
+import StyledButton from "../components/common/StyledButton";
+
 const LandingPage = () => {
+	const navigate = useNavigate();
 	return (
 		<section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
 			<div className="flex flex-col items-center justify-center">
@@ -18,18 +21,18 @@ const LandingPage = () => {
 			</p>
 
 			<div className="flex flex-col items-center justify-center w-full ">
-				<Link
-					to="signin"
-					className="w-full h-full flex items-center justify-center"
+				<StyledButton
+					styleName="landing"
+					onClick={() => navigate("/signin")}
+					type="button"
 				>
-					<button className="text-lg w-1/2 h-16 desktop:w-9/12 h-20 bg-main rounded-md text-xl text-white mx-auto mb-12 ">
-						로그인
-					</button>
-				</Link>
+					로그인
+				</StyledButton>
 
 				<button className="text-lg desktop:text-xl text-main ">
 					<Link to="signup">회원가입 하기</Link>
 				</button>
+
 				<button className="text-lg desktop:text-xl text-main ">
 					<Link to="target">임시 target 이동</Link>
 				</button>
