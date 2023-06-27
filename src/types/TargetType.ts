@@ -18,14 +18,15 @@ export type TargetStepType =
 	| "subGoal"
 	| "duration"
 	| "penalty"
-	| "lastStep";
+	| "lastStep"
+	| "done";
 
 export type SubGoalRoutineType = React.ReactNode & {
 	name: string;
 	value: string;
 };
 
-export type TargetInfoType= {
+export type TargetInfoType = {
 	goal: string;
 	subGoal: SubGoalRoutineType[];
 	routine: SubGoalRoutineType[];

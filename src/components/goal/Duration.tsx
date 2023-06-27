@@ -7,6 +7,7 @@ import Validation from "../auth/Validation";
 
 import DatePickerContainer from "./DatePickerContainer";
 import { useEffect } from "react";
+import TargetStepButton from "../logic/TargetStepButton";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -44,30 +45,22 @@ const Duration = ({ setStep }: Props) => {
 			/>
 			<Validation>{errors?.endDate?.message?.toString()}</Validation>
 			<div className="flex gap-4">
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					type="button"
-					onClick={() => {
-						setStep("subGoal");
-					}}
+				<TargetStepButton
+					prev="subGoal"
+					present={["endDate"]}
+					next="penalty"
+					setStep={setStep}
 				>
-					이전
-				</button>
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					onClick={async () => {
-						const validate = await trigger(["endDate"]);
+					이전으로 가기
+				</TargetStepButton>
 
-						if (!validate) {
-							console.log("endDate", errors);
-						} else {
-							setStep("penalty");
-						}
-					}}
-					type="button"
+				<TargetStepButton
+					present={["endDate"]}
+					next="penalty"
+					setStep={setStep}
 				>
 					다음으로 가기
-				</button>
+				</TargetStepButton>
 			</div>
 		</TargetCreateLayout>
 	);

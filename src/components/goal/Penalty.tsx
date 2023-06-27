@@ -4,6 +4,7 @@ import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
 import { useBeforeUnload } from "react-router-dom";
 import { useCallback } from "react";
+import TargetStepButton from "../logic/TargetStepButton";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -44,30 +45,22 @@ const Penalty = ({ setStep }: Props) => {
 				다음으로 가기
 			</button> */}
 			<div className="flex gap-4">
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					type="button"
-					onClick={() => {
-						setStep("duration");
-					}}
+				<TargetStepButton
+					prev="duration"
+					present={["penalty"]}
+					next="lastStep"
+					setStep={setStep}
 				>
-					이전
-				</button>
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					onClick={async () => {
-						const validate = await trigger(["penalty"]);
+					이전으로 가기
+				</TargetStepButton>
 
-						if (!validate) {
-							console.log("penalty", errors);
-						} else {
-							setStep("lastStep");
-						}
-					}}
-					type="button"
+				<TargetStepButton
+					present={["penalty"]}
+					next="lastStep"
+					setStep={setStep}
 				>
 					다음으로 가기
-				</button>
+				</TargetStepButton>
 			</div>
 		</TargetCreateLayout>
 	);

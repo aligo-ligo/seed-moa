@@ -1,6 +1,7 @@
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { useGetFormData } from "../../hooks/useGetFormData";
 import { TargetStepType } from "../../types/TargetType";
+import TargetStepButton from "../logic/TargetStepButton";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -35,21 +36,22 @@ const LastStep = ({ setStep }: Props) => {
 				</div>
 			</section>
 			<div className="flex gap-4">
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					type="button"
-					onClick={() => {
-						setStep("penalty");
-					}}
+				<TargetStepButton
+					prev="penalty"
+					present={["lastStep"]}
+					next="lastStep"
+					setStep={setStep}
 				>
 					이전
-				</button>
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
+				</TargetStepButton>
+				<TargetStepButton
 					type="submit"
+					present={["lastStep"]}
+					next="done"
+					setStep={setStep}
 				>
-					다음으로 가기
-				</button>
+					완료
+				</TargetStepButton>
 			</div>
 		</TargetCreateLayout>
 	);

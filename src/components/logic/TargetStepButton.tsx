@@ -4,18 +4,33 @@ import StyledButton from "../common/StyledButton";
 import { TargetStepType } from "../../types/TargetType";
 
 type Props = {
+	prev?: TargetStepType | false;
 	present: string[];
 	next: TargetStepType;
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
+	children: React.ReactNode;
+	type?: "button" | "submit" | "reset" | undefined;
 };
 
-const TargetStepButton = ({ present, next, setStep }: Props) => {
+const TargetStepButton = ({
+	prev = false,
+	present,
+	next,
+	setStep,
+	children,
+	type = "button",
+}: Props) => {
 	const {
 		trigger,
 		formState: { errors },
 	} = useFormContext();
 
 	const onClickHandler = async () => {
+		console.log("전", next);
+		if (next === "done") return;
+		console.log("후", next);
+		if (prev !== false) return setStep(prev);
+
 		const validate = await trigger(present);
 		if (!validate) {
 			console.log("res", errors);
@@ -24,12 +39,8 @@ const TargetStepButton = ({ present, next, setStep }: Props) => {
 		}
 	};
 	return (
-		<StyledButton
-			styleName="targetCreate"
-			type="button"
-			onClick={onClickHandler}
-		>
-			다음으로 가기
+		<StyledButton styleName="targetCreate" type={type} onClick={onClickHandler}>
+			{children}
 		</StyledButton>
 	);
 };
