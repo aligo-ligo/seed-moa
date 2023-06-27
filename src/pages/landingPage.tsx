@@ -29,9 +29,13 @@ const LandingPage = () => {
 					로그인
 				</StyledButton>
 
-				<button className="text-lg desktop:text-xl text-main ">
-					<Link to="signup">회원가입 하기</Link>
-				</button>
+				<StyledButton
+					styleName="ladingSignUp"
+					onClick={() => navigate("/signup")}
+					type="button"
+				>
+					회원가입 하러 갈래요
+				</StyledButton>
 
 				<button className="text-lg desktop:text-xl text-main ">
 					<Link to="target">임시 target 이동</Link>

@@ -1,6 +1,7 @@
 export interface CommonButtonType {
 	type: "button" | "submit" | "reset" | undefined;
 	style?: string;
-	onClick: () => void;
+	onClick?: () => void;
+	disable?: boolean;
 	children: React.ReactNode;
 }

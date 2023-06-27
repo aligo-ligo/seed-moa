@@ -15,6 +15,7 @@ import {
 import OAuth from "./OAuth";
 
 import Validation from "./Validation";
+import StyledButton from "../common/StyledButton";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",
@@ -147,24 +148,23 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 						</div>
 					)}
 					//이부분 공통
-					<button
-						className={`w-full text-xl ${
-							isActive ? "bg-mainHover" : "bg-main"
-						}  px-10 py-2 mt-4 text-white rounded-xl hover:bg-mainHover ease-in duration-100`}
-						type="submit"
-						disabled={isActive}
-					>
+					<StyledButton styleName="login" type="submit" disable={isActive}>
 						{name}
-					</button>
+					</StyledButton>
 					<OAuth />
 				</section>
+				<StyledButton
+					styleName="signInAndUp"
+					type="button"
+					onClick={() => navigate(url)}
+				>
+					{isLogin ? "회원가입" : "로그인"}하러 가기
+				</StyledButton>
 
 				<Link
 					to={url}
 					className="text-sm text-mainHover self-center mt-8 hover:text-main ease-in duration-100"
-				>
-					<span>{isLogin ? "회원가입" : "로그인"}하러 가기</span>
-				</Link>
+				></Link>
 				{message && <Warnning message={message} />}
 			</form>
 		</>

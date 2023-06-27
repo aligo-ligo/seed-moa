@@ -8,6 +8,7 @@ import { useInfo } from "../hooks/useInfo";
 import { useQuery } from "@tanstack/react-query";
 import { ModalContext } from "../context/ModalContext";
 import { useContext } from "react";
+import StyledButton from "../components/common/StyledButton";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -15,8 +16,12 @@ const Target = () => {
 	const { data: targets } = useQuery(["targets", "all"], () => {
 		return infoService?.getAllTarget();
 	});
+
+	// 모달창인데 portal로 바꿔보자 리팩토링 해야한다.
 	const { isOpen } = useContext(ModalContext);
 	console.log("isOpen", isOpen);
+
+	// 리팩토링하자!
 	const name = localStorage.getItem("userNickName");
 
 	return (
@@ -55,14 +60,14 @@ const Target = () => {
 						)}
 					</Carousel>
 				</div>
-				<button
-					className="mt-24 mx-auto w-1/3 h-14 bg-main rounded-lg"
-					onClick={() => {
-						navigate("/target/create");
-					}}
+
+				<StyledButton
+					styleName="target"
+					type="button"
+					onClick={() => navigate("/target/create")}
 				>
 					<FiEdit className="mx-auto text-white text-2xl" />
-				</button>
+				</StyledButton>
 			</section>
 		</div>
 	);
