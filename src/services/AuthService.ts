@@ -1,9 +1,17 @@
 import { AxiosError, AxiosInstance } from "axios";
 // import HTTPError from "../network/httpError";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
+import { TokenRepository } from "../repository/tokenRepository";
 
 export default class AuthServiceImpl implements AuthService {
-	constructor(private httpClient: AxiosInstance) {}
+	tokenRepository: TokenRepository;
+
+	constructor(
+		private httpClient: AxiosInstance,
+		tokenRepository: TokenRepository
+	) {
+		this.tokenRepository = tokenRepository;
+	}
 
 	async signUp({ email, password, nickName }: UserInfoType) {
 		console.log("Signup 서버로 가는 인자", email, password, nickName);
@@ -13,7 +21,8 @@ export default class AuthServiceImpl implements AuthService {
 			nickName,
 		});
 		const { data } = response;
-		console.log("signup", data);
+		this.tokenRepository.save(data.accessToken);
+		console.log(this.tokenRepository.get());
 		return data;
 	}
 
@@ -24,7 +33,12 @@ export default class AuthServiceImpl implements AuthService {
 			password,
 		});
 		const { data } = response;
-		console.log("signin", typeof data);
+		this.tokenRepository.save(data.accessToken);
+		console.log(this.tokenRepository.get());
 		return data;
+	}
+
+	logout() {
+		this.tokenRepository.remove();
 	}
 }

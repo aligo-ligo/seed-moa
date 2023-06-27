@@ -78,7 +78,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				?.signIn(userInfo)
 				.then((data) => {
 					if ("accessToken" in data) {
-						localStorage.setItem("accessToken", data.accessToken);
+						// localStorage.setItem("accessToken", data.accessToken);
 						localStorage.setItem("userId", data.user.id.toString());
 						localStorage.setItem("userNickName", data.user.nickName.toString());
 						navigate("/target");
@@ -91,7 +91,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				.then((data) => {
 					console.log("authFormSignUp", data);
 					if ("accessToken" in data) {
-						localStorage.setItem("accessToken", data.accessToken);
+						// localStorage.setItem("accessToken", data.accessToken);
 						localStorage.setItem("userId", data.user.id.toString());
 						localStorage.setItem("userNickName", data.user.nickName.toString());
 						navigate("/target");

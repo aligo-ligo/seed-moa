@@ -29,4 +29,5 @@ export type AuthResponse = {
 export interface AuthService {
 	signIn: (userInfo: UserInfoType) => Promise<AuthResponse>;
 	signUp: (userInfo: UserInfoType) => Promise<AuthResponse>;
+	logout: () => void;
 }
