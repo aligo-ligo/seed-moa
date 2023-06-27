@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import { useInfo } from "../hooks/useInfo";
 import { useQuery } from "@tanstack/react-query";
 import { ModalContext } from "../context/ModalContext";
-import { useContext } from "react";
+import { CSSProperties, useContext } from "react";
 import StyledButton from "../components/common/StyledButton";
 
 const Target = () => {
@@ -24,16 +24,60 @@ const Target = () => {
 	// 리팩토링하자!
 	const name = localStorage.getItem("userNickName");
 
+	const arrowStyles: CSSProperties = {
+		position: "absolute",
+		zIndex: 100,
+		top: "calc(70% - 15px)",
+		fontSize: "40px",
+		cursor: "pointer",
+	};
+
 	return (
 		<div className={`relative flex flex-col h-screen px-6 pb-10`}>
 			{isOpen && (
 				<div className="absolute inset-0 bg-opacity-50 bg-black z-10">1</div>
 			)}
 			<Header name={name} />
-			<section className="flex flex-col mt-16">
+			<section className="flex flex-col mt-10 ">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
-				<div className="flex flex-row">
-					<Carousel className="w-full" useKeyboardArrows showThumbs={false}>
+				<div className="flex flex-row justify-center mt-8 ">
+					<Carousel
+						className="w-full desktop:w-2/3"
+						useKeyboardArrows
+						showThumbs={false}
+						showIndicators={false}
+						transitionTime={500}
+						renderArrowPrev={(onClickHandler, hasPrev, label) =>
+							hasPrev && (
+								<button
+									type="button"
+									onClick={onClickHandler}
+									title={label}
+									style={{ ...arrowStyles, left: 15 }}
+								>
+									-
+								</button>
+							)
+						}
+						renderArrowNext={(onClickHandler, hasNext, label) =>
+							hasNext && (
+								<button
+									type="button"
+									onClick={onClickHandler}
+									title={label}
+									style={{ ...arrowStyles, right: 15 }}
+								>
+									+
+								</button>
+							)
+						}
+						statusFormatter={(
+							currentItem: number,
+							total: number
+						): string | JSX.Element => {
+							return <p>{`${total}개의 목표 중 ${currentItem}번째`}</p>;
+						}}
+					>
 						{targets?.map(
 							({
 								user_id,
