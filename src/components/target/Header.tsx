@@ -1,15 +1,16 @@
 import { FiAlignJustify } from "react-icons/fi";
 import logo from "../../assets/logo/거북.jpeg";
-import { useContext } from "react";
+
 import Sidebar from "../layout/Sidebar";
-import { ModalContext } from "../../context/ModalContext";
+import useSidebar from "../../hooks/useSideBar";
 
 type Props = {
 	name: string | null;
 };
 
 const Header = ({ name }: Props) => {
-	const { isOpen, openModal } = useContext(ModalContext);
+	console.log(name);
+	const { isOpen, openModal } = useSidebar();
 
 	return (
 		<header className="flex py-6 justify-between items-center w-full">

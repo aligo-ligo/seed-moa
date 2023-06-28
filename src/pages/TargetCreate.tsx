@@ -6,11 +6,12 @@ import LastStep from "../components/goal/LastStep";
 import Duration from "../components/goal/Duration";
 import SubGoalRoutine from "../components/goal/SubGoalRoutine";
 import Penalty from "../components/goal/Penalty";
-import { TargetInfoType, TargetStepType } from "../types/TargetType";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
+import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
 
 const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
@@ -41,14 +42,17 @@ const TargetCreate = () => {
 
 	const methods = useForm({
 		defaultValues: {
-			subGoal: [{ name: "subGoal" }, { name: "subGoal" }, { name: "subGoal" }],
-			routine: [{ name: "routine" }],
+			subGoal: [{}, {}, {}],
+			routine: [{}],
 		},
 		resolver: yupResolver(targetSchema),
 	});
 
 	console.log("최상위", methods.formState.errors);
 	console.log("in the top", step);
+
+	const onSubmitHandler = (data: TargetInfoType) =>
+		console.log("최종 제출", data);
 	return (
 		<div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
 			<div
@@ -63,9 +67,7 @@ const TargetCreate = () => {
 
 			<FormProvider {...methods}>
 				<form
-					onSubmit={methods.handleSubmit((data) =>
-						console.log("최종 제출", data)
-					)}
+					onSubmit={methods.handleSubmit(onSubmitHandler)}
 					className="w-full"
 				>
 					<Step check={step === "goal"}>

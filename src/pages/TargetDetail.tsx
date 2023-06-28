@@ -37,7 +37,7 @@ const TargetDetail = () => {
 	return (
 		<div className="relative flex flex-col h-screen px-6 pb-10">
 			{isOpen && <SharingModal closeModal={closeModal} />}
-			<Header />
+			<Header name="df" />
 			<div>
 				<h1 className="font-semibold text-2xl">{target?.goal}</h1>
 				<div className="flex flex-col gap-6">

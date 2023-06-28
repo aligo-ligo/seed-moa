@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { InfoContext } from "../context/TargetContext";
+import { TargetContext } from "../context/TargetContext";
 
 export const useInfo = () => {
-	const infoService = useContext(InfoContext);
-	if (!infoService) {
-		throw new Error("Can't find InfoProvider");
+	const targetService = useContext(TargetContext);
+	if (!targetService) {
+		throw new Error("Can't find targetProvider");
 	}
-	return infoService;
+	return targetService;
 };

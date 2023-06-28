@@ -6,7 +6,7 @@ import HttpClient from "./http/HttpClient";
 import AuthServiceImpl from "./services/AuthService";
 import { AuthProvider } from "./context/AuthContext";
 import TargetServiceImpl from "./services/TargetService";
-import { InfoProvider } from "./context/TargetContext";
+import { TargetProvider } from "./context/TargetContext";
 import { ModalProvider } from "./context/ModalContext";
 import { routerInfo } from "./utils/router";
 import { TokenRepository } from "./repository/tokenRepository";
@@ -20,6 +20,7 @@ function App() {
 	// 	import.meta.env.VITE_LOCAL_SERVER_URL,
 	// 	tokenRepository
 	// ); // 서버 (네트워크)
+
 	// const client = new HttpClient(import.meta.env.VITE_SERVER_URL, tokenRepository); // 서버 (EC2)
 
 	const client = new HttpClient("http://localhost:5173/", tokenRepository); // 로컬 목 데이터
@@ -27,7 +28,7 @@ function App() {
 	console.log("token", tokenRepository);
 
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
-	const infoService = new TargetServiceImpl(client.withToken());
+	const targetService = new TargetServiceImpl(client.withToken());
 
 	const routerObject = createBrowserRouter(routerInfo);
 
@@ -35,13 +36,13 @@ function App() {
 		<>
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider authService={authService}>
-					<InfoProvider infoService={infoService}>
+					<TargetProvider targetService={targetService}>
 						<ModalProvider>
 							<main className="phone:w-phone desktop:w-desktop mx-auto bg-white min-h-full overflow-auto scroll-smooth">
 								<RouterProvider router={routerObject} />
 							</main>
 						</ModalProvider>
-					</InfoProvider>
+					</TargetProvider>
 				</AuthProvider>
 				<ReactQueryDevtools />
 			</QueryClientProvider>

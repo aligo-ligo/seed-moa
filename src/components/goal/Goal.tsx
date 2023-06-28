@@ -1,12 +1,9 @@
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
-import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
-import { useGetFormData } from "../../hooks/useGetFormData";
-import { useBeforeUnload } from "react-router-dom";
-import { useCallback, useEffect } from "react";
-import StyledButton from "../common/StyledButton";
 import TargetStepButton from "../logic/TargetStepButton";
+import { TargetStepType } from "../../types/TargetTypes";
+import TargetCreateLayout from "../layout/TargetCreateLayout";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;

@@ -6,9 +6,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useInfo } from "../hooks/useInfo";
 import { useQuery } from "@tanstack/react-query";
-import { ModalContext } from "../context/ModalContext";
-import { CSSProperties, useContext } from "react";
+
+import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
+import useSidebar from "../hooks/useSideBar";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -17,9 +18,10 @@ const Target = () => {
 	const { data: targets } = useQuery(["targets", "all"], () => {
 		return infoService?.getAllTarget();
 	});
+	const { isOpen } = useSidebar();
 
 	// 모달창인데 portal로 바꿔보자 리팩토링 해야한다.
-	const { isOpen } = useContext(ModalContext);
+
 	console.log("isOpen", isOpen);
 
 	// 리팩토링하자!
@@ -36,7 +38,7 @@ const Target = () => {
 	return (
 		<div className={`relative flex flex-col h-screen px-6 pb-10`}>
 			{isOpen && (
-				<div className="absolute inset-0 bg-opacity-50 bg-black z-10">1</div>
+				<div className="absolute inset-0 bg-opacity-50 bg-black z-10"></div>
 			)}
 			<Header name={name} />
 			<section className="flex flex-col mt-10 ">

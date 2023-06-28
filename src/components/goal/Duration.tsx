@@ -1,16 +1,11 @@
 import { useFormContext } from "react-hook-form";
+import { TargetStepType } from "../../types/TargetTypes";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { TargetStepType } from "../../types/TargetType";
-import Validation from "../auth/Validation";
-
-import DatePickerContainer from "./DatePicker/DatePickerContainer";
-import { useEffect } from "react";
-import TargetStepButton from "../logic/TargetStepButton";
-import { createDate, getDayName } from "../../utils/formatDate";
-import "./DatePicker/css/react-datepicker.css";
 import DatePickerComponent from "./DatePicker/DatePickerComponent";
+import Validation from "../auth/Validation";
+import TargetStepButton from "../logic/TargetStepButton";
+import "react-datepicker/dist/react-datepicker.css";
+import "./DatePicker/css/react-datepicker.css";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -18,17 +13,11 @@ type Props = {
 
 const Duration = ({ setStep }: Props) => {
 	const {
-		setValue,
 		getValues,
 		formState: { errors },
 	} = useFormContext();
 
 	const endDate = getValues("endDate");
-	console.log(endDate);
-
-	useEffect(() => {
-		setValue("endDate", localStorage.getItem("endDate"));
-	}, [setValue]);
 
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">

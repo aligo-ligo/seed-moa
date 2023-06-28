@@ -1,6 +1,5 @@
 import { useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
-import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
 import { useBeforeUnload } from "react-router-dom";
 import { useCallback } from "react";
@@ -14,17 +13,9 @@ const Penalty = ({ setStep }: Props) => {
 	console.log("ss", setStep);
 	const {
 		register,
-		trigger,
-		getValues,
 		formState: { errors },
 	} = useFormContext();
 
-	const endDateValue = getValues("endDate");
-	useBeforeUnload(
-		useCallback(() => {
-			localStorage.setItem("endDate", endDateValue);
-		}, [endDateValue])
-	);
 	return (
 		<TargetCreateLayout title="실패를 예상하신 분들에게 어떤 보상을 하실껀가요?">
 			<input

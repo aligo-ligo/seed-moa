@@ -1,14 +1,19 @@
 import { createContext } from "react";
-import { InfoService } from "../types/TargetTypes";
+import { TargetService } from "../types/TargetTypes";
 
 interface InfoProviderProps {
 	children: React.ReactNode;
-	infoService: InfoService;
+	targetService: TargetService;
 }
 
-export const InfoContext = createContext<InfoService | null>(null);
-export const InfoProvider = ({ children, infoService }: InfoProviderProps) => {
+export const TargetContext = createContext<TargetService | null>(null);
+export const TargetProvider = ({
+	children,
+	targetService,
+}: InfoProviderProps) => {
 	return (
-		<InfoContext.Provider value={infoService}>{children}</InfoContext.Provider>
+		<TargetContext.Provider value={targetService}>
+			{children}
+		</TargetContext.Provider>
 	);
 };

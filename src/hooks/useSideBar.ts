@@ -1,8 +1,12 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ModalContext } from "../context/ModalContext";
 
+type Props = {
+	width: number;
+};
+
 const useSidebar = () => {
-	const { closeModal } = useContext(ModalContext);
+	const { isOpen, openModal, closeModal } = useContext(ModalContext);
 	const outside = useRef<any>(null);
 
 	const handlerOutside = (e: any) => {
@@ -18,7 +22,7 @@ const useSidebar = () => {
 		};
 	}, []);
 
-	return { outside, closeModal };
+	return { isOpen, outside, openModal, closeModal };
 };
 
 export default useSidebar;

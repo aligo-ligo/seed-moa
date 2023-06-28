@@ -1,7 +1,7 @@
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { useGetFormData } from "../../hooks/useGetFormData";
-import { TargetStepType } from "../../types/TargetType";
 import TargetStepButton from "../logic/TargetStepButton";
+import { TargetStepType } from "../../types/TargetTypes";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;

@@ -1,9 +1,10 @@
+import { useCallback } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
-import { TargetStepType } from "../../types/TargetType";
 import { useBeforeUnload } from "react-router-dom";
-import { useCallback } from "react";
+import { TargetStepType } from "../../types/TargetTypes";
+
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
 };
@@ -11,9 +12,8 @@ type Props = {
 const SubGoalRoutine = ({ setStep }: Props) => {
 	const {
 		register,
-		watch,
-		trigger,
 		getValues,
+		watch,
 		formState: { errors },
 	} = useFormContext();
 	console.log("SRErrors", errors);
@@ -58,7 +58,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 						className="text-2xl text-mainDeep pl-4"
 						type="button"
 						onClick={() => {
-							subGoalAppend({ name: "subGoal" });
+							subGoalAppend({});
 						}}
 					>
 						<FiPlusSquare />
@@ -100,7 +100,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 						className="text-2xl text-mainDeep pl-4"
 						type="button"
 						onClick={() => {
-							routineAppend({ name: "routine" });
+							routineAppend({});
 						}}
 					>
 						<FiPlusSquare />
