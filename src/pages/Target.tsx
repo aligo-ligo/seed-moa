@@ -12,6 +12,7 @@ import StyledButton from "../components/common/StyledButton";
 
 const Target = () => {
 	const navigate = useNavigate();
+
 	const infoService = useInfo();
 	const { data: targets } = useQuery(["targets", "all"], () => {
 		return infoService?.getAllTarget();

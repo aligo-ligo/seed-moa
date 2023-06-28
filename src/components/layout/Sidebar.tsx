@@ -2,9 +2,12 @@ import { FiX } from "react-icons/fi";
 import useSidebar from "../../hooks/useSideBar";
 import { FiChevronRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useAuthService } from "../../hooks/useAuth";
+import { FiEdit } from "react-icons/fi";
 
 const Sidebar = () => {
 	const { outside, closeModal } = useSidebar();
+	const authService = useAuthService();
 	const navigate = useNavigate();
 
 	return (
@@ -18,24 +21,56 @@ const Sidebar = () => {
 			<div className="px-4 py-6">
 				<ul className=" font-semibold">안녕하세요 이주영님</ul>
 				<div className="pt-4 text-gray font-semibold">
-					<button className="flex justify-center items-center">
+					<button
+						className="flex justify-center items-center"
+						onClick={() => {
+							authService?.logout();
+							closeModal();
+						}}
+					>
 						로그아웃하기
 						<FiChevronRight className="text-xl" />
 					</button>
 				</div>
 			</div>
 
-			<div
-				className="px-4 py-6"
-				onClick={() => {
-					navigate("/target");
-				}}
-			>
-				전체 타켓 보러 가기
+			<div>
+				{sidebarData.map(({ title, link, icon }) => {
+					console.log(icon);
+					return (
+						<div
+							className="flex items-center justify-center cursor-pointer"
+							onClick={() => {
+								navigate(link);
+								closeModal();
+							}}
+						>
+							<div>{icon}</div>
+							<div className="px-4 py-6">{title}</div>
+						</div>
+					);
+				})}
 			</div>
-			<div className="px-4 py-6">기능 준비중입니다</div>
 		</div>
 	);
 };
 
 export default Sidebar;
+
+const sidebarData = [
+	{
+		title: "메인 페이지",
+		icon: <FiEdit />,
+		link: "/target",
+	},
+	{
+		title: "메인 페이지",
+		icon: <FiEdit />,
+		link: "/target",
+	},
+	{
+		title: "준비중입니다",
+		icon: <FiEdit />,
+		link: "/target",
+	},
+];
