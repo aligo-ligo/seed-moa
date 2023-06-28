@@ -46,7 +46,6 @@ const Target = () => {
 						useKeyboardArrows
 						showThumbs={false}
 						showIndicators={false}
-						transitionTime={500}
 						renderArrowPrev={(onClickHandler, hasPrev, label) =>
 							hasPrev && (
 								<button

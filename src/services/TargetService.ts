@@ -1,4 +1,4 @@
-import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import { AxiosInstance } from "axios";
 import {
 	AccountResponse,
 	InfoService,

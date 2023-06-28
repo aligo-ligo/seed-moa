@@ -35,3 +35,8 @@ export const validationSchema = yup.object({
 	subGoal: yup.string().required("Required"),
 	routine: yup.string().required("Required"),
 });
+
+// 로컬 스토리지
+export const ACCESS_TOKEN = "accessToken";
+export const USER_ID = "userId";
+export const NICK_NAME = "userNickName";

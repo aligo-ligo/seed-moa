@@ -1,7 +1,8 @@
-import { AxiosError, AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 // import HTTPError from "../network/httpError";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
 import { TokenRepository } from "../repository/tokenRepository";
+import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/contants";
 
 export default class AuthServiceImpl implements AuthService {
 	tokenRepository: TokenRepository;
@@ -21,8 +22,9 @@ export default class AuthServiceImpl implements AuthService {
 			nickName,
 		});
 		const { data } = response;
-		this.tokenRepository.save(data.accessToken);
-		console.log(this.tokenRepository.get());
+		this.tokenRepository.save(ACCESS_TOKEN, data.accessToken);
+		this.tokenRepository.save(USER_ID, data.user.id.toString());
+		this.tokenRepository.save(NICK_NAME, data.user.nickName.toString());
 		return data;
 	}
 
@@ -33,12 +35,13 @@ export default class AuthServiceImpl implements AuthService {
 			password,
 		});
 		const { data } = response;
-		this.tokenRepository.save(data.accessToken);
-		console.log(this.tokenRepository.get());
+		this.tokenRepository.save(ACCESS_TOKEN, data.accessToken);
+		this.tokenRepository.save(USER_ID, data.user.id.toString());
+		this.tokenRepository.save(NICK_NAME, data.user.nickName.toString());
 		return data;
 	}
 
 	logout() {
-		this.tokenRepository.remove();
+		this.tokenRepository.remove(ACCESS_TOKEN);
 	}
 }

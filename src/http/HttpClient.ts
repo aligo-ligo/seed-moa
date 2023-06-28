@@ -1,9 +1,8 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import HTTPError from "./HttpError";
 import { TokenRepository } from "../repository/tokenRepository";
+import { ACCESS_TOKEN, USER_ID } from "../utils/contants";
 
-const ACCESS_TOKEN = "accessToken";
-const USER_ID = "userId";
 export default class HttpClient {
 	httpClient: AxiosInstance;
 	tokenRepository: TokenRepository;
@@ -22,8 +21,8 @@ export default class HttpClient {
 					if (response) {
 						const { status } = response;
 						if (status === 401) {
-							localStorage.removeItem(ACCESS_TOKEN);
-							localStorage.removeItem(USER_ID);
+							this.tokenRepository.remove(ACCESS_TOKEN);
+							this.tokenRepository.remove(USER_ID);
 							window.location.replace("/signin");
 						} else {
 							throw new HTTPError(
@@ -43,7 +42,7 @@ export default class HttpClient {
 
 	withToken() {
 		this.httpClient.interceptors.request.use((config) => {
-			const token = this.tokenRepository.get();
+			const token = this.tokenRepository.get(ACCESS_TOKEN);
 			console.log("t", token);
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;
