@@ -15,10 +15,13 @@ function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
 
 	const tokenRepository = new TokenRepository();
-	// const client = new HttpClient("http://192.168.219.103:8080/");
+
+	// const client = new HttpClient("http://192.168.219.103:8080/",tokenRepository); // 서버 (네트워크)
+	// const client = new HttpClient("http://54.180.31.134:8080/", tokenRepository); // 서버 (EC2)
+	const client = new HttpClient("http://localhost:5173/", tokenRepository); // 로컬 목 데이터
 
 	console.log("token", tokenRepository);
-	const client = new HttpClient("http://localhost:5173/", tokenRepository);
+
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
 	const infoService = new TargetServiceImpl(client.withToken());
 

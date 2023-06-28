@@ -74,7 +74,9 @@ const Target = () => {
 							currentItem: number,
 							total: number
 						): string | JSX.Element => {
-							return <p>{`${total}개의 목표 중 ${currentItem}번째`}</p>;
+							return (
+								<span className="text-black font-bold text-sm">{`${total}개의 목표 중 ${currentItem}번째`}</span>
+							);
 						}}
 					>
 						{targets?.map(

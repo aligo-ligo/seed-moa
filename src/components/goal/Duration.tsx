@@ -5,9 +5,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { TargetStepType } from "../../types/TargetType";
 import Validation from "../auth/Validation";
 
-import DatePickerContainer from "./DatePickerContainer";
+import DatePickerContainer from "./DatePicker/DatePickerContainer";
 import { useEffect } from "react";
 import TargetStepButton from "../logic/TargetStepButton";
+import { createDate, getDayName } from "../../utils/formatDate";
+import "./DatePicker/css/react-datepicker.css";
+import DatePickerComponent from "./DatePicker/DatePickerComponent";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -15,14 +18,13 @@ type Props = {
 
 const Duration = ({ setStep }: Props) => {
 	const {
-		register,
 		setValue,
-		trigger,
 		getValues,
 		formState: { errors },
 	} = useFormContext();
 
 	const endDate = getValues("endDate");
+	console.log(endDate);
 
 	useEffect(() => {
 		setValue("endDate", localStorage.getItem("endDate"));
@@ -30,19 +32,7 @@ const Duration = ({ setStep }: Props) => {
 
 	return (
 		<TargetCreateLayout title="언제까지 목표를 달성하실껀가요?">
-			<DatePicker
-				dateFormat="yyyy-MM-dd"
-				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
-				{...register("endDate")}
-				selected={endDate}
-				onChange={(date) => setValue("endDate", date, { shouldValidate: true })}
-				placeholderText="날짜를 선택해주세요"
-				isClearable
-				withPortal
-				minDate={new Date()}
-				calendarContainer={DatePickerContainer}
-				// calendarClassName="bg-mainHover"
-			/>
+			<DatePickerComponent name={endDate} />
 			<Validation>{errors?.endDate?.message?.toString()}</Validation>
 			<div className="flex gap-4">
 				<TargetStepButton

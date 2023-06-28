@@ -9,6 +9,8 @@ import Penalty from "../components/goal/Penalty";
 import { TargetInfoType, TargetStepType } from "../types/TargetType";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
 
 const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
@@ -34,6 +36,7 @@ const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
 
 const TargetCreate = () => {
 	const [registerData, setRegisterData] = useState();
+	const navigate = useNavigate();
 	const [step, setStep] = useState<TargetStepType>("goal");
 
 	const methods = useForm({
@@ -47,7 +50,17 @@ const TargetCreate = () => {
 	console.log("최상위", methods.formState.errors);
 	console.log("in the top", step);
 	return (
-		<div className=" flex flex-col items-center h-screen px-6 pb-10 ">
+		<div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
+			<div
+				className="absolute left-0 top-0 text-main text-base my-10 mx-6 flex items-center gap-1 cursor-pointer"
+				onClick={() => {
+					navigate("/target");
+				}}
+			>
+				메인페이지로
+				<FiArrowLeft />
+			</div>
+
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit((data) =>
