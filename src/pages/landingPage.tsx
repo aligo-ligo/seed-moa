@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/거북.jpeg";
-
 import StyledButton from "../components/common/StyledButton";
+import OAuth from "../components/auth/OAuth";
 
 const LandingPage = () => {
 	const navigate = useNavigate();
@@ -17,7 +17,7 @@ const LandingPage = () => {
 				</h2>
 			</div>
 			<p className="text-lg desktop:text-2xl font-medium text-gray mb-24 ">
-				현재 187,054개의 티켓을 성취했어요!
+				현재 `number`개의 티켓을 성취했어요!
 			</p>
 
 			<div className="flex flex-col items-center justify-center w-full ">
@@ -28,14 +28,15 @@ const LandingPage = () => {
 				>
 					로그인
 				</StyledButton>
-
+				{/* 
 				<StyledButton
 					styleName="ladingSignUp"
 					onClick={() => navigate("/signup")}
 					type="button"
 				>
-					회원가입 하러 갈래요
-				</StyledButton>
+					간편하게 회원가입하기
+				</StyledButton> */}
+				<OAuth />
 
 				<button className="text-lg desktop:text-xl text-main ">
 					<Link to="target">임시 target 이동</Link>

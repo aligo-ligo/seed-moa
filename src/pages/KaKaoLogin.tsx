@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import "./KakaoLogin.css";
 
 export default function KakaoLogin() {
-	const [temp, setTemp] = useState("");
+	// const [temp, setTemp] = useState("");
 	const code = new URL(window.location.href).searchParams.get("code");
 	console.log(code);
 	const navigate = useNavigate();

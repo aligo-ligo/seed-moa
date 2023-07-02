@@ -97,14 +97,14 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	return (
 		<>
 			<div className="flex text-main items-center mb-8 p-3">
-				<h1 className=" text-4xl">{name}</h1>
+				<h1 className=" text-4xl font-medium">{name}</h1>
 			</div>
 			<form
 				action="submit"
 				onSubmit={handleSubmit}
-				className="flex flex-col w-2/3 bg-white rounded-md"
+				className="flex flex-col w-3/4 desktop:w-2/3 bg-white rounded-md"
 			>
-				<section className="px-5">
+				<section className="w-full">
 					<div className="mb-8">
 						<AuthInput
 							name={EMAIL_INPUT.name}
@@ -141,11 +141,9 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 							)}
 						</div>
 					)}
-					//이부분 공통
 					<StyledButton styleName="login" type="submit" disable={isActive}>
 						{name}
 					</StyledButton>
-					<OAuth />
 				</section>
 				<StyledButton
 					styleName="signInAndUp"

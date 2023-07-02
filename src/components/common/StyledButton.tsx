@@ -18,7 +18,7 @@ const StyledButton = ({
 }: StyledButtonType) => {
 	const styleCategories: IStyleCateType = {
 		landing:
-			"text-lg w-1/2 h-16 desktop:w-9/12 h-20 bg-main rounded-md text-xl text-white mx-auto mb-12",
+			"text-lg w-[90%] h-20 desktop:w-2/3 h-20 bg-main rounded-md text-xl text-white",
 		ladingSignUp: "text-lg desktop:text-xl text-main ",
 		login: `w-full text-xl ${
 			disable ? "bg-mainHover" : "bg-main"
