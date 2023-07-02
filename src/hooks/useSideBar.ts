@@ -10,9 +10,7 @@ const useSidebar = () => {
 	const outside = useRef<any>(null);
 
 	const handlerOutside = (e: any) => {
-		if (!outside.current.contains(e.target)) {
-			closeModal();
-		}
+		closeModal();
 	};
 
 	useEffect(() => {

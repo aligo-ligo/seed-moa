@@ -10,6 +10,11 @@ import {
 export default class TargetServiceImpl implements TargetService {
 	constructor(private httpClient: AxiosInstance) {}
 
+	// async getAllTarget() {
+	// 	const { data } = await this.httpClient.get<TargetResponse>(`target/list`);
+	// 	return data;
+	// }
+
 	async getAllTarget() {
 		const { data } = await this.httpClient.get<TargetResponse>(
 			`data/allTargets.json`

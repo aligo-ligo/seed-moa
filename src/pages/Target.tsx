@@ -22,7 +22,7 @@ const Target = () => {
 
 	// 모달창인데 portal로 바꿔보자 리팩토링 해야한다.
 
-	console.log("isOpen", isOpen);
+	console.log("targets", targets);
 
 	// 리팩토링하자!
 	const name = localStorage.getItem("userNickName");

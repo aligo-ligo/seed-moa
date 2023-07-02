@@ -4,6 +4,7 @@ import Validation from "../auth/Validation";
 import { useBeforeUnload } from "react-router-dom";
 import { useCallback } from "react";
 import TargetStepButton from "../logic/TargetStepButton";
+import { TargetStepType } from "../../types/TargetTypes";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;

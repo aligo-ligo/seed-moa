@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/거북.jpeg";
-import { TargetType } from "../../types/TargetType";
+
 import { calculatePercentage } from "../../utils/calculatePercentage";
 import ProgressBar from "./ProgressBar";
+import { TargetType } from "../../types/TargetTypes";
 
 type PropsTargetType = Pick<
 	TargetType,

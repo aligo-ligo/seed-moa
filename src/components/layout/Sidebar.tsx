@@ -4,56 +4,16 @@ import { FiChevronRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
+import { CSSTransition } from "react-transition-group";
+import { useRef } from "react";
 
 const Sidebar = () => {
-	const { isOpen, outside, closeModal } = useSidebar();
+	// const { isOpen, outside, closeModal } = useSidebar();
 	const authService = useAuthService();
 	const navigate = useNavigate();
+	// const nodeRef = useRef(null);
 
-	return (
-		<div
-			className={`absolute z-10 p-3 bg-[#e7e4e1] h-full w-2/3 top-0 left-0 ${isOpen}`}
-			ref={outside}
-		>
-			<div className="flex justify-end duration-1000">
-				<FiX onClick={closeModal} onKeyDown={closeModal} />
-			</div>
-			<div className="px-4 py-6">
-				<ul className=" font-semibold">안녕하세요 이주영님</ul>
-				<div className="pt-4 text-gray font-semibold">
-					<button
-						className="flex justify-center items-center"
-						onClick={() => {
-							authService?.logout();
-							//예상이 안돼 실제 통신 과정에서 리팩토링 예정
-							closeModal();
-						}}
-					>
-						로그아웃하기
-						<FiChevronRight className="text-xl" />
-					</button>
-				</div>
-			</div>
-
-			<div>
-				{sidebarData.map(({ title, link, icon }) => {
-					console.log(icon);
-					return (
-						<div
-							className="flex items-center justify-center cursor-pointer"
-							onClick={() => {
-								navigate(link);
-								closeModal();
-							}}
-						>
-							<div>{icon}</div>
-							<div className="px-4 py-6">{title}</div>
-						</div>
-					);
-				})}
-			</div>
-		</div>
-	);
+	return <></>;
 };
 
 export default Sidebar;

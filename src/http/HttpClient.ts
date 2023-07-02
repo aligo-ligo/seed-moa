@@ -15,7 +15,7 @@ export default class HttpClient {
 		this.httpClient.interceptors.response.use(
 			(response) => response,
 			(error) => {
-				console.log("error", error);
+				console.log("interceptError", error);
 				if (error instanceof AxiosError) {
 					const { response } = error;
 					if (response) {
