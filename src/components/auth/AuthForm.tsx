@@ -33,7 +33,7 @@ const authReducer = (state: UserInfoType, action: ActionType) => {
 		}
 		case ACTION_CONST.SET_PASSWORD: {
 			const password = action.data;
-			const passwordValid = password.length >= 9;
+			const passwordValid = password.length >= 8;
 			return { ...state, password, passwordValid };
 		}
 		case ACTION_CONST.SET_NICKNAME: {
