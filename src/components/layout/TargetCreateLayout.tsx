@@ -6,7 +6,7 @@ type Props = {
 const TargetCreateLayout = ({ title, children }: Props) => {
 	return (
 		<div className="phone:p-0 flex flex-col desktop:p-10 mt-8 w-full">
-			<h1 className="text-2xl desktop:text-3xl w-3/4 font-semibold desktop:font-bold mt-20 mb-20">
+			<h1 className="text-2xl desktop:text-3xl w-3/4 font-semibold desktop:font-bold my-16">
 				{title}
 			</h1>
 			{children}

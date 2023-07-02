@@ -40,7 +40,7 @@ function App() {
 				<AuthProvider authService={authService}>
 					<TargetProvider targetService={targetService}>
 						<ModalProvider>
-							<main className="phone:w-phone desktop:w-desktop desktop:mx-auto  bg-white min-h-full overflow-auto scroll-smooth">
+							<main className="phone:w-full desktop:w-desktop desktop:mx-auto desktop:p-10 bg-white min-h-full overflow-auto scroll-smooth">
 								<RouterProvider router={routerObject} />
 							</main>
 						</ModalProvider>

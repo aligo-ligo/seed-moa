@@ -16,7 +16,6 @@ const StyledButton = ({
 	styleName,
 	disable,
 }: StyledButtonType) => {
-	console.log(onClick);
 	const styleCategories: IStyleCateType = {
 		landing:
 			"text-lg w-1/2 h-16 desktop:w-9/12 h-20 bg-main rounded-md text-xl text-white mx-auto mb-12",

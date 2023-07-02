@@ -34,7 +34,7 @@ const Goal = ({ setStep }: Props) => {
 			/>
 			<Validation>{errors?.goal?.message?.toString()}</Validation>
 			<TargetStepButton present={["goal"]} next="subGoal" setStep={setStep}>
-				다음으로 가기
+				다음
 			</TargetStepButton>
 		</TargetCreateLayout>
 	);

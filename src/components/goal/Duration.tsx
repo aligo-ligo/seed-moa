@@ -30,7 +30,7 @@ const Duration = ({ setStep }: Props) => {
 					next="penalty"
 					setStep={setStep}
 				>
-					이전으로 가기
+					이전
 				</TargetStepButton>
 
 				<TargetStepButton
@@ -38,7 +38,7 @@ const Duration = ({ setStep }: Props) => {
 					next="penalty"
 					setStep={setStep}
 				>
-					다음으로 가기
+					다음
 				</TargetStepButton>
 			</div>
 		</TargetCreateLayout>

@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { SubGoalRoutineType } from "../types/TargetType";
+import { SubGoalRoutineType } from "../types/TargetTypes";
 
 export const useGetFormData = () => {
 	const { getValues } = useFormContext();

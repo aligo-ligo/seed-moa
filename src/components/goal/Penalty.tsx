@@ -26,16 +26,7 @@ const Penalty = ({ setStep }: Props) => {
 				{...register("penalty")}
 			/>
 			<Validation>{errors?.penalty?.message?.toString()}</Validation>
-			{/* 
-			<button
-				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={() => {
-					setStep("lastStep");
-				}}
-				type="button"
-			>
-				다음으로 가기
-			</button> */}
+
 			<div className="flex gap-4">
 				<TargetStepButton
 					prev="duration"
@@ -43,7 +34,7 @@ const Penalty = ({ setStep }: Props) => {
 					next="lastStep"
 					setStep={setStep}
 				>
-					이전으로 가기
+					이전
 				</TargetStepButton>
 
 				<TargetStepButton
@@ -51,7 +42,7 @@ const Penalty = ({ setStep }: Props) => {
 					next="lastStep"
 					setStep={setStep}
 				>
-					다음으로 가기
+					다음
 				</TargetStepButton>
 			</div>
 		</TargetCreateLayout>

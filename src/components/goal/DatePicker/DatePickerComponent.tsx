@@ -20,7 +20,6 @@ const DatePickerComponent = ({ name }: Props) => {
 			isClearable
 			withPortal
 			minDate={new Date()}
-			calendarContainer={DatePickerContainer}
 			dayClassName={(date) =>
 				getDayName(createDate(date)) === "토"
 					? "saturday"

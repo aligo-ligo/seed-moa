@@ -136,21 +136,6 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 				))}
 			</section>
 
-			{/* <button
-				className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-				onClick={async () => {
-					const validate = await trigger(["subGoal", "routine"]);
-
-					if (!validate) {
-						console.log("resSub", errors);
-					} else {
-						setStep("duration");
-					}
-				}}
-				type="button"
-			>
-				다음으로 가기
-			</button> */}
 			<div className="flex gap-4">
 				<button
 					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
@@ -168,7 +153,7 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 					}}
 					type="button"
 				>
-					다음으로 가기
+					다음
 				</button>
 			</div>
 		</TargetCreateLayout>

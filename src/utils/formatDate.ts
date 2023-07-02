@@ -1,4 +1,4 @@
-function formatDate(date: Date | null) {
+export function formatDate(date: string) {
 	if (date !== null) {
 		const targetDate = new Date(date);
 		const year = targetDate.getFullYear();
@@ -9,8 +9,10 @@ function formatDate(date: Date | null) {
 	}
 }
 
-export { formatDate };
-
+export const getNowDate = () => {
+	const nowDatetoString = formatDate(new Date().toString());
+	return nowDatetoString;
+};
 const getFormattedDate = (date: Date) => {
 	const month = date.toLocaleDateString("ko-KR", {
 		month: "long",
