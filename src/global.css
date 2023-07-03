@@ -31,6 +31,7 @@
 @tailwind utilities;
 
 body {
+	position: relative;
 	height: 100vh;
 	width: 100%;
 	font-family: "Noto Sans KR", sans-serif;

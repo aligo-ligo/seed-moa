@@ -9,6 +9,8 @@ import { useState } from "react";
 
 import SharingModal from "../components/target/SharingModal";
 import Checkbox from "../components/target/Checkbox";
+import { createPortal } from "react-dom";
+import ModalContent from "../components/common/ModalContent";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -24,6 +26,7 @@ const TargetDetail = () => {
 	);
 
 	const [isOpen, setIsOpen] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
 	console.log(target);
 	const openModal = () => {
@@ -61,12 +64,24 @@ const TargetDetail = () => {
 						<h2 className="font-semibold text-xl mb-8">투표</h2>
 						<ProgressBar completed={percentage} />
 						<div className="flex gap-4">
-							<button className="h-12 w-full bg-[#e0e0de] rounded-md mt-4">
+							<button
+								onClick={() => setShowModal(true)}
+								className="h-12 w-full bg-[#e0e0de] rounded-md mt-4"
+							>
 								성공
 							</button>
-							<button className="h-12 w-full bg-[#e0e0de] rounded-md mt-4">
+
+							<button
+								onClick={() => setShowModal(true)}
+								className="h-12 w-full bg-[#e0e0de] rounded-md mt-4"
+							>
 								실패
 							</button>
+							{showModal &&
+								createPortal(
+									<ModalContent onClose={() => setShowModal(false)} />,
+									document.body
+								)}
 						</div>
 					</div>
 				</div>
