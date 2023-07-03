@@ -45,10 +45,11 @@ const Sidebar = () => {
 					</div>
 
 					<div>
-						{sidebarData.map(({ title, link, icon }) => {
+						{sidebarData.map(({ title, link, icon }, index) => {
 							console.log(icon);
 							return (
 								<div
+									key={index}
 									className="flex items-center justify-center cursor-pointer"
 									onClick={() => {
 										navigate(link);

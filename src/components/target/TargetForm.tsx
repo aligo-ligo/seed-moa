@@ -7,6 +7,7 @@ import { TargetType } from "../../types/TargetTypes";
 
 type PropsTargetType = Pick<
 	TargetType,
+	| "id"
 	| "user_id"
 	| "goal"
 	| "subgoal_total"
@@ -16,6 +17,7 @@ type PropsTargetType = Pick<
 >;
 
 const TargetForm = ({
+	id,
 	user_id,
 	goal,
 	subgoal_total,
@@ -25,7 +27,14 @@ const TargetForm = ({
 }: PropsTargetType) => {
 	const navigate = useNavigate();
 
-	console.log(user_id, subgoal_total, success_count, vote_total, success_vote);
+	console.log(
+		id,
+		user_id,
+		subgoal_total,
+		success_count,
+		vote_total,
+		success_vote
+	);
 
 	const successPercentage = calculatePercentage(success_count, subgoal_total);
 	const votePercentage = calculatePercentage(success_vote, vote_total);
@@ -34,7 +43,7 @@ const TargetForm = ({
 		<div
 			className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md cursor-pointer"
 			onClick={() => {
-				navigate(`${user_id}`);
+				navigate(`${id}`);
 			}}
 		>
 			<h2 className="font-medium">{goal}</h2>

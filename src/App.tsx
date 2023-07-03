@@ -17,17 +17,17 @@ function App() {
 
 	const tokenRepository = new TokenRepository();
 
-	// const client = new HttpClient(
-	// 	import.meta.env.VITE_SERVER_URL,
-	// 	tokenRepository
-	// ); // 서버 (네트워크)
+	const client = new HttpClient(
+		import.meta.env.VITE_SERVER_URL,
+		tokenRepository
+	); // 서버 (네트워크)
 
 	// const client = new HttpClient(
 	// 	import.meta.env.VITE_LOCAL_SERVER_URL,
 	// 	tokenRepository
 	// );
 
-	const client = new HttpClient("http://localhost:5173/", tokenRepository); // 로컬 목 데이터
+	// const client = new HttpClient("http://localhost:5173/", tokenRepository); // 로컬 목 데이터
 
 	console.log("token", tokenRepository);
 

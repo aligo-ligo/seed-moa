@@ -8,18 +8,18 @@ export interface TargetService {
 
 export interface TargetType {
 	id: number;
-	user_id: number;
-	start_date: string;
-	end_date: string;
+	userId: number;
+	startDate: string;
+	endDate: string;
 	goal: string;
-	routine: SubGoalRoutineType[];
-	sub_goal: SubGoalRoutineType[];
+	routine: SubGoalType[];
+	subGoal: RoutineType[];
 	penalty: string;
-	subgoal_total: number;
-	success_count: number;
-	success_vote: number;
-	failure_vote: number;
-	vote_total: number;
+	subGoalTotal: number;
+	successCount: number;
+	successVote: number;
+	failureVote: number;
+	voteTotal: number;
 }
 
 export type TargetStepType =
@@ -30,15 +30,22 @@ export type TargetStepType =
 	| "lastStep"
 	| "done";
 
-export type SubGoalRoutineType = React.ReactNode & {
-	name: string;
+export type SubGoalType = React.ReactNode & {
+	id: number;
 	value: string;
+};
+
+export type RoutineType = React.ReactNode & {
+	id: number;
+	value: string;
+	success: boolean;
+	completeDate: string | null;
 };
 
 export type TargetInfoType = {
 	goal: string;
-	subGoal: SubGoalRoutineType[];
-	routine: SubGoalRoutineType[];
+	subGoal: SubGoalType[];
+	routine: RoutineType[];
 	endDate: string;
 	penalty: string;
 };

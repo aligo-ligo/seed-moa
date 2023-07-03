@@ -15,17 +15,21 @@ import StyledButton from "../components/common/StyledButton";
 
 const TargetDetail = () => {
 	const { id } = useParams();
+
 	const infoService = useInfo();
 	const { data: target } = useQuery(["target"], () => {
 		return infoService?.getTarget(id);
 	});
+
+	console.log("target", target);
 	// sidebar를 사용하는 페이지에서 최상위에 relative를 작성해야만 잘 사용할 수 있는데 이부분 리펙토링 필요
 
 	const percentage = calculatePercentage(
-		target?.success_vote,
-		target?.vote_total
+		target?.successVote,
+		target?.voteTotal
 	);
-
+	console.log("0", 1 / 1);
+	console.log("percen", percentage);
 	const {
 		isModalOpen,
 		openModal,
@@ -47,18 +51,21 @@ const TargetDetail = () => {
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
-						{target?.sub_goal.map((subGoal, index) => {
+						{target?.subGoal?.map((subGoal, index) => {
 							return <Checkbox key={index}>{subGoal.value}</Checkbox>;
 						})}
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">루틴</h2>
 						{target?.routine.map((subGoal, index) => {
-							return <Checkbox key={index}>{subGoal.value}</Checkbox>;
+							return <p key={index}>{subGoal.value}</p>;
 						})}
 					</div>
 					<div>
-						<h2 className="font-semibold text-xl mb-8">투표</h2>
+						<div className="flex justify-between items-center">
+							<h2 className="font-semibold text-xl mb-8">투표</h2>
+							<p className="text-xs">{`${target?.voteTotal}명 참여`}</p>
+						</div>
 						<ProgressBar completed={percentage} />
 					</div>
 				</div>

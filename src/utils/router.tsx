@@ -28,20 +28,35 @@ export const routerChildrenInfo = [
 		element: <KakaoLogin />,
 		withAuthorization: false,
 	},
+	// {
+	// 	path: "target",
+	// 	element: <Target />,
+	// 	withAuthorization: false,
+	// },
+	// {
+	// 	path: "target/:id",
+	// 	element: <TargetDetail />,
+	// 	withAuthorization: false,
+	// },
+	// {
+	// 	path: "target/create",
+	// 	element: <TargetCreate />,
+	// 	withAuthorization: false,
+	// },
 	{
 		path: "target",
 		element: <Target />,
-		withAuthorization: false,
+		withAuthorization: true,
 	},
 	{
 		path: "target/:id",
 		element: <TargetDetail />,
-		withAuthorization: false,
+		withAuthorization: true,
 	},
 	{
 		path: "target/create",
 		element: <TargetCreate />,
-		withAuthorization: false,
+		withAuthorization: true,
 	},
 ];
 

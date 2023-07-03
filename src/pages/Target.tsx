@@ -6,10 +6,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useInfo } from "../hooks/useInfo";
 import { useQuery } from "@tanstack/react-query";
-
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
-import useSidebar from "../hooks/usePopUp";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -80,6 +78,7 @@ const Target = () => {
 					>
 						{targets?.map(
 							({
+								id,
 								user_id,
 								goal,
 								subgoal_total,
@@ -91,6 +90,7 @@ const Target = () => {
 									<TargetForm
 										key={user_id}
 										{...{
+											id,
 											user_id,
 											goal,
 											subgoal_total,
