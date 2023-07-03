@@ -12,10 +12,11 @@ import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
+import { TokenRepository } from "../repository/tokenRepository";
 
 const TargetDetail = () => {
 	const { id } = useParams();
-
+	const userNickName = localStorage.getItem("userNickName");
 	const infoService = useInfo();
 	const { data: target } = useQuery(["target"], () => {
 		return infoService?.getTarget(id);
@@ -41,7 +42,7 @@ const TargetDetail = () => {
 
 	return (
 		<div className="relative flex flex-col h-screen px-6 mb-10">
-			<Header name="df" />
+			<Header name={userNickName} />
 			<div>
 				<h1 className="font-semibold text-2xl">{target?.goal}</h1>
 				<div className="flex flex-col gap-6">

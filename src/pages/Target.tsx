@@ -8,6 +8,7 @@ import { useInfo } from "../hooks/useInfo";
 import { useQuery } from "@tanstack/react-query";
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
+import TargetEmptyForm from "../components/target/TargetEmptyForm";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -38,6 +39,7 @@ const Target = () => {
 			<section className="flex flex-col mt-10 ">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
 				<div className="flex flex-row justify-center mt-8 ">
+					{targets === undefined && <TargetEmptyForm />}
 					<Carousel
 						className="w-full desktop:w-2/3"
 						useKeyboardArrows
@@ -79,28 +81,26 @@ const Target = () => {
 						{targets?.map(
 							({
 								id,
-								user_id,
+								userId,
 								goal,
-								subgoal_total,
-								success_count,
-								vote_total,
-								success_vote,
-							}) => {
-								return (
-									<TargetForm
-										key={user_id}
-										{...{
-											id,
-											user_id,
-											goal,
-											subgoal_total,
-											success_count,
-											vote_total,
-											success_vote,
-										}}
-									/>
-								);
-							}
+								subGoalTotal,
+								successCount,
+								voteTotal,
+								successVote,
+							}) => (
+								<TargetForm
+									key={userId}
+									{...{
+										id,
+										userId,
+										goal,
+										subGoalTotal,
+										successCount,
+										voteTotal,
+										successVote,
+									}}
+								/>
+							)
 						)}
 					</Carousel>
 				</div>

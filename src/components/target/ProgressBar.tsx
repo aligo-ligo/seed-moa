@@ -3,6 +3,7 @@ type Props = {
 };
 
 const ProgressBar = ({ completed = 0 }: Props) => {
+	const zeroCompleted = completed === 0;
 	const isOverTwenty = completed > 25;
 
 	return (
@@ -14,7 +15,7 @@ const ProgressBar = ({ completed = 0 }: Props) => {
 				<span
 					className={`p-1 ${isOverTwenty && "text-white"} font-semibold ${
 						!isOverTwenty && "ml-20 text-black"
-					}  `}
+					}  ${zeroCompleted && "hidden"}`}
 				>{`${completed}%`}</span>
 			</div>
 		</div>

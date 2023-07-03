@@ -8,6 +8,7 @@ import { useAuthService } from "../../hooks/useAuth";
 
 import {
 	EMAIL_INPUT,
+	LogoImage,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
 	ValidationAuth,
@@ -96,8 +97,8 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	};
 	return (
 		<>
-			<div className="flex text-main items-center mb-8 p-3">
-				<h1 className=" text-4xl font-medium">{name}</h1>
+			<div className="flex flex-col text-main items-center mb-8 p-3 gap-10">
+				<img src={LogoImage} alt="로고" className="w-4/5" />
 			</div>
 			<form
 				action="submit"

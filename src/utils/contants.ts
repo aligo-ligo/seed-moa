@@ -41,3 +41,10 @@ export const validationSchema = yup.object({
 export const ACCESS_TOKEN = "accessToken";
 export const USER_ID = "userId";
 export const NICK_NAME = "userNickName";
+
+// 이미지
+import hero from "../assets/logo/hero.jpeg";
+import logo from "../assets/logo/logo.png";
+
+export const heroImage = hero;
+export const LogoImage = logo;

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
-import logo from "../../assets/logo/거북.jpeg";
+import { heroImage } from "../../utils/contants";
 
 const resizeImage = (
 	image: HTMLImageElement,
@@ -32,7 +32,7 @@ const CustomLineChart = () => {
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");
 		const image = new Image();
-		image.src = logo;
+		image.src = heroImage;
 
 		image.onload = () => {
 			const resizedImage = resizeImage(image, 30, 30);

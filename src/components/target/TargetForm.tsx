@@ -1,64 +1,69 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo/거북.jpeg";
-
 import { calculatePercentage } from "../../utils/calculatePercentage";
 import ProgressBar from "./ProgressBar";
 import { TargetType } from "../../types/TargetTypes";
+import { heroImage } from "../../utils/contants";
 
 type PropsTargetType = Pick<
 	TargetType,
 	| "id"
-	| "user_id"
+	| "userId"
 	| "goal"
-	| "subgoal_total"
-	| "success_count"
-	| "vote_total"
-	| "success_vote"
+	| "subGoalTotal"
+	| "successCount"
+	| "voteTotal"
+	| "successVote"
 >;
 
 const TargetForm = ({
 	id,
-	user_id,
+	userId,
 	goal,
-	subgoal_total,
-	success_count,
-	vote_total,
-	success_vote,
+	subGoalTotal,
+	successCount,
+	voteTotal,
+	successVote,
 }: PropsTargetType) => {
 	const navigate = useNavigate();
 
+	const successPercentage = calculatePercentage(successCount, subGoalTotal);
+	const votePercentage = calculatePercentage(successVote, voteTotal);
+
 	console.log(
 		id,
-		user_id,
-		subgoal_total,
-		success_count,
-		vote_total,
-		success_vote
+		userId,
+		goal,
+		subGoalTotal,
+		successCount,
+		voteTotal,
+		successVote
 	);
-
-	const successPercentage = calculatePercentage(success_count, subgoal_total);
-	const votePercentage = calculatePercentage(success_vote, vote_total);
-
 	return (
-		<div
-			className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md cursor-pointer"
-			onClick={() => {
-				navigate(`${id}`);
-			}}
-		>
-			<h2 className="font-medium">{goal}</h2>
-			<img src={logo} alt="자그마한 로고 사진" className="w-48 mx-auto" />
-			<div className="flex">
-				<div className="flex flex-col w-1/2 p-2">
-					<label>성취률</label>
-					<ProgressBar completed={successPercentage} />
-				</div>
-				<div className="flex flex-col w-1/2 p-2">
-					<label>성공 예측률</label>
-					<ProgressBar completed={votePercentage} />
+		<>
+			<div
+				className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md cursor-pointer"
+				onClick={() => {
+					navigate(`${id}`);
+				}}
+			>
+				<h2 className="font-medium">{goal}</h2>
+				<img
+					src={heroImage}
+					alt="자그마한 로고 사진"
+					className="w-48 mx-auto"
+				/>
+				<div className="flex">
+					<div className="flex flex-col w-1/2 p-2">
+						<label>성취률</label>
+						<ProgressBar completed={successPercentage} />
+					</div>
+					<div className="flex flex-col w-1/2 p-2">
+						<label>성공 예측률</label>
+						<ProgressBar completed={votePercentage} />
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default TargetForm;
