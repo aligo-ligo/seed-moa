@@ -31,17 +31,17 @@ export const routerChildrenInfo = [
 	{
 		path: "target",
 		element: <Target />,
-		withAuthorization: false,
+		withAuthorization: true,
 	},
 	{
 		path: "target/:id",
 		element: <TargetDetail />,
-		withAuthorization: false,
+		withAuthorization: true,
 	},
 	{
 		path: "target/create",
 		element: <TargetCreate />,
-		withAuthorization: false,
+		withAuthorization: true,
 	},
 ];
 

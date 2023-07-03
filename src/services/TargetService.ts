@@ -12,6 +12,7 @@ export default class TargetServiceImpl implements TargetService {
 
 	// async getAllTarget() {
 	// 	const { data } = await this.httpClient.get<TargetResponse>(`target/list`);
+	// 	console.log("target", data);
 	// 	return data;
 	// }
 

@@ -28,6 +28,8 @@ const StyledButton = ({
 		target: "mt-16 mb-10 mx-auto w-1/3 h-14 bg-main rounded-lg",
 		targetCreate:
 			"w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl",
+		sharing: "w-1/2 h-12 text-xl bg-main py-2 rounded-xl text-white",
+		vote: "h-12 w-full bg-[#e0e0de] rounded-md mt-4",
 	};
 
 	const getStyleClasses = styleCategories[styleName];

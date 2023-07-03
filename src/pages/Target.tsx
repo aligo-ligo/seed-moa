@@ -18,7 +18,6 @@ const Target = () => {
 	const { data: targets } = useQuery(["targets", "all"], () => {
 		return infoService?.getAllTarget();
 	});
-	const { isOpen } = useSidebar();
 
 	// 모달창인데 portal로 바꿔보자 리팩토링 해야한다.
 
@@ -37,9 +36,6 @@ const Target = () => {
 
 	return (
 		<div className={`relative flex flex-col h-screen px-6 pb-10`}>
-			{isOpen && (
-				<div className="absolute inset-0 bg-opacity-50 bg-black z-10"></div>
-			)}
 			<Header name={name} />
 			<section className="flex flex-col mt-10 ">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
@@ -112,7 +108,7 @@ const Target = () => {
 				<StyledButton
 					styleName="target"
 					type="button"
-					onClick={() => navigate("/target/create")}
+					onClick={() => navigate("create")}
 				>
 					<FiEdit className="mx-auto text-white text-2xl" />
 				</StyledButton>

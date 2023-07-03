@@ -5,11 +5,19 @@ import { ModalContext } from "../context/ModalContext";
 const usePopUp = () => {
 	const { isSideBarOpen, openSideBar, closeSideBar } =
 		useContext(SideBarContext);
-	const { isModalOpen, openModal, closeModal } = useContext(ModalContext);
+	const {
+		isModalOpen,
+		openModal,
+		closeModal,
+		buttonModalType,
+		changeModalType,
+	} = useContext(ModalContext);
 	const outside = useRef<any>(null);
 
 	const handlerOutside = (e: any) => {
+		//더 좋은 방법이 있을것같다.
 		closeSideBar();
+		closeModal();
 	};
 
 	useEffect(() => {
@@ -27,6 +35,8 @@ const usePopUp = () => {
 		isModalOpen,
 		openModal,
 		closeModal,
+		buttonModalType,
+		changeModalType,
 	};
 };
 

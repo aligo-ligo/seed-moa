@@ -18,7 +18,7 @@ function App() {
 	const tokenRepository = new TokenRepository();
 
 	// const client = new HttpClient(
-	// 	import.meta.env.VITE_LOCAL_SERVER_URL,
+	// 	import.meta.env.VITE_SERVER_URL,
 	// 	tokenRepository
 	// ); // 서버 (네트워크)
 
@@ -42,7 +42,7 @@ function App() {
 					<TargetProvider targetService={targetService}>
 						<SideBarProvider>
 							<ModalProvider>
-								<main className="phone:w-full desktop:w-desktop desktop:mx-auto desktop:p-10 bg-white h-screen overflow-auto scroll-smooth">
+								<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white h-screen overflow-auto scroll-smooth">
 									<RouterProvider router={routerObject} />
 								</main>
 							</ModalProvider>

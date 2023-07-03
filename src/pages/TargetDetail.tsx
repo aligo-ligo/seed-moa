@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+
 import Header from "../components/target/Header";
 import { useInfo } from "../hooks/useInfo";
 import { useParams } from "react-router-dom";
 import LineGraph from "../components/target/LineGraph";
 import ProgressBar from "../components/target/ProgressBar";
 import { calculatePercentage } from "../utils/calculatePercentage";
-import SharingModal from "../components/target/SharingModal";
+
 import Checkbox from "../components/target/Checkbox";
 import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
+import StyledButton from "../components/common/StyledButton";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -25,12 +26,17 @@ const TargetDetail = () => {
 		target?.vote_total
 	);
 
-	const [isOpen, setIsOpen] = useState(false);
-	const { isModalOpen, openModal, closeModal, outside } = usePopUp();
+	const {
+		isModalOpen,
+		openModal,
+		closeModal,
+		outside,
+		buttonModalType,
+		changeModalType,
+	} = usePopUp();
 
 	return (
-		<div className="relative flex flex-col h-screen px-6 pb-10">
-			{isOpen && <SharingModal closeModal={closeModal} />}
+		<div className="relative flex flex-col h-screen px-6 mb-10">
 			<Header name="df" />
 			<div>
 				<h1 className="font-semibold text-2xl">{target?.goal}</h1>
@@ -56,33 +62,50 @@ const TargetDetail = () => {
 						<ProgressBar completed={percentage} />
 					</div>
 				</div>
-			</div>
-			<div className="flex gap-4">
-				<button
-					onClick={() => openModal()}
-					className="h-12 w-full bg-[#e0e0de] rounded-md mt-4"
-				>
-					성공
-				</button>
-
-				<button
-					onClick={() => openModal()}
-					className="h-12 w-full bg-[#e0e0de] rounded-md mt-4"
-				>
-					실패
-				</button>
+				<div className="flex gap-4">
+					<StyledButton
+						styleName="vote"
+						type="button"
+						onClick={() => {
+							openModal();
+							changeModalType("vote");
+						}}
+					>
+						성공
+					</StyledButton>
+					<StyledButton
+						styleName="vote"
+						type="button"
+						onClick={() => {
+							openModal();
+							changeModalType("vote");
+						}}
+					>
+						실패
+					</StyledButton>
+				</div>
+				<div className="flex justify-center m-20">
+					<StyledButton
+						styleName="sharing"
+						type="button"
+						onClick={() => {
+							openModal();
+							changeModalType("sharing");
+						}}
+					>
+						공유
+					</StyledButton>
+				</div>
 				{isModalOpen &&
 					createPortal(
-						<ModalContent outside={outside} closeModal={closeModal} />,
+						<ModalContent
+							buttonModalType={buttonModalType}
+							outside={outside}
+							closeModal={closeModal}
+						/>,
 						document.body
 					)}
 			</div>
-			<button
-				className="w-1/2 h-12 text-xl bg-main px-10 py-2 rounded-xl text-white mx-auto mt-10"
-				onClick={openModal}
-			>
-				공유
-			</button>
 		</div>
 	);
 };

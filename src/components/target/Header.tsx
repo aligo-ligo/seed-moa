@@ -13,9 +13,6 @@ const Header = ({ name }: Props) => {
 	console.log(name);
 	const { openSideBar } = usePopUp();
 
-	const authService = useAuthService();
-	const navigate = useNavigate();
-
 	return (
 		<header className="flex py-6 justify-between items-center w-full">
 			<div className="flex justify-center items-center gap-2">
