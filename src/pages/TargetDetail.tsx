@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import Header from "../components/target/Header";
 import { useInfo } from "../hooks/useInfo";
 import { useParams } from "react-router-dom";
 import LineGraph from "../components/target/LineGraph";
 import ProgressBar from "../components/target/ProgressBar";
 import { calculatePercentage } from "../utils/calculatePercentage";
-import { useState } from "react";
-
 import SharingModal from "../components/target/SharingModal";
 import Checkbox from "../components/target/Checkbox";
-
-import Portal from "../components/common/Portal";
+import usePopUp from "../hooks/usePopUp";
+import ModalContent from "../components/common/ModalContent";
+import { createPortal } from "react-dom";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -26,15 +26,7 @@ const TargetDetail = () => {
 	);
 
 	const [isOpen, setIsOpen] = useState(false);
-
-	console.log(target);
-	const openModal = () => {
-		setIsOpen(true);
-	};
-
-	const closeModal = () => {
-		setIsOpen(false);
-	};
+	const { isModalOpen, openModal, closeModal, outside } = usePopUp();
 
 	return (
 		<div className="relative flex flex-col h-screen px-6 pb-10">
@@ -65,7 +57,26 @@ const TargetDetail = () => {
 					</div>
 				</div>
 			</div>
-			<Portal />
+			<div className="flex gap-4">
+				<button
+					onClick={() => openModal()}
+					className="h-12 w-full bg-[#e0e0de] rounded-md mt-4"
+				>
+					성공
+				</button>
+
+				<button
+					onClick={() => openModal()}
+					className="h-12 w-full bg-[#e0e0de] rounded-md mt-4"
+				>
+					실패
+				</button>
+				{isModalOpen &&
+					createPortal(
+						<ModalContent outside={outside} closeModal={closeModal} />,
+						document.body
+					)}
+			</div>
 			<button
 				className="w-1/2 h-12 text-xl bg-main px-10 py-2 rounded-xl text-white mx-auto mt-10"
 				onClick={openModal}

@@ -1,4 +1,6 @@
-const ModalContent = ({ onClose, outside, closeModal }: any) => {
+import VoteModal from "../modal/VoteModal";
+
+const ModalContent = ({ outside, closeModal }: any) => {
 	return (
 		<div
 			className="absolute inset-0 w-full h-auto bg-black bg-opacity-70"
@@ -6,8 +8,7 @@ const ModalContent = ({ onClose, outside, closeModal }: any) => {
 		>
 			<div className="fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] z-100">
 				<div className="flex flex-col justify-evenly items-center shadow-xl bg-white border-2 border-green-50 rounded-xl w-64 h-80 ">
-					<div>I'm a modal dialog</div>
-					<button onClick={closeModal}>Close</button>
+					<VoteModal closeModal={closeModal} />
 				</div>
 			</div>
 		</div>
