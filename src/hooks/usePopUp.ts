@@ -15,9 +15,10 @@ const usePopUp = () => {
 	const outside = useRef<any>(null);
 
 	const handlerOutside = (e: any) => {
-		//더 좋은 방법이 있을것같다.
-		closeSideBar();
-		closeModal();
+		if (!outside.current.contains(e.target)) {
+			closeSideBar();
+			closeModal();
+		}
 	};
 
 	useEffect(() => {
