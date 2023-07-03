@@ -5,8 +5,9 @@ type Props = {
 const VoteModal = ({ closeModal }: Props) => {
 	return (
 		<>
-			<div>I'm a modal dialog</div>
-			<button onClick={closeModal}>Close</button>
+			<div>투표는 변경하실 수 없어요</div>
+			<button>투표 완료하기</button>
+			<button onClick={closeModal}>닫기</button>
 		</>
 	);
 };
