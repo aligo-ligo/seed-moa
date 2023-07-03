@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 
 export type ModalContextProps = {
-	isOpen: boolean;
+	isModalOpen: boolean;
 	openModal: () => void;
 	closeModal: () => void;
 };
@@ -11,29 +11,29 @@ export interface ModalProviderProps {
 }
 
 const initialValue: ModalContextProps = {
-	isOpen: false,
+	isModalOpen: false,
 	openModal: () => {
-		console.log("Open modal placeholder");
+		console.log("Open Modal placeholder");
 	},
 	closeModal: () => {
-		console.log("Open modal placeholder");
+		console.log("Open Modal placeholder");
 	},
 };
 
 export const ModalContext = createContext<ModalContextProps>(initialValue);
 export const ModalProvider = ({ children }: ModalProviderProps) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const openModal = () => {
-		setIsOpen(true);
+		setIsModalOpen(true);
 	};
 
 	const closeModal = () => {
-		setIsOpen(false);
+		setIsModalOpen(false);
 	};
 
 	return (
-		<ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
+		<ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
 			{children}
 		</ModalContext.Provider>
 	);

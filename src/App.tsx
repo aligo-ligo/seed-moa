@@ -7,9 +7,10 @@ import AuthServiceImpl from "./services/AuthService";
 import { AuthProvider } from "./context/AuthContext";
 import TargetServiceImpl from "./services/TargetService";
 import { TargetProvider } from "./context/TargetContext";
-import { ModalProvider } from "./context/ModalContext";
+import { SideBarProvider } from "./context/SideBarContext";
 import { routerInfo } from "./utils/router";
 import { TokenRepository } from "./repository/tokenRepository";
+import { ModalProvider } from "./context/ModalContext";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
@@ -39,11 +40,13 @@ function App() {
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider authService={authService}>
 					<TargetProvider targetService={targetService}>
-						<ModalProvider>
-							<main className="phone:w-full desktop:w-desktop desktop:mx-auto desktop:p-10 bg-white h-screen overflow-auto scroll-smooth">
-								<RouterProvider router={routerObject} />
-							</main>
-						</ModalProvider>
+						<SideBarProvider>
+							<ModalProvider>
+								<main className="phone:w-full desktop:w-desktop desktop:mx-auto desktop:p-10 bg-white h-screen overflow-auto scroll-smooth">
+									<RouterProvider router={routerObject} />
+								</main>
+							</ModalProvider>
+						</SideBarProvider>
 					</TargetProvider>
 				</AuthProvider>
 				<ReactQueryDevtools />

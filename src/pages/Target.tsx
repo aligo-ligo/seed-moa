@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
-import useSidebar from "../hooks/useSideBar";
+import useSidebar from "../hooks/usePopUp";
 
 const Target = () => {
 	const navigate = useNavigate();
