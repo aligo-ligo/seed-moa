@@ -11,6 +11,7 @@ export default {
 				mainDeep: "#52681D",
 				mainHover: "#BACB91",
 				lightGray: "#D9D9D9",
+				lighterGray: "#E5E5E5",
 				gray: "#999",
 				darkGray: "#525252",
 				success: "#4785FF",

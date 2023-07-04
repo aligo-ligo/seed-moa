@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { calculatePercentage } from "../../utils/calculatePercentage";
 import ProgressBar from "./ProgressBar";
 import { TargetType } from "../../types/TargetTypes";
-import { heroImage } from "../../utils/contants";
+import { OliBodyImage, heroImage } from "../../utils/contants";
 
 type PropsTargetType = Pick<
 	TargetType,
@@ -48,7 +48,7 @@ const TargetForm = ({
 			>
 				<h2 className="font-medium">{goal}</h2>
 				<img
-					src={heroImage}
+					src={OliBodyImage}
 					alt="자그마한 로고 사진"
 					className="w-48 mx-auto"
 				/>

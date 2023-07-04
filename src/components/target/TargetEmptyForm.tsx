@@ -1,4 +1,4 @@
-import { heroImage } from "../../utils/contants";
+import { OliBodyImage, heroImage } from "../../utils/contants";
 import ProgressBar from "./ProgressBar";
 const TargetEmptyForm = () => {
 	return (
@@ -7,11 +7,7 @@ const TargetEmptyForm = () => {
 				<h2 className="font-medium text-center text-gray">
 					목표를 생성해주세요
 				</h2>
-				<img
-					src={heroImage}
-					alt="자그마한 로고 사진"
-					className="w-48 mx-auto"
-				/>
+				<img src={OliBodyImage} alt="자그마한 로고 사진" className=" mx-auto" />
 				<div className="flex w-60">
 					<div className="flex flex-col w-1/2 p-2">
 						<label className="font-medium text-center text-gray">성취률</label>

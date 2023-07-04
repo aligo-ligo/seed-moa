@@ -26,7 +26,10 @@ const Sidebar = () => {
 				classNames="sidebar"
 				unmountOnExit
 			>
-				<div ref={outside} className="sidebar p-3 bg-mainHover w-2/3">
+				<div
+					ref={outside}
+					className="sidebar p-3 bg-lighterGray w-2/3 shadow-2xl"
+				>
 					<div className="flex justify-end">
 						<FiX onClick={closeSideBar} onKeyDown={closeSideBar} />
 					</div>
@@ -36,7 +39,7 @@ const Sidebar = () => {
 							<form>
 								<button
 									type="submit"
-									className="flex justify-center items-center"
+									className="flex justify-center items-center text-orange-300"
 									onClick={hook}
 								>
 									로그아웃하기
@@ -52,7 +55,7 @@ const Sidebar = () => {
 							return (
 								<div
 									key={index}
-									className="flex items-center justify-center cursor-pointer"
+									className="flex items-center justify-center cursor-pointer font-bold"
 									onClick={() => {
 										navigate(link);
 										closeSideBar();
@@ -79,7 +82,7 @@ const sidebarData = [
 		link: "/target",
 	},
 	{
-		title: "메인 페이지",
+		title: "준비중입니다",
 		icon: <FiEdit />,
 		link: "/target",
 	},
