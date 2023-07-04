@@ -11,6 +11,11 @@ const Sidebar = () => {
 	const authService = useAuthService();
 	const navigate = useNavigate();
 
+	const hook = () => {
+		authService?.logout();
+		closeSideBar();
+	};
+
 	return (
 		<>
 			<CSSTransition
@@ -30,17 +35,16 @@ const Sidebar = () => {
 					<div className="px-4 py-6">
 						<ul className=" font-semibold">안녕하세요 이주영님</ul>
 						<div className="pt-4 text-gray font-semibold">
-							<button
-								className="flex justify-center items-center"
-								onClick={() => {
-									authService?.logout();
-									//예상이 안돼 실제 통신 과정에서 리팩토링 예정
-									closeSideBar();
-								}}
-							>
-								로그아웃하기
-								<FiChevronRight className="text-xl" />
-							</button>
+							<form>
+								<button
+									type="submit"
+									className="flex justify-center items-center"
+									onClick={hook}
+								>
+									로그아웃하기
+									<FiChevronRight className="text-xl" />
+								</button>
+							</form>
 						</div>
 					</div>
 

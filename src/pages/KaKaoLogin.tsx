@@ -11,7 +11,7 @@ export default function KakaoLogin() {
 
 	useEffect(() => {
 		const getKakaoToken = async () => {
-			await axios(`http://192.168.219.103:8080/users/kakao?code=${code}`, {
+			await axios(`http://54.180.32.66:8080/users/kakao?code=${code}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded;charset=utf-8",

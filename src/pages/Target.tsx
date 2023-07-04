@@ -39,7 +39,9 @@ const Target = () => {
 			<section className="flex flex-col mt-10 ">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
 				<div className="flex flex-row justify-center mt-8 ">
-					{targets === undefined && <TargetEmptyForm />}
+					{(targets === undefined || targets.length === 0) && (
+						<TargetEmptyForm />
+					)}
 					<Carousel
 						className="w-full desktop:w-2/3"
 						useKeyboardArrows

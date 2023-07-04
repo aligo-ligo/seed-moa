@@ -3,7 +3,7 @@ import ProgressBar from "./ProgressBar";
 const TargetEmptyForm = () => {
 	return (
 		<>
-			<div className="mt-10 p-6 min-w-2/3 min-h-[200px] border-2 border-lightGray rounded-md cursor-pointer">
+			<div className="mt-10 p-6 w-[350px] min-h-[200px] border-2 border-lightGray rounded-md cursor-pointer">
 				<h2 className="font-medium text-center text-gray">
 					목표를 생성해주세요
 				</h2>
