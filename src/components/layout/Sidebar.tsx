@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
 import { CSSTransition } from "react-transition-group";
+import "../../styles/Sidebar.css";
 
 const Sidebar = () => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();
@@ -21,19 +22,16 @@ const Sidebar = () => {
 			<CSSTransition
 				nodeRef={outside}
 				in={isSideBarOpen}
-				timeout={100}
-				classNames="translate-x-full"
+				timeout={500}
+				classNames="sidebar"
 				unmountOnExit
 			>
-				<div
-					className={`absolute z-10 p-3 bg-[#e7e4e1] h-full w-2/3 top-0 left-0`}
-					ref={outside}
-				>
-					<div className="flex justify-end duration-1000">
+				<div ref={outside} className="sidebar p-3 bg-mainHover w-2/3">
+					<div className="flex justify-end">
 						<FiX onClick={closeSideBar} onKeyDown={closeSideBar} />
 					</div>
 					<div className="px-4 py-6">
-						<ul className=" font-semibold">안녕하세요 이주영님</ul>
+						<p className=" font-semibold">안녕하세요 이주영님</p>
 						<div className="pt-4 text-gray font-semibold">
 							<form>
 								<button
