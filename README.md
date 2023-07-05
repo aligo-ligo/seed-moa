@@ -57,7 +57,20 @@
 3. react-query
 4. axios
 
+## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> UI
+
+<div>
+<img  src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/b5943a39-39ea-47f1-b495-2c68c02eb96c" alt="landing" width="200px"/>
+<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/c6a6ed64-8ed5-4611-9291-aa7863604dd7" alt="landing" width="200px"/>
+<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/badb4f26-59e7-4902-86f0-a3d669853d38" alt="landing" width="200px"/>
+
+</div>
+<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/1dc71300-495f-4bef-9e1d-543f980ec5f8" alt="landing" width="200px"/>
+<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/699eb20b-1312-47bd-8e10-917b7ac24347" alt="landing" width="200px"/>
+
 ## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 디자인 및 와이어프레임
+
+[알리고올리고 피그마 보러가기 ](https://www.figma.com/file/6AZLv4Oolyakjjbj9fV9Y7/%EC%95%8C%EB%A6%AC%EA%B3%A0-%EC%98%AC%EB%A6%AC%EA%B3%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?type=design&node-id=0-1&mode=design&t=fOlAyICiQyFJfjtj-0)
 
 ## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> issue Template
 
