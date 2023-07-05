@@ -3,6 +3,7 @@ import SharingModal from "../modal/SharingModal";
 import CheckModal from "../modal/CheckModal";
 
 type Props = {
+	value?: string;
 	buttonModalType: string;
 	outside: any;
 	closeModal: () => void;

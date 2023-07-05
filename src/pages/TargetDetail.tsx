@@ -52,7 +52,11 @@ const TargetDetail = () => {
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
 						{target?.subGoal?.map((subGoal, index) => {
-							return <Checkbox key={index}>{subGoal.value}</Checkbox>;
+							return (
+								<Checkbox key={index} value={subGoal.value}>
+									{subGoal.value}
+								</Checkbox>
+							);
 						})}
 					</div>
 					<div>

@@ -3,7 +3,12 @@ import usePopUp from "../../hooks/usePopUp";
 import { createPortal } from "react-dom";
 import ModalContent from "../common/ModalContent";
 
-const Checkbox = ({ children }: any) => {
+type Props = {
+	children: React.ReactNode;
+	value: string;
+};
+
+const Checkbox = ({ value, children }: Props) => {
 	// const [checked, setChecked] = useState(false);
 	const {
 		isModalOpen,
@@ -14,6 +19,7 @@ const Checkbox = ({ children }: any) => {
 		changeModalType,
 	} = usePopUp();
 
+	console.log("inChe", value);
 	return (
 		<div className="mb-3">
 			<div className="flex items-center my-5">

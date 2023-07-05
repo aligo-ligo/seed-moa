@@ -4,8 +4,9 @@ const SIGN_IN_MESSAGE = {
 } as const;
 
 const SIGN_UP_MESSAGE = {
-	password: "Password is too short",
+	password: "Password is invalid",
 	email: "Email format is invalid",
+	nickName: " nickName is invalid",
 	duplicate: "Email already exists",
 } as const;
 
@@ -19,13 +20,18 @@ export default class HTTPError extends Error {
 	}
 
 	get signUpMessage() {
+		console.log("inHttpSignUp", this.statusCode);
 		if (this.statusCode === 400) {
+			console.log("data", typeof this.data);
 			switch (this.data) {
 				case SIGN_UP_MESSAGE.email:
 					this.message = "이메일 형식이 올바르지 않습니다";
 					break;
 				case SIGN_UP_MESSAGE.password:
-					this.message = "4자이상의 비밀번호를 입력해주세요";
+					this.message = "영문+숫자 조합 8자리 이상 입력해주세요";
+					break;
+				case SIGN_UP_MESSAGE.nickName:
+					this.message = "10자 이하로 입력해주세요";
 					break;
 				case SIGN_UP_MESSAGE.duplicate:
 					this.message = "이미 존재하는 계정입니다";
@@ -42,7 +48,7 @@ export default class HTTPError extends Error {
 		switch (this.statusCode) {
 			case 400:
 				if (this.data === SIGN_IN_MESSAGE.password) {
-					this.message = "비밀번호를 확인해주세요";
+					this.message = "비밀번호가 올바르지 않습니다.";
 				} else if (this.data === SIGN_IN_MESSAGE.email) {
 					this.message = "존재하지 않는 계정입니다";
 				}

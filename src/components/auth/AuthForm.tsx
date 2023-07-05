@@ -13,7 +13,6 @@ import {
 	PASSWORD_INPUT,
 	ValidationAuth,
 } from "../../utils/contants";
-import OAuth from "./OAuth";
 
 import Validation from "./Validation";
 import StyledButton from "../common/StyledButton";
@@ -95,9 +94,10 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				.catch((error) => setMessage(error.signUpMessage));
 		}
 	};
+
 	return (
 		<>
-			<div className="flex flex-col text-main items-center mb-8 p-3 gap-10">
+			<div className="flex flex-col  items-center mb-8 p-3 gap-10">
 				<img src={LogoImage} alt="로고" className="w-4/5" />
 			</div>
 			<form

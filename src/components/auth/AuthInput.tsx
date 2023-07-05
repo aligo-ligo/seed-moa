@@ -45,7 +45,7 @@ export default function AuthInput({
 	console.log("userInfoInInput", userInfo);
 	return (
 		<>
-			<label className="text-base block mb-2 font-bold">
+			<label className="text-base block mb-2 font-medium">
 				{isEmail ? "이메일" : isNickName ? "닉네임" : "비밀번호"}
 				<span className="sr-only">
 					{isEmail ? "이메일" : isNickName ? "닉네임" : "비밀번호"}
