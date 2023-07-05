@@ -4,30 +4,25 @@ import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { useInfo } from "../hooks/useInfo";
+
 import { useQuery } from "@tanstack/react-query";
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
+import { useTarget } from "../hooks/useTarget";
+import { useGetTargetList } from "../hooks/useModifySubGoal";
 
 const Target = () => {
 	const navigate = useNavigate();
-
-	const infoService = useInfo();
-	const { data: targets } = useQuery(["targets", "all"], () => {
-		return infoService?.getAllTarget();
-	});
-
-	// 모달창인데 portal로 바꿔보자 리팩토링 해야한다.
+	const targetService = useTarget();
+	const { data: targets } = useGetTargetList(targetService);
+	const name = localStorage.getItem("userNickName");
 
 	console.log("targets", targets);
 
-	// 리팩토링하자!
-	const name = localStorage.getItem("userNickName");
-
 	const arrowStyles: CSSProperties = {
 		position: "absolute",
-		zIndex: 100,
+		zIndex: 10,
 		top: "calc(70% - 15px)",
 		fontSize: "40px",
 		cursor: "pointer",

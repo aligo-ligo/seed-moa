@@ -10,14 +10,7 @@ type Props = {
 
 const Checkbox = ({ value, children }: Props) => {
 	// const [checked, setChecked] = useState(false);
-	const {
-		isModalOpen,
-		openModal,
-		closeModal,
-		outside,
-		buttonModalType,
-		changeModalType,
-	} = usePopUp();
+	const { openModal, changeModalType } = usePopUp();
 
 	console.log("inChe", value);
 	return (
@@ -32,15 +25,6 @@ const Checkbox = ({ value, children }: Props) => {
 				/>
 				<p>{children}</p>
 			</div>
-			{isModalOpen &&
-				createPortal(
-					<ModalContent
-						buttonModalType={buttonModalType}
-						outside={outside}
-						closeModal={closeModal}
-					/>,
-					document.body
-				)}
 		</div>
 	);
 };

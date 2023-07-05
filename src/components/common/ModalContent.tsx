@@ -21,7 +21,9 @@ const ModalContent = ({ buttonModalType, outside, closeModal }: Props) => {
 					{buttonModalType === "sharing" && (
 						<SharingModal closeModal={closeModal} />
 					)}
-					{buttonModalType === "check" && <CheckModal />}
+					{buttonModalType === "check" && (
+						<CheckModal closeModal={closeModal} />
+					)}
 				</div>
 			</div>
 		</div>

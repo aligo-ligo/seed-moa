@@ -3,7 +3,8 @@ export type TargetResponse = Promise<TargetType[]>;
 export interface TargetService {
 	getAllTarget: () => TargetResponse;
 	getTarget: (id: string | undefined) => Promise<TargetType>;
-	postTarget: (targetInfo: TargetInfoType) => Promise<TargetCreate>;
+	postSubGoal: (subGoalInfo: subGoalUpdateType) => Promise<PostResultType>;
+	postTarget: (targetInfo: TargetInfoType) => Promise<TargetCreateResultType>;
 }
 
 export interface TargetType {
@@ -33,13 +34,16 @@ export type TargetStepType =
 export type SubGoalType = React.ReactNode & {
 	id: number;
 	value: string;
+	completeDate: string | null;
 };
 
 export type RoutineType = React.ReactNode & {
 	id: number;
 	value: string;
-	success: boolean;
-	completeDate: string | null;
+};
+
+export type PostResultType = {
+	message: string;
 };
 
 export type TargetInfoType = {
@@ -50,7 +54,13 @@ export type TargetInfoType = {
 	penalty: string;
 };
 
-export type TargetCreate = {
+export type TargetCreateResultType = {
 	statusCode: number;
 	message: string;
+};
+
+export type subGoalUpdateType = {
+	id: number;
+	value: string;
+	completeDate: string | null;
 };
