@@ -31,7 +31,7 @@ const StyledButton = ({
 		sharing: "w-1/2 h-12 text-xl bg-main py-2 rounded-xl text-white",
 		vote: "h-12 w-full bg-[#e0e0de] rounded-md mt-4",
 		sharingExit:
-			"text-lg w-1/2 h-8 desktop:w-9/12 desktop:h-10 bg-main rounded-md desktop:text-xl text-white",
+			"text-lg w-1/2 h-8 desktop:w-9/12 desktop:h-10 bg-main rounded-md desktop:text-xl text-white hover:bg-mainHover",
 		copy: "text-sm w-10 h-min bg-orange-400 py-1 px-1 rounded-md text-white",
 	};
 

@@ -12,7 +12,6 @@ import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
-import { TokenRepository } from "../repository/tokenRepository";
 
 const TargetDetail = () => {
 	const { id } = useParams();
