@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTarget } from "./useTarget";
-import { TargetService } from "../types/TargetTypes";
+import { TargetInfoType, TargetService } from "../types/TargetTypes";
 
 export const useGetTargetList = (targetService: TargetService) => {
 	return useQuery(["targets", "all"], () => {
@@ -22,7 +22,7 @@ export const useModifySub = (id: string, test: any) => {
 	const targetService = useTarget();
 	const { data } = useGetTarget(id, targetService);
 	const subGoalMutation = useMutation(async (id: string) => {
-		return targetService.postSubGoal(test);
+		return targetService.updateSubGoal(test);
 	});
 
 	//   const { data }: { data: UserSettingType[] | undefined } =

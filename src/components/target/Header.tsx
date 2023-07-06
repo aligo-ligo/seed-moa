@@ -7,7 +7,7 @@ import usePopUp from "../../hooks/usePopUp";
 import { LogoImage, OliImage, heroImage } from "../../utils/contants";
 
 type Props = {
-	name: string | null;
+	name?: string | null;
 };
 
 const Header = ({ name }: Props) => {
@@ -25,6 +25,7 @@ const Header = ({ name }: Props) => {
 				/>
 			</div>
 			<h1 className="font-semibold">안녕하세요 {name}님</h1>
+			<Sidebar />
 		</header>
 	);
 };

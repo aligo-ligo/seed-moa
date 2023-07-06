@@ -13,10 +13,13 @@ import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
 
+import { useTarget } from "../hooks/useTarget";
+
 const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
 	// subGoal: yup.array().of(
 	// 	yup
+
 	// 		.object()
 	// 		.shape({
 	// 			name: yup.string(),
@@ -36,8 +39,9 @@ const targetSchema: yup.ObjectSchema<TargetInfoType> = yup.object({
 });
 
 const TargetCreate = () => {
-	const [registerData, setRegisterData] = useState();
+	const targetService = useTarget();
 	const navigate = useNavigate();
+	const [message, setMessage] = useState("");
 	const [step, setStep] = useState<TargetStepType>("goal");
 
 	const methods = useForm({
@@ -47,12 +51,21 @@ const TargetCreate = () => {
 		},
 		resolver: yupResolver(targetSchema),
 	});
-
+	console.log(message);
 	console.log("최상위", methods.formState.errors);
 	console.log("in the top", step);
 
-	const onSubmitHandler = (data: TargetInfoType) =>
-		console.log("최종 제출", data);
+	const onSubmitHandler = (data: TargetInfoType) => {
+		console.log("최종", data);
+		targetService
+			?.postTarget(data)
+			.then((res) => {
+				console.log("res", res);
+				navigate("/target");
+			})
+			.catch((error) => setMessage(error.APIMessage));
+	};
+
 	return (
 		<div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
 			<div

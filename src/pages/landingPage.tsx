@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import StyledButton from "../components/common/StyledButton";
 import OAuth from "../components/auth/OAuth";
 import { LogoImage, OliBodyImage } from "../utils/contants";
+import Header from "../components/target/Header";
 
 const LandingPage = () => {
 	const navigate = useNavigate();
 	return (
 		<section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
+			<Header />
 			<div className="flex flex-col items-center justify-center ">
 				<img src={OliBodyImage} alt="히어로" className="w-2/5" />
 				<img src={LogoImage} alt="로고" className="w-3/5" />

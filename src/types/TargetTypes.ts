@@ -3,8 +3,8 @@ export type TargetResponse = Promise<TargetType[]>;
 export interface TargetService {
 	getAllTarget: () => TargetResponse;
 	getTarget: (id: string | undefined) => Promise<TargetType>;
-	postSubGoal: (subGoalInfo: subGoalUpdateType) => Promise<PostResultType>;
 	postTarget: (targetInfo: TargetInfoType) => Promise<TargetCreateResultType>;
+	updateSubGoal: (subGoalInfo: subGoalUpdateType) => Promise<PostResultType>;
 }
 
 export interface TargetType {
@@ -54,11 +54,7 @@ export type TargetInfoType = {
 	penalty: string;
 };
 
-export type TargetCreateResultType = {
-	statusCode: number;
-	message: string;
-};
-
+export type TargetCreateResultType = number;
 export type subGoalUpdateType = {
 	id: number;
 	value: string;

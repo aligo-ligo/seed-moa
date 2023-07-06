@@ -14,15 +14,15 @@ const CheckModal = ({ closeModal, subGoal }: Props) => {
 		completeDate: "2023-07-50",
 	};
 	console.log("inmodl", subGoal);
-	const handleClick = () => {
-		targetService
-			?.postSubGoal(test)
-			.then((data) => {
-				console.log("data", data);
-			})
+	// const handleClick = () => {
+	// 	targetService
+	// 		?.postSubGoal(test)
+	// 		.then((data) => {
+	// 			console.log("data", data);
+	// 		})
 
-			.catch((error) => console.log(error.signInMessage));
-	};
+	// 		.catch((error) => console.log(error.signInMessage));
+	// };
 
 	return (
 		<div className="bg-white rounded-md">
@@ -39,7 +39,7 @@ const CheckModal = ({ closeModal, subGoal }: Props) => {
 				<StyledButton
 					styleName="sharingExit"
 					type="button"
-					onClick={handleClick}
+					// onClick={handleClick}
 				>
 					네
 				</StyledButton>

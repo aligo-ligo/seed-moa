@@ -29,26 +29,10 @@ export default class TargetServiceImpl implements TargetService {
 		const { data } = await this.httpClient.get<TargetType>(
 			`target/detail?id=${id}`
 		);
+
 		return data;
 	}
 
-	// async getTarget(id: string | undefined) {
-	// 	const { data } = await this.httpClient.get<TargetType>(
-	// 		`data/target/${id}.json`
-	// 	);
-	// 	return data;
-	// }
-	async postSubGoal({ id, value, completeDate }: subGoalUpdateType) {
-		const { data } = await this.httpClient.post<PostResultType>(
-			`target/update`,
-			{
-				id,
-				value,
-				completeDate,
-			}
-		);
-		return data;
-	}
 	async postTarget({
 		goal,
 		subGoal,
@@ -64,6 +48,36 @@ export default class TargetServiceImpl implements TargetService {
 				routine,
 				endDate,
 				penalty,
+			}
+		);
+		return data;
+	}
+
+	// async getTarget(id: string | undefined) {
+	// 	const { data } = await this.httpClient.get<TargetType>(
+	// 		`data/target/${id}.json`
+	// 	);
+	// 	return data;
+	// }
+	async updateSubGoal({ id, value, completeDate }: subGoalUpdateType) {
+		const { data } = await this.httpClient.post<PostResultType>(
+			`target/update`,
+			{
+				id,
+				value,
+				completeDate,
+			}
+		);
+		return data;
+	}
+
+	async post({ id, value, completeDate }: subGoalUpdateType) {
+		const { data } = await this.httpClient.post<PostResultType>(
+			`target/update`,
+			{
+				id,
+				value,
+				completeDate,
 			}
 		);
 		return data;
