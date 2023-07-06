@@ -6,6 +6,7 @@ import Target from "../pages/Target";
 import TargetDetail from "../pages/TargetDetail";
 import TargetCreate from "../pages/TargetCreate";
 import Authorization from "../components/layout/Authorization";
+import QuestionPage from "../pages/QuestionPage";
 
 export const routerChildrenInfo = [
 	{
@@ -57,6 +58,11 @@ export const routerChildrenInfo = [
 		path: "target/create",
 		element: <TargetCreate />,
 		withAuthorization: true,
+	},
+	{
+		path: "faq",
+		element: <QuestionPage />,
+		withAuthorization: false,
 	},
 ];
 

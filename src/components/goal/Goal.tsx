@@ -4,6 +4,8 @@ import Validation from "../auth/Validation";
 import TargetStepButton from "../logic/TargetStepButton";
 import { TargetStepType } from "../../types/TargetTypes";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
+import { FiArrowLeft } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -16,16 +18,22 @@ const Goal = ({ setStep }: Props) => {
 		setValue,
 		formState: { errors },
 	} = useFormContext();
+	const navigate = useNavigate();
 
 	const getGoal: string = getValues("goal");
 	console.log("getData", getGoal);
 
-	useEffect(() => {
-		setValue("goal", localStorage.getItem("goal"));
-	}, [setValue]);
-
 	return (
 		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
+			<div
+				className="absolute left-0 top-0 text-main text-base my-10 mx-6 flex items-center gap-1 cursor-pointer"
+				onClick={() => {
+					navigate("/target");
+				}}
+			>
+				메인페이지로
+				<FiArrowLeft />
+			</div>
 			<input
 				type="text"
 				className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"

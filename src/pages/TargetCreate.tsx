@@ -68,16 +68,6 @@ const TargetCreate = () => {
 
 	return (
 		<div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
-			<div
-				className="absolute left-0 top-0 text-main text-base my-10 mx-6 flex items-center gap-1 cursor-pointer"
-				onClick={() => {
-					navigate("/target");
-				}}
-			>
-				메인페이지로
-				<FiArrowLeft />
-			</div>
-
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit(onSubmitHandler)}
