@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetTargetList } from "../../hooks/useModifySubGoal";
 import { useTarget } from "../../hooks/useTarget";
 import { useState } from "react";
+import { useGuest } from "../../hooks/useGuest";
 
 type Props = {
 	closeModal: () => void;
@@ -9,12 +10,12 @@ type Props = {
 };
 
 const VoteModal = ({ closeModal, success }: Props) => {
-	const targetService = useTarget();
+	const guestService = useGuest();
 	const { id } = useParams();
 
 	console.log("voteModal", success);
 	const handleClick = () => {
-		targetService
+		guestService
 			?.getTargetVote({ id, success })
 			.then((data) => {
 				console.log("data", data);

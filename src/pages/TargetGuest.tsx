@@ -7,14 +7,14 @@ import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { useParams } from "react-router-dom";
 import Checkbox from "../components/target/Checkbox";
-import { useTarget } from "../hooks/useTarget";
-import { useGetTarget } from "../hooks/useModifySubGoal";
+import { useGetGuestTarget } from "../hooks/useModifySubGoal";
 import { useState } from "react";
+import { useGuest } from "../hooks/useGuest";
 
 const TargetGuest = () => {
 	const { id } = useParams();
-	const targetService = useTarget();
-	const { data: target } = useGetTarget(id, targetService);
+	const guestService = useGuest();
+	const { data: target } = useGetGuestTarget(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
 	const percentage = 10;

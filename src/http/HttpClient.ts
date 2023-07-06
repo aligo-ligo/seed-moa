@@ -12,6 +12,8 @@ export default class HttpClient {
 			baseURL: this.baseUrl,
 		});
 
+		console.log("테스트", this.httpClient);
+
 		this.httpClient.interceptors.response.use(
 			(response) => response,
 			(error) => {
@@ -23,7 +25,7 @@ export default class HttpClient {
 						if (status === 401) {
 							this.tokenRepository.remove(ACCESS_TOKEN);
 							this.tokenRepository.remove(USER_ID);
-							window.location.replace("/signin");
+							// window.location.replace("/signin");
 						} else {
 							throw new HTTPError(
 								response?.status,
@@ -48,6 +50,16 @@ export default class HttpClient {
 				config.headers.Authorization = `Bearer ${token}`;
 			}
 
+			return config;
+		});
+
+		return this.httpClient;
+	}
+
+	withGuest() {
+		this.httpClient.interceptors.request.use((config) => {
+			config.headers.Authorization = "";
+			console.log("요청 가로채기전", config);
 			return config;
 		});
 

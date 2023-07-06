@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTarget } from "./useTarget";
 import { TargetInfoType, TargetService } from "../types/TargetTypes";
+import { GuestService } from "../types/GuestType";
 
 export const useGetTargetList = (targetService: TargetService) => {
 	return useQuery(["targets", "all"], () => {
@@ -14,6 +15,15 @@ export const useGetTarget = (
 ) => {
 	return useQuery(["target"], () => {
 		return targetService?.getTarget(id);
+	});
+};
+
+export const useGetGuestTarget = (
+	id: string | undefined,
+	guestService: GuestService
+) => {
+	return useQuery(["guest"], () => {
+		return guestService?.getGuestTarget(id);
 	});
 };
 
