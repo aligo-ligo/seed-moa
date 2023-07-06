@@ -6,24 +6,18 @@ import ModalContent from "../common/ModalContent";
 type Props = {
 	children: React.ReactNode;
 	value: string;
+	id: number;
 };
 
-const Checkbox = ({ value, children }: Props) => {
+const Checkbox = ({ value, id, children }: Props) => {
+	console.log("inCheckbox", id);
 	// const [checked, setChecked] = useState(false);
-	const { openModal, changeModalType } = usePopUp();
 
 	console.log("inChe", value);
 	return (
 		<div className="mb-3">
 			<div className="flex items-center my-5">
-				<button
-					className="mr-3 border-2  p-2 text-orange-400 rounded-md"
-					onClick={() => {
-						openModal();
-						changeModalType("check");
-					}}
-				/>
-				<p>{children}</p>
+				<div className="flex">{children}</div>
 			</div>
 		</div>
 	);

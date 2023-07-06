@@ -25,7 +25,6 @@ const Header = ({ name }: Props) => {
 				/>
 			</div>
 			<h1 className="font-semibold">안녕하세요 {name}님</h1>
-			<Sidebar />
 		</header>
 	);
 };

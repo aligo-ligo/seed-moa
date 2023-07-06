@@ -22,13 +22,13 @@ const Sidebar = () => {
 			<CSSTransition
 				nodeRef={outside}
 				in={isSideBarOpen}
-				timeout={500}
+				timeout={300}
 				classNames="sidebar"
 				unmountOnExit
 			>
 				<div
 					ref={outside}
-					className="sidebar p-3 bg-lighterGray w-2/3 shadow-2xl"
+					className="sidebar p-3 bg-lighterGray w-1/2 shadow-2xl h-full"
 				>
 					<div className="flex justify-end">
 						<FiX onClick={closeSideBar} onKeyDown={closeSideBar} />
@@ -51,11 +51,10 @@ const Sidebar = () => {
 
 					<div>
 						{sidebarData.map(({ title, link, icon }, index) => {
-							console.log(icon);
 							return (
 								<div
 									key={index}
-									className="flex items-center justify-center cursor-pointer font-bold"
+									className="flex items-center cursor-pointer font-bold px-4 hover:text-gray"
 									onClick={() => {
 										navigate(link);
 										closeSideBar();
@@ -82,12 +81,7 @@ const sidebarData = [
 		link: "/target",
 	},
 	{
-		title: "준비중입니다",
-		icon: <FiEdit />,
-		link: "/target",
-	},
-	{
-		title: "준비중입니다",
+		title: "F&Q 업데이트 예정",
 		icon: <FiEdit />,
 		link: "/target",
 	},

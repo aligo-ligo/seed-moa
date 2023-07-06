@@ -27,7 +27,7 @@ export default class TargetServiceImpl implements TargetService {
 
 	async getTarget(id: string | undefined) {
 		const { data } = await this.httpClient.get<TargetType>(
-			`target/detail?targetId=${id}`
+			`target/detail?id=${id}`
 		);
 		return data;
 	}

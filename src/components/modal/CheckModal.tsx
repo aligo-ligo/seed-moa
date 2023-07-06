@@ -1,16 +1,19 @@
 import { useTarget } from "../../hooks/useTarget";
+import { SubGoalType } from "../../types/TargetTypes";
 import StyledButton from "../common/StyledButton";
 type Props = {
 	closeModal: () => void;
+	subGoal: SubGoalType[] | undefined;
 };
 
-const CheckModal = ({ closeModal }: Props) => {
+const CheckModal = ({ closeModal, subGoal }: Props) => {
 	const targetService = useTarget();
 	const test = {
 		id: 34,
 		value: "3kg 빼기",
 		completeDate: "2023-07-50",
 	};
+	console.log("inmodl", subGoal);
 	const handleClick = () => {
 		targetService
 			?.postSubGoal(test)

@@ -10,6 +10,7 @@ import StyledButton from "../components/common/StyledButton";
 import { useTarget } from "../hooks/useTarget";
 import LineGraphPrep from "../components/target/LineGraphPrep";
 import { useGetTarget } from "../hooks/useModifySubGoal";
+import { useState } from "react";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -33,6 +34,8 @@ const TargetDetail = () => {
 		changeModalType,
 	} = usePopUp();
 
+	console.log("test", isModalOpen);
+
 	return (
 		<div className="relative flex flex-col h-screen px-6 mb-10">
 			<Header name={userNickName} />
@@ -47,7 +50,15 @@ const TargetDetail = () => {
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
 						{target?.subGoal?.map((subGoal, index) => {
 							return (
-								<Checkbox key={index} value={subGoal.value}>
+								<Checkbox key={index} value={subGoal.value} id={index}>
+									<button
+										name={`${index}`}
+										className="mr-3 border-2  p-2 text-orange-400 rounded-md"
+										onClick={() => {
+											openModal();
+											changeModalType("check");
+										}}
+									/>
 									{subGoal.value}
 								</Checkbox>
 							);
@@ -107,6 +118,7 @@ const TargetDetail = () => {
 							buttonModalType={buttonModalType}
 							outside={outside}
 							closeModal={closeModal}
+							subGoal={target?.subGoal}
 						/>,
 						document.body
 					)}

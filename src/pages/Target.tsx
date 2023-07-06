@@ -11,6 +11,7 @@ import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
 import { useGetTargetList } from "../hooks/useModifySubGoal";
+import Sidebar from "../components/layout/Sidebar";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -29,11 +30,11 @@ const Target = () => {
 	};
 
 	return (
-		<div className={`relative flex flex-col h-screen px-6 pb-10`}>
+		<div className={`relative flex flex-col h-full px-6 pb-10`}>
 			<Header name={name} />
-			<section className="flex flex-col mt-10 ">
+			<section className="flex flex-col mt-10 h-full">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
-				<div className="flex flex-row justify-center mt-8 ">
+				<div className="flex flex-row justify-center mt-8 h-full">
 					{(targets === undefined || targets.length === 0) && (
 						<TargetEmptyForm />
 					)}
@@ -101,7 +102,7 @@ const Target = () => {
 						)}
 					</Carousel>
 				</div>
-
+				<Sidebar />
 				<StyledButton
 					styleName="target"
 					type="button"

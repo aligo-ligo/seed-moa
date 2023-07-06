@@ -13,8 +13,8 @@ export interface TargetType {
 	startDate: string;
 	endDate: string;
 	goal: string;
-	routine: SubGoalType[];
-	subGoal: RoutineType[];
+	subGoal: SubGoalType[];
+	routine: RoutineType[];
 	penalty: string;
 	subGoalTotal: number;
 	successCount: number;
