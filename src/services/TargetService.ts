@@ -1,6 +1,7 @@
 import { AxiosInstance } from "axios";
 import {
 	PostResultType,
+	ShareResultType,
 	TargetCreateResultType,
 	TargetInfoType,
 	TargetResponse,
@@ -28,6 +29,14 @@ export default class TargetServiceImpl implements TargetService {
 	async getTarget(id: string | undefined) {
 		const { data } = await this.httpClient.get<TargetType>(
 			`target/detail?id=${id}`
+		);
+
+		return data;
+	}
+
+	async getShortUrl(id: string | undefined) {
+		const { data } = await this.httpClient.get<ShareResultType>(
+			`target/share?id=${id}`
 		);
 
 		return data;

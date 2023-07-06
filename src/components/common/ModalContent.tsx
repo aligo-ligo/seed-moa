@@ -8,10 +8,12 @@ type Props = {
 	buttonModalType: string;
 	outside: any;
 	closeModal: () => void;
-	subGoal: SubGoalType[];
+	subGoal: SubGoalType[] | undefined;
+	shareUrl: string | undefined;
 };
 
 const ModalContent = ({
+	shareUrl,
 	subGoal,
 	buttonModalType,
 	outside,
@@ -27,7 +29,7 @@ const ModalContent = ({
 				>
 					{buttonModalType === "vote" && <VoteModal closeModal={closeModal} />}
 					{buttonModalType === "sharing" && (
-						<SharingModal closeModal={closeModal} />
+						<SharingModal closeModal={closeModal} shareUrl={shareUrl} />
 					)}
 					{buttonModalType === "check" && (
 						<CheckModal closeModal={closeModal} subGoal={subGoal} />

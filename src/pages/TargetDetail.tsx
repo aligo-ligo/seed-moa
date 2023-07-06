@@ -10,13 +10,18 @@ import StyledButton from "../components/common/StyledButton";
 import { useTarget } from "../hooks/useTarget";
 import LineGraphPrep from "../components/target/LineGraphPrep";
 import { useGetTarget } from "../hooks/useModifySubGoal";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const TargetDetail = () => {
 	const { id } = useParams();
 	const userNickName = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target } = useGetTarget(id, targetService);
+	const { data: shareUrl } = useQuery(["shortUrl"], () => {
+		return targetService?.getShortUrl(id);
+	});
+	console.log("shortUrl", shareUrl);
+	console.log("shortUrlType", typeof shareUrl);
 
 	console.log("target", target);
 
@@ -115,6 +120,7 @@ const TargetDetail = () => {
 				{isModalOpen &&
 					createPortal(
 						<ModalContent
+							shareUrl={shareUrl && shareUrl?.shortUrl}
 							buttonModalType={buttonModalType}
 							outside={outside}
 							closeModal={closeModal}

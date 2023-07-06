@@ -8,12 +8,13 @@ type Props = {
 };
 
 const LastStep = ({ setStep }: Props) => {
-	const { getGoal, getSubGoal, getRoutine, endDate } = useGetFormData();
+	const { getGoal, getSubGoal, getRoutine, getEndDate, getPenalty } =
+		useGetFormData();
 
 	console.log("goal", getGoal);
 	console.log("sub", getSubGoal);
 	console.log("routine", getRoutine);
-	console.log("endDate", formatDate(endDate));
+	console.log("endDate", formatDate(getEndDate));
 
 	return (
 		<>
@@ -39,7 +40,11 @@ const LastStep = ({ setStep }: Props) => {
 				</div>
 				<div className="mb-4">
 					<h2 className="text-xl font-semibold mb-2">기간</h2>
-					{`${getNowDate()} ~ ${formatDate(endDate)} 총 (number)일`}
+					{`${getNowDate()} ~ ${formatDate(getEndDate)} 총 (number)일`}
+				</div>
+				<div className="mb-4">
+					<h2 className="text-xl font-semibold mb-2">기간</h2>
+					{`${getPenalty}`}
 				</div>
 			</section>
 			<div className="flex gap-4">

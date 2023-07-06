@@ -3,9 +3,10 @@ import StyledButton from "../common/StyledButton";
 
 type Props = {
 	closeModal: () => void;
+	shareUrl: string | undefined;
 };
 
-const SharingModal = ({ closeModal }: Props) => {
+const SharingModal = ({ closeModal, shareUrl }: Props) => {
 	return (
 		<div className="bg-white rounded-md">
 			<div className="flex justify-end cursor-pointer">
@@ -17,6 +18,7 @@ const SharingModal = ({ closeModal }: Props) => {
 			</p>
 			<div className="flex items-center my-8 border-main border-2 border-solid rounded-md py-2 px-4 relative">
 				<input
+					value={shareUrl}
 					type="text"
 					className="placeholder:text-xs w-full outline-none text-emerald-800"
 				/>
