@@ -18,11 +18,11 @@ const StyledButton = ({
 }: StyledButtonType) => {
 	const styleCategories: IStyleCateType = {
 		landing:
-			"text-lg w-[90%] h-20 desktop:w-2/3 h-20 bg-main rounded-md text-xl text-white",
+			"text-lg w-full h-14 bg-main rounded-md text-xl text-white hover:bg-mainHover ease-in duration-100",
 		ladingSignUp: "text-lg desktop:text-xl text-main ",
-		login: `w-full text-xl ${
+		login: `w-full text-lg ${
 			disable ? "bg-mainHover" : "bg-main"
-		}  px-10 py-2 mt-4 text-white rounded-xl hover:bg-mainHover ease-in duration-100`,
+		}  px-10 py-2 mt-4 text-white rounded-md  hover:bg-mainHover ease-in duration-100 h-14`,
 		signInAndUp:
 			"text-sm text-mainHover self-center mt-8 hover:text-main ease-in duration-100",
 		target: "mt-16 mb-10 mx-auto w-1/3 h-14 bg-main rounded-lg",
