@@ -7,6 +7,7 @@ import TargetDetail from "../pages/TargetDetail";
 import TargetCreate from "../pages/TargetCreate";
 import Authorization from "../components/layout/Authorization";
 import QuestionPage from "../pages/QuestionPage";
+import TargetGuest from "../pages/TargetGuest";
 
 export const routerChildrenInfo = [
 	{
@@ -62,6 +63,11 @@ export const routerChildrenInfo = [
 	{
 		path: "faq",
 		element: <QuestionPage />,
+		withAuthorization: false,
+	},
+	{
+		path: "result/:id",
+		element: <TargetGuest />,
 		withAuthorization: false,
 	},
 ];

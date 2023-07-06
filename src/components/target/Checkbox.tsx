@@ -7,17 +7,40 @@ type Props = {
 	children: React.ReactNode;
 	value: string;
 	id: number;
+	type: string;
 };
 
-const Checkbox = ({ value, id, children }: Props) => {
+const Checkbox = ({ type, value, id, children }: Props) => {
 	console.log("inCheckbox", id);
-	// const [checked, setChecked] = useState(false);
+	const {
+		openModal,
+
+		changeModalType,
+	} = usePopUp();
 
 	console.log("inChe", value);
 	return (
 		<div className="mb-3">
 			<div className="flex items-center my-5">
-				<div className="flex">{children}</div>
+				<div className="flex">
+					{type === "guest" ? (
+						<button
+							name={`${id}`}
+							className="mr-3 border-2 p-2 text-orange-400 rounded-md bg-orange-400"
+						/>
+					) : (
+						<button
+							name={`${id}`}
+							className="mr-3 border-2 p-2 text-orange-400 rounded-md"
+							onClick={() => {
+								openModal();
+								changeModalType("check");
+							}}
+						/>
+					)}
+
+					{children}
+				</div>
 			</div>
 		</div>
 	);

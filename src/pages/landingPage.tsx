@@ -27,7 +27,7 @@ const LandingPage = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center justify-center w-[90%] desktop:w-[60%] ">
+			<div className="flex flex-col items-center justify-center w-[90%] desktop:w-[60%] gap-4">
 				<StyledButton
 					styleName="landing"
 					onClick={() => navigate("/signin")}

@@ -3,10 +3,10 @@ import StyledButton from "../common/StyledButton";
 
 type Props = {
 	closeModal: () => void;
-	shareUrl: string | undefined;
+	shareUrl: string;
 };
 
-const SharingModal = ({ closeModal, shareUrl }: Props) => {
+const SharingModal = ({ shareUrl, closeModal }: Props) => {
 	return (
 		<div className="bg-white rounded-md">
 			<div className="flex justify-end cursor-pointer">

@@ -3,7 +3,7 @@ export type TargetResponse = Promise<TargetType[]>;
 export interface TargetService {
 	getAllTarget: () => TargetResponse;
 	getTarget: (id: string | undefined) => Promise<TargetType>;
-	getShortUrl: (id: string | undefined) => Promise<ShareResultType>;
+
 	postTarget: (targetInfo: TargetInfoType) => Promise<TargetCreateResultType>;
 	updateSubGoal: (subGoalInfo: subGoalUpdateType) => Promise<PostResultType>;
 }
@@ -22,6 +22,7 @@ export interface TargetType {
 	successVote: number;
 	failureVote: number;
 	voteTotal: number;
+	url: string;
 }
 
 export type TargetStepType =

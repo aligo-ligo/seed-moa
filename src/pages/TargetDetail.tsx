@@ -10,18 +10,12 @@ import StyledButton from "../components/common/StyledButton";
 import { useTarget } from "../hooks/useTarget";
 import LineGraphPrep from "../components/target/LineGraphPrep";
 import { useGetTarget } from "../hooks/useModifySubGoal";
-import { useQuery } from "@tanstack/react-query";
 
 const TargetDetail = () => {
 	const { id } = useParams();
 	const userNickName = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target } = useGetTarget(id, targetService);
-	const { data: shareUrl } = useQuery(["shortUrl"], () => {
-		return targetService?.getShortUrl(id);
-	});
-	console.log("shortUrl", shareUrl);
-	console.log("shortUrlType", typeof shareUrl);
 
 	console.log("target", target);
 
@@ -42,7 +36,7 @@ const TargetDetail = () => {
 	console.log("test", isModalOpen);
 
 	return (
-		<div className="relative flex flex-col h-screen px-6 mb-10">
+		<div className="relative flex flex-col min-h-screen px-6 mb-10">
 			<Header name={userNickName} />
 			<div>
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
@@ -55,15 +49,12 @@ const TargetDetail = () => {
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
 						{target?.subGoal?.map((subGoal, index) => {
 							return (
-								<Checkbox key={index} value={subGoal.value} id={index}>
-									<button
-										name={`${index}`}
-										className="mr-3 border-2  p-2 text-orange-400 rounded-md"
-										onClick={() => {
-											openModal();
-											changeModalType("check");
-										}}
-									/>
+								<Checkbox
+									type="detail"
+									key={index}
+									value={subGoal.value}
+									id={index}
+								>
 									{subGoal.value}
 								</Checkbox>
 							);
@@ -120,7 +111,7 @@ const TargetDetail = () => {
 				{isModalOpen &&
 					createPortal(
 						<ModalContent
-							shareUrl={shareUrl && shareUrl?.shortUrl}
+							shareUrl={target?.url}
 							buttonModalType={buttonModalType}
 							outside={outside}
 							closeModal={closeModal}
