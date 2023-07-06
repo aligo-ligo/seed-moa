@@ -42,7 +42,7 @@ function App() {
 					<TargetProvider targetService={targetService}>
 						<SideBarProvider>
 							<ModalProvider>
-								<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white  overflow-auto scroll-smooth">
+								<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white overflow-auto scroll-smooth">
 									<RouterProvider router={routerObject} />
 								</main>
 							</ModalProvider>

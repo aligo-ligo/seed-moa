@@ -8,7 +8,7 @@ import Header from "../components/target/Header";
 const LandingPage = () => {
 	const navigate = useNavigate();
 	return (
-		<section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
+		<section className="relative flex flex-col items-center justify-start px-6 min-h-screen ">
 			<Header />
 			<div className="flex flex-col items-center justify-center ">
 				<img src={OliBodyImage} alt="히어로" className="w-2/5" />

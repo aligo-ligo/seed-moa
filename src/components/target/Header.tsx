@@ -11,22 +11,22 @@ type Props = {
 };
 
 const Header = ({ name }: Props) => {
-	console.log(name);
+	const isNameExisted = !!name === true;
 	const { openSideBar } = usePopUp();
 
 	return (
-		<header className="flex py-6 justify-between items-center w-full">
+		<div className="flex py-6 justify-between items-center w-full h-full">
 			<div className="flex justify-center items-center gap-2">
 				<img
 					src={OliImage}
 					alt="자그마한 로고 사진"
-					className="cursor-pointer border-2 p-1 rounded-xl"
+					className="phone:w-10 phone:border cursor-pointer desktop:w-12 desktop:border-2  p-1 rounded-xl"
 					onClick={openSideBar}
 				/>
 			</div>
-			<h1 className="font-semibold">안녕하세요 {name}님</h1>
-			<Sidebar />
-		</header>
+			{isNameExisted && <h1 className="font-semibold">안녕하세요 {name}님</h1>}
+			<Sidebar name={name} />
+		</div>
 	);
 };
 

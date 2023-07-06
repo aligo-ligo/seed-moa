@@ -102,7 +102,6 @@ const Target = () => {
 						)}
 					</Carousel>
 				</div>
-				<Sidebar />
 				<StyledButton
 					styleName="target"
 					type="button"
