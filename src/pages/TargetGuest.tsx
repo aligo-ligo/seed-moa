@@ -9,11 +9,13 @@ import { useParams } from "react-router-dom";
 import Checkbox from "../components/target/Checkbox";
 import { useTarget } from "../hooks/useTarget";
 import { useGetTarget } from "../hooks/useModifySubGoal";
+import { useState } from "react";
 
 const TargetGuest = () => {
 	const { id } = useParams();
 	const targetService = useTarget();
 	const { data: target } = useGetTarget(id, targetService);
+	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
 	const percentage = 10;
 
@@ -25,6 +27,7 @@ const TargetGuest = () => {
 		buttonModalType,
 		changeModalType,
 	} = usePopUp();
+
 	return (
 		<section className="mt-10">
 			<div className="relative flex flex-col min-h-screen px-6 mb-10">
@@ -69,6 +72,7 @@ const TargetGuest = () => {
 							styleName="vote"
 							type="button"
 							onClick={() => {
+								setIsSuccess(true);
 								openModal();
 								changeModalType("vote");
 							}}
@@ -79,6 +83,7 @@ const TargetGuest = () => {
 							styleName="vote"
 							type="button"
 							onClick={() => {
+								setIsSuccess(false);
 								openModal();
 								changeModalType("vote");
 							}}
@@ -94,6 +99,7 @@ const TargetGuest = () => {
 								outside={outside}
 								closeModal={closeModal}
 								subGoal={target?.subGoal}
+								success={isSuccess}
 							/>,
 							document.body
 						)}

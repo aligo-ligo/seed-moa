@@ -3,7 +3,7 @@ import StyledButton from "../common/StyledButton";
 
 type Props = {
 	closeModal: () => void;
-	shareUrl: string;
+	shareUrl: string | undefined;
 };
 
 const SharingModal = ({ shareUrl, closeModal }: Props) => {

@@ -6,6 +6,7 @@ import {
 	TargetResponse,
 	TargetService,
 	TargetType,
+	VoteResponseType,
 	subGoalUpdateType,
 } from "../types/TargetTypes";
 
@@ -28,6 +29,14 @@ export default class TargetServiceImpl implements TargetService {
 	async getTarget(id: string | undefined) {
 		const { data } = await this.httpClient.get<TargetType>(
 			`target/detail?id=${id}`
+		);
+
+		return data;
+	}
+
+	async getTargetVote({ id, success }: VoteResponseType) {
+		const { data } = await this.httpClient.get<TargetCreateResultType>(
+			`target/vote?id=${id}&success=${success}`
 		);
 
 		return data;

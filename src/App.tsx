@@ -33,6 +33,7 @@ function App() {
 
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
 	const targetService = new TargetServiceImpl(client.withToken());
+
 	const routerObject = createBrowserRouter(routerInfo);
 
 	return (
@@ -42,7 +43,7 @@ function App() {
 					<TargetProvider targetService={targetService}>
 						<SideBarProvider>
 							<ModalProvider>
-								<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white overflow-auto scroll-smooth">
+								<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white  overflow-auto scroll-smooth">
 									<RouterProvider router={routerObject} />
 								</main>
 							</ModalProvider>
