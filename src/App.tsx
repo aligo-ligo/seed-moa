@@ -18,24 +18,21 @@ function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
 	const tokenRepository = new TokenRepository();
 
-	const client = new HttpClient(
-		import.meta.env.VITE_SERVER_URL,
-		tokenRepository
-	); // 서버 (네트워크)
-
 	// const client = new HttpClient(
-	// 	import.meta.env.VITE_LOCAL_SERVER_URL,
+	// 	import.meta.env.VITE_SERVER_URL,
 	// 	tokenRepository
-	// );
+	// ); // 서버 (네트워크)
+
+	const client = new HttpClient(
+		import.meta.env.VITE_LOCAL_SERVER_URL,
+		tokenRepository
+	);
 
 	// const client = new HttpClient("http://localhost:5173/", tokenRepository); // 로컬 목 데이터
 
-	console.log("token", tokenRepository);
-
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
-	const guestService = new GuestServiceImpl(client.withGuest());
 	const targetService = new TargetServiceImpl(client.withToken());
-
+	const guestService = new GuestServiceImpl(client.withGuest());
 	const routerObject = createBrowserRouter(routerInfo);
 
 	return (

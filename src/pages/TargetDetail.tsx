@@ -74,28 +74,7 @@ const TargetDetail = () => {
 						<ProgressBar completed={percentage} />
 					</div>
 				</div>
-				<div className="flex gap-4">
-					<StyledButton
-						styleName="vote"
-						type="button"
-						onClick={() => {
-							openModal();
-							changeModalType("vote");
-						}}
-					>
-						성공
-					</StyledButton>
-					<StyledButton
-						styleName="vote"
-						type="button"
-						onClick={() => {
-							openModal();
-							changeModalType("vote");
-						}}
-					>
-						실패
-					</StyledButton>
-				</div>
+
 				<div className="flex justify-center m-20">
 					<StyledButton
 						styleName="sharing"

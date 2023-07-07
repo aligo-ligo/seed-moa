@@ -6,10 +6,8 @@ export default class GuestServiceImpl implements GuestService {
 	constructor(private httpClient: AxiosInstance) {}
 
 	async getGuestTarget(id: string | undefined) {
-		const { data } = await this.httpClient.get<TargetType>(
-			`target/result?id=${id}`
-		);
-
+		const { data } = await this.httpClient.get<TargetType>(`result?id=${id}`);
+		console.log("Service", data);
 		return data;
 	}
 	async getTargetVote({ id, success }: VoteResponseType) {

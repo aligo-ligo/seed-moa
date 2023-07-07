@@ -45,7 +45,7 @@ export default class HttpClient {
 	withToken() {
 		this.httpClient.interceptors.request.use((config) => {
 			const token = this.tokenRepository.get(ACCESS_TOKEN);
-			console.log("t", token);
+			console.log("in WIthToken", token);
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;
 			}
@@ -59,7 +59,7 @@ export default class HttpClient {
 	withGuest() {
 		this.httpClient.interceptors.request.use((config) => {
 			config.headers.Authorization = "";
-			console.log("요청 가로채기전", config);
+			console.log("guest token 빈값으로", config);
 			return config;
 		});
 
