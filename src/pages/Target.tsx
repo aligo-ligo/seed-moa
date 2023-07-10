@@ -30,7 +30,7 @@ const Target = () => {
 	};
 
 	return (
-		<div className={`relative flex flex-col min-h-scereen px-6 pb-10`}>
+		<div className={`relative flex flex-col min-h-screen px-6 pb-10`}>
 			<Header name={name} />
 			<section className="flex flex-col mt-10 h-full">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>

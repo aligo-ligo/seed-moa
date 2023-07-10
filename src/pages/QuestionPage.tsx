@@ -1,5 +1,5 @@
 import Header from "../components/target/Header";
-import { LoudOli, LouderOli, OliBodyImage } from "../utils/contants";
+import { OliBodyImage } from "../utils/contants";
 
 const QuestionPage = () => {
 	return (

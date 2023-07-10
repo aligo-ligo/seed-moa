@@ -10,6 +10,7 @@ import Checkbox from "../components/target/Checkbox";
 import { useGetGuestTarget } from "../hooks/useModifySubGoal";
 import { useState } from "react";
 import { useGuest } from "../hooks/useGuest";
+import { calculatePercentage } from "../utils/calculatePercentage";
 
 const TargetGuest = () => {
 	const { id } = useParams();
@@ -17,7 +18,10 @@ const TargetGuest = () => {
 	const { data: target } = useGetGuestTarget(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
-	const percentage = 10;
+	const percentage = calculatePercentage(
+		target?.successVote,
+		target?.voteTotal
+	);
 
 	const {
 		isModalOpen,
@@ -55,9 +59,9 @@ const TargetGuest = () => {
 						</div>
 						<div>
 							<h2 className="font-semibold text-xl">루틴</h2>
-							{/* {target?.routine.map((subGoal, index) => {
-							return <p key={index}>{subGoal.value}</p>;
-						})} */}
+							{target?.routine.map((subGoal, index) => {
+								return <p key={index}>{subGoal.value}</p>;
+							})}
 						</div>
 						<div>
 							<div className="flex justify-between items-center">

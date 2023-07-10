@@ -69,7 +69,9 @@ const TargetDetail = () => {
 					<div>
 						<div className="flex justify-between items-center">
 							<h2 className="font-semibold text-xl mb-8">투표</h2>
-							<p className="text-xs">{`${target?.voteTotal || 0}명 참여`}</p>
+							<p className="text-xs font-bold">{`${
+								target?.voteTotal || 0
+							}명 참여했어요`}</p>
 						</div>
 						<ProgressBar completed={percentage} />
 					</div>
