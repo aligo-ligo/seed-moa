@@ -1,37 +1,23 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthService } from "../hooks/useAuth";
 // import "./KakaoLogin.css";
 
 export default function KakaoLogin() {
 	// const [temp, setTemp] = useState("");
 	const code = new URL(window.location.href).searchParams.get("code");
-	console.log(code);
+	const authService = useAuthService();
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		const getKakaoToken = async () => {
-			await axios(`http://54.180.32.66:8080/users/kakao?code=${code}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-				},
-			})
+			await authService
+				?.kakaoSignin(code)
 				.then((res) => {
-					console.log("응답", res);
-					if ("accessToken" in res.data) {
-						localStorage.setItem("accessToken", res.data.accessToken);
-						localStorage.setItem(
-							"userNickName",
-							res.data.user.nickName.toString()
-						);
-						navigate("/target");
-					}
-					// const userObj = res.data.data;
-					// setTemp(userObj);
-					// axios.defaults.headers.common[
-					// 	"Authorization"
-					// ] = `${userObj.jwtToken}`;
+					localStorage.setItem("accessToken", res.accessToken);
+					localStorage.setItem("userNickName", res.user.nickName.toString());
 					navigate("/target");
 				})
 				.catch((err) => {

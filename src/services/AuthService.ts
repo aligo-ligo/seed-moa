@@ -41,6 +41,23 @@ export default class AuthServiceImpl implements AuthService {
 		return data;
 	}
 
+	async kakaoSignin(code: string) {
+		const response = await this.httpClient.get<AuthResponse>(
+			`users/kakao?code=${code}`,
+			{
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+				},
+			}
+		);
+
+		const { data } = response;
+		this.tokenRepository.save(ACCESS_TOKEN, data.accessToken);
+		this.tokenRepository.save(USER_ID, data.user.id.toString());
+		this.tokenRepository.save(NICK_NAME, data.user.nickName.toString());
+		return data;
+	}
+
 	logout() {
 		this.tokenRepository.remove(ACCESS_TOKEN);
 	}
