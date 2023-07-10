@@ -2,9 +2,10 @@ import Header from "../components/target/Header";
 import { OliBodyImage } from "../utils/contants";
 
 const QuestionPage = () => {
+	const userNickName = localStorage.getItem("userNickName");
 	return (
 		<div className="relative  px-6 min-h-screen ">
-			<Header />
+			<Header name={userNickName} />
 			<div className="flex flex-col items-center justify-center mt-24">
 				<img src={OliBodyImage} alt="기능 개발중 이미지" className="w-24" />
 				<div className="text-xl text-center">

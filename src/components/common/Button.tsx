@@ -7,7 +7,6 @@ const Button = ({
 	style,
 	disable,
 }: CommonButtonType) => {
-	console.log("button", onClick, type, style);
 	return (
 		<button type={type} onClick={onClick} className={style} disabled={disable}>
 			{children}

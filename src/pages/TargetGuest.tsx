@@ -46,12 +46,7 @@ const TargetGuest = () => {
 							<h2 className="font-semibold text-xl">체크 포인트</h2>
 							{target?.subGoal?.map((subGoal, index) => {
 								return (
-									<Checkbox
-										type="guest"
-										key={index}
-										value={subGoal.value}
-										id={index}
-									>
+									<Checkbox type="guest" key={index} value={subGoal.value}>
 										{subGoal.value}
 									</Checkbox>
 								);
@@ -102,7 +97,6 @@ const TargetGuest = () => {
 								buttonModalType={buttonModalType}
 								outside={outside}
 								closeModal={closeModal}
-								subGoal={target?.subGoal}
 								success={isSuccess}
 							/>,
 							document.body

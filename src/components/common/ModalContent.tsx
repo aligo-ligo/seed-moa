@@ -4,20 +4,20 @@ import CheckModal from "../modal/CheckModal";
 import { SubGoalType } from "../../types/TargetTypes";
 
 type Props = {
+	targetId?: string | undefined;
 	value?: string;
 	buttonModalType: string;
 	outside: any;
 	closeModal: () => void;
-	subGoal: SubGoalType[] | undefined;
 	shareUrl: string | undefined;
-	success: boolean | null;
+	success?: boolean | null | undefined;
 };
 
 const ModalContent = ({
 	shareUrl,
-	subGoal,
 	buttonModalType,
 	outside,
+	targetId,
 	closeModal,
 	success,
 }: Props) => {
@@ -35,7 +35,7 @@ const ModalContent = ({
 						<SharingModal closeModal={closeModal} shareUrl={shareUrl} />
 					)}
 					{buttonModalType === "check" && (
-						<CheckModal closeModal={closeModal} subGoal={subGoal} />
+						<CheckModal closeModal={closeModal} targetId={targetId} />
 					)}
 				</div>
 			</div>

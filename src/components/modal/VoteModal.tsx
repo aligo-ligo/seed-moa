@@ -4,7 +4,7 @@ import { useGuest } from "../../hooks/useGuest";
 
 type Props = {
 	closeModal: () => void;
-	success: boolean | null;
+	success: boolean | null | undefined;
 };
 
 const VoteModal = ({ closeModal, success }: Props) => {

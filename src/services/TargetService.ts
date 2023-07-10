@@ -64,16 +64,4 @@ export default class TargetServiceImpl implements TargetService {
 		);
 		return data;
 	}
-
-	async post({ id, value, completeDate }: subGoalUpdateType) {
-		const { data } = await this.httpClient.post<PostResultType>(
-			`target/update`,
-			{
-				id,
-				value,
-				completeDate,
-			}
-		);
-		return data;
-	}
 }

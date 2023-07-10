@@ -10,5 +10,5 @@ export interface GuestService {
 
 export type VoteResponseType = {
 	id: string | undefined;
-	success: boolean | null;
+	success: boolean | null | undefined;
 };

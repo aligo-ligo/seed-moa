@@ -53,7 +53,7 @@ const TargetDetail = () => {
 									type="detail"
 									key={index}
 									value={subGoal.value}
-									id={index}
+									target_id={id}
 								>
 									{subGoal.value}
 								</Checkbox>
@@ -92,11 +92,11 @@ const TargetDetail = () => {
 				{isModalOpen &&
 					createPortal(
 						<ModalContent
+							targetId={id}
 							shareUrl={target?.url}
 							buttonModalType={buttonModalType}
 							outside={outside}
 							closeModal={closeModal}
-							subGoal={target?.subGoal}
 						/>,
 						document.body
 					)}

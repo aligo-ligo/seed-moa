@@ -1,28 +1,30 @@
+import usePopUp from "../../hooks/usePopUp";
 import { useTarget } from "../../hooks/useTarget";
 import { SubGoalType } from "../../types/TargetTypes";
 import StyledButton from "../common/StyledButton";
 type Props = {
 	closeModal: () => void;
-	subGoal: SubGoalType[] | undefined;
+	targetId: string | undefined;
 };
 
-const CheckModal = ({ closeModal, subGoal }: Props) => {
+const CheckModal = ({ closeModal, targetId }: Props) => {
+	const { subGoalValue } = usePopUp();
 	const targetService = useTarget();
-	const test = {
-		id: 34,
-		value: "3kg 빼기",
-		completeDate: "2023-07-50",
-	};
-	console.log("inmodl", subGoal);
+
 	// const handleClick = () => {
 	// 	targetService
-	// 		?.postSubGoal(test)
+	// 		?.updateSubGoal({})
+	// id: targetId,
+	// value: subGoalValue,
+	// completeDate: new Date(),
 	// 		.then((data) => {
 	// 			console.log("data", data);
 	// 		})
 
-	// 		.catch((error) => console.log(error.signInMessage));
+	// 		.catch((error) => console.log(error.ApiMessage()));
 	// };
+
+	console.log("in 모달", subGoalValue);
 
 	return (
 		<div className="bg-white rounded-md">
@@ -33,7 +35,7 @@ const CheckModal = ({ closeModal, subGoal }: Props) => {
 			</p>
 			<p className="font-light text-sm">달성하셨나요?</p>
 			<br />
-			{/* <p className="font-light text-sm">{`체크 포인트는 입니다`}</p> */}
+			<p className="font-light text-sm">{`체크 포인트는 ${subGoalValue}입니다`}</p>
 
 			<div className="flex justify-center gap-4 p-4 ">
 				<StyledButton
