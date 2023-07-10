@@ -33,8 +33,6 @@ const TargetDetail = () => {
 		changeModalType,
 	} = usePopUp();
 
-	console.log("test", isModalOpen);
-
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
 			<Header name={userNickName} />
@@ -42,7 +40,7 @@ const TargetDetail = () => {
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
-						<h2 className="font-semibold text-xl">성취 그래프</h2>
+						<p className="font-semibold text-xl">성취 그래프</p>
 						<LineGraphPrep />
 					</div>
 					<div>
@@ -53,7 +51,7 @@ const TargetDetail = () => {
 									type="detail"
 									key={index}
 									value={subGoal.value}
-									target_id={id}
+									completedDate={subGoal.completedDate}
 								>
 									{subGoal.value}
 								</Checkbox>

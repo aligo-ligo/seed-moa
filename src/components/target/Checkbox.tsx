@@ -7,16 +7,21 @@ type Props = {
 	children: React.ReactNode;
 	value: string;
 	type: string;
+	completedDate: string | null;
 };
 
-const Checkbox = ({ type, value, children }: Props) => {
+const Checkbox = ({ type, value, children, completedDate }: Props) => {
 	const { openModal, changeModalType, updateSubGoalValue } = usePopUp();
+	console.log("df", completedDate);
 
 	return (
 		<div className="mb-3">
 			<div className="flex items-center my-5">
 				<div className="flex">
-					{type === "guest" ? (
+					{type === "guest" && (
+						<button className="mr-3 border-2 p-2 text-orange-400 rounded-md bg-orange-400" />
+					)}
+					{completedDate ? (
 						<button className="mr-3 border-2 p-2 text-orange-400 rounded-md bg-orange-400" />
 					) : (
 						<button

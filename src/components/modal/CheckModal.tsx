@@ -11,18 +11,20 @@ const CheckModal = ({ closeModal, targetId }: Props) => {
 	const { subGoalValue } = usePopUp();
 	const targetService = useTarget();
 
-	// const handleClick = () => {
-	// 	targetService
-	// 		?.updateSubGoal({})
-	// id: targetId,
-	// value: subGoalValue,
-	// completeDate: new Date(),
-	// 		.then((data) => {
-	// 			console.log("data", data);
-	// 		})
+	const handleClick = () => {
+		targetService
+			?.updateSubGoal({
+				id: targetId,
+				value: subGoalValue,
+				completeDate: new Date().toString(),
+			})
 
-	// 		.catch((error) => console.log(error.ApiMessage()));
-	// };
+			.then((data) => {
+				console.log("data", data);
+			})
+
+			.catch((error) => console.log(error.ApiMessage()));
+	};
 
 	console.log("in 모달", subGoalValue);
 
@@ -41,7 +43,7 @@ const CheckModal = ({ closeModal, targetId }: Props) => {
 				<StyledButton
 					styleName="sharingExit"
 					type="button"
-					// onClick={handleClick}
+					onClick={handleClick}
 				>
 					네
 				</StyledButton>

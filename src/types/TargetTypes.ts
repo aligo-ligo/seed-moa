@@ -35,7 +35,7 @@ export type TargetStepType =
 export type SubGoalType = React.ReactNode & {
 	id: number;
 	value: string;
-	completeDate: string | null;
+	completedDate: string | null;
 };
 
 export type RoutineType = React.ReactNode & {
@@ -57,7 +57,7 @@ export type TargetInfoType = {
 
 export type TargetCreateResultType = number;
 export type subGoalUpdateType = {
-	id: number;
+	id: string | undefined;
 	value: string;
 	completeDate: string | null;
 };

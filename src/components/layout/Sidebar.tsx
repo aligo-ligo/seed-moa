@@ -48,7 +48,7 @@ const Sidebar = ({ name }: Props) => {
 								<form>
 									<button
 										type="submit"
-										className="flex justify-center items-center text-orange-300"
+										className="flex justify-center items-center text-orange-400"
 										onClick={hook}
 									>
 										로그아웃하기

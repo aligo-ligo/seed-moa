@@ -41,7 +41,7 @@ export default class AuthServiceImpl implements AuthService {
 		return data;
 	}
 
-	async kakaoSignin(code: string) {
+	async kakaoSignin(code: string|null) {
 		const response = await this.httpClient.get<AuthResponse>(
 			`users/kakao?code=${code}`,
 			{
