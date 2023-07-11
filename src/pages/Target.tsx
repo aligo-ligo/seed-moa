@@ -2,16 +2,13 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/target/Header";
 import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-
-import { useQuery } from "@tanstack/react-query";
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
 import { useGetTargetList } from "../hooks/useModifySubGoal";
-import Sidebar from "../components/layout/Sidebar";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Target = () => {
 	const navigate = useNavigate();

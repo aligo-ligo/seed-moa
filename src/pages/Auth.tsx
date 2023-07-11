@@ -6,15 +6,12 @@ import { FiArrowLeft } from "react-icons/fi";
 import { createPortal } from "react-dom";
 import ModalContent from "../components/common/ModalContent";
 import usePopUp from "../hooks/usePopUp";
-
-const SIGN_IN_URL = "/signin";
-const SIGN_UP_URL = "/signup";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/contants";
 
 const Auth = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
-	const { openModal, closeModal, outside, buttonModalType, changeModalType } =
-		usePopUp();
+	const { closeModal, outside } = usePopUp();
 	const nickName = localStorage.getItem("userNickName");
 
 	const isLogin = pathname === SIGN_IN_URL;

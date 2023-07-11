@@ -42,6 +42,10 @@ export const ACCESS_TOKEN = "accessToken";
 export const USER_ID = "userId";
 export const NICK_NAME = "userNickName";
 
+// auth url
+export const SIGN_IN_URL = "/signin";
+export const SIGN_UP_URL = "/signup";
+
 // 이미지
 import hero from "../assets/logo/hero.jpeg";
 import logo from "../assets/logo/logo.png";
