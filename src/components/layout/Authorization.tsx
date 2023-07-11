@@ -7,8 +7,6 @@ interface AuthorizationProps {
 
 const Authorization: React.FC<AuthorizationProps> = ({ children }) => {
 	const isLogged = Boolean(localStorage.getItem("accessToken"));
-	console.log("logged", isLogged);
-	console.log("mount");
 	const navigate = useNavigate();
 
 	useEffect(() => {

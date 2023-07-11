@@ -12,11 +12,10 @@ export default class HttpClient {
 			baseURL: this.baseUrl,
 		});
 
-		console.log("테스트", this.httpClient);
-
 		this.httpClient.interceptors.response.use(
 			(response) => response,
 			(error) => {
+				// 통신 에러 전역 핸들러에서 logging 처리
 				console.log("interceptError", error);
 				if (error instanceof AxiosError) {
 					const { response } = error;
@@ -25,7 +24,7 @@ export default class HttpClient {
 						if (status === 401) {
 							this.tokenRepository.remove(ACCESS_TOKEN);
 							this.tokenRepository.remove(USER_ID);
-							// window.location.replace("/signin");
+							window.location.replace("/signin");
 						} else {
 							throw new HTTPError(
 								response?.status,
