@@ -8,6 +8,7 @@ import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
 import { useGetTargetList } from "../hooks/useModifySubGoal";
+import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Target = () => {
@@ -48,7 +49,7 @@ const Target = () => {
 									title={label}
 									style={{ ...arrowStyles, left: 15 }}
 								>
-									-
+									<FiChevronsLeft className="text-orange-500" />
 								</button>
 							)
 						}
@@ -60,7 +61,7 @@ const Target = () => {
 									title={label}
 									style={{ ...arrowStyles, right: 15 }}
 								>
-									+
+									<FiChevronsRight className="text-orange-500" />
 								</button>
 							)
 						}
