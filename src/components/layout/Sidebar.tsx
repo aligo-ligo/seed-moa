@@ -8,7 +8,7 @@ import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
 
 type Props = {
-	name: string | null;
+	name: string | null | undefined;
 };
 const Sidebar = ({ name }: Props) => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();

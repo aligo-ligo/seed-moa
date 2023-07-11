@@ -13,20 +13,6 @@ export const getNowDate = () => {
 	const nowDatetoString = formatDate(new Date().toString());
 	return nowDatetoString;
 };
-const getFormattedDate = (date: Date) => {
-	const month = date.toLocaleDateString("ko-KR", {
-		month: "long",
-	});
-
-	const day = date.toLocaleDateString("ko-KR", {
-		day: "numeric",
-	});
-
-	return `${month.substr(0, month.length - 1)}/${day.substr(
-		0,
-		day.length - 1
-	)}`;
-};
 
 export const createDate = (date: Date) => {
 	return new Date(

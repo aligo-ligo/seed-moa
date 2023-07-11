@@ -1,13 +1,10 @@
-import { useState } from "react";
 import usePopUp from "../../hooks/usePopUp";
-import { createPortal } from "react-dom";
-import ModalContent from "../common/ModalContent";
 
 type Props = {
 	children: React.ReactNode;
 	value: string;
 	type: string;
-	completedDate: string | null;
+	completedDate?: string | null;
 };
 
 const Checkbox = ({ type, value, children, completedDate }: Props) => {

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import Validation from "../auth/Validation";
 import TargetStepButton from "../logic/TargetStepButton";
@@ -15,7 +14,6 @@ const Goal = ({ setStep }: Props) => {
 	const {
 		register,
 		getValues,
-		setValue,
 		formState: { errors },
 	} = useFormContext();
 	const navigate = useNavigate();

@@ -1,8 +1,7 @@
 import VoteModal from "../modal/VoteModal";
 import SharingModal from "../modal/SharingModal";
 import CheckModal from "../modal/CheckModal";
-import { SubGoalType } from "../../types/TargetTypes";
-import AuthModal from "../modal/authModal";
+import AuthModal from "../modal/AuthModal";
 
 type Props = {
 	targetId?: string | undefined;

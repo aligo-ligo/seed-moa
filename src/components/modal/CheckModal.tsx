@@ -1,6 +1,5 @@
 import usePopUp from "../../hooks/usePopUp";
 import { useTarget } from "../../hooks/useTarget";
-import { SubGoalType } from "../../types/TargetTypes";
 import StyledButton from "../common/StyledButton";
 type Props = {
 	closeModal: () => void;

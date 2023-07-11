@@ -1,10 +1,6 @@
-import { FiAlignJustify, FiEdit } from "react-icons/fi";
-
 import Sidebar from "../layout/Sidebar";
-import { useAuthService } from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import usePopUp from "../../hooks/usePopUp";
-import { LogoImage, OliImage, heroImage } from "../../utils/contants";
+import { OliImage } from "../../utils/contants";
 
 type Props = {
 	name?: string | null;

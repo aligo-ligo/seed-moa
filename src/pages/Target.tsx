@@ -49,7 +49,7 @@ const Target = () => {
 									title={label}
 									style={{ ...arrowStyles, left: 15 }}
 								>
-									<FiChevronsLeft className="text-orange-500" />
+									<FiChevronsLeft className="text-orange-500 bg-orange-100" />
 								</button>
 							)
 						}
@@ -61,7 +61,7 @@ const Target = () => {
 									title={label}
 									style={{ ...arrowStyles, right: 15 }}
 								>
-									<FiChevronsRight className="text-orange-500" />
+									<FiChevronsRight className="text-orange-500  bg-orange-100" />
 								</button>
 							)
 						}
