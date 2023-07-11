@@ -2,14 +2,15 @@ import VoteModal from "../modal/VoteModal";
 import SharingModal from "../modal/SharingModal";
 import CheckModal from "../modal/CheckModal";
 import { SubGoalType } from "../../types/TargetTypes";
+import AuthModal from "../modal/authModal";
 
 type Props = {
 	targetId?: string | undefined;
 	value?: string;
-	buttonModalType: string;
-	outside: any;
+	buttonModalType?: string;
+	outside?: any;
 	closeModal: () => void;
-	shareUrl: string | undefined;
+	shareUrl?: string | undefined;
 	success?: boolean | null | undefined;
 };
 
@@ -37,6 +38,8 @@ const ModalContent = ({
 					{buttonModalType === "check" && (
 						<CheckModal closeModal={closeModal} targetId={targetId} />
 					)}
+
+					{buttonModalType === "auth" && <AuthModal closeModal={closeModal} />}
 				</div>
 			</div>
 		</div>

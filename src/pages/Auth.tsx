@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/auth/AuthForm";
 import { FiArrowLeft } from "react-icons/fi";
+import { createPortal } from "react-dom";
+import ModalContent from "../components/common/ModalContent";
+import usePopUp from "../hooks/usePopUp";
 
 const SIGN_IN_URL = "/signin";
 const SIGN_UP_URL = "/signup";
@@ -10,6 +13,9 @@ const SIGN_UP_URL = "/signup";
 const Auth = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
+	const { openModal, closeModal, outside, buttonModalType, changeModalType } =
+		usePopUp();
+	const nickName = localStorage.getItem("userNickName");
 
 	const isLogin = pathname === SIGN_IN_URL;
 
@@ -26,6 +32,16 @@ const Auth = () => {
 				isLogin={isLogin}
 				url={isLogin ? SIGN_UP_URL : SIGN_IN_URL}
 			/>
+
+			{!!nickName &&
+				createPortal(
+					<ModalContent
+						closeModal={closeModal}
+						buttonModalType="auth"
+						outside={outside}
+					/>,
+					document.body
+				)}
 		</section>
 	);
 };

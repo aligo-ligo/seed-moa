@@ -1,6 +1,6 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { ActionType, UserInfoType } from "../../types/AuthType";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthInput from "./AuthInput";
 import Warnning from "./Warning";

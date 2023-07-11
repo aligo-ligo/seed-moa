@@ -41,7 +41,7 @@ export default class AuthServiceImpl implements AuthService {
 		return data;
 	}
 
-	async kakaoSignin(code: string|null) {
+	async kakaoSignin(code: string | null) {
 		const response = await this.httpClient.get<AuthResponse>(
 			`users/kakao?code=${code}`,
 			{
@@ -60,5 +60,7 @@ export default class AuthServiceImpl implements AuthService {
 
 	logout() {
 		this.tokenRepository.remove(ACCESS_TOKEN);
+		this.tokenRepository.remove(NICK_NAME);
+		this.tokenRepository.remove(USER_ID);
 	}
 }
