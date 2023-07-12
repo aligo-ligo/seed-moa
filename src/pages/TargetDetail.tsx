@@ -10,6 +10,8 @@ import StyledButton from "../components/common/StyledButton";
 import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
 import LineGraphPrep from "../components/target/LineGraphPrep";
+import { useContext } from "react";
+import { CheckModalContext } from "../context/CheckModalContext";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -33,6 +35,9 @@ const TargetDetail = () => {
 		changeModalType,
 	} = usePopUp();
 
+	const { updateSubGoalValue, updateIsSubGoalComplete } =
+		useContext(CheckModalContext);
+
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
 			<Header name={userNickName} />
@@ -50,9 +55,21 @@ const TargetDetail = () => {
 								<Checkbox
 									type="detail"
 									key={index}
+									id={index}
 									value={subGoal.value}
 									completedDate={subGoal.completedDate}
 								>
+									<button
+										className={`mr-3 border-2 p-2 text-orange-400 rounded-md ${
+											subGoal.completedDate && `bg-orange-400`
+										}`}
+										onClick={() => {
+											updateSubGoalValue(subGoal.value);
+											updateIsSubGoalComplete(subGoal.completedDate);
+											openModal();
+											changeModalType("check");
+										}}
+									/>
 									{subGoal.value}
 								</Checkbox>
 							);

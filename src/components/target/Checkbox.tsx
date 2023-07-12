@@ -5,11 +5,11 @@ type Props = {
 	value: string;
 	type: string;
 	completedDate?: string | null;
+	id: number;
 };
 
-const Checkbox = ({ type, value, children, completedDate }: Props) => {
-	const { openModal, changeModalType, updateSubGoalValue } = usePopUp();
-	console.log("df", completedDate);
+const Checkbox = ({ type, id, children, completedDate }: Props) => {
+	console.log("df", completedDate, id);
 
 	return (
 		<div className="mb-3">
@@ -17,18 +17,6 @@ const Checkbox = ({ type, value, children, completedDate }: Props) => {
 				<div className="flex">
 					{type === "guest" && (
 						<button className="mr-3 border-2 p-2 text-orange-400 rounded-md bg-orange-400" />
-					)}
-					{completedDate ? (
-						<button className="mr-3 border-2 p-2 text-orange-400 rounded-md bg-orange-400" />
-					) : (
-						<button
-							className="mr-3 border-2 p-2 text-orange-400 rounded-md"
-							onClick={() => {
-								updateSubGoalValue(value);
-								openModal();
-								changeModalType("check");
-							}}
-						/>
 					)}
 
 					{children}
