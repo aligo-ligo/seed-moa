@@ -1,5 +1,5 @@
+import { useModifySubGoal } from "../../hooks/useModifySubGoal";
 import usePopUp from "../../hooks/usePopUp";
-import { useTarget } from "../../hooks/useTarget";
 import StyledButton from "../common/StyledButton";
 type Props = {
 	closeModal: () => void;
@@ -8,21 +8,16 @@ type Props = {
 
 const CheckModal = ({ closeModal, targetId }: Props) => {
 	const { subGoalValue } = usePopUp();
-	const targetService = useTarget();
+
+	const { subGoalMutation } = useModifySubGoal(targetId);
 
 	const handleClick = () => {
-		targetService
-			?.updateSubGoal({
-				id: targetId,
-				value: subGoalValue,
-				completeDate: new Date().toString(),
-			})
-
-			.then((data) => {
-				console.log("data", data);
-			})
-
-			.catch((error) => console.log(error.ApiMessage()));
+		subGoalMutation.mutate({
+			id: targetId,
+			value: subGoalValue,
+			completeDate: new Date().toString(),
+		});
+		closeModal();
 	};
 
 	console.log("in 모달", subGoalValue);
@@ -30,7 +25,6 @@ const CheckModal = ({ closeModal, targetId }: Props) => {
 	return (
 		<div className="bg-white rounded-md">
 			<h1 className="font-semibold text-xl mb-5"> 체크 포인트 최종 확인 </h1>
-
 			<p className="font-light text-sm">
 				매일 루틴을 이행하여 해당 세분화 목표를
 			</p>

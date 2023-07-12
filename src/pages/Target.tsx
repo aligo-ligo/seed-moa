@@ -7,14 +7,15 @@ import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
-import { useGetTargetList } from "../hooks/useModifySubGoal";
+
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useAllTarget } from "../hooks/useGetTargets";
 
 const Target = () => {
 	const navigate = useNavigate();
 	const targetService = useTarget();
-	const { data: targets } = useGetTargetList(targetService);
+	const { data: targets } = useAllTarget(targetService);
 	const name = localStorage.getItem("userNickName");
 
 	console.log("targets", targets);

@@ -3,19 +3,18 @@ import StyledButton from "../components/common/StyledButton";
 import LineGraphPrep from "../components/target/LineGraphPrep";
 import ProgressBar from "../components/target/ProgressBar";
 import usePopUp from "../hooks/usePopUp";
-
 import ModalContent from "../components/common/ModalContent";
 import { useParams } from "react-router-dom";
-import Checkbox from "../components/target/Checkbox";
-import { useGetGuestTarget } from "../hooks/useModifySubGoal";
 import { useState } from "react";
 import { useGuest } from "../hooks/useGuest";
 import { calculatePercentage } from "../utils/calculatePercentage";
+import { useTargetOnGuest } from "../hooks/useGetTargets";
+import Checkbox from "../components/target/Checkbox";
 
 const TargetGuest = () => {
 	const { id } = useParams();
 	const guestService = useGuest();
-	const { data: target } = useGetGuestTarget(id, guestService);
+	const { data: target } = useTargetOnGuest(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
 	const percentage = calculatePercentage(

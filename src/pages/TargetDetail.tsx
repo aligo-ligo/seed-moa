@@ -7,15 +7,15 @@ import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
+import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
 import LineGraphPrep from "../components/target/LineGraphPrep";
-import { useGetTarget } from "../hooks/useModifySubGoal";
 
 const TargetDetail = () => {
 	const { id } = useParams();
 	const userNickName = localStorage.getItem("userNickName");
 	const targetService = useTarget();
-	const { data: target } = useGetTarget(id, targetService);
+	const { data: target } = useTargetOnUser(id, targetService);
 
 	console.log("target", target);
 
