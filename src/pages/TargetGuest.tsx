@@ -45,7 +45,13 @@ const TargetGuest = () => {
 							<h2 className="font-semibold text-xl">체크 포인트</h2>
 							{target?.subGoal?.map((subGoal, index) => {
 								return (
-									<Checkbox type="guest" key={index} value={subGoal.value}>
+									<Checkbox
+										type="guest"
+										key={index}
+										id={index}
+										value={subGoal.value}
+										completedDate={subGoal.completedDate}
+									>
 										{subGoal.value}
 									</Checkbox>
 								);

@@ -13,6 +13,7 @@ import { TokenRepository } from "./repository/tokenRepository";
 import { ModalProvider } from "./context/ModalContext";
 import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
+import { CheckModalProvider } from "./context/CheckModalContext";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
@@ -36,9 +37,11 @@ function App() {
 						<TargetProvider targetService={targetService}>
 							<SideBarProvider>
 								<ModalProvider>
-									<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
-										<RouterProvider router={routerObject} />
-									</main>
+									<CheckModalProvider>
+										<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+											<RouterProvider router={routerObject} />
+										</main>
+									</CheckModalProvider>
 								</ModalProvider>
 							</SideBarProvider>
 						</TargetProvider>

@@ -8,7 +8,6 @@ import TargetCreate from "../pages/TargetCreate";
 import Authorization from "../components/layout/Authorization";
 import QuestionPage from "../pages/QuestionPage";
 import TargetGuest from "../pages/TargetGuest";
-import { CheckModalProvider } from "../context/CheckModalContext";
 
 export const routerChildrenInfo = [
 	{
@@ -53,11 +52,7 @@ export const routerChildrenInfo = [
 	},
 	{
 		path: "target/:id",
-		element: (
-			<CheckModalProvider>
-				<TargetDetail />,
-			</CheckModalProvider>
-		),
+		element: <TargetDetail />,
 		withAuthorization: true,
 	},
 	{
