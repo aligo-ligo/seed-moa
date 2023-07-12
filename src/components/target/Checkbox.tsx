@@ -21,7 +21,7 @@ const Checkbox = ({ type, children, value, completedDate }: Props) => {
 		<div className="flex my-5">
 			{type === "guest" && (
 				<button
-					className={`mr-3 border-2 p-2 text-orange-400 rounded-md ${
+					className={`w-6 mr-3 border-2 p-2 text-orange-400 rounded-md ${
 						completedDate && `bg-orange-400`
 					}`}
 				/>

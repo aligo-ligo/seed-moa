@@ -10,6 +10,7 @@ import StyledButton from "../components/common/StyledButton";
 import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
 import LineGraphPrep from "../components/target/LineGraphPrep";
+import RoutineBox from "../components/target/RoutineBox";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -50,7 +51,6 @@ const TargetDetail = () => {
 								<Checkbox
 									type="detail"
 									key={index}
-									id={index}
 									value={subGoal.value}
 									completedDate={subGoal.completedDate}
 								>
@@ -61,8 +61,12 @@ const TargetDetail = () => {
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">루틴</h2>
-						{target?.routine.map((subGoal, index) => {
-							return <p key={index}>{subGoal.value}</p>;
+						{target?.routine.map((routine, index) => {
+							return (
+								<RoutineBox key={index} id={index}>
+									{routine.value}
+								</RoutineBox>
+							);
 						})}
 					</div>
 					<div>
