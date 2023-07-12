@@ -48,7 +48,6 @@ const TargetGuest = () => {
 									<Checkbox
 										type="guest"
 										key={index}
-										id={index}
 										value={subGoal.value}
 										completedDate={subGoal.completedDate}
 									>
