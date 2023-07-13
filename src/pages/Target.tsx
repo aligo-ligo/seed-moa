@@ -3,7 +3,7 @@ import Header from "../components/target/Header";
 import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
-import { CSSProperties, useContext } from "react";
+import { CSSProperties, useContext, useEffect } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
@@ -17,8 +17,6 @@ const Target = () => {
 	const targetService = useTarget();
 	const { data: targets } = useAllTarget(targetService);
 	const name = localStorage.getItem("userNickName");
-	const { isLoggedIn, updateLoggedIn } = useContext(AuthStateContext);
-	console.log("------------------------ target", isLoggedIn);
 
 	console.log("targets", targets);
 

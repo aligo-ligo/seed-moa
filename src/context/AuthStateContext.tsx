@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export type AuthStateContextProps = {
 	isLoggedIn: boolean;
-	updateLoggedIn: (value: boolean) => void;
+	updateLoggedIn: () => void;
 };
 
 export interface AuthStateProviderProps {
@@ -19,10 +19,10 @@ const initialValue: AuthStateContextProps = {
 export const AuthStateContext =
 	createContext<AuthStateContextProps>(initialValue);
 export const AuthStateProvider = ({ children }: AuthStateProviderProps) => {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-	const updateLoggedIn = (value: boolean) => {
-		setIsLoggedIn(value);
+	const updateLoggedIn = () => {
+		setIsLoggedIn((prev) => !prev);
 	};
 
 	return (

@@ -8,6 +8,7 @@ import { useAuthService } from "../../hooks/useAuth";
 
 import {
 	EMAIL_INPUT,
+	IS_LOGGED_IN,
 	LogoImage,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
@@ -65,7 +66,6 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	const [message, setMessage] = useState("");
 	const [userInfo, dispatch] = useReducer(authReducer, initialState);
 	const { emailValid, passwordValid, nickNameValid } = userInfo;
-	const { updateLoggedIn } = useContext(AuthStateContext);
 	const authService = useAuthService();
 	const navigate = useNavigate();
 
@@ -81,7 +81,6 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				.then((data) => {
 					console.log("data", data);
 					if ("accessToken" in data) {
-						updateLoggedIn(true);
 						navigate("/target");
 					}
 				})
@@ -91,7 +90,6 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 				?.signUp(userInfo)
 				.then((data) => {
 					if ("accessToken" in data) {
-						updateLoggedIn(true);
 						navigate("/target");
 					}
 				})

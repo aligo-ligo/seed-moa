@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/auth/AuthForm";
 import { FiArrowLeft } from "react-icons/fi";

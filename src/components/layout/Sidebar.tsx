@@ -16,14 +16,13 @@ type Props = {
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();
-	const { isLoggedIn, updateLoggedIn } = useContext(AuthStateContext);
+	const { updateLoggedIn } = useContext(AuthStateContext);
 	const authService = useAuthService();
 	const navigate = useNavigate();
 
-	console.log("사이드바--------------------------------", isLoggedIn);
 	const hook = () => {
 		authService?.logout();
-		updateLoggedIn(false);
+		updateLoggedIn();
 		closeSideBar();
 	};
 
