@@ -41,6 +41,7 @@ export const validationSchema = yup.object({
 export const ACCESS_TOKEN = "accessToken";
 export const USER_ID = "userId";
 export const NICK_NAME = "userNickName";
+export const IS_LOGGED_IN = "isLoggedIn";
 
 // auth url
 export const SIGN_IN_URL = "/signin";

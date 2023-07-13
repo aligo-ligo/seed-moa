@@ -8,7 +8,7 @@ import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
 import { useContext, useEffect } from "react";
 import { AuthStateContext } from "../../context/AuthStateContext";
-import { NICK_NAME } from "../../utils/constant/contants";
+import { IS_LOGGED_IN, NICK_NAME } from "../../utils/constant/contants";
 
 type Props = {
 	isNameExisted: boolean;
@@ -16,14 +16,13 @@ type Props = {
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();
-	const { isLoggedIn, updateLoggedIn } = useContext(AuthStateContext);
+	const { updateLoggedIn } = useContext(AuthStateContext);
 	const authService = useAuthService();
 	const navigate = useNavigate();
 
-	console.log("사이드바--------------------------------", isLoggedIn);
 	const hook = () => {
 		authService?.logout();
-		updateLoggedIn(false);
+		updateLoggedIn();
 		closeSideBar();
 	};
 

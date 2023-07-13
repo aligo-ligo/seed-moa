@@ -5,8 +5,14 @@ import { AuthStateContext } from "../context/AuthStateContext";
 
 const QuestionPage = () => {
 	const { isLoggedIn } = useContext(AuthStateContext);
+	console.log("isLoggedIn", isLoggedIn);
+	useEffect(() => {
+		console.log("reRendering");
+	}, [isLoggedIn]);
+
 	const userNickName = localStorage.getItem("userNickName");
 
+	console.log("isLoggedIn", isLoggedIn);
 	useEffect(() => {
 		console.log("reRendering");
 	}, [isLoggedIn]);
