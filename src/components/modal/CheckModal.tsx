@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useModifySubGoal } from "../../hooks/useModifySubGoal";
+import { useModifyTarget } from "../../hooks/useModifyTarget";
 import StyledButton from "../common/StyledButton";
 import { CheckModalContext } from "../../context/CheckModalContext";
 
@@ -10,7 +10,7 @@ type Props = {
 
 const CheckModal = ({ closeModal, targetId }: Props) => {
 	const { subGoalValue, isSubGoalComplete } = useContext(CheckModalContext);
-	const { subGoalMutation } = useModifySubGoal(targetId);
+	const { subGoalMutation } = useModifyTarget(targetId);
 
 	const handleClick = () => {
 		isSubGoalComplete === null

@@ -29,7 +29,11 @@ const ModalContent = ({
 					ref={outside}
 				>
 					{buttonModalType === "vote" && (
-						<VoteModal closeModal={closeModal} success={success} />
+						<VoteModal
+							closeModal={closeModal}
+							success={success}
+							targetId={targetId}
+						/>
 					)}
 					{buttonModalType === "sharing" && (
 						<SharingModal closeModal={closeModal} shareUrl={shareUrl} />
