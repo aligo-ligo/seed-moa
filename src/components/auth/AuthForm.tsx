@@ -12,7 +12,7 @@ import {
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
 	ValidationAuth,
-} from "../../utils/contants";
+} from "../../utils/constant/contants";
 
 import Validation from "./Validation";
 import StyledButton from "../common/StyledButton";

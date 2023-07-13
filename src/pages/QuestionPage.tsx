@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import Header from "../components/target/Header";
-import { OliBodyImage } from "../utils/contants";
+import { OliBodyImage } from "../utils/constant/contants";
 import { AuthStateContext } from "../context/AuthStateContext";
 
 const QuestionPage = () => {

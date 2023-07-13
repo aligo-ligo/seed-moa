@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../hooks/useAuth";
-import { OliImage } from "../utils/contants";
+import { OliImage } from "../utils/constant/contants";
 
 export default function KakaoLogin() {
 	// const [temp, setTemp] = useState("");

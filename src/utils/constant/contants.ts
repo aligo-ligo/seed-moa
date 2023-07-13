@@ -47,12 +47,12 @@ export const SIGN_IN_URL = "/signin";
 export const SIGN_UP_URL = "/signup";
 
 // 이미지
-import hero from "../assets/logo/hero.jpeg";
-import logo from "../assets/logo/logo.png";
-import oli from "../assets/logo/oli.png";
-import oliBody from "../assets/logo/oliBody.png";
-import loudOli from "../assets/logo/louderOli.png";
-import louderOli from "../assets/logo/loudOli.png";
+import hero from "../../assets/logo/hero.jpeg";
+import logo from "../../assets/logo/logo.png";
+import oli from "../../assets/logo/oli.png";
+import oliBody from "../../assets/logo/oliBody.png";
+import loudOli from "../../assets/logo/louderOli.png";
+import louderOli from "../../assets/logo/loudOli.png";
 
 export const heroImage = hero;
 export const LogoImage = logo;

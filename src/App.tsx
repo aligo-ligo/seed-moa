@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { QueryClientOptions } from "./utils/contants";
+import { QueryClientOptions } from "./utils/constant/contants";
 import HttpClient from "./http/HttpClient";
 import AuthServiceImpl from "./services/AuthService";
 import { AuthProvider } from "./context/AuthContext";
