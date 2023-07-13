@@ -1,6 +1,6 @@
 import Sidebar from "../layout/Sidebar";
 import usePopUp from "../../hooks/usePopUp";
-import { OliImage } from "../../utils/contants";
+import { OliImage } from "../../utils/constant/contants";
 
 type Props = {
 	name?: string | null;

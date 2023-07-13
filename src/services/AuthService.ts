@@ -2,7 +2,7 @@ import { AxiosInstance } from "axios";
 // import HTTPError from "../network/httpError";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
 import { TokenRepository } from "../repository/tokenRepository";
-import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/contants";
+import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/constant/contants";
 
 export default class AuthServiceImpl implements AuthService {
 	tokenRepository: TokenRepository;

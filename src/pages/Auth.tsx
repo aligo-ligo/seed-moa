@@ -1,12 +1,11 @@
 import { useLocation } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/auth/AuthForm";
 import { FiArrowLeft } from "react-icons/fi";
 import { createPortal } from "react-dom";
 import ModalContent from "../components/common/ModalContent";
 import usePopUp from "../hooks/usePopUp";
-import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/contants";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/constant/contants";
 
 const Auth = () => {
 	const { pathname } = useLocation();

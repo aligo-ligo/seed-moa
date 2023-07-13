@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import StyledButton from "../components/common/StyledButton";
 import OAuth from "../components/auth/OAuth";
-import { LogoImage, OliBodyImage } from "../utils/contants";
+import { LogoImage, OliBodyImage } from "../utils/constant/contants";
 import Header from "../components/target/Header";
 
 const LandingPage = () => {

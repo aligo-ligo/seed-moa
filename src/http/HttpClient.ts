@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import HTTPError from "./HttpError";
 import { TokenRepository } from "../repository/tokenRepository";
-import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/contants";
+import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/constant/contants";
 
 export default class HttpClient {
 	httpClient: AxiosInstance;
