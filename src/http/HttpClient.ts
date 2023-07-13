@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import HTTPError from "./HttpError";
 import { TokenRepository } from "../repository/tokenRepository";
-import { ACCESS_TOKEN, USER_ID } from "../utils/contants";
+import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/contants";
 
 export default class HttpClient {
 	httpClient: AxiosInstance;
@@ -24,6 +24,7 @@ export default class HttpClient {
 						if (status === 401) {
 							this.tokenRepository.remove(ACCESS_TOKEN);
 							this.tokenRepository.remove(USER_ID);
+							this.tokenRepository.remove(NICK_NAME);
 							window.location.replace("/signin");
 						} else {
 							throw new HTTPError(
@@ -55,10 +56,10 @@ export default class HttpClient {
 		return this.httpClient;
 	}
 
-	withGuest() {
+	withoutToken() {
 		this.httpClient.interceptors.request.use((config) => {
 			config.headers.Authorization = "";
-			console.log("guest token 빈값으로", config);
+			console.log("in withoutToken", config);
 			return config;
 		});
 

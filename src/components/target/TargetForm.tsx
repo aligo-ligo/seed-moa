@@ -29,15 +29,6 @@ const TargetForm = ({
 	const successPercentage = calculatePercentage(successCount, subGoalTotal);
 	const votePercentage = calculatePercentage(successVote, voteTotal);
 
-	console.log(
-		id,
-		userId,
-		goal,
-		subGoalTotal,
-		successCount,
-		voteTotal,
-		successVote
-	);
 	return (
 		<>
 			<div

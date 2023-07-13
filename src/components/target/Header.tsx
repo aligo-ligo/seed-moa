@@ -8,6 +8,10 @@ type Props = {
 
 const Header = ({ name }: Props) => {
 	const isNameExisted = !!name === true;
+	console.log(
+		"------------------------------------------------------",
+		isNameExisted
+	);
 	const { openSideBar } = usePopUp();
 
 	return (
@@ -21,7 +25,7 @@ const Header = ({ name }: Props) => {
 				/>
 			</div>
 			{isNameExisted && <h1 className="font-semibold">안녕하세요 {name}님</h1>}
-			<Sidebar name={name} />
+			<Sidebar isNameExisted={isNameExisted} name={name} />
 		</div>
 	);
 };

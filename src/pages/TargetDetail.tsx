@@ -9,16 +9,21 @@ import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
 import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
-import LineGraphPrep from "../components/target/LineGraphPrep";
+
 import RoutineBox from "../components/target/RoutineBox";
+import LineGraphPrep from "../components/target/LineGraphPrep";
 
 const TargetDetail = () => {
 	const { id } = useParams();
-	const userNickName = localStorage.getItem("userNickName");
+
+	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
 
-	console.log("target", target);
+	console.log(
+		"targe_________targe_________targe__targe_________targe_________targe________________t",
+		target
+	);
 
 	const percentage = calculatePercentage(
 		target?.successVote,
@@ -36,12 +41,13 @@ const TargetDetail = () => {
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
-			<Header name={userNickName} />
+			<Header name={name} />
 			<div>
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
 						<p className="font-semibold text-xl">성취 그래프</p>
+						{/* <LineGraph /> */}
 						<LineGraphPrep />
 					</div>
 					<div>

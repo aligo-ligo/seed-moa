@@ -1,8 +1,16 @@
+import { useContext, useEffect } from "react";
 import Header from "../components/target/Header";
 import { OliBodyImage } from "../utils/contants";
+import { AuthStateContext } from "../context/AuthStateContext";
 
 const QuestionPage = () => {
+	const { isLoggedIn } = useContext(AuthStateContext);
 	const userNickName = localStorage.getItem("userNickName");
+
+	useEffect(() => {
+		console.log("reRendering");
+	}, [isLoggedIn]);
+
 	return (
 		<div className="relative  px-6 min-h-screen ">
 			<Header name={userNickName} />

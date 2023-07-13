@@ -6,20 +6,27 @@ import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
 import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
+import { useContext, useEffect } from "react";
+import { AuthStateContext } from "../../context/AuthStateContext";
+import { NICK_NAME } from "../../utils/contants";
 
 type Props = {
+	isNameExisted: boolean;
 	name: string | null | undefined;
 };
-const Sidebar = ({ name }: Props) => {
+const Sidebar = ({ isNameExisted, name }: Props) => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();
+	const { isLoggedIn, updateLoggedIn } = useContext(AuthStateContext);
 	const authService = useAuthService();
 	const navigate = useNavigate();
-	const isNameExisted = !!name === true;
 
+	console.log("사이드바--------------------------------", isLoggedIn);
 	const hook = () => {
 		authService?.logout();
+		updateLoggedIn(false);
 		closeSideBar();
 	};
+
 	return (
 		<>
 			<CSSTransition
@@ -38,23 +45,20 @@ const Sidebar = ({ name }: Props) => {
 					</div>
 					<div className="px-4 py-6">
 						{isNameExisted ? (
-							<p className=" font-semibold">안녕하세요 이주영님</p>
+							<p className=" font-semibold">{`안녕하세요 ${name}님`}</p>
 						) : (
 							<p className=" font-semibold">로그인을 해주세요</p>
 						)}
 
 						<div className="pt-4 text-gray font-semibold">
 							{isNameExisted && (
-								<form>
-									<button
-										type="submit"
-										className="flex justify-center items-center text-orange-400"
-										onClick={hook}
-									>
-										로그아웃하기
-										<FiChevronRight className="text-xl" />
-									</button>
-								</form>
+								<button
+									className="flex justify-center items-center text-orange-400"
+									onClick={hook}
+								>
+									로그아웃하기
+									<FiChevronRight className="text-xl" />
+								</button>
 							)}
 						</div>
 					</div>
