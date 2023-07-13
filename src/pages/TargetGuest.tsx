@@ -97,6 +97,7 @@ const TargetGuest = () => {
 					{isModalOpen &&
 						createPortal(
 							<ModalContent
+								targetId={id}
 								shareUrl={target?.url}
 								buttonModalType={buttonModalType}
 								outside={outside}

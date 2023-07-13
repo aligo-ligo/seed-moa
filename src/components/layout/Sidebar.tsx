@@ -8,7 +8,7 @@ import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
 import { useContext, useEffect } from "react";
 import { AuthStateContext } from "../../context/AuthStateContext";
-import { IS_LOGGED_IN, NICK_NAME } from "../../utils/constant/contants";
+import { NICK_NAME } from "../../utils/contants";
 
 type Props = {
 	isNameExisted: boolean;

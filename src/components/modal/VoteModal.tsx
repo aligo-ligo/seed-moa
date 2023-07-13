@@ -1,24 +1,18 @@
-import { useParams } from "react-router-dom";
-
-import { useGuest } from "../../hooks/useGuest";
+import { useModifyTarget } from "../../hooks/useModifyTarget";
 
 type Props = {
 	closeModal: () => void;
 	success: boolean | null | undefined;
+	targetId: string | undefined;
 };
 
-const VoteModal = ({ closeModal, success }: Props) => {
-	const guestService = useGuest();
-	const { id } = useParams();
+const VoteModal = ({ closeModal, success, targetId: id }: Props) => {
+	const { voteMutation } = useModifyTarget(id);
 
+	console.log(id);
 	console.log("voteModal", success);
 	const handleClick = () => {
-		guestService
-			?.getTargetVote({ id, success })
-			.then((data) => {
-				console.log("data", data);
-			})
-			.catch((error) => console.log(error.APIMessage));
+		voteMutation.mutate({ id, success });
 		closeModal();
 	};
 	return (
@@ -34,7 +28,7 @@ const VoteModal = ({ closeModal, success }: Props) => {
 				</button>
 				<button
 					className="hover:text-gray p-2 border rounded-md"
-					onClick={handleClick}
+					onClick={closeModal}
 				>
 					검토하기
 				</button>
