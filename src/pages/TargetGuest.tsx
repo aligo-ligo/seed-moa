@@ -72,7 +72,7 @@ const TargetGuest = () => {
 					</div>
 					<div className="flex gap-4">
 						<StyledButton
-							styleName="vote"
+							styleName="successVote"
 							type="button"
 							onClick={() => {
 								setIsSuccess(true);
@@ -83,7 +83,7 @@ const TargetGuest = () => {
 							성공
 						</StyledButton>
 						<StyledButton
-							styleName="vote"
+							styleName="failVote"
 							type="button"
 							onClick={() => {
 								setIsSuccess(false);
