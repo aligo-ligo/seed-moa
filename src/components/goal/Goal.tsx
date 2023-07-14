@@ -5,6 +5,7 @@ import { TargetStepType } from "../../types/TargetTypes";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../utils/constant/contants";
 
 type Props = {
 	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
@@ -22,7 +23,7 @@ const Goal = ({ setStep }: Props) => {
 	console.log("getData", getGoal);
 
 	return (
-		<TargetCreateLayout title="이루고자 하는 목표를 적어주세요">
+		<TargetCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
 			<div
 				className="absolute left-0 top-0 text-main text-base my-10 mx-6 flex items-center gap-1 cursor-pointer"
 				onClick={() => {

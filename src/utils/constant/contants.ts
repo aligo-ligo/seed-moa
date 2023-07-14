@@ -61,3 +61,21 @@ export const OliImage = oli;
 export const OliBodyImage = oliBody;
 export const LoudOli = loudOli;
 export const LouderOli = louderOli;
+
+export const GOAL_TITLE = "최종 목표를 적어주세요";
+export const GOAL_DESCRIPTION = "대목표를 작성해주시면 좋아요.";
+
+export const SUBGOAL_TITLE = "최종 목표를 위한 하위 목표와 루틴을 작성해주세요";
+export const SUBGOAL_DESCRIPTION =
+	"우리의 목표는 즉시 달성하기 어렵기 때문에 하위 목표를 세우고 루틴을 만든다면 목표를 달성하는데 도움이 될거예요";
+
+export const DURATION_TITLE = "언제까지 목표를 달성하기 위해 노력하실건가요?";
+export const DURATION_DESCRIPTION =
+	"마감일은 언제나 우리에게 긴장감을 주죠. 하지만 너무 부담 갖지 않아도 돼요";
+
+// export const PENALTY_TITLE = "혹시나 ";
+// export const PENALTY_DESCRIPTION = "대목표를 작성해주시면 좋아요.";
+
+export const LAST_TITLE = "최종 확인";
+export const LAST_DESCRIPTION =
+	"목표를 달성하기 위해 하위 목표 그리고 루틴을 세웠어요. 아래의 정보를 확인하시고 변경하고자 하시면 이전 버튼으로 누르시면 돼요";
