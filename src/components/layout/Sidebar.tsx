@@ -8,6 +8,7 @@ import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
 import { useContext } from "react";
 import { AuthStateContext } from "../../context/AuthStateContext";
+import { LoudOli, OliImage } from "../../utils/constant/contants";
 
 type Props = {
 	isNameExisted: boolean;
@@ -55,7 +56,6 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
 									onClick={hook}
 								>
 									로그아웃하기
-									<FiChevronRight className="text-xl" />
 								</button>
 							)}
 						</div>
@@ -72,7 +72,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
 											closeSideBar();
 										}}
 									>
-										<div>{icon}</div>
+										<div className="w-8">{icon}</div>
 										<div className="px-4 py-6">{title}</div>
 									</div>
 								);
@@ -90,7 +90,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
 											closeSideBar();
 										}}
 									>
-										<div>{icon}</div>
+										<div className="">{icon}</div>
 										<div className="px-4 py-6">{title}</div>
 									</div>
 								);
@@ -121,12 +121,12 @@ const landingSidebarData = [
 const sidebarData = [
 	{
 		title: "메인 페이지",
-		icon: <FiEdit />,
+		icon: <img src={OliImage} alt="사진" />,
 		link: "/target",
 	},
 	{
 		title: "F&Q 업데이트 예정",
-		icon: <FiEdit />,
+		icon: <img src={LoudOli} alt="사진" />,
 		link: "/faq",
 	},
 ];
