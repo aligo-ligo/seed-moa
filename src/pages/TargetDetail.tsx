@@ -1,6 +1,6 @@
 import Header from "../components/target/Header";
 import { useParams } from "react-router-dom";
-import ProgressBar from "../components/target/ProgressBar";
+import ProgressBar from "../components/target/animationBars/ProgressBar";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import Checkbox from "../components/target/Checkbox";
 import usePopUp from "../hooks/usePopUp";

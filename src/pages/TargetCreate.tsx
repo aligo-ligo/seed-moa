@@ -5,13 +5,13 @@ import Goal from "../components/goal/Goal";
 import LastStep from "../components/goal/LastStep";
 import Duration from "../components/goal/Duration";
 import SubGoalRoutine from "../components/goal/SubGoalRoutine";
-import Penalty from "../components/goal/Penalty";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
 
 import { useTarget } from "../hooks/useTarget";
+import CreateBar from "../components/target/animationBars/createBar";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
@@ -32,9 +32,6 @@ const TargetCreate = () => {
 		},
 		resolver: yupResolver(targetSchema),
 	});
-	console.log(message);
-	console.log("최상위", methods.formState.errors);
-	console.log("in the top", step);
 
 	const onSubmitHandler = (data: TargetInfoType) => {
 		console.log("최종", data);
@@ -54,6 +51,7 @@ const TargetCreate = () => {
 					onSubmit={methods.handleSubmit(onSubmitHandler)}
 					className="w-full"
 				>
+					<CreateBar step={step} />
 					<Step check={step === "goal"}>
 						<Goal setStep={setStep} />
 					</Step>
@@ -62,9 +60,6 @@ const TargetCreate = () => {
 					</Step>
 					<Step check={step === "duration"}>
 						<Duration setStep={setStep} />
-					</Step>
-					<Step check={step === "penalty"}>
-						<Penalty setStep={setStep} />
 					</Step>
 					<Step check={step === "lastStep"}>
 						<LastStep setStep={setStep} />

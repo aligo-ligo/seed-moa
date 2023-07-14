@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
 import LineGraphPrep from "../components/target/LineGraphPrep";
-import ProgressBar from "../components/target/ProgressBar";
+import ProgressBar from "../components/target/animationBars/ProgressBar";
 import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { useParams } from "react-router-dom";

@@ -6,6 +6,9 @@ export default {
 			sans: '-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',
 		},
 		extend: {
+			scale: {
+				25: "0.25",
+			},
 			colors: {
 				main: "#87995C",
 				mainDeep: "#52681D",

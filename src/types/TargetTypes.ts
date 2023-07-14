@@ -28,7 +28,6 @@ export type TargetStepType =
 	| "goal"
 	| "subGoal"
 	| "duration"
-	| "penalty"
 	| "lastStep"
 	| "done";
 
