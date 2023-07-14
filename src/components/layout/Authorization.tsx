@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, IS_LOGGED_IN } from "../../utils/constant/contants";
+import { ACCESS_TOKEN } from "../../utils/constant/contants";
 import { useContext, useEffect } from "react";
 import { AuthStateContext } from "../../context/AuthStateContext";
 

@@ -3,14 +3,13 @@ import Header from "../components/target/Header";
 import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
-import { CSSProperties, useContext, useEffect } from "react";
+import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useAllTarget } from "../hooks/useGetTargets";
-import { AuthStateContext } from "../context/AuthStateContext";
 
 const Target = () => {
 	const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { useContext, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { ActionType, UserInfoType } from "../../types/AuthType";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,7 +8,6 @@ import { useAuthService } from "../../hooks/useAuth";
 
 import {
 	EMAIL_INPUT,
-	IS_LOGGED_IN,
 	LogoImage,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
@@ -17,7 +16,6 @@ import {
 
 import Validation from "./Validation";
 import StyledButton from "../common/StyledButton";
-import { AuthStateContext } from "../../context/AuthStateContext";
 
 const ACTION_CONST = {
 	SET_EMAIL: "SET_EMAIL",

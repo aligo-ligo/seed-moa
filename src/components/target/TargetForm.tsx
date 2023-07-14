@@ -17,7 +17,6 @@ type PropsTargetType = Pick<
 
 const TargetForm = ({
 	id,
-	userId,
 	goal,
 	subGoalTotal,
 	successCount,

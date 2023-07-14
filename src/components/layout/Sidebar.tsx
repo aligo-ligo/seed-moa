@@ -6,9 +6,8 @@ import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
 import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthStateContext } from "../../context/AuthStateContext";
-import { NICK_NAME } from "../../utils/contants";
 
 type Props = {
 	isNameExisted: boolean;
