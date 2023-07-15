@@ -1,5 +1,5 @@
 import Header from "../components/target/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProgressBar from "../components/target/animationBars/ProgressBar";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import Checkbox from "../components/target/Checkbox";
@@ -15,7 +15,7 @@ import LineGraphPrep from "../components/target/LineGraphPrep";
 
 const TargetDetail = () => {
 	const { id } = useParams();
-
+	const navigate = useNavigate();
 	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
@@ -77,7 +77,7 @@ const TargetDetail = () => {
 					</div>
 					<div>
 						<div className="flex justify-between items-center">
-							<h2 className="font-semibold text-xl mb-8">투표</h2>
+							<h2 className="font-semibold text-xl mb-8">성공 예측률 투표</h2>
 							<p className="text-xs font-bold">{`${
 								target?.voteTotal || 0
 							}명 참여했어요`}</p>
@@ -86,7 +86,7 @@ const TargetDetail = () => {
 					</div>
 				</div>
 
-				<div className="flex justify-center m-20">
+				<div className="flex flex-col item-center justify-center gap-4 m-20 px-16">
 					<StyledButton
 						styleName="sharing"
 						type="button"
@@ -96,6 +96,16 @@ const TargetDetail = () => {
 						}}
 					>
 						공유
+					</StyledButton>
+
+					<StyledButton
+						styleName="result"
+						type="button"
+						onClick={() => {
+							navigate(`/result/${id}`);
+						}}
+					>
+						결과 페이지로 이동하기
 					</StyledButton>
 				</div>
 				{isModalOpen &&

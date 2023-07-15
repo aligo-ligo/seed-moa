@@ -18,7 +18,6 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 		watch,
 		formState: { errors },
 	} = useFormContext();
-	console.log("SRErrors", errors);
 
 	const {
 		fields: subGoal,

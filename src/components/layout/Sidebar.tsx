@@ -1,6 +1,5 @@
 import { FiX } from "react-icons/fi";
 import usePopUp from "../../hooks/usePopUp";
-import { FiChevronRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
