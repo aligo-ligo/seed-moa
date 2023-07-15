@@ -49,7 +49,7 @@ const TargetCreate = () => {
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit(onSubmitHandler)}
-					className="w-full"
+					className="w-full relative"
 				>
 					<CreateBar step={step} />
 					<Step check={step === "goal"}>

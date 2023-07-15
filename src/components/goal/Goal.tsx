@@ -25,7 +25,7 @@ const Goal = ({ setStep }: Props) => {
 	return (
 		<TargetCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
 			<div
-				className="absolute left-0 top-0 text-main text-base my-10 mx-6 flex items-center gap-1 cursor-pointer"
+				className="absolute left-0 top-8 text-main text-base my-10 mx-6 flex items-center gap-1 cursor-pointer"
 				onClick={() => {
 					navigate("/target");
 				}}

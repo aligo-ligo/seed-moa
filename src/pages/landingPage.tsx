@@ -2,11 +2,24 @@ import { Link, useNavigate } from "react-router-dom";
 
 import StyledButton from "../components/common/StyledButton";
 import OAuth from "../components/auth/OAuth";
-import { LogoImage, OliBodyImage } from "../utils/constant/contants";
+import {
+	ACCESS_TOKEN,
+	LogoImage,
+	OliBodyImage,
+} from "../utils/constant/contants";
 import Header from "../components/target/Header";
+import { useEffect } from "react";
 
 const LandingPage = () => {
 	const navigate = useNavigate();
+	const isLoggedIn = localStorage.getItem(ACCESS_TOKEN);
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			navigate("/target");
+		}
+	}, []);
+
 	return (
 		<section className="relative flex flex-col items-center justify-start px-6 min-h-screen ">
 			<Header />
