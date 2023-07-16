@@ -1,7 +1,7 @@
 import DatePicker from "react-datepicker";
-
 import { createDate, getDayName } from "../../../utils/formatDate";
 import { useFormContext } from "react-hook-form";
+import CalenderHeader from "./CalenderHeader";
 
 type Props = {
 	name: Date;
@@ -20,6 +20,13 @@ const DatePickerComponent = ({ name }: Props) => {
 			isClearable
 			withPortal
 			minDate={new Date()}
+			renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
+				<CalenderHeader
+					date={date}
+					decreaseMonth={decreaseMonth}
+					increaseMonth={increaseMonth}
+				/>
+			)}
 			dayClassName={(date) =>
 				getDayName(createDate(date)) === "토"
 					? "saturday"
@@ -27,7 +34,6 @@ const DatePickerComponent = ({ name }: Props) => {
 					? "sunday"
 					: null
 			}
-			// calendarClassName="bg-mainHover"
 		/>
 	);
 };

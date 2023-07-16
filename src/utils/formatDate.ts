@@ -10,6 +10,13 @@ export function formatDate(date: string): string {
 	return date;
 }
 
+export const monthFormatDate = (d: Date): string => {
+	const date = new Date(d);
+	const monthIndex = date.getMonth() + 1;
+	const year = date.getFullYear();
+	return `${year}년 ${`0${monthIndex}`.slice(-2)}월`;
+};
+
 export const getNowDate = () => {
 	const nowDateToString = formatDate(new Date().toString());
 	return nowDateToString;
@@ -29,4 +36,13 @@ export const getDayFromDiff = (present: string, future: string) => {
 	const diffDate = futureDate.getTime() - presentDate.getTime();
 
 	return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
+};
+
+// 요일 반환
+export const getDayName = (date: Date) => {
+	return date
+		.toLocaleDateString("ko-KR", {
+			weekday: "long",
+		})
+		.substr(0, 1);
 };
