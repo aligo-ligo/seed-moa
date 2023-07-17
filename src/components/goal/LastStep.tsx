@@ -1,15 +1,11 @@
 import { useGetFormData } from "../../hooks/useGetFormData";
 import TargetStepButton from "../logic/TargetStepButton";
-import { TargetStepType } from "../../types/TargetTypes";
+import { TargetCreateProps } from "../../types/TargetTypes";
 import { formatDate, getDayFromDiff, getNowDate } from "../../utils/formatDate";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
-import { LAST_DESCRIPTION, LAST_TITLE } from "../../utils/constant/contants";
+import { LAST_DESCRIPTION, LAST_TITLE } from "../../utils/constant/target";
 
-type Props = {
-	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
-};
-
-const LastStep = ({ setStep }: Props) => {
+const LastStep = ({ setStep }: TargetCreateProps) => {
 	const { getGoal, getSubGoal, getRoutine, getEndDate } = useGetFormData();
 
 	console.log("goal", getGoal);

@@ -1,23 +1,14 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
-import { TargetStepType } from "../../types/TargetTypes";
+import { TargetCreateProps } from "../../types/TargetTypes";
 import {
 	SUBGOAL_DESCRIPTION,
 	SUBGOAL_TITLE,
-} from "../../utils/constant/contants";
+} from "../../utils/constant/target";
 
-type Props = {
-	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
-};
-
-const SubGoalRoutine = ({ setStep }: Props) => {
-	const {
-		register,
-		getValues,
-		watch,
-		formState: { errors },
-	} = useFormContext();
+const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
+	const { register, getValues, watch } = useFormContext();
 
 	const {
 		fields: subGoal,

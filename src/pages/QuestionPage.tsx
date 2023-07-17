@@ -1,8 +1,7 @@
 import { useContext, useEffect } from "react";
 import Header from "../components/target/Header";
-import { OliBodyImage } from "../utils/constant/contants";
+import { OliBodyImage } from "../utils/constant/image";
 import { AuthStateContext } from "../context/AuthStateContext";
-import { motion } from "framer-motion";
 
 const QuestionPage = () => {
 	const { isLoggedIn } = useContext(AuthStateContext);

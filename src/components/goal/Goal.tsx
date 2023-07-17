@@ -4,7 +4,7 @@ import { TargetStepType } from "../../types/TargetTypes";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../utils/constant/contants";
+import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../utils/constant/target";
 
 import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";

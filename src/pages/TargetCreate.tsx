@@ -14,7 +14,6 @@ import CreateBar from "../components/target/animationBars/CreateBar";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
-
 	endDate: yup.string().required("목표 달성일을 지정해주세요"),
 });
 

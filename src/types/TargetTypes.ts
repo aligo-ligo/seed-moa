@@ -64,3 +64,7 @@ export type PostSubGoalType = {
 export type ShareResultType = {
 	shortUrl: string;
 };
+
+export type TargetCreateProps = {
+	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
+};

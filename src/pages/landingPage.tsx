@@ -2,11 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import StyledButton from "../components/common/StyledButton";
 import OAuth from "../components/auth/OAuth";
-import {
-	ACCESS_TOKEN,
-	LogoImage,
-	OliBodyImage,
-} from "../utils/constant/contants";
+import { LogoImage, OliBodyImage } from "../utils/constant/image";
+import { ACCESS_TOKEN } from "../utils/constant/auth";
 import Header from "../components/target/Header";
 import { useEffect } from "react";
 import { useGuest } from "../hooks/useGuest";

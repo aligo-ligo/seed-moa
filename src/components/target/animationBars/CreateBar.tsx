@@ -1,4 +1,4 @@
-import { LoudOli } from "../../../utils/constant/contants";
+import { LoudOli } from "../../../utils/constant/image";
 
 type Props = {
 	step: keyof typeof getPercentFormStep;

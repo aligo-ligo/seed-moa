@@ -8,11 +8,12 @@ import { useAuthService } from "../../hooks/useAuth";
 
 import {
 	EMAIL_INPUT,
-	LogoImage,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
 	ValidationAuth,
-} from "../../utils/constant/contants";
+} from "../../utils/constant/auth";
+
+import { LogoImage } from "../../utils/constant/image";
 
 import Validation from "./Validation";
 import StyledButton from "../common/StyledButton";

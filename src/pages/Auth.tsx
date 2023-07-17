@@ -5,7 +5,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { createPortal } from "react-dom";
 import ModalContent from "../components/common/ModalContent";
 import usePopUp from "../hooks/usePopUp";
-import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/constant/contants";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/constant/auth";
 
 const Auth = () => {
 	const { pathname } = useLocation();

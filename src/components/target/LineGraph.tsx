@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
-import { heroImage } from "../../utils/constant/contants";
+import { heroImage } from "../../utils/constant/image";
 
 const resizeImage = (
 	image: HTMLImageElement,

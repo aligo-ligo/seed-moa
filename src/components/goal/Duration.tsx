@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { TargetStepType } from "../../types/TargetTypes";
+import { TargetCreateProps } from "../../types/TargetTypes";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import DatePickerComponent from "./DatePicker/DatePickerComponent";
 import Validation from "../auth/Validation";
@@ -10,13 +10,9 @@ import "./DatePicker/css/react-datepicker.css";
 import {
 	DURATION_DESCRIPTION,
 	DURATION_TITLE,
-} from "../../utils/constant/contants";
+} from "../../utils/constant/target";
 
-type Props = {
-	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
-};
-
-const Duration = ({ setStep }: Props) => {
+const Duration = ({ setStep }: TargetCreateProps) => {
 	const {
 		getValues,
 		formState: { errors },
