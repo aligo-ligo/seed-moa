@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { calculatePercentage } from "../../utils/calculatePercentage";
 import ProgressBar from "./animationBars/ProgressBar";
 import { TargetType } from "../../types/TargetTypes";
-import { OliBodyImage } from "../../utils/constant/contants";
+import { OliBodyImage } from "../../utils/constant/image";
 
 type PropsTargetType = Pick<
 	TargetType,

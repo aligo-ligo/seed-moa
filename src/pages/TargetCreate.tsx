@@ -9,13 +9,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
-
 import { useTarget } from "../hooks/useTarget";
-import CreateBar from "../components/target/animationBars/createBar";
+import CreateBar from "../components/target/animationBars/CreateBar";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
-
 	endDate: yup.string().required("목표 달성일을 지정해주세요"),
 });
 
@@ -35,6 +33,7 @@ const TargetCreate = () => {
 
 	const onSubmitHandler = (data: TargetInfoType) => {
 		console.log("최종", data);
+		console.log(message);
 		targetService
 			?.postTarget(data)
 			.then((res) => {
@@ -49,7 +48,7 @@ const TargetCreate = () => {
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit(onSubmitHandler)}
-					className="w-full"
+					className="w-full relative"
 				>
 					<CreateBar step={step} />
 					<Step check={step === "goal"}>

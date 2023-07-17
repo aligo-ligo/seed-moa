@@ -2,11 +2,25 @@ import { Link, useNavigate } from "react-router-dom";
 
 import StyledButton from "../components/common/StyledButton";
 import OAuth from "../components/auth/OAuth";
-import { LogoImage, OliBodyImage } from "../utils/constant/contants";
+import { LogoImage, OliBodyImage } from "../utils/constant/image";
+import { ACCESS_TOKEN } from "../utils/constant/auth";
 import Header from "../components/target/Header";
+import { useEffect } from "react";
+import { useGuest } from "../hooks/useGuest";
+import { useInfo } from "../hooks/useGetInfo";
 
 const LandingPage = () => {
 	const navigate = useNavigate();
+	const isLoggedIn = localStorage.getItem(ACCESS_TOKEN);
+	const guestService = useGuest();
+	const { data: target } = useInfo(guestService);
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			navigate("/target");
+		}
+	}, [navigate, isLoggedIn]);
+
 	return (
 		<section className="relative flex flex-col items-center justify-start px-6 min-h-screen ">
 			<Header />
@@ -19,10 +33,10 @@ const LandingPage = () => {
 						공유하여 목표를 달성해보세요!
 					</h2>
 					<p className="mt-10 text-lg desktop:text-xl font-medium text-gray mb-2">
-						132명의 유저가 150개의
+						{`${target?.userCount} 명의 유저가 ${target?.targetCount}개의`}
 					</p>
 					<p className="text-lg desktop:text-xl font-medium text-gray mb-10">
-						티켓을 성취했어요
+						목표를 위해 달려가고 있어요
 					</p>
 				</div>
 			</div>

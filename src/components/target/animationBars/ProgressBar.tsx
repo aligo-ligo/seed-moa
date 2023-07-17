@@ -8,16 +8,22 @@ const ProgressBar = ({ completed = 0 }: Props) => {
 
 	return (
 		<div className="h-8 w-full bg-[#e0e0de] rounded-md relative">
-			<div
-				className={`h-full bg-main rounded-md flex justify-center items-center text-xs `}
-				style={{ width: `${completed}%` }}
-			>
-				<span
-					className={`p-1 ${isOverTwenty && "text-white"} font-semibold ${
-						!isOverTwenty && "ml-20 text-black"
-					}  ${zeroCompleted && "hidden"}`}
-				>{`${completed}%`}</span>
-			</div>
+			{zeroCompleted ? (
+				<div
+					className={`w-full h-full p-1 text-black flex justify-center items-center text-xs relative font-semibold`}
+				>
+					<p>0%</p>
+				</div>
+			) : (
+				<div
+					className={`w-full h-full bg-main rounded-md flex justify-center items-center text-xs font-semibold `}
+					style={{ width: `${completed}%` }}
+				>
+					<div className={`p-1 ${isOverTwenty && "text-white"}  `}>
+						{`${completed}%`}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

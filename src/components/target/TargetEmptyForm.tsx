@@ -1,4 +1,4 @@
-import { OliBodyImage } from "../../utils/constant/contants";
+import { OliBodyImage } from "../../utils/constant/image";
 const TargetEmptyForm = () => {
 	return (
 		<>

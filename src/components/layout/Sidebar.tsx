@@ -1,6 +1,5 @@
 import { FiX } from "react-icons/fi";
 import usePopUp from "../../hooks/usePopUp";
-import { FiChevronRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
@@ -8,7 +7,7 @@ import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
 import { useContext } from "react";
 import { AuthStateContext } from "../../context/AuthStateContext";
-import { LoudOli, OliImage } from "../../utils/constant/contants";
+import { LoudOli, OliImage } from "../../utils/constant/image";
 
 type Props = {
 	isNameExisted: boolean;
@@ -112,7 +111,7 @@ const landingSidebarData = [
 		link: "/signin",
 	},
 	{
-		title: "F&Q 업데이트 예정",
+		title: "서비스 이용 노하우",
 		icon: <FiEdit />,
 		link: "/faq",
 	},
@@ -125,7 +124,7 @@ const sidebarData = [
 		link: "/target",
 	},
 	{
-		title: "F&Q 업데이트 예정",
+		title: "서비스 이용 노하우",
 		icon: <img src={LoudOli} alt="사진" />,
 		link: "/faq",
 	},
