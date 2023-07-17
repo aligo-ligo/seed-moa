@@ -19,7 +19,6 @@ import { AuthStateProvider } from "./context/AuthStateContext";
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
 	const tokenRepository = new TokenRepository();
-
 	const client = new HttpClient(
 		import.meta.env.VITE_SERVER_URL,
 		tokenRepository
