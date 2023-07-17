@@ -1,23 +1,29 @@
 import Header from "../components/target/Header";
-import { useParams } from "react-router-dom";
-import ProgressBar from "../components/target/ProgressBar";
+import { useNavigate, useParams } from "react-router-dom";
+import ProgressBar from "../components/target/animationBars/ProgressBar";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import Checkbox from "../components/target/Checkbox";
 import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
+import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
+
+import RoutineBox from "../components/target/RoutineBox";
 import LineGraphPrep from "../components/target/LineGraphPrep";
-import { useGetTarget } from "../hooks/useModifySubGoal";
 
 const TargetDetail = () => {
 	const { id } = useParams();
-	const userNickName = localStorage.getItem("userNickName");
+	const navigate = useNavigate();
+	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
-	const { data: target } = useGetTarget(id, targetService);
+	const { data: target } = useTargetOnUser(id, targetService);
 
-	console.log("target", target);
+	console.log(
+		"targe_________targe_________targe__targe_________targe_________targe________________t",
+		target
+	);
 
 	const percentage = calculatePercentage(
 		target?.successVote,
@@ -35,12 +41,13 @@ const TargetDetail = () => {
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
-			<Header name={userNickName} />
+			<Header name={name} />
 			<div>
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
 						<p className="font-semibold text-xl">성취 그래프</p>
+						{/* <LineGraph /> */}
 						<LineGraphPrep />
 					</div>
 					<div>
@@ -60,13 +67,17 @@ const TargetDetail = () => {
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">루틴</h2>
-						{target?.routine.map((subGoal, index) => {
-							return <p key={index}>{subGoal.value}</p>;
+						{target?.routine.map((routine, index) => {
+							return (
+								<RoutineBox key={index} id={index}>
+									{routine.value}
+								</RoutineBox>
+							);
 						})}
 					</div>
 					<div>
 						<div className="flex justify-between items-center">
-							<h2 className="font-semibold text-xl mb-8">투표</h2>
+							<h2 className="font-semibold text-xl mb-8">성공 예측률 투표</h2>
 							<p className="text-xs font-bold">{`${
 								target?.voteTotal || 0
 							}명 참여했어요`}</p>
@@ -75,7 +86,7 @@ const TargetDetail = () => {
 					</div>
 				</div>
 
-				<div className="flex justify-center m-20">
+				<div className="flex flex-col item-center justify-center gap-4 m-20 px-16">
 					<StyledButton
 						styleName="sharing"
 						type="button"
@@ -85,6 +96,16 @@ const TargetDetail = () => {
 						}}
 					>
 						공유
+					</StyledButton>
+
+					<StyledButton
+						styleName="result"
+						type="button"
+						onClick={() => {
+							navigate(`/result/${id}`);
+						}}
+					>
+						결과 페이지로 이동하기
 					</StyledButton>
 				</div>
 				{isModalOpen &&

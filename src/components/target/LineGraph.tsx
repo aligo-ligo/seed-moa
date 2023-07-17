@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
-import { heroImage } from "../../utils/contants";
+import { heroImage } from "../../utils/constant/image";
 
 const resizeImage = (
 	image: HTMLImageElement,
@@ -20,14 +20,7 @@ const resizeImage = (
 const CustomLineChart = () => {
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
-	const test = [
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-		23, 45, 48, 4, 8, 78, 7, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-		15, 16, 17, 18, 19, 20, 21, 23, 45, 48, 4, 8, 78, 7, 10, 1, 2, 3, 4, 5, 6,
-		7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 45, 48, 4, 8,
-		78, 7, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-		19, 20, 21, 23, 45, 48, 4, 8, 78, 7, 10,
-	];
+	const test = [1, 2, 3, 4, 5, 6];
 
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");

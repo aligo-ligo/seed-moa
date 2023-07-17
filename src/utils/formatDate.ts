@@ -1,4 +1,4 @@
-export function formatDate(date: string) {
+export function formatDate(date: string): string {
 	if (date !== null) {
 		const targetDate = new Date(date);
 		const year = targetDate.getFullYear();
@@ -7,31 +7,35 @@ export function formatDate(date: string) {
 		const formattedDate = `${year}-${month}-${day}`;
 		return formattedDate;
 	}
+	return date;
 }
 
-export const getNowDate = () => {
-	const nowDatetoString = formatDate(new Date().toString());
-	return nowDatetoString;
+export const monthFormatDate = (d: Date): string => {
+	const date = new Date(d);
+	const monthIndex = date.getMonth() + 1;
+	const year = date.getFullYear();
+	return `${year}년 ${`0${monthIndex}`.slice(-2)}월`;
 };
-const getFormattedDate = (date: Date) => {
-	const month = date.toLocaleDateString("ko-KR", {
-		month: "long",
-	});
 
-	const day = date.toLocaleDateString("ko-KR", {
-		day: "numeric",
-	});
-
-	return `${month.substr(0, month.length - 1)}/${day.substr(
-		0,
-		day.length - 1
-	)}`;
+export const getNowDate = () => {
+	const nowDateToString = formatDate(new Date().toString());
+	return nowDateToString;
 };
 
 export const createDate = (date: Date) => {
 	return new Date(
 		new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0)
 	);
+};
+
+// 요일 반환
+export const getDayFromDiff = (present: string, future: string) => {
+	const presentDate = new Date(present);
+	const futureDate = new Date(future);
+
+	const diffDate = futureDate.getTime() - presentDate.getTime();
+
+	return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
 };
 
 // 요일 반환

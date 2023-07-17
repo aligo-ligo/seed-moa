@@ -4,7 +4,7 @@ export interface TargetService {
 	getAllTarget: () => TargetResponse;
 	getTarget: (id: string | undefined) => Promise<TargetType>;
 	postTarget: (targetInfo: TargetInfoType) => Promise<TargetCreateResultType>;
-	updateSubGoal: (subGoalInfo: subGoalUpdateType) => Promise<PostResultType>;
+	postSubGoal: (subGoalInfo: PostSubGoalType) => Promise<PostResultType>;
 }
 
 export interface TargetType {
@@ -28,7 +28,6 @@ export type TargetStepType =
 	| "goal"
 	| "subGoal"
 	| "duration"
-	| "penalty"
 	| "lastStep"
 	| "done";
 
@@ -56,7 +55,7 @@ export type TargetInfoType = {
 };
 
 export type TargetCreateResultType = number;
-export type subGoalUpdateType = {
+export type PostSubGoalType = {
 	id: string | undefined;
 	value: string;
 	completeDate: string | null;
@@ -64,4 +63,8 @@ export type subGoalUpdateType = {
 
 export type ShareResultType = {
 	shortUrl: string;
+};
+
+export type TargetCreateProps = {
+	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
 };

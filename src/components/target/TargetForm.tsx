@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { calculatePercentage } from "../../utils/calculatePercentage";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./animationBars/ProgressBar";
 import { TargetType } from "../../types/TargetTypes";
-import { OliBodyImage, heroImage } from "../../utils/contants";
+import { OliBodyImage } from "../../utils/constant/image";
 
 type PropsTargetType = Pick<
 	TargetType,
@@ -17,7 +17,6 @@ type PropsTargetType = Pick<
 
 const TargetForm = ({
 	id,
-	userId,
 	goal,
 	subGoalTotal,
 	successCount,
@@ -29,15 +28,6 @@ const TargetForm = ({
 	const successPercentage = calculatePercentage(successCount, subGoalTotal);
 	const votePercentage = calculatePercentage(successVote, voteTotal);
 
-	console.log(
-		id,
-		userId,
-		goal,
-		subGoalTotal,
-		successCount,
-		voteTotal,
-		successVote
-	);
 	return (
 		<>
 			<div
@@ -46,7 +36,7 @@ const TargetForm = ({
 					navigate(`${id}`);
 				}}
 			>
-				<h2 className="font-medium">{goal}</h2>
+				<h2 className="font-bold text-2xl truncate">{goal}</h2>
 				<img
 					src={OliBodyImage}
 					alt="자그마한 로고 사진"
@@ -54,11 +44,11 @@ const TargetForm = ({
 				/>
 				<div className="flex">
 					<div className="flex flex-col w-1/2 p-2">
-						<label>성취률</label>
+						<label className="font-medium">성취률</label>
 						<ProgressBar completed={successPercentage} />
 					</div>
 					<div className="flex flex-col w-1/2 p-2">
-						<label>성공 예측률</label>
+						<label className="font-medium">성공 예측률</label>
 						<ProgressBar completed={votePercentage} />
 					</div>
 				</div>

@@ -1,22 +1,14 @@
-import { useCallback } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
-import { useBeforeUnload } from "react-router-dom";
-import { TargetStepType } from "../../types/TargetTypes";
+import { TargetCreateProps } from "../../types/TargetTypes";
+import {
+	SUBGOAL_DESCRIPTION,
+	SUBGOAL_TITLE,
+} from "../../utils/constant/target";
 
-type Props = {
-	setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
-};
-
-const SubGoalRoutine = ({ setStep }: Props) => {
-	const {
-		register,
-		getValues,
-		watch,
-		formState: { errors },
-	} = useFormContext();
-	console.log("SRErrors", errors);
+const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
+	const { register, getValues, watch } = useFormContext();
 
 	const {
 		fields: subGoal,
@@ -38,19 +30,13 @@ const SubGoalRoutine = ({ setStep }: Props) => {
 	const getGoal: string = getValues("goal");
 	console.log("goal in sub", getGoal);
 
-	useBeforeUnload(
-		useCallback(() => {
-			localStorage.setItem("goal", getGoal);
-		}, [getGoal])
-	);
-
 	const subgoalWatch = watch("subGoal");
 	const routineWatch = watch("routine");
 	const minGoal = subgoalWatch.length < 4;
 	const minRoutine = routineWatch.length === 1;
 
 	return (
-		<TargetCreateLayout title="목표를 달성하기 위한 세분화 목표와 루틴을 작성해주세요">
+		<TargetCreateLayout title={SUBGOAL_TITLE} description={SUBGOAL_DESCRIPTION}>
 			<section className="mb-10">
 				<div className="flex items-center justify-between">
 					<h2 className="text-lg font-bold mb-2">세분화 목표</h2>

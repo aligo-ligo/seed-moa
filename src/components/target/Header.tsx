@@ -1,10 +1,6 @@
-import { FiAlignJustify, FiEdit } from "react-icons/fi";
-
 import Sidebar from "../layout/Sidebar";
-import { useAuthService } from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import usePopUp from "../../hooks/usePopUp";
-import { LogoImage, OliImage, heroImage } from "../../utils/contants";
+import { OliImage } from "../../utils/constant/image";
 
 type Props = {
 	name?: string | null;
@@ -12,6 +8,10 @@ type Props = {
 
 const Header = ({ name }: Props) => {
 	const isNameExisted = !!name === true;
+	console.log(
+		"------------------------------------------------------",
+		isNameExisted
+	);
 	const { openSideBar } = usePopUp();
 
 	return (
@@ -25,7 +25,7 @@ const Header = ({ name }: Props) => {
 				/>
 			</div>
 			{isNameExisted && <h1 className="font-semibold">안녕하세요 {name}님</h1>}
-			<Sidebar name={name} />
+			<Sidebar isNameExisted={isNameExisted} name={name} />
 		</div>
 	);
 };

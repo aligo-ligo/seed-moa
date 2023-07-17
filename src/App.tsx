@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { QueryClientOptions } from "./utils/contants";
+import { QueryClientOptions } from "./utils/constant/contants";
 import HttpClient from "./http/HttpClient";
 import AuthServiceImpl from "./services/AuthService";
 import { AuthProvider } from "./context/AuthContext";
@@ -13,6 +13,8 @@ import { TokenRepository } from "./repository/tokenRepository";
 import { ModalProvider } from "./context/ModalContext";
 import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
+import { CheckModalProvider } from "./context/CheckModalContext";
+import { AuthStateProvider } from "./context/AuthStateContext";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
@@ -25,25 +27,29 @@ function App() {
 
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
 	const targetService = new TargetServiceImpl(client.withToken());
-	const guestService = new GuestServiceImpl(client.withGuest());
+	const guestService = new GuestServiceImpl(client.withoutToken());
 	const routerObject = createBrowserRouter(routerInfo);
 
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
-				<AuthProvider authService={authService}>
-					<GuestProvider guestService={guestService}>
+				<GuestProvider guestService={guestService}>
+					<AuthProvider authService={authService}>
 						<TargetProvider targetService={targetService}>
 							<SideBarProvider>
 								<ModalProvider>
-									<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
-										<RouterProvider router={routerObject} />
-									</main>
+									<CheckModalProvider>
+										<AuthStateProvider>
+											<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+												<RouterProvider router={routerObject} />
+											</main>
+										</AuthStateProvider>
+									</CheckModalProvider>
 								</ModalProvider>
 							</SideBarProvider>
 						</TargetProvider>
-					</GuestProvider>
-				</AuthProvider>
+					</AuthProvider>
+				</GuestProvider>
 				<ReactQueryDevtools />
 			</QueryClientProvider>
 		</>

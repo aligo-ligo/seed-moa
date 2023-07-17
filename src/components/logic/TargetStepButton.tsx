@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 
 import StyledButton from "../common/StyledButton";
-import { TargetStepType } from "../../types/TargetType";
+import { TargetStepType } from "../../types/TargetTypes";
 
 type Props = {
 	prev?: TargetStepType | false;

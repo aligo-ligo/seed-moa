@@ -6,8 +6,6 @@ export type ModalContextProps = {
 	closeModal: () => void;
 	buttonModalType: string;
 	changeModalType: (name: string) => void;
-	subGoalValue: string;
-	updateSubGoalValue: (value: string) => void;
 };
 
 export interface ModalProviderProps {
@@ -16,7 +14,6 @@ export interface ModalProviderProps {
 
 const initialValue: ModalContextProps = {
 	isModalOpen: false,
-	subGoalValue: "",
 	openModal: () => {
 		console.log("");
 	},
@@ -28,16 +25,12 @@ const initialValue: ModalContextProps = {
 	changeModalType: () => {
 		console.log("");
 	},
-	updateSubGoalValue: () => {
-		console.log("");
-	},
 };
 
 export const ModalContext = createContext<ModalContextProps>(initialValue);
 export const ModalProvider = ({ children }: ModalProviderProps) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [buttonModalType, setButtonModalType] = useState("");
-	const [subGoalValue, setSubGoalValue] = useState("");
 
 	const changeModalType = (name: string) => {
 		setButtonModalType(name);
@@ -50,10 +43,6 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
 		setIsModalOpen(false);
 	};
 
-	const updateSubGoalValue = (value: string) => {
-		setSubGoalValue(value);
-	};
-
 	return (
 		<ModalContext.Provider
 			value={{
@@ -62,8 +51,6 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
 				closeModal,
 				buttonModalType,
 				changeModalType,
-				subGoalValue,
-				updateSubGoalValue,
 			}}
 		>
 			{children}
