@@ -49,12 +49,7 @@ const LandingPage = () => {
 				>
 					로그인
 				</StyledButton>
-
 				<OAuth />
-
-				<button className="text-lg desktop:text-xl text-main ">
-					<Link to="target">임시 target 이동</Link>
-				</button>
 			</div>
 		</section>
 	);
