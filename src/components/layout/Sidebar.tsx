@@ -111,7 +111,7 @@ const landingSidebarData = [
 		link: "/signin",
 	},
 	{
-		title: "F&Q 업데이트 예정",
+		title: "서비스 이용 노하우",
 		icon: <FiEdit />,
 		link: "/faq",
 	},
@@ -124,7 +124,7 @@ const sidebarData = [
 		link: "/target",
 	},
 	{
-		title: "F&Q 업데이트 예정",
+		title: "서비스 이용 노하우",
 		icon: <img src={LoudOli} alt="사진" />,
 		link: "/faq",
 	},

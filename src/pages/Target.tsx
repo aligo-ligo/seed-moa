@@ -17,7 +17,7 @@ const Target = () => {
 	const { data: targets } = useAllTarget(targetService);
 	const name = localStorage.getItem("userNickName");
 
-	console.log("targets", targets);
+	console.log("testTargets", targets);
 
 	const arrowStyles: CSSProperties = {
 		position: "absolute",
