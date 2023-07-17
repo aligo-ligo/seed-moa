@@ -1,12 +1,12 @@
 import { AxiosInstance } from "axios";
 import {
 	PostResultType,
+	PostSubGoalType,
 	TargetCreateResultType,
 	TargetInfoType,
 	TargetResponse,
 	TargetService,
 	TargetType,
-	subGoalUpdateType,
 } from "../types/TargetTypes";
 
 export default class TargetServiceImpl implements TargetService {
@@ -14,16 +14,8 @@ export default class TargetServiceImpl implements TargetService {
 
 	async getAllTarget() {
 		const { data } = await this.httpClient.get<TargetResponse>(`target/list`);
-		console.log("target", data);
 		return data;
 	}
-
-	// async getAllTarget() {
-	// 	const { data } = await this.httpClient.get<TargetResponse>(
-	// 		`data/allTargets.json`
-	// 	);
-	// 	return data;
-	// }
 
 	async getTarget(id: string | undefined) {
 		const { data } = await this.httpClient.get<TargetType>(
@@ -53,7 +45,7 @@ export default class TargetServiceImpl implements TargetService {
 		return data;
 	}
 
-	async updateSubGoal({ id, value, completeDate }: subGoalUpdateType) {
+	async postSubGoal({ id, value, completeDate }: PostSubGoalType) {
 		const { data } = await this.httpClient.post<PostResultType>(
 			`target/update`,
 			{

@@ -11,8 +11,6 @@ const usePopUp = () => {
 		closeModal,
 		buttonModalType,
 		changeModalType,
-		updateSubGoalValue,
-		subGoalValue,
 	} = useContext(ModalContext);
 	const outside = useRef<any>(null);
 
@@ -40,8 +38,6 @@ const usePopUp = () => {
 		closeModal,
 		buttonModalType,
 		changeModalType,
-		subGoalValue,
-		updateSubGoalValue,
 	};
 };
 

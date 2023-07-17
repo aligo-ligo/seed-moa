@@ -2,24 +2,22 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/target/Header";
 import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-
-import { useQuery } from "@tanstack/react-query";
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
-import { useGetTargetList } from "../hooks/useModifySubGoal";
-import Sidebar from "../components/layout/Sidebar";
+import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useAllTarget } from "../hooks/useGetTargets";
 
 const Target = () => {
 	const navigate = useNavigate();
 	const targetService = useTarget();
-	const { data: targets } = useGetTargetList(targetService);
+	const { data: targets } = useAllTarget(targetService);
 	const name = localStorage.getItem("userNickName");
 
-	console.log("targets", targets);
+	console.log("testTargets", targets);
 
 	const arrowStyles: CSSProperties = {
 		position: "absolute",
@@ -51,7 +49,7 @@ const Target = () => {
 									title={label}
 									style={{ ...arrowStyles, left: 15 }}
 								>
-									-
+									<FiChevronsLeft className="text-orange-500 bg-orange-100" />
 								</button>
 							)
 						}
@@ -63,7 +61,7 @@ const Target = () => {
 									title={label}
 									style={{ ...arrowStyles, right: 15 }}
 								>
-									+
+									<FiChevronsRight className="text-orange-500  bg-orange-100" />
 								</button>
 							)
 						}
