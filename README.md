@@ -68,7 +68,7 @@
 <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/1dc71300-495f-4bef-9e1d-543f980ec5f8" alt="landing" width="200px"/>
 <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/699eb20b-1312-47bd-8e10-917b7ac24347" alt="landing" width="200px"/>
 
-## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 디자인 및 와이어프레임
+## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 디자인 및 와이어프레임!
 
 [알리고올리고 피그마 보러가기 ](https://www.figma.com/file/6AZLv4Oolyakjjbj9fV9Y7/%EC%95%8C%EB%A6%AC%EA%B3%A0-%EC%98%AC%EB%A6%AC%EA%B3%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?type=design&node-id=0-1&mode=design&t=fOlAyICiQyFJfjtj-0)
 
