@@ -4,16 +4,22 @@ export const TOAST_TYPE = {
 	toastA: "toastA",
 	toastB: "toastB",
 	toastC: "toastC",
-};
+} as const;
 
 export type ToastType = keyof typeof TOAST_TYPE;
 
 interface ToastStore {
-	toastTitle: ToastType;
+	toastTitle: ToastType[];
 	updateToastTitle: (val: ToastType) => void;
+	removeToastTitle: (val: ToastType) => void;
 }
 
 export const toastStore = create<ToastStore>((set) => ({
-	toastTitle: "toastA",
-	updateToastTitle: (val) => set(() => ({ toastTitle: val })),
+	toastTitle: [],
+	updateToastTitle: (toastType: ToastType) =>
+		set((store) => ({ toastTitle: [...store.toastTitle, toastType] })),
+	removeToastTitle: (toastType: ToastType) =>
+		set((store) => ({
+			toastTitle: store.toastTitle.filter((t) => t !== toastType),
+		})),
 }));

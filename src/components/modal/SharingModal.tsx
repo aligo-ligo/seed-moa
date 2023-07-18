@@ -1,7 +1,7 @@
 import { FiX } from "react-icons/fi";
 import StyledButton from "../common/StyledButton";
-import { ToastType, toastStore } from "../../store/toastStore";
-import { useEffect } from "react";
+import ToastA from "../common/ToastA";
+import useToastList from "../../hooks/useToastList";
 
 type Props = {
 	closeModal: () => void;
@@ -9,9 +9,7 @@ type Props = {
 };
 
 const SharingModal = ({ shareUrl, closeModal }: Props) => {
-	const onClickHandler = () => {
-		closeModal();
-	};
+	const { show } = useToastList();
 
 	return (
 		<div className="bg-white rounded-md">
@@ -28,7 +26,11 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 					type="text"
 					className="placeholder:text-xs w-full outline-none text-emerald-800"
 				/>
-				<StyledButton styleName="copy" type="button" onClick={onClickHandler}>
+				<StyledButton
+					styleName="copy"
+					type="button"
+					onClick={() => show("toastA")}
+				>
 					복사
 				</StyledButton>
 			</div>
@@ -41,6 +43,7 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 					닫기
 				</StyledButton>
 			</div>
+			<ToastA />
 		</div>
 	);
 };
