@@ -1,5 +1,7 @@
 import { FiX } from "react-icons/fi";
 import StyledButton from "../common/StyledButton";
+import { ToastType, toastStore } from "../../store/toastStore";
+import { useEffect } from "react";
 
 type Props = {
 	closeModal: () => void;
@@ -7,6 +9,10 @@ type Props = {
 };
 
 const SharingModal = ({ shareUrl, closeModal }: Props) => {
+	const onClickHandler = () => {
+		closeModal();
+	};
+
 	return (
 		<div className="bg-white rounded-md">
 			<div className="flex justify-end cursor-pointer">
@@ -18,11 +24,11 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 			</p>
 			<div className="flex items-center my-8 border-main border-2 border-solid rounded-md py-2 px-4 relative">
 				<input
-					value={shareUrl}
+					defaultValue={shareUrl}
 					type="text"
 					className="placeholder:text-xs w-full outline-none text-emerald-800"
 				/>
-				<StyledButton styleName="copy" type="button" onClick={closeModal}>
+				<StyledButton styleName="copy" type="button" onClick={onClickHandler}>
 					복사
 				</StyledButton>
 			</div>
