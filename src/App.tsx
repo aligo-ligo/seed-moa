@@ -40,6 +40,7 @@ function App() {
 									<CheckModalProvider>
 										<AuthStateProvider>
 											<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+												<h1>Hello World</h1>
 												<RouterProvider router={routerObject} />
 											</main>
 										</AuthStateProvider>
