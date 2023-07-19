@@ -1,6 +1,7 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { SideBarContext } from "../context/SideBarContext";
 import { ModalContext } from "../context/ModalContext";
+import { useOnClickOutside } from "./useOnClickOutside";
 
 const usePopUp = () => {
 	const { isSideBarOpen, openSideBar, closeSideBar } =
@@ -15,18 +16,11 @@ const usePopUp = () => {
 	const outside = useRef<any>(null);
 
 	const handlerOutside = (e: any) => {
-		if (!outside.current.contains(e.target)) {
-			closeSideBar();
-			closeModal();
-		}
+		closeSideBar();
+		closeModal();
 	};
 
-	useEffect(() => {
-		document.addEventListener("mousedown", handlerOutside);
-		return () => {
-			document.removeEventListener("mousedown", handlerOutside);
-		};
-	}, []);
+	useOnClickOutside(outside, handlerOutside);
 
 	return {
 		isSideBarOpen,
