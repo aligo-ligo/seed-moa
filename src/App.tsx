@@ -14,7 +14,6 @@ import { ModalProvider } from "./context/ModalContext";
 import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
 import { CheckModalProvider } from "./context/CheckModalContext";
-import { AuthStateProvider } from "./context/AuthStateContext";
 import { HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -39,13 +38,11 @@ function App() {
 							<SideBarProvider>
 								<ModalProvider>
 									<CheckModalProvider>
-										<AuthStateProvider>
-											<HelmetProvider>
-												<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
-													<RouterProvider router={routerObject} />
-												</main>
-											</HelmetProvider>
-										</AuthStateProvider>
+										<HelmetProvider>
+											<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+												<RouterProvider router={routerObject} />
+											</main>
+										</HelmetProvider>
 									</CheckModalProvider>
 								</ModalProvider>
 							</SideBarProvider>

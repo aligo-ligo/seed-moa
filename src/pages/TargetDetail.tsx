@@ -21,12 +21,12 @@ const TargetDetail = () => {
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
 
-	if (!id) {
-		throw new Error("url 오류입니다.");
-	}
-	if (!name) {
-		throw new Error("닉네임 오류입니다.");
-	}
+	// if (!id) {
+	// 	throw new Error("url 오류입니다.");
+	// }
+	// if (!name) {
+	// 	throw new Error("닉네임 오류입니다.");
+	// }
 
 	const percentage = calculatePercentage(
 		target?.successVote,
@@ -45,7 +45,8 @@ const TargetDetail = () => {
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
 			<Header name={name} />
-			<Meta name={name} id={id} />
+			{name && id && <Meta name={name} id={id} />}
+
 			<div>
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
 				<div className="flex flex-col gap-6 mt-10">

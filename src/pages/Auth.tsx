@@ -11,6 +11,7 @@ const Auth = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const { closeModal, outside } = usePopUp();
+
 	const nickName = localStorage.getItem("userNickName");
 
 	const isLogin = pathname === SIGN_IN_URL;

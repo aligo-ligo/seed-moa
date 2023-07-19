@@ -83,7 +83,7 @@ const Target = () => {
 								successVote,
 							}) => (
 								<TargetForm
-									key={userId}
+									key={id}
 									{...{
 										id,
 										userId,
