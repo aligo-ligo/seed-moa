@@ -33,7 +33,9 @@ const LandingPage = () => {
 						공유하여 목표를 달성해보세요!
 					</h2>
 					<p className="mt-10 text-lg desktop:text-xl font-medium text-gray mb-2">
-						{`${target?.userCount} 명의 유저가 ${target?.targetCount}개의`}
+						{`${target?.userCount || 0} 명의 유저가 ${
+							target?.targetCount || 0
+						}개의`}
 					</p>
 					<p className="text-lg desktop:text-xl font-medium text-gray mb-10">
 						목표를 위해 달려가고 있어요

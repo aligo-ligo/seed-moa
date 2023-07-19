@@ -1,5 +1,9 @@
 import { FiX } from "react-icons/fi";
 import StyledButton from "../common/StyledButton";
+import ToastA from "../toast/ToastA";
+import ToastB from "../toast/ToastB";
+import useToastList from "../../hooks/useToastList";
+import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";
 
 type Props = {
 	closeModal: () => void;
@@ -7,6 +11,19 @@ type Props = {
 };
 
 const SharingModal = ({ shareUrl, closeModal }: Props) => {
+	const { show } = useToastList();
+	const [value, copy] = useCopyToClipboard();
+
+	const clickHandler = () => {
+		if (shareUrl) {
+			copy(shareUrl);
+			show("toastA");
+		} else {
+			show("toastB");
+		}
+	};
+
+	console.log(value);
 	return (
 		<div className="bg-white rounded-md">
 			<div className="flex justify-end cursor-pointer">
@@ -18,11 +35,11 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 			</p>
 			<div className="flex items-center my-8 border-main border-2 border-solid rounded-md py-2 px-4 relative">
 				<input
-					value={shareUrl}
+					defaultValue={shareUrl}
 					type="text"
 					className="placeholder:text-xs w-full outline-none text-emerald-800"
 				/>
-				<StyledButton styleName="copy" type="button" onClick={closeModal}>
+				<StyledButton styleName="copy" type="button" onClick={clickHandler}>
 					복사
 				</StyledButton>
 			</div>
@@ -35,6 +52,8 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 					닫기
 				</StyledButton>
 			</div>
+			<ToastA />
+			<ToastB />
 		</div>
 	);
 };
