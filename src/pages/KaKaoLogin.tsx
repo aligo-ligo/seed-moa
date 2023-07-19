@@ -4,7 +4,6 @@ import { useAuthService } from "../hooks/useAuth";
 import { OliImage } from "../utils/constant/image";
 
 export default function KakaoLogin() {
-	// const [temp, setTemp] = useState("");
 	const code = new URL(window.location.href).searchParams.get("code");
 	const authService = useAuthService();
 

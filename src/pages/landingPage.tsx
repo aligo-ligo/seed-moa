@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import StyledButton from "../components/common/StyledButton";
 import OAuth from "../components/auth/OAuth";
