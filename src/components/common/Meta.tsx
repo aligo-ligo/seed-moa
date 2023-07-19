@@ -11,8 +11,7 @@ const IMAGE_SIZE = {
 };
 
 const Meta = ({ name, id }: MetaProps) => {
-	const imageUrl = `${import.meta.env.VITE_BASE_URL}/logo.png`;
-	console.log(imageUrl);
+	const imageUrl = `https://aligoligo.me/logo.png`;
 
 	return (
 		<Helmet>
