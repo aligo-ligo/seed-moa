@@ -15,6 +15,7 @@ import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
 import { CheckModalProvider } from "./context/CheckModalContext";
 import { AuthStateProvider } from "./context/AuthStateContext";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
@@ -39,9 +40,11 @@ function App() {
 								<ModalProvider>
 									<CheckModalProvider>
 										<AuthStateProvider>
-											<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
-												<RouterProvider router={routerObject} />
-											</main>
+											<HelmetProvider>
+												<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+													<RouterProvider router={routerObject} />
+												</main>
+											</HelmetProvider>
 										</AuthStateProvider>
 									</CheckModalProvider>
 								</ModalProvider>
