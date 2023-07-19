@@ -12,6 +12,7 @@ const IMAGE_SIZE = {
 
 const Meta = ({ name, id }: MetaProps) => {
 	const imageUrl = `${import.meta.env.VITE_BASE_URL}/logo.png`;
+	console.log(imageUrl);
 
 	return (
 		<Helmet>
@@ -22,10 +23,7 @@ const Meta = ({ name, id }: MetaProps) => {
 			/>
 			<meta property="og:type" content="website" />
 			<link href={imageUrl} />
-			<meta
-				property="og:url"
-				content={`${import.meta.env.VITE_BASE_URL}/result/${id}`}
-			/>
+			<meta property="og:url" content={`https://aligoligo.me/result/${id}`} />
 			<meta name="og:title" content={`${name}님이 만드신 목표예요`} />
 			<meta name="og:description" content={`${name}님의 목표를 응원해주세요`} />
 			<meta property="og:image" content={imageUrl} />
