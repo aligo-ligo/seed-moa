@@ -14,6 +14,7 @@ const LandingPage = () => {
 	const isLoggedIn = localStorage.getItem(ACCESS_TOKEN);
 	const guestService = useGuest();
 	const { data: target } = useInfo(guestService);
+	// const img = import.meta.env.VITE_BASE_URL;
 
 	useEffect(() => {
 		if (isLoggedIn) {
@@ -27,6 +28,7 @@ const LandingPage = () => {
 			<div className="flex flex-col items-center justify-center ">
 				<img src={OliBodyImage} alt="히어로" className="w-2/5" />
 				<img src={LogoImage} alt="로고" className="w-3/5" />
+				{/* <img src={`${img}/logo.png`} alt="로고" className="w-3/5" /> */}
 
 				<div className="flex flex-col items-center w-80">
 					<h2 className="text-xl desktop:text-2xl font-medium text-gray mt-12 mb-2">
