@@ -21,13 +21,6 @@ const TargetDetail = () => {
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
 
-	// if (!id) {
-	// 	throw new Error("url 오류입니다.");
-	// }
-	// if (!name) {
-	// 	throw new Error("닉네임 오류입니다.");
-	// }
-
 	const percentage = calculatePercentage(
 		target?.successVote,
 		target?.voteTotal

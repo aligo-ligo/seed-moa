@@ -4,7 +4,7 @@ import LineGraphPrep from "../components/target/LineGraphPrep";
 import ProgressBar from "../components/target/animationBars/ProgressBar";
 import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useGuest } from "../hooks/useGuest";
 import { calculatePercentage } from "../utils/calculatePercentage";
@@ -14,6 +14,7 @@ import Checkbox from "../components/target/Checkbox";
 const TargetGuest = () => {
 	const { id } = useParams();
 	const guestService = useGuest();
+	const navigate = useNavigate();
 	const { data: target } = useTargetOnGuest(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
@@ -92,6 +93,17 @@ const TargetGuest = () => {
 							}}
 						>
 							실패
+						</StyledButton>
+					</div>
+					<div className="flex  justify-center py-10">
+						<StyledButton
+							styleName="result"
+							type="button"
+							onClick={() => {
+								navigate("/");
+							}}
+						>
+							나도 목표를 만들어볼래요
 						</StyledButton>
 					</div>
 					{isModalOpen &&

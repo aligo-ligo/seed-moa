@@ -17,7 +17,7 @@ const StyledButton = ({
 	disable,
 }: StyledButtonType) => {
 	const styleCategories: IStyleCateType = {
-		result: "text-sm text-main",
+		result: "text-sm text-main hover:text-mainHover",
 		landing:
 			"text-lg w-full h-14 bg-main rounded-md text-xl text-white hover:bg-mainHover ease-in duration-100",
 		ladingSignUp: "text-lg desktop:text-xl text-main ",
