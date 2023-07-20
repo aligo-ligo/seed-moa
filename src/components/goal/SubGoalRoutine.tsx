@@ -51,7 +51,8 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 					</button>
 				</div>
 				<h2 className="font-normal mb-1 text-gray">
-					최소 3개 ~ 최대 10개까지 생성 가능
+					목표를 달성하기 전 체크 포인트를 설정해주시면 돼요
+					<p>(2개 이상 만드는 것을 추천드려요)</p>
 				</h2>
 
 				{subGoal.map((field, index) => (
@@ -62,7 +63,7 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 								key={field.id} // important to include key with field's id
 								type="text"
 								className="placeholder:text-s w-full h-8 outline-none text-emerald-800 border-b-2 border-main "
-								placeholder="목표를 작성해주세요"
+								placeholder="세분화 목표를 작성해보세요"
 								{...register(`subGoal.${index}.value` as const)}
 							/>
 
@@ -93,7 +94,7 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 					</button>
 				</div>
 				<h2 className="font-normal mb-1 text-gray">
-					최소 1개 ~ 최대 10개생성 가능
+					목표를 달성하기 위해 매일 해야하는 것들을 정리해보세요
 				</h2>
 
 				{routine.map((field, index) => (
@@ -104,7 +105,7 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 								key={field.id} // important to include key with field's id
 								type="text"
 								className="placeholder:text-s w-full h-10 outline-none text-emerald-800  border-b-2 border-main"
-								placeholder="루틴을 작성해주세요"
+								placeholder="루틴을 작성해보세요"
 								{...register(`routine.${index}.value` as const)}
 							/>
 

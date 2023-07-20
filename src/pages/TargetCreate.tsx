@@ -28,8 +28,8 @@ const TargetCreate = () => {
 
 	const methods = useForm({
 		defaultValues: {
-			subGoal: [{}, {}, {}],
-			routine: [{}],
+			subGoal: [{}, {}],
+			routine: [{}, {}],
 		},
 		resolver: yupResolver(targetSchema),
 	});
