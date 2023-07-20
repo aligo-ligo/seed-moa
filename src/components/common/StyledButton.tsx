@@ -26,7 +26,8 @@ const StyledButton = ({
 		}  px-10 py-2 mt-4 text-white rounded-md  hover:bg-mainHover ease-in duration-100 h-14`,
 		signInAndUp:
 			"text-sm text-mainHover self-center mt-8 hover:text-main ease-in duration-100",
-		target: "mt-16 mb-10 mx-auto w-1/3 h-14 bg-main rounded-lg",
+		target:
+			"mt-12 mb-10 mx-auto w-3/5 h-14 bg-main rounded-lg hover:bg-mainHover",
 		targetCreate:
 			"w-full h-16 text-xl bg-main px-10 py-2 mt-16 text-white rounded-xl",
 		sharing:

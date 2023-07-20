@@ -54,7 +54,6 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 					목표를 달성하기 전 체크 포인트를 설정해주시면 돼요
 					<p>(2개 이상 만드는 것을 추천드려요)</p>
 				</h2>
-
 				{subGoal.map((field, index) => (
 					<>
 						<div className="flex items-center justify-center mt-5">
@@ -122,7 +121,6 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 					</>
 				))}
 			</section>
-
 			<div className="flex gap-4">
 				<button
 					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
