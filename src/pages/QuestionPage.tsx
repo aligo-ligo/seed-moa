@@ -1,11 +1,12 @@
-import { useContext, useEffect } from "react";
+import {  useEffect } from "react";
 import Header from "../components/target/Header";
 import { OliBodyImage } from "../utils/constant/image";
-import { AuthStateContext } from "../context/AuthStateContext";
 import { useGenerationStore } from "../store/store";
 
 const QuestionPage = () => {
 	const { updateHook } = useGenerationStore();
+	
+
 	useEffect(() => {
 		console.log("reRendering");
 	}, [updateHook]);
