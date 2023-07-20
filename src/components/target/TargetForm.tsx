@@ -31,24 +31,22 @@ const TargetForm = ({
 	return (
 		<>
 			<div
-				className="mt-10 mr-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md cursor-pointer"
+				className="mt-10 p-6 min-w-full min-h-[200px] border-2 border-mainHover rounded-md cursor-pointer"
 				onClick={() => {
 					navigate(`${id}`);
 				}}
 			>
 				<h2 className="font-bold text-2xl truncate">{goal}</h2>
-				<img
-					src={OliBodyImage}
-					alt="자그마한 로고 사진"
-					className="w-48 mx-auto"
-				/>
+				<div className="px-6 mb-6 desktop:p-2">
+					<img src={OliBodyImage} alt="자그마한 로고 사진" />
+				</div>
 				<div className="flex">
 					<div className="flex flex-col w-1/2 p-2">
-						<label className="font-medium">성취률</label>
+						<label className="mb-2  font-medium">성취률</label>
 						<ProgressBar completed={successPercentage} />
 					</div>
 					<div className="flex flex-col w-1/2 p-2">
-						<label className="font-medium">성공 예측률</label>
+						<label className="mb-2  font-medium">성공 예측률</label>
 						<ProgressBar completed={votePercentage} />
 					</div>
 				</div>

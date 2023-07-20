@@ -35,7 +35,7 @@ const Target = () => {
 						<TargetEmptyForm />
 					)}
 					<Carousel
-						className="w-full desktop:w-2/3"
+						className="w-3/4 desktop:w-2/3"
 						useKeyboardArrows
 						showThumbs={false}
 						showIndicators={false}
