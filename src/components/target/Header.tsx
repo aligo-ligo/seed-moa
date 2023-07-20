@@ -8,10 +8,6 @@ type Props = {
 
 const Header = ({ name }: Props) => {
 	const isNameExisted = !!name === true;
-	console.log(
-		"------------------------------------------------------",
-		isNameExisted
-	);
 	const { openSideBar } = usePopUp();
 
 	return (

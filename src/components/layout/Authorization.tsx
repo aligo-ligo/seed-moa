@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN } from "../../utils/constant/auth";
-import { useContext, useEffect } from "react";
-import { AuthStateContext } from "../../context/AuthStateContext";
+import { useEffect } from "react";
+import { useGenerationStore } from "../../store/store";
 
 interface AuthorizationProps {
 	children: React.ReactNode;
@@ -9,16 +9,14 @@ interface AuthorizationProps {
 
 const Authorization: React.FC<AuthorizationProps> = ({ children }) => {
 	const isLogged = Boolean(localStorage.getItem(ACCESS_TOKEN));
-	const { isLoggedIn } = useContext(AuthStateContext);
-
-	console.log("프로텍트 로그인인지", isLoggedIn);
+	const { updateHook } = useGenerationStore();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!isLogged) {
 			navigate("/signin");
 		}
-	}, [isLogged, isLoggedIn, navigate]);
+	}, [isLogged, updateHook, navigate]);
 
 	return <>{children}</>;
 };

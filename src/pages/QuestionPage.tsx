@@ -1,21 +1,17 @@
-import { useContext, useEffect } from "react";
+import {  useEffect } from "react";
 import Header from "../components/target/Header";
 import { OliBodyImage } from "../utils/constant/image";
-import { AuthStateContext } from "../context/AuthStateContext";
+import { useGenerationStore } from "../store/store";
 
 const QuestionPage = () => {
-	const { isLoggedIn } = useContext(AuthStateContext);
-	console.log("isLoggedIn", isLoggedIn);
+	const { updateHook } = useGenerationStore();
+	
+
 	useEffect(() => {
 		console.log("reRendering");
-	}, [isLoggedIn]);
+	}, [updateHook]);
 
 	const userNickName = localStorage.getItem("userNickName");
-
-	console.log("isLoggedIn", isLoggedIn);
-	useEffect(() => {
-		console.log("reRendering");
-	}, [isLoggedIn]);
 
 	return (
 		<div className="relative  px-6 min-h-screen ">

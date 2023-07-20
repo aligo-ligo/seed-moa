@@ -5,9 +5,8 @@ import { useAuthService } from "../../hooks/useAuth";
 import { FiEdit } from "react-icons/fi";
 import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
-import { useContext } from "react";
-import { AuthStateContext } from "../../context/AuthStateContext";
 import { LoudOli, OliImage } from "../../utils/constant/image";
+import { useGenerationStore } from "../../store/store";
 
 type Props = {
 	isNameExisted: boolean;
@@ -15,13 +14,13 @@ type Props = {
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();
-	const { updateLoggedIn } = useContext(AuthStateContext);
+	const { setUpdateHook } = useGenerationStore();
 	const authService = useAuthService();
 	const navigate = useNavigate();
 
 	const hook = () => {
 		authService?.logout();
-		updateLoggedIn();
+		setUpdateHook(true);
 		closeSideBar();
 	};
 
