@@ -7,6 +7,8 @@ import { CSSTransition } from "react-transition-group";
 import "../../styles/Sidebar.css";
 import { LoudOli, OliImage } from "../../utils/constant/image";
 import { useGenerationStore } from "../../store/store";
+import useToastList from "../../hooks/useToastList";
+import LogoutToast from "../toast/LogoutToast";
 
 type Props = {
 	isNameExisted: boolean;
@@ -15,12 +17,14 @@ type Props = {
 const Sidebar = ({ isNameExisted, name }: Props) => {
 	const { isSideBarOpen, outside, closeSideBar } = usePopUp();
 	const { setUpdateHook } = useGenerationStore();
+	const { show } = useToastList();
 	const authService = useAuthService();
 	const navigate = useNavigate();
 
 	const hook = () => {
 		authService?.logout();
 		setUpdateHook(true);
+		show("logoutToast");
 		closeSideBar();
 	};
 

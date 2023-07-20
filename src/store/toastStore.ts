@@ -3,7 +3,8 @@ import { create } from "zustand";
 export const TOAST_TYPE = {
 	toastA: "toastA",
 	toastB: "toastB",
-	toastC: "toastC",
+	createToast: "createToast",
+	logoutToast: "logoutToast",
 } as const;
 
 export type ToastType = keyof typeof TOAST_TYPE;
