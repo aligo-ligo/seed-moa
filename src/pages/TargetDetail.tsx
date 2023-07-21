@@ -25,7 +25,6 @@ const TargetDetail = () => {
 		target?.successVote,
 		target?.voteTotal
 	);
-
 	const {
 		isModalOpen,
 		openModal,
@@ -34,6 +33,10 @@ const TargetDetail = () => {
 		buttonModalType,
 		changeModalType,
 	} = usePopUp();
+
+	if (!target) {
+		return null;
+	}
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
@@ -45,7 +48,7 @@ const TargetDetail = () => {
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
 						<p className="font-semibold text-xl">성취 그래프</p>
-						<LineGraph />
+						<LineGraph start={target?.startDate} end={target?.endDate} />
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>

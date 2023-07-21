@@ -1,6 +1,12 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
 import { LoudOli } from "../../utils/constant/image";
+import { getDateRange, getMonthRange } from "../../utils/formatDate";
+
+interface Props {
+	start: string;
+	end: string;
+}
 
 const resizeImage = (
 	image: HTMLImageElement,
@@ -17,7 +23,9 @@ const resizeImage = (
 	return canvas;
 };
 
-const CustomLineChart = () => {
+const CustomLineChart = ({ start, end }: Props) => {
+	const getDateList = getDateRange(start, end);
+	const getMonthList = getMonthRange(start, end);
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
 	const test = [1, 2, 3, 4, 5, 6, 1];
@@ -33,7 +41,7 @@ const CustomLineChart = () => {
 				chartInstanceRef.current = new Chart(chartCanvas, {
 					type: "line",
 					data: {
-						labels: test,
+						labels: getDateList,
 						datasets: [
 							{
 								label: "목표 성취율",
