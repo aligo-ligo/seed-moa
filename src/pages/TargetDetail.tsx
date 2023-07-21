@@ -11,7 +11,7 @@ import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
 
 import RoutineBox from "../components/target/RoutineBox";
-import LineGraphPrep from "../components/target/LineGraphPrep";
+import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
 
 const TargetDetail = () => {
@@ -45,8 +45,7 @@ const TargetDetail = () => {
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
 						<p className="font-semibold text-xl">성취 그래프</p>
-						{/* <LineGraph /> */}
-						<LineGraphPrep />
+						<LineGraph />
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>

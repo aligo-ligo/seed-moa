@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
-import { heroImage } from "../../utils/constant/image";
+import { LoudOli } from "../../utils/constant/image";
 
 const resizeImage = (
 	image: HTMLImageElement,
@@ -20,12 +20,12 @@ const resizeImage = (
 const CustomLineChart = () => {
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
-	const test = [1, 2, 3, 4, 5, 6];
+	const test = [1, 2, 3, 4, 5, 6, 1];
 
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");
 		const image = new Image();
-		image.src = heroImage;
+		image.src = LoudOli;
 
 		image.onload = () => {
 			const resizedImage = resizeImage(image, 30, 30);
@@ -36,10 +36,10 @@ const CustomLineChart = () => {
 						labels: test,
 						datasets: [
 							{
-								label: "Sales of the Week",
-								data: [30, 6, 9],
-								backgroundColor: "aqua",
-								borderColor: "aqua",
+								label: "목표 성취율",
+								data: [5, 30, 50, 70, 50, 70, 50, 70, 50, 70, 50, 70, 50, 70],
+								backgroundColor: "#BACB91",
+								borderColor: "#BACB91",
 								fill: false,
 								tension: 0.4,
 								showLine: true,
@@ -74,7 +74,7 @@ const CustomLineChart = () => {
 				chartInstanceRef.current.destroy();
 			}
 		};
-	}, []);
+	}, [test]);
 
 	return <canvas ref={chartRef} />;
 };
