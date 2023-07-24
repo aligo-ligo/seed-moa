@@ -47,7 +47,14 @@ const TargetDetail = () => {
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
-						<p className="font-semibold text-xl">성취 그래프</p>
+						<div className="flex justify-between">
+							<p className="font-semibold text-xl">성취 그래프</p>
+							<div className="text-sm flex gap-3">
+								<button type="button">월별</button>
+								<button type="button">주별</button>
+								<button type="button">일별</button>
+							</div>
+						</div>
 						<LineGraph start={target?.startDate} end={target?.endDate} />
 					</div>
 					<div>

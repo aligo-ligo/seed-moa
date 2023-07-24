@@ -58,7 +58,7 @@ export const getDateRange = (startDate: string, endDate: string): string[] => {
 		start.setDate(start.getDate() + 1);
 	}
 
-	return result.map((date) => `${date.split("-")[1]}월${date.split("-")[2]}일`);
+	return result;
 };
 
 export const getWeekDate = (startDate: string, endDate: string): string[] => {

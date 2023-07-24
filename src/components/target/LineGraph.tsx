@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
+import "chartjs-adapter-date-fns";
 import { LoudOli } from "../../utils/constant/image";
 import { getDateRange, getMonthRange } from "../../utils/formatDate";
 
@@ -28,7 +29,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 	const getMonthList = getMonthRange(start, end);
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
-	const test = [1, 2, 3, 4, 5, 6, 1];
+	const dataPoints = [0, 0, 0, 0, 0, 0, 50, 70, 50, 70, 50, 70, 50, 70];
 
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");
@@ -36,7 +37,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 		image.src = LoudOli;
 
 		image.onload = () => {
-			const resizedImage = resizeImage(image, 30, 30);
+			const resizedImage = resizeImage(image, 20, 20);
 			if (chartCanvas) {
 				chartInstanceRef.current = new Chart(chartCanvas, {
 					type: "line",
@@ -45,7 +46,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 						datasets: [
 							{
 								label: "목표 성취율",
-								data: [5, 30, 50, 70, 50, 70, 50, 70, 50, 70, 50, 70, 50, 70],
+								data: dataPoints,
 								backgroundColor: "#BACB91",
 								borderColor: "#BACB91",
 								fill: false,
@@ -59,6 +60,29 @@ const CustomLineChart = ({ start, end }: Props) => {
 					options: {
 						responsive: true,
 						scales: {
+							xAxes: {
+								ticks: {
+									autoSkip: false,
+									labelOffset: 4,
+									padding: 4,
+									font: {
+										size: 8,
+									},
+								},
+								grid: {
+									display: false, //뒷배경 라인 없애기
+								},
+							},
+							x: {
+								type: "time",
+								time: {
+									unit: "day",
+								},
+								display: false,
+								ticks: {
+									display: false,
+								},
+							},
 							y: {
 								ticks: {
 									stepSize: 100,
@@ -66,11 +90,6 @@ const CustomLineChart = ({ start, end }: Props) => {
 								},
 								min: 0,
 								max: 100,
-							},
-							x: {
-								grid: {
-									display: false,
-								},
 							},
 						},
 					},
@@ -82,7 +101,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 				chartInstanceRef.current.destroy();
 			}
 		};
-	}, [test]);
+	}, []);
 
 	return <canvas ref={chartRef} />;
 };
