@@ -83,7 +83,6 @@ export const getMonthRange = (startDate: string, endDate: string): string[] => {
 
 	while (start <= end) {
 		result.push(start.toISOString().split("T")[0]);
-		console.log("pushing", result);
 		start.setMonth(start.getMonth() + 1);
 	}
 

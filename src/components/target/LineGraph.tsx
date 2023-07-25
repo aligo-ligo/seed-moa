@@ -1,8 +1,8 @@
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
-import "chartjs-adapter-date-fns";
 import { LoudOli } from "../../utils/constant/image";
 import { getDateRange, getMonthRange } from "../../utils/formatDate";
+import "chartjs-adapter-date-fns";
 
 interface Props {
 	start: string;
@@ -31,6 +31,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 	const chartInstanceRef = useRef<any>(null);
 	const dataPoints = [0, 0, 0, 0, 0, 0, 50, 70, 50, 70, 50, 70, 50, 70];
 
+	console.log(getDateList, start, end);
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");
 		const image = new Image();
@@ -60,29 +61,26 @@ const CustomLineChart = ({ start, end }: Props) => {
 					options: {
 						responsive: true,
 						scales: {
-							xAxes: {
-								ticks: {
-									autoSkip: false,
-									labelOffset: 4,
-									padding: 4,
-									font: {
-										size: 8,
-									},
-								},
-								grid: {
-									display: false, //뒷배경 라인 없애기
-								},
-							},
 							x: {
 								type: "time",
 								time: {
 									unit: "day",
 								},
-								display: false,
 								ticks: {
-									display: false,
+									autoSkip: false,
+									labelOffset: 4,
+									padding: 4,
+									font: {
+										size: 10,
+									},
 								},
+								grid: {
+									display: false, //뒷배경 라인 없애기
+								},
+								min: start,
+								max: end,
 							},
+
 							y: {
 								ticks: {
 									stepSize: 100,
