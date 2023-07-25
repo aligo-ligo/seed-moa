@@ -3,6 +3,7 @@ import Chart, { TimeUnit } from "chart.js/auto";
 import { LoudOli } from "../../utils/constant/image";
 import { getDateRange } from "../../utils/formatDate";
 import "chartjs-adapter-date-fns";
+import gradient from "chartjs-plugin-gradient";
 
 interface Props {
 	start: string;
@@ -29,9 +30,12 @@ const CustomLineChart = ({ start, end, isWhichChart }: Props) => {
 	const getDateList = getDateRange(start, end);
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
-	const dataPoints = [0, 0, 0, 0, 0, 0, 50, 70, 50, 70, 50, 70, 50, 70];
 
 	console.log(getDateList, start, end);
+
+	// const datasets: ChartData<"line", { key: string; value: number }[]> = {
+	// 	datasets: ,
+	// };
 	useEffect(() => {
 		const chartCanvas = chartRef?.current?.getContext("2d");
 		const image = new Image();
@@ -46,8 +50,17 @@ const CustomLineChart = ({ start, end, isWhichChart }: Props) => {
 						labels: getDateList,
 						datasets: [
 							{
+								data: [
+									{ key: "2023-07-25", value: 0 },
+									{ key: "2023-07-26", value: 50 },
+									{ key: "2023-07-27", value: 30 },
+									{ key: "2023-09-01", value: 100 },
+								],
+								parsing: {
+									xAxisKey: "key",
+									yAxisKey: "value",
+								},
 								label: "목표 성취율",
-								data: dataPoints,
 								backgroundColor: "#BACB91",
 								borderColor: "#BACB91",
 								fill: false,
@@ -77,6 +90,7 @@ const CustomLineChart = ({ start, end, isWhichChart }: Props) => {
 								grid: {
 									display: false, //뒷배경 라인 없애기
 								},
+
 								min: start,
 								max: end,
 							},
@@ -86,6 +100,7 @@ const CustomLineChart = ({ start, end, isWhichChart }: Props) => {
 									stepSize: 100,
 									callback: (value: string | number) => value + "%",
 								},
+
 								min: 0,
 								max: 100,
 							},

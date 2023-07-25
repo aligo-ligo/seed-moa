@@ -24,12 +24,18 @@ const TargetDetail = () => {
 	const { data: target } = useTargetOnUser(id, targetService);
 	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
 
-	console.log("일주월", isWhichChart);
-
-	const percentage = calculatePercentage(
+	const votePercentage = calculatePercentage(
 		target?.successVote,
 		target?.voteTotal
 	);
+
+	const checkPointPercentage = calculatePercentage(
+		target?.successCount,
+		target?.subGoalTotal
+	);
+
+	console.log("subgoal", checkPointPercentage);
+
 	const {
 		isModalOpen,
 		openModal,
@@ -107,7 +113,7 @@ const TargetDetail = () => {
 								target?.voteTotal || 0
 							}명 참여했어요`}</p>
 						</div>
-						<ProgressBar completed={percentage} />
+						<ProgressBar completed={votePercentage} />
 					</div>
 				</div>
 
