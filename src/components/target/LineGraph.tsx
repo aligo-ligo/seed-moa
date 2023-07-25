@@ -1,12 +1,13 @@
 import { useRef, useEffect } from "react";
-import Chart from "chart.js/auto";
+import Chart, { TimeUnit } from "chart.js/auto";
 import { LoudOli } from "../../utils/constant/image";
-import { getDateRange, getMonthRange } from "../../utils/formatDate";
+import { getDateRange } from "../../utils/formatDate";
 import "chartjs-adapter-date-fns";
 
 interface Props {
 	start: string;
 	end: string;
+	isWhichChart: TimeUnit;
 }
 
 const resizeImage = (
@@ -24,9 +25,8 @@ const resizeImage = (
 	return canvas;
 };
 
-const CustomLineChart = ({ start, end }: Props) => {
+const CustomLineChart = ({ start, end, isWhichChart }: Props) => {
 	const getDateList = getDateRange(start, end);
-	const getMonthList = getMonthRange(start, end);
 	const chartRef = useRef<HTMLCanvasElement | null>(null);
 	const chartInstanceRef = useRef<any>(null);
 	const dataPoints = [0, 0, 0, 0, 0, 0, 50, 70, 50, 70, 50, 70, 50, 70];
@@ -64,7 +64,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 							x: {
 								type: "time",
 								time: {
-									unit: "day",
+									unit: `${isWhichChart}`,
 								},
 								ticks: {
 									autoSkip: false,
@@ -99,7 +99,7 @@ const CustomLineChart = ({ start, end }: Props) => {
 				chartInstanceRef.current.destroy();
 			}
 		};
-	}, []);
+	}, [isWhichChart, start, end]);
 
 	return <canvas ref={chartRef} />;
 };

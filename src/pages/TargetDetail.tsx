@@ -13,6 +13,8 @@ import { useTarget } from "../hooks/useTarget";
 import RoutineBox from "../components/target/RoutineBox";
 import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
+import { useState } from "react";
+import { SelectKey } from "../types/Chart";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -20,6 +22,9 @@ const TargetDetail = () => {
 	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
+	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
+
+	console.log("일주월", isWhichChart);
 
 	const percentage = calculatePercentage(
 		target?.successVote,
@@ -37,6 +42,12 @@ const TargetDetail = () => {
 	if (!target) {
 		return null;
 	}
+	const filterChartHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		if (e.target.value) {
+			const target = e.target.value as SelectKey;
+			setIsWhichChart(target);
+		}
+	};
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
@@ -49,13 +60,20 @@ const TargetDetail = () => {
 					<div>
 						<div className="flex justify-between">
 							<p className="font-semibold text-xl">성취 그래프</p>
-							<div className="text-sm flex gap-3">
-								<button type="button">월별</button>
-								<button type="button">주별</button>
-								<button type="button">일별</button>
-							</div>
+							<select
+								className="text-sm flex gap-3 outline-none"
+								onChange={(e) => filterChartHandler(e)}
+							>
+								<option value="day">일별</option>
+								<option value="week">주별</option>
+								<option value="month">월별</option>
+							</select>
 						</div>
-						<LineGraph start={target?.startDate} end={target?.endDate} />
+						<LineGraph
+							start={target?.startDate}
+							end={target?.endDate}
+							isWhichChart={isWhichChart}
+						/>
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
