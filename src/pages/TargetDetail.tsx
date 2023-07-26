@@ -36,19 +36,17 @@ const TargetDetail = () => {
 	if (!target) {
 		return null;
 	}
-	const getDateList = getDateRange(target?.startDate, target?.endDate);
-	const getDateListMap = new Map();
-	getDateList.forEach((date) => getDateListMap.set(date, 80));
-
 	const votePercentage = calculatePercentage(
 		target?.successVote,
 		target?.voteTotal
 	);
-
 	const checkPointPercentage = calculatePercentage(
 		target?.successCount,
 		target?.subGoalTotal
 	);
+	const getDateList = getDateRange(target?.startDate, target?.endDate);
+	const getDateListMap = new Map();
+	getDateList.forEach((date) => getDateListMap.set(date, checkPointPercentage));
 
 	console.log("subgoal", checkPointPercentage);
 

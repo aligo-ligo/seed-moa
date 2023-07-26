@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { parse, format } from "date-fns";
 import {
 	Chart as ChartJS,
 	ChartOptions,
@@ -9,13 +10,10 @@ import {
 	PointElement,
 	TimeScale,
 } from "chart.js";
-
+import zoomPlugin from "chartjs-plugin-zoom";
 import "chartjs-adapter-date-fns";
-
 import { useMap } from "../../hooks/useMap";
-import { formatDate } from "../../utils/formatDate";
 import { SelectKey } from "../../types/Chart";
-import is from "date-fns/esm/locale/is/index.js";
 
 interface Props {
 	start: string;
@@ -23,22 +21,8 @@ interface Props {
 	getDateListMap: Map<string, number | null>;
 }
 
-// const resizeImage = (
-// 	image: HTMLImageElement,
-// 	width: number,
-// 	height: number
-// ) => {
-// 	const canvas = document.createElement("canvas");
-// 	canvas.width = width;
-// 	canvas.height = height;
-// 	const ctx = canvas.getContext("2d");
-// 	if (ctx && image.complete) {
-// 		ctx.drawImage(image, 0, 0, width, height);
-// 	}
-// 	return canvas;
-// };
-
 ChartJS.register(
+	zoomPlugin,
 	LineElement,
 	CategoryScale, // x axis
 	LinearScale, //y axis
@@ -49,9 +33,12 @@ ChartJS.register(
 const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 	const [map, action] = useMap(getDateListMap);
 	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
+	const chartRef = useRef(null);
 	const dateList = Array.from(getDateListMap.keys());
+
 	//Chart.js 데이터 객체이기에 배열로 변환
 	const dataArray = Array.from(map);
+	console.log(dataArray);
 	// const set = () => action.set(formatDate(Number(Date.now())), 0);
 
 	const filterChartHandler = () => {
@@ -63,6 +50,7 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 		console.log(selectedValue);
 	};
 
+	console.log(chartRef);
 	const data = {
 		labels: dateList,
 		datasets: [
@@ -71,7 +59,7 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 				label: "목표 성취율",
 				backgroundColor: "#BACB91",
 				borderColor: "#BACB91",
-				fill: false,
+				fill: true,
 				tension: 0.4,
 				showLine: true,
 			},
@@ -83,6 +71,24 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 		plugins: {
 			legend: {
 				display: false,
+			},
+			zoom: {
+				limits: {
+					x: { min: new Date(start).getTime(), max: new Date(end).getTime() },
+				},
+				zoom: {
+					wheel: {
+						enabled: true,
+					},
+					pinch: {
+						enabled: true,
+					},
+					mode: "x",
+				},
+				pan: {
+					enabled: true,
+					mode: "x",
+				},
 			},
 		},
 		scales: {
@@ -135,8 +141,12 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 					<option value="month">월별</option>
 				</select>
 			</div>
-			<Line data-chromatic="ignore" data={data} options={options} />
-			{/* <canvas ref={chartRef}></canvas> */}
+			<Line
+				ref={chartRef}
+				fallbackContent="null"
+				data={data}
+				options={options}
+			/>
 		</>
 	);
 };
