@@ -24,7 +24,6 @@ const TargetDetail = () => {
 	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
-	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
 
 	const {
 		isModalOpen,
@@ -56,12 +55,6 @@ const TargetDetail = () => {
 	if (!target) {
 		return null;
 	}
-	const filterChartHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		if (e.target.value) {
-			const target = e.target.value as SelectKey;
-			setIsWhichChart(target);
-		}
-	};
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
@@ -74,19 +67,10 @@ const TargetDetail = () => {
 					<div>
 						<div className="flex justify-between">
 							<p className="font-semibold text-xl">성취 그래프</p>
-							<select
-								className="text-sm flex gap-3 outline-none"
-								onChange={(e) => filterChartHandler(e)}
-							>
-								<option value="day">일별</option>
-								<option value="week">주별</option>
-								<option value="month">월별</option>
-							</select>
 						</div>
 						<LineGraph
 							start={target?.startDate}
 							end={target?.endDate}
-							isWhichChart={isWhichChart}
 							getDateListMap={getDateListMap}
 						/>
 					</div>
