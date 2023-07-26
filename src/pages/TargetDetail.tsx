@@ -15,6 +15,8 @@ import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
 import { useState } from "react";
 import { SelectKey } from "../types/Chart";
+import { MapOrEntries, useMap } from "../hooks/useMap";
+import { formatDate, getDateRange } from "../utils/formatDate";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -23,6 +25,21 @@ const TargetDetail = () => {
 	const targetService = useTarget();
 	const { data: target } = useTargetOnUser(id, targetService);
 	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
+
+	const {
+		isModalOpen,
+		openModal,
+		closeModal,
+		outside,
+		buttonModalType,
+		changeModalType,
+	} = usePopUp();
+	if (!target) {
+		return null;
+	}
+	const getDateList = getDateRange(target?.startDate, target?.endDate);
+	const getDateListMap = new Map();
+	getDateList.forEach((date) => getDateListMap.set(date, 80));
 
 	const votePercentage = calculatePercentage(
 		target?.successVote,
@@ -35,15 +52,6 @@ const TargetDetail = () => {
 	);
 
 	console.log("subgoal", checkPointPercentage);
-
-	const {
-		isModalOpen,
-		openModal,
-		closeModal,
-		outside,
-		buttonModalType,
-		changeModalType,
-	} = usePopUp();
 
 	if (!target) {
 		return null;
@@ -79,6 +87,7 @@ const TargetDetail = () => {
 							start={target?.startDate}
 							end={target?.endDate}
 							isWhichChart={isWhichChart}
+							getDateListMap={getDateListMap}
 						/>
 					</div>
 					<div>
