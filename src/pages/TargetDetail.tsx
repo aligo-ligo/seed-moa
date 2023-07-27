@@ -14,6 +14,10 @@ import RoutineBox from "../components/target/RoutineBox";
 import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
 import SkeletonElement from "../components/layout/Skeleton";
+import { useState } from "react";
+import { SelectKey } from "../types/Chart";
+import { MapOrEntries, useMap } from "../hooks/useMap";
+import { formatDate, getDateRange } from "../utils/formatDate";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -21,11 +25,6 @@ const TargetDetail = () => {
 	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
 	const { data: target, isLoading } = useTargetOnUser(id, targetService);
-
-	const percentage = calculatePercentage(
-		target?.successVote,
-		target?.voteTotal
-	);
 
 	const {
 		isModalOpen,
@@ -35,6 +34,30 @@ const TargetDetail = () => {
 		buttonModalType,
 		changeModalType,
 	} = usePopUp();
+	if (!target) {
+		return null;
+	}
+	const votePercentage = calculatePercentage(
+		target?.successVote,
+		target?.voteTotal
+	);
+	const checkPointPercentage = calculatePercentage(
+		target?.successCount,
+		target?.subGoalTotal
+	);
+	const getDateList = getDateRange(target?.startDate, target?.endDate);
+	const getDateListMap = new Map();
+	// formatDate(new Date().toString()))
+	getDateList.forEach((date) => {
+		getDateListMap.set(date, null);
+	});
+
+	console.log(getDateListMap);
+	// if (date === "2023-07-26") {
+
+	if (!target) {
+		return null;
+	}
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
@@ -45,9 +68,14 @@ const TargetDetail = () => {
 				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
-						<p className="font-semibold text-xl">성취 그래프</p>
-
-						<LineGraph />
+						<div className="flex justify-between">
+							<p className="font-semibold text-xl">성취 그래프</p>
+						</div>
+						<LineGraph
+							start={target?.startDate}
+							end={target?.endDate}
+							getDateListMap={getDateListMap}
+						/>
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
@@ -94,7 +122,7 @@ const TargetDetail = () => {
 								target?.voteTotal || 0
 							}명 참여했어요`}</p>
 						</div>
-						<ProgressBar completed={percentage} />
+						<ProgressBar completed={votePercentage} />
 					</div>
 				</div>
 
