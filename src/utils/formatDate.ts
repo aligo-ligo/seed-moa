@@ -2,8 +2,9 @@ export function formatDate(date: string | number): string {
 	if (date !== null) {
 		const targetDate = new Date(date);
 		const year = targetDate.getFullYear();
-		const month = targetDate.getMonth() + 1;
-		const day = targetDate.getDate();
+		const month = (targetDate.getMonth() + 1).toString().padStart(2, "0"); // 월을 2자리 문자열로 변환하고 앞에 0을 붙임
+		const day = targetDate.getDate().toString().padStart(2, "0"); // 일을 2자리 문자열로 변환하고 앞에 0을 붙임
+		console.log(month, day);
 		const formattedDate = `${year}-${month}-${day}`;
 		return formattedDate;
 	}

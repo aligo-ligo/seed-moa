@@ -46,9 +46,13 @@ const TargetDetail = () => {
 	);
 	const getDateList = getDateRange(target?.startDate, target?.endDate);
 	const getDateListMap = new Map();
-	getDateList.forEach((date) => getDateListMap.set(date, checkPointPercentage));
+	// formatDate(new Date().toString()))
+	getDateList.forEach((date) => {
+		getDateListMap.set(date, null);
+	});
 
-	console.log("subgoal", checkPointPercentage);
+	console.log(getDateListMap);
+	// if (date === "2023-07-26") {
 
 	if (!target) {
 		return null;
