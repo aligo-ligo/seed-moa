@@ -13,13 +13,14 @@ import { useTarget } from "../hooks/useTarget";
 import RoutineBox from "../components/target/RoutineBox";
 import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
+import SkeletonElement from "../components/layout/Skeleton";
 
 const TargetDetail = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
-	const { data: target } = useTargetOnUser(id, targetService);
+	const { data: target, isLoading } = useTargetOnUser(id, targetService);
 
 	const percentage = calculatePercentage(
 		target?.successVote,
@@ -45,10 +46,18 @@ const TargetDetail = () => {
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
 						<p className="font-semibold text-xl">성취 그래프</p>
+
 						<LineGraph />
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
+						{isLoading && (
+							<>
+								<SkeletonElement type="title" />
+								<SkeletonElement type="title" />
+							</>
+						)}
+
 						{target?.subGoal?.map((subGoal, index) => {
 							return (
 								<Checkbox
@@ -64,6 +73,12 @@ const TargetDetail = () => {
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">루틴</h2>
+						{isLoading && (
+							<>
+								<SkeletonElement type="title" />
+								<SkeletonElement type="title" />
+							</>
+						)}
 						{target?.routine.map((routine, index) => {
 							return (
 								<RoutineBox key={index} id={index}>

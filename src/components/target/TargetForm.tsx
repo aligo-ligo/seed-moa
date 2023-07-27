@@ -37,8 +37,10 @@ const TargetForm = ({
 				}}
 			>
 				<h2 className="font-bold text-2xl truncate">{goal}</h2>
-				<div className="px-6 mb-6 desktop:p-2">
-					<img src={OliBodyImage} alt="자그마한 로고 사진" />
+				<div className="px-6 mb-6 desktop:p-2 flex items-center justify-center ">
+					<div className="w-60 px-6 mb-6 ">
+						<img src={OliBodyImage} alt="자그마한 로고 사진" />
+					</div>
 				</div>
 				<div className="flex">
 					<div className="flex flex-col w-1/2 p-2">

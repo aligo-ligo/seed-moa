@@ -3,18 +3,19 @@ import Header from "../components/target/Header";
 import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
-import { CSSProperties } from "react";
+import { CSSProperties, Suspense } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useAllTarget } from "../hooks/useGetTargets";
+import SkeletonElement from "../components/layout/Skeleton";
 
 const Target = () => {
 	const navigate = useNavigate();
 	const targetService = useTarget();
-	const { data: targets } = useAllTarget(targetService);
+	const { data: targets, isLoading } = useAllTarget(targetService);
 	const name = localStorage.getItem("userNickName");
 
 	const arrowStyles: CSSProperties = {
@@ -24,6 +25,7 @@ const Target = () => {
 		fontSize: "40px",
 		cursor: "pointer",
 	};
+	console.log("target----arget----arget----arget----");
 
 	return (
 		<div className={`relative flex flex-col min-h-screen px-6 pb-10`}>
@@ -31,8 +33,11 @@ const Target = () => {
 			<section className="flex flex-col mt-10 h-full">
 				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
 				<div className="flex flex-row justify-center mt-8 h-full">
-					{(targets === undefined || targets.length === 0) && (
-						<TargetEmptyForm />
+					{isLoading && (
+						<div className="flex flex-col items-end">
+							<SkeletonElement type="text" />
+							<TargetEmptyForm />
+						</div>
 					)}
 					<Carousel
 						className="w-3/4 desktop:w-2/3"

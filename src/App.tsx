@@ -15,6 +15,7 @@ import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
 import { CheckModalProvider } from "./context/CheckModalContext";
 import { HelmetProvider } from "react-helmet-async";
+import { domMax, LazyMotion } from "framer-motion";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
@@ -28,30 +29,31 @@ function App() {
 	const targetService = new TargetServiceImpl(client.withToken());
 	const guestService = new GuestServiceImpl(client.withoutToken());
 	const routerObject = createBrowserRouter(routerInfo);
+	console.log("------------------------------------");
 
 	return (
-		<>
-			<QueryClientProvider client={queryClient}>
-				<GuestProvider guestService={guestService}>
-					<AuthProvider authService={authService}>
-						<TargetProvider targetService={targetService}>
-							<SideBarProvider>
-								<ModalProvider>
-									<CheckModalProvider>
+		<QueryClientProvider client={queryClient}>
+			<GuestProvider guestService={guestService}>
+				<AuthProvider authService={authService}>
+					<TargetProvider targetService={targetService}>
+						<SideBarProvider>
+							<ModalProvider>
+								<CheckModalProvider>
+									<LazyMotion features={domMax}>
 										<HelmetProvider>
 											<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
 												<RouterProvider router={routerObject} />
 											</main>
 										</HelmetProvider>
-									</CheckModalProvider>
-								</ModalProvider>
-							</SideBarProvider>
-						</TargetProvider>
-					</AuthProvider>
-				</GuestProvider>
-				<ReactQueryDevtools />
-			</QueryClientProvider>
-		</>
+									</LazyMotion>
+								</CheckModalProvider>
+							</ModalProvider>
+						</SideBarProvider>
+					</TargetProvider>
+				</AuthProvider>
+			</GuestProvider>
+			<ReactQueryDevtools />
+		</QueryClientProvider>
 	);
 }
 

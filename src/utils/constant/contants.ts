@@ -3,7 +3,8 @@ import * as yup from "yup";
 export const QueryClientOptions = {
 	defaultOptions: {
 		queries: {
-			staleTime: 5000,
+			staleTime: 10000,
+			retry: 0,
 			refetchOnWindowFocus: false,
 		},
 	},
