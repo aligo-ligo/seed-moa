@@ -17,6 +17,13 @@
 	margin-bottom: 20px;
 }
 
+.skeleton.reply {
+	width: 100%;
+	height: 100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .skeleton.landing {
 	width: 100%;
 	height: 30px;
