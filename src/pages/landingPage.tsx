@@ -60,7 +60,7 @@ const LandingPage = () => {
 					onClick={() => navigate("/signin")}
 					type="button"
 				>
-					로그인
+					일반 로그인
 				</StyledButton>
 				<OAuth />
 			</div>
