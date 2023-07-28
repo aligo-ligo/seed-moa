@@ -66,7 +66,7 @@ export default function AuthInput({
 					name={name}
 					value={text}
 					placeholder={placeholder}
-					className="placeholder:text-xs w-full outline-none text-emerald-800"
+					className="placeholder:text-xs w-full outline-none text-emerald-800 "
 					type={name.toLowerCase()}
 					onChange={handleChange}
 					required

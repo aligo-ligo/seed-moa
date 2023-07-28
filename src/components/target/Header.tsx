@@ -20,7 +20,11 @@ const Header = ({ name }: Props) => {
 					onClick={openSideBar}
 				/>
 			</div>
-			{isNameExisted && <h1 className="font-semibold">안녕하세요 {name}님</h1>}
+			{isNameExisted && (
+				<h1 className="font-semibold pointer-events-none">
+					안녕하세요 {name}님
+				</h1>
+			)}
 			<Sidebar isNameExisted={isNameExisted} name={name} />
 		</div>
 	);

@@ -36,10 +36,14 @@ const TargetGuest = () => {
 		<section className="mt-10">
 			<div className="relative flex flex-col min-h-screen px-6 mb-10">
 				<div>
-					<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
+					<h1 className="font-semibold text-3xl text-center pointer-events-none">
+						{target?.goal}
+					</h1>
 					<div className="flex flex-col gap-6 mt-10">
 						<div>
-							<h2 className="font-semibold text-xl">성취 그래프</h2>
+							<h2 className="font-semibold text-xl pointer-events-none">
+								성취 그래프
+							</h2>
 							<LineGraphPrep />
 						</div>
 						<div>
