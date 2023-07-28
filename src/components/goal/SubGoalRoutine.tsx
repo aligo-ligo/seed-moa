@@ -32,13 +32,19 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 
 	const subgoalWatch = watch("subGoal");
 	const routineWatch = watch("routine");
-	const minGoal = subgoalWatch.length < 4;
+	const minGoal = subgoalWatch.length === 1;
 	const minRoutine = routineWatch.length === 1;
 
 	return (
 		<TargetCreateLayout title={SUBGOAL_TITLE} description={SUBGOAL_DESCRIPTION}>
 			<section className="mb-10">
-				<div className="flex items-center justify-between">
+				<div className="flex items-center justify-center flex-col h-40 border-4 border-[#854d3c] bg-[#0a310a] text-white relative">
+					<p className="w-8 border-2 border-white absolute bottom-0 left-20"></p>
+					<h2 className="text-lg font-bold mb-2">이전 페이지에 작성한 목표</h2>
+					<p>{getGoal}</p>
+				</div>
+
+				<div className="flex items-center justify-between mt-10">
 					<h2 className="text-lg font-bold mb-2">세분화 목표</h2>
 					<button
 						className="text-2xl text-mainDeep pl-4"
@@ -50,7 +56,7 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 						<FiPlusSquare />
 					</button>
 				</div>
-				<h2 className="font-normal mb-1 text-gray">
+				<h2 className="font-normal mb-1 text-gray ">
 					목표를 달성하기 전 체크 포인트를 설정해주시면 돼요
 					<p>(2개 이상 만드는 것을 추천드려요)</p>
 				</h2>

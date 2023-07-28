@@ -8,7 +8,6 @@ import "../../styles/Sidebar.css";
 import { LoudOli, OliImage } from "../../utils/constant/image";
 import { useGenerationStore } from "../../store/store";
 import useToastList from "../../hooks/useToastList";
-import LogoutToast from "../toast/LogoutToast";
 
 type Props = {
 	isNameExisted: boolean;

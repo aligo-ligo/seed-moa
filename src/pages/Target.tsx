@@ -11,6 +11,7 @@ import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useAllTarget } from "../hooks/useGetTargets";
 import SkeletonElement from "../components/layout/Skeleton";
+import CreateToast from "../components/toast/CreateToast";
 
 const Target = () => {
 	const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Target = () => {
 		fontSize: "40px",
 		cursor: "pointer",
 	};
-	console.log("target----arget----arget----arget----");
+	console.log("target", targets);
 
 	return (
 		<div className={`relative flex flex-col min-h-screen px-6 pb-10`}>
@@ -113,6 +114,7 @@ const Target = () => {
 					<FiEdit className="mx-auto text-white text-2xl" />
 				</StyledButton>
 			</section>
+			<CreateToast />
 		</div>
 	);
 };
