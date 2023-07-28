@@ -11,6 +11,7 @@ import { calculatePercentage } from "../utils/calculatePercentage";
 import { useTargetOnGuest } from "../hooks/useGetTargets";
 import Checkbox from "../components/target/Checkbox";
 import SkeletonElement from "../components/layout/Skeleton";
+import TargetEmptyForm from "../components/target/TargetEmptyForm";
 
 const TargetGuest = () => {
 	const { id } = useParams();
@@ -18,7 +19,8 @@ const TargetGuest = () => {
 	const navigate = useNavigate();
 	const { data: target, isLoading } = useTargetOnGuest(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-
+	const isUser = localStorage.getItem("accessToken");
+	console.log("tes", !!isUser);
 	const percentage = calculatePercentage(
 		target?.successVote,
 		target?.voteTotal
@@ -45,7 +47,7 @@ const TargetGuest = () => {
 							<h2 className="font-semibold text-xl pointer-events-none">
 								성취 그래프
 							</h2>
-							<LineGraphPrep />
+							<LineGraphPrep word={"성취도 그래프 커밍쑨"} />
 						</div>
 						<div>
 							<h2 className="font-semibold text-xl">체크 포인트</h2>
@@ -68,18 +70,7 @@ const TargetGuest = () => {
 								);
 							})}
 						</div>
-						<div>
-							<h2 className="font-semibold text-xl">루틴</h2>
-							{isLoading && (
-								<>
-									<SkeletonElement type="title" />
-									<SkeletonElement type="title" />
-								</>
-							)}
-							{target?.routine.map((subGoal, index) => {
-								return <p key={index}>{subGoal.value}</p>;
-							})}
-						</div>
+
 						<div>
 							<div className="flex justify-between items-center">
 								<h2 className="font-semibold text-xl mb-8">투표</h2>
@@ -112,16 +103,35 @@ const TargetGuest = () => {
 							실패
 						</StyledButton>
 					</div>
+
+					<div className="mt-20">
+						<div className="flex justify-between items-center">
+							<h2 className="font-semibold text-xl mb-8">댓글</h2>
+						</div>
+						<LineGraphPrep word={"댓글 기능 필요하시면 올리에게 알려주세요"} />
+					</div>
 					<div className="flex  justify-center py-10">
-						<StyledButton
-							styleName="result"
-							type="button"
-							onClick={() => {
-								navigate("/");
-							}}
-						>
-							나도 목표를 만들어볼래요
-						</StyledButton>
+						{isUser ? (
+							<StyledButton
+								styleName="result"
+								type="button"
+								onClick={() => {
+									navigate("/target/8");
+								}}
+							>
+								상세 페이지로 돌아가기
+							</StyledButton>
+						) : (
+							<StyledButton
+								styleName="result"
+								type="button"
+								onClick={() => {
+									navigate("/");
+								}}
+							>
+								나도 목표를 만들어볼래요
+							</StyledButton>
+						)}
 					</div>
 					{isModalOpen &&
 						createPortal(
