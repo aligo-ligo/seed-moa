@@ -31,7 +31,9 @@ const Target = () => {
 		<div className={`relative flex flex-col min-h-screen px-6 pb-10`}>
 			<Header name={name} />
 			<section className="flex flex-col mt-10 h-full">
-				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
+				<h1 className="font-semibold text-2xl pointer-events-none">
+					현재 타켓 목록
+				</h1>
 				<div className="flex flex-row justify-center mt-8 h-full">
 					{isLoading && (
 						<div className="flex flex-col items-end">

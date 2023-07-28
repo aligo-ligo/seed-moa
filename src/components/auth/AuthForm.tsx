@@ -99,7 +99,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	return (
 		<>
 			<div className="flex flex-col  items-center mb-8 p-3 gap-10">
-				<img src={LogoImage} alt="로고" className="w-4/5" />
+				<img src={LogoImage} alt="로고" className="w-4/5 pointer-events-none" />
 			</div>
 			<form
 				action="submit"

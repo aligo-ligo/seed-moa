@@ -65,11 +65,15 @@ const TargetDetail = () => {
 			{name && id && <Meta name={name} id={id} />}
 
 			<div>
-				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
+				<h1 className="font-semibold text-3xl text-center pointer-events-none">
+					{target?.goal}
+				</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
 						<div className="flex justify-between">
-							<p className="font-semibold text-xl">성취 그래프</p>
+							<p className="font-semibold text-xl pointer-events-none">
+								성취 그래프
+							</p>
 						</div>
 						<LineGraph
 							start={target?.startDate}
