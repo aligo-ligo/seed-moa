@@ -10,12 +10,13 @@ import { useGuest } from "../hooks/useGuest";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import { useTargetOnGuest } from "../hooks/useGetTargets";
 import Checkbox from "../components/target/Checkbox";
+import SkeletonElement from "../components/layout/Skeleton";
 
 const TargetGuest = () => {
 	const { id } = useParams();
 	const guestService = useGuest();
 	const navigate = useNavigate();
-	const { data: target } = useTargetOnGuest(id, guestService);
+	const { data: target, isLoading } = useTargetOnGuest(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
 	const percentage = calculatePercentage(
@@ -48,6 +49,12 @@ const TargetGuest = () => {
 						</div>
 						<div>
 							<h2 className="font-semibold text-xl">체크 포인트</h2>
+							{isLoading && (
+								<>
+									<SkeletonElement type="title" />
+									<SkeletonElement type="title" />
+								</>
+							)}
 							{target?.subGoal?.map((subGoal, index) => {
 								return (
 									<Checkbox
@@ -63,6 +70,12 @@ const TargetGuest = () => {
 						</div>
 						<div>
 							<h2 className="font-semibold text-xl">루틴</h2>
+							{isLoading && (
+								<>
+									<SkeletonElement type="title" />
+									<SkeletonElement type="title" />
+								</>
+							)}
 							{target?.routine.map((subGoal, index) => {
 								return <p key={index}>{subGoal.value}</p>;
 							})}
