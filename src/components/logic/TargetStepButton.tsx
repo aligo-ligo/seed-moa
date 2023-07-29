@@ -26,9 +26,7 @@ const TargetStepButton = ({
 	} = useFormContext();
 
 	const onClickHandler = async () => {
-		console.log("전", next);
 		if (next === "done") return;
-		console.log("후", next);
 		if (prev !== false) return setStep(prev);
 
 		const validate = await trigger(present);

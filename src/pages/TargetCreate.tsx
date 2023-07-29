@@ -8,7 +8,11 @@ import SubGoalRoutine from "../components/goal/SubGoalRoutine";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
+import {
+	TargetCreateProps,
+	TargetInfoType,
+	TargetStepType,
+} from "../types/TargetTypes";
 import { useTarget } from "../hooks/useTarget";
 import CreateBar from "../components/target/animationBars/CreateBar";
 import useToastList from "../hooks/useToastList";
@@ -16,6 +20,18 @@ import CreateToast from "../components/toast/CreateToast";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
+	subGoal: yup.array().of(
+		yup.object().shape({
+			id: yup.string(),
+			value: yup.string().required("세부 목표를 작성해주세요"),
+		})
+	),
+	routine: yup.array().of(
+		yup.object().shape({
+			id: yup.string(),
+			value: yup.string().required("세부 목표를 작성해주세요"),
+		})
+	),
 	endDate: yup.string().required("목표 달성일을 지정해주세요"),
 });
 
@@ -26,7 +42,7 @@ const TargetCreate = () => {
 	const [message, setMessage] = useState("");
 	const [step, setStep] = useState<TargetStepType>("goal");
 
-	const methods = useForm({
+	const methods = useForm<TargetInfoType>({
 		defaultValues: {
 			subGoal: [{}, {}],
 			routine: [{}, {}],

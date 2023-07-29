@@ -6,9 +6,16 @@ import {
 	SUBGOAL_DESCRIPTION,
 	SUBGOAL_TITLE,
 } from "../../utils/constant/target";
+import TargetStepButton from "../logic/TargetStepButton";
+import Validation from "../auth/Validation";
 
 const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
-	const { register, getValues, watch } = useFormContext();
+	const {
+		register,
+		getValues,
+		watch,
+		formState: { errors },
+	} = useFormContext();
 
 	const {
 		fields: subGoal,
@@ -55,28 +62,27 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 					<p>(2개 이상 만드는 것을 추천드려요)</p>
 				</h2>
 				{subGoal.map((field, index) => (
-					<>
-						<div className="flex items-center justify-center mt-5">
-							<span className="font-semibold text-xl pr-4">{index + 1}</span>
-							<input
-								key={field.id} // important to include key with field's id
-								type="text"
-								className="placeholder:text-s w-full h-8 outline-none text-emerald-800 border-b-2 border-main "
-								placeholder="세분화 목표를 작성해보세요"
-								{...register(`subGoal.${index}.value` as const)}
-							/>
+					<div className="flex items-center justify-center mt-5" key={field.id}>
+						<span className="font-semibold text-xl pr-4">{index + 1}</span>
+						<input
+							id={field.id}
+							defaultValue={""}
+							type="text"
+							className="placeholder:text-s w-full h-8 outline-none text-emerald-800 border-b-2 border-main "
+							placeholder="세분화 목표를 작성해보세요"
+							{...register(`subGoal.${index}.value` as const)}
+						/>
 
-							{!minGoal && (
-								<button
-									className="text-2xl text-mainDeep"
-									type="button"
-									onClick={() => subGoalRemove(index)}
-								>
-									<FiMinusSquare />
-								</button>
-							)}
-						</div>
-					</>
+						{!minGoal && (
+							<button
+								className="text-2xl text-mainDeep"
+								type="button"
+								onClick={() => subGoalRemove(index)}
+							>
+								<FiMinusSquare />
+							</button>
+						)}
+					</div>
 				))}
 			</section>
 			<section className="mb-10">
@@ -97,50 +103,48 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 				</h2>
 
 				{routine.map((field, index) => (
-					<>
-						<div className="flex items-center justify-center mt-5">
-							<span className="font-semibold text-xl pr-4">{index + 1}</span>
-							<input
-								key={field.id} // important to include key with field's id
-								type="text"
-								className="placeholder:text-s w-full h-10 outline-none text-emerald-800  border-b-2 border-main"
-								placeholder="루틴을 작성해보세요"
-								{...register(`routine.${index}.value` as const)}
-							/>
+					<div className="flex items-center justify-center mt-5" key={field.id}>
+						<span className="font-semibold text-xl pr-4">{index + 1}</span>
+						<input
+							type="text"
+							defaultValue={""}
+							className="placeholder:text-s w-full h-10 outline-none text-emerald-800  border-b-2 border-main"
+							placeholder="루틴을 작성해보세요"
+							{...register(`routine.${index}.value` as const)}
+						/>
 
-							{!minRoutine && (
-								<button
-									className="text-2xl text-mainDeep"
-									type="button"
-									onClick={() => routineRemove(index)}
-								>
-									<FiMinusSquare />
-								</button>
-							)}
-						</div>
-					</>
+						{!minRoutine && (
+							<button
+								className="text-2xl text-mainDeep"
+								type="button"
+								onClick={() => routineRemove(index)}
+							>
+								<FiMinusSquare />
+							</button>
+						)}
+					</div>
 				))}
 			</section>
 			<div className="flex gap-4">
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					type="button"
-					onClick={() => {
-						setStep("goal");
-					}}
+				<TargetStepButton
+					prev="goal"
+					present={["subGoal"]}
+					next="duration"
+					setStep={setStep}
 				>
 					이전
-				</button>
-				<button
-					className={`w-full h-16 text-xl bg-main px-10 py-2 mt-10 text-white rounded-xl`}
-					onClick={() => {
-						setStep("duration");
-					}}
-					type="button"
+				</TargetStepButton>
+
+				<TargetStepButton
+					present={["subGoal", "routine"]}
+					next="duration"
+					setStep={setStep}
 				>
 					다음
-				</button>
+				</TargetStepButton>
 			</div>
+			{/* <Validation>{errors?.goal?.message?.toString()}</Validation> */}
+			<Validation>{errors?.root?.message}</Validation>
 		</TargetCreateLayout>
 	);
 };

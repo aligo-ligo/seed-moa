@@ -51,7 +51,6 @@ export type TargetInfoType = {
 	subGoal: SubGoalType[];
 	routine: RoutineType[];
 	endDate: string;
-	penalty: string;
 };
 
 export type TargetCreateResultType = number;
