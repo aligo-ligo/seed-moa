@@ -85,10 +85,9 @@ const Target = () => {
 								id,
 								userId,
 								goal,
-								subGoalTotal,
-								successCount,
 								voteTotal,
 								successVote,
+								achievementPer,
 							}) => (
 								<TargetForm
 									key={id}
@@ -96,16 +95,16 @@ const Target = () => {
 										id,
 										userId,
 										goal,
-										subGoalTotal,
-										successCount,
 										voteTotal,
 										successVote,
+										achievementPer,
 									}}
 								/>
 							)
 						)}
 					</Carousel>
 				</div>
+
 				<StyledButton
 					styleName="target"
 					type="button"

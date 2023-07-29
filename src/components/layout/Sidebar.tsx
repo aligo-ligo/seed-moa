@@ -67,6 +67,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
 								if (link.startsWith("https")) {
 									return (
 										<a
+											target="blank"
 											key={index}
 											className="flex items-center cursor-pointer font-bold px-4 hover:text-gray"
 											href={link}

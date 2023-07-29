@@ -6,26 +6,19 @@ import { OliBodyImage } from "../../utils/constant/image";
 
 type PropsTargetType = Pick<
 	TargetType,
-	| "id"
-	| "userId"
-	| "goal"
-	| "subGoalTotal"
-	| "successCount"
-	| "voteTotal"
-	| "successVote"
+	"id" | "userId" | "goal" | "voteTotal" | "successVote" | "achievementPer"
 >;
 
 const TargetForm = ({
 	id,
 	goal,
-	subGoalTotal,
-	successCount,
 	voteTotal,
 	successVote,
+	achievementPer,
 }: PropsTargetType) => {
 	const navigate = useNavigate();
 
-	const successPercentage = calculatePercentage(successCount, subGoalTotal);
+	// const successPercentage = calculatePercentage(successCount, subGoalTotal);
 	const votePercentage = calculatePercentage(successVote, voteTotal);
 
 	return (
@@ -45,7 +38,7 @@ const TargetForm = ({
 				<div className="flex">
 					<div className="flex flex-col w-1/2 p-2">
 						<label className="mb-2  font-medium">성취률</label>
-						<ProgressBar completed={successPercentage} />
+						<ProgressBar completed={achievementPer} />
 					</div>
 					<div className="flex flex-col w-1/2 p-2">
 						<label className="mb-2  font-medium">성공 예측률</label>

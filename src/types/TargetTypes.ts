@@ -16,12 +16,16 @@ export interface TargetType {
 	subGoal: SubGoalType[];
 	routine: RoutineType[];
 	penalty: string;
-	subGoalTotal: number;
-	successCount: number;
+	achievementDate: AchievementDate;
+	achievementPer: number;
 	successVote: number;
 	failureVote: number;
 	voteTotal: number;
 	url: string;
+}
+
+export interface AchievementDate {
+	[key: string]: number;
 }
 
 export type TargetStepType =

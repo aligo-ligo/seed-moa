@@ -20,6 +20,7 @@ const Duration = ({ setStep }: TargetCreateProps) => {
 
 	const endDate = getValues("endDate");
 
+	console.log("end", endDate);
 	return (
 		<TargetCreateLayout
 			title={DURATION_TITLE}
