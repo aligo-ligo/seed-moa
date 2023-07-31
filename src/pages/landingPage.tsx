@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-
 import StyledButton from "../components/common/StyledButton";
-import OAuth from "../components/auth/OAuth";
+
 import { LogoImage, OliBodyImage } from "../utils/constant/image";
 import { ACCESS_TOKEN } from "../utils/constant/auth";
 import Header from "../components/target/Header";
@@ -9,6 +8,7 @@ import { useEffect } from "react";
 import { useGuest } from "../hooks/useGuest";
 import { useInfo } from "../hooks/useGetInfo";
 import SkeletonElement from "../components/layout/Skeleton";
+import OAuth from "../components/auth/OAuth";
 
 const LandingPage = () => {
 	const navigate = useNavigate();
@@ -68,7 +68,7 @@ const LandingPage = () => {
 					onClick={() => navigate("/signin")}
 					type="button"
 				>
-					로그인
+					일반 로그인
 				</StyledButton>
 				<OAuth />
 			</div>

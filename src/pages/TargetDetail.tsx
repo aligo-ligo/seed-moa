@@ -14,10 +14,6 @@ import RoutineBox from "../components/target/RoutineBox";
 import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
 import SkeletonElement from "../components/layout/Skeleton";
-import { useState } from "react";
-import { SelectKey } from "../types/Chart";
-import { MapOrEntries, useMap } from "../hooks/useMap";
-import { formatDate, getDateRange } from "../utils/formatDate";
 
 const TargetDetail = () => {
 	const { id } = useParams();
@@ -26,6 +22,7 @@ const TargetDetail = () => {
 	const targetService = useTarget();
 	const { data: target, isLoading } = useTargetOnUser(id, targetService);
 
+	console.log("targetDetail", target);
 	const {
 		isModalOpen,
 		openModal,
@@ -41,19 +38,11 @@ const TargetDetail = () => {
 		target?.successVote,
 		target?.voteTotal
 	);
-	const checkPointPercentage = calculatePercentage(
-		target?.successCount,
-		target?.subGoalTotal
-	);
-	const getDateList = getDateRange(target?.startDate, target?.endDate);
-	const getDateListMap = new Map();
-	// formatDate(new Date().toString()))
-	getDateList.forEach((date) => {
-		getDateListMap.set(date, null);
-	});
 
-	console.log(getDateListMap);
-	// if (date === "2023-07-26") {
+	// const checkPointPercentage = calculatePercentage(
+	// 	target?.successCount,
+	// 	target?.subGoalTotal
+	// );
 
 	if (!target) {
 		return null;
@@ -75,10 +64,11 @@ const TargetDetail = () => {
 								성취 그래프
 							</p>
 						</div>
+
 						<LineGraph
 							start={target?.startDate}
 							end={target?.endDate}
-							getDateListMap={getDateListMap}
+							achieveDay={target?.achievementDate}
 						/>
 					</div>
 					<div>

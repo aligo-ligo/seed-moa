@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
-import { Line } from "react-chartjs-2";
-import { parse, format } from "date-fns";
+import {
+	Line,
+	getDatasetAtEvent,
+	getElementAtEvent,
+	getElementsAtEvent,
+} from "react-chartjs-2";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+
 import {
 	Chart as ChartJS,
 	ChartOptions,
@@ -9,16 +15,25 @@ import {
 	LinearScale, //y axis
 	PointElement,
 	TimeScale,
+	Filler,
 } from "chart.js";
 import zoomPlugin from "chartjs-plugin-zoom";
 import "chartjs-adapter-date-fns";
-import { useMap } from "../../hooks/useMap";
+
 import { SelectKey } from "../../types/Chart";
+import {
+	convertDateForDay,
+	createDate,
+	formatDate,
+	getDateRange,
+	getPrevDate,
+} from "../../utils/formatDate";
+import { AchievementDate } from "../../types/TargetTypes";
 
 interface Props {
 	start: string;
 	end: string;
-	getDateListMap: Map<string, number | null>;
+	achieveDay: AchievementDate;
 }
 
 ChartJS.register(
@@ -27,35 +42,43 @@ ChartJS.register(
 	CategoryScale, // x axis
 	LinearScale, //y axis
 	PointElement,
-	TimeScale
+	TimeScale,
+	Filler
 );
 
-const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
-	const [map, action] = useMap(getDateListMap);
+const CustomLineChart = ({ start, end, achieveDay }: Props) => {
 	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
-	const chartRef = useRef(null);
-	const dateList = Array.from(getDateListMap.keys());
+	const chartRef = useRef<ChartJS<"line", AchievementDate, string>>(null);
+	const getDateList = getDateRange(start, end);
+	console.log("chartRef", chartRef);
 
-	//Chart.js 데이터 객체이기에 배열로 변환
-	const dataArray = Array.from(map);
-	console.log(dataArray);
-	// const set = () => action.set(formatDate(Number(Date.now())), 0);
-
+	//event: MouseEvent<HTMLCanvasElement>
 	const filterChartHandler = () => {
+		const { current: chart } = chartRef;
+
+		if (!chart) {
+			return;
+		}
+		console.log("chart", formatDate(chart.scales.x.min));
+
 		const selectElement = document.getElementById(
 			"mySelect"
 		) as HTMLSelectElement;
 		const selectedValue = selectElement?.value as SelectKey;
+		console.log("check", selectedValue);
+
 		setIsWhichChart(selectedValue);
-		console.log(selectedValue);
+
+		// printDatasetAtEvent(getDatasetAtEvent(chart, event));
+		// printElementAtEvent(getElementAtEvent(chart, event));
+		// printElementsAtEvent(getElementsAtEvent(chart, event));
 	};
 
-	console.log(chartRef);
 	const data = {
-		labels: dateList,
+		labels: getDateList,
 		datasets: [
 			{
-				data: dataArray,
+				data: achieveDay,
 				label: "목표 성취율",
 				backgroundColor: "#BACB91",
 				borderColor: "#BACB91",
@@ -101,12 +124,18 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 					display: false,
 				},
 				offset: false,
-				min: start,
+				min: getPrevDate(formatDate(new Date().toDateString())),
 				max: end,
 				ticks: {
+					autoSkip: false,
+					stepSize: 1,
+					maxTicksLimit: 10,
 					font: {
 						size: 10,
 					},
+
+					callback: (value: string | number) =>
+						convertDateForDay(formatDate(value)),
 				},
 
 				grid: {
@@ -116,7 +145,7 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 
 			y: {
 				ticks: {
-					stepSize: 100,
+					stepSize: 50,
 					callback: (value: string | number) => value + "%",
 				},
 				border: {
@@ -130,22 +159,32 @@ const CustomLineChart = ({ start, end, getDateListMap }: Props) => {
 
 	return (
 		<>
-			<div className="flex justify-end">
+			<div className="flex justify-end items-center gap-1">
+				<label htmlFor="mySelect">
+					<FiChevronDown />
+				</label>
 				<select
 					id="mySelect"
-					className="text-sm outline-none"
+					className="text-sm outline-none relative"
 					onChange={filterChartHandler}
 				>
-					<option value="day">일별</option>
-					<option value="week">주별</option>
-					<option value="month">월별</option>
+					<option value="day" className="absolute">
+						일별
+					</option>
+					<option value="week" className="absolute">
+						주별
+					</option>
+					<option value="month" className="absolute">
+						월별
+					</option>
 				</select>
 			</div>
+
 			<Line
-				ref={chartRef}
 				fallbackContent="null"
 				data={data}
 				options={options}
+				ref={chartRef}
 			/>
 		</>
 	);

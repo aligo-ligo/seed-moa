@@ -53,11 +53,10 @@ const TargetCreate = () => {
 	const onSubmitHandler = (data: TargetInfoType) => {
 		console.log("최종", data);
 		console.log(message);
-		show("createToast");
 		targetService
 			?.postTarget(data)
 			.then((res) => {
-				console.log("res", res);
+				show("createToast");
 				navigate("/target");
 			})
 			.catch((error) => setMessage(error.APIMessage));
@@ -84,7 +83,6 @@ const TargetCreate = () => {
 						<LastStep setStep={setStep} />
 					</Step>
 				</form>
-				<CreateToast />
 			</FormProvider>
 		</div>
 	);

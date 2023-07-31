@@ -4,11 +4,29 @@ export function formatDate(date: string | number): string {
 		const year = targetDate.getFullYear();
 		const month = (targetDate.getMonth() + 1).toString().padStart(2, "0"); // 월을 2자리 문자열로 변환하고 앞에 0을 붙임
 		const day = targetDate.getDate().toString().padStart(2, "0"); // 일을 2자리 문자열로 변환하고 앞에 0을 붙임
-		console.log(month, day);
 		const formattedDate = `${year}-${month}-${day}`;
 		return formattedDate;
 	}
+
 	return date;
+}
+
+// 전날로 계산해주는 함수
+export const getPrevDate = (value: string) => {
+	const currentDate = new Date(value); // 입력받은 날짜를 Date 객체로 변환합니다.
+	const oneDay = 24 * 60 * 60 * 1000; // 하루는 밀리초로 24시간 * 60분 * 60초 * 1000밀리초 입니다.
+
+	return formatDate(currentDate.getTime() - oneDay);
+};
+
+export function convertDateForDay(value: string | Date) {
+	if (value !== null) {
+		const targetDate = new Date(value);
+		const month = (targetDate.getMonth() + 1).toString().padStart(2, "0"); // 월을 2자리 문자열로 변환하고 앞에 0을 붙임
+		const day = targetDate.getDate().toString().padStart(2, "0"); // 일을 2자리 문자열로 변환하고 앞에 0을 붙임
+		const formattedDate = `${month}/${day}`;
+		return formattedDate;
+	}
 }
 
 export const monthFormatDate = (d: Date): string => {

@@ -14,8 +14,6 @@ const Checkbox = ({ type, children, value, completedDate }: Props) => {
 	const { updateSubGoalValue, updateIsSubGoalComplete } =
 		useContext(CheckModalContext);
 
-	console.log("inn", completedDate);
-
 	const { openModal, changeModalType } = usePopUp();
 
 	return (

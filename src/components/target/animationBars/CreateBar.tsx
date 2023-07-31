@@ -21,7 +21,7 @@ const getLocationFromStep = {
 
 const CreateBar = ({ step }: Props) => {
 	return (
-		<div className="py-4 px-4 sticky top-0 bg-white overflow-x-hidden overflow-y-hidden">
+		<div className="py-4 px-4 sticky top-0 bg-white overflow-x-hidden overflow-y-hidden z-10">
 			<div className="h-2 w-full bg-[#e0e0de] rounded-md relative">
 				<div
 					className={`h-full bg-main rounded-md text-xs ${getPercentFormStep[step]} origin-left transition-transform duration-300`}

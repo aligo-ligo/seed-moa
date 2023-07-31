@@ -10,6 +10,7 @@ import {
 	EMAIL_INPUT,
 	NICKNAME_INPUT,
 	PASSWORD_INPUT,
+	PASSWORD_VISIBLE_INPUT,
 	ValidationAuth,
 } from "../../utils/constant/auth";
 
@@ -63,10 +64,15 @@ interface AuthFormProps {
 
 export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 	const [message, setMessage] = useState("");
+	const [isPasswordShown, setIsPasswordShown] = useState(false);
 	const [userInfo, dispatch] = useReducer(authReducer, initialState);
 	const { emailValid, passwordValid, nickNameValid } = userInfo;
 	const authService = useAuthService();
 	const navigate = useNavigate();
+
+	const updateIsPassWordShown = () => {
+		setIsPasswordShown((prev) => !prev);
+	};
 
 	const isActive = isLogin
 		? !emailValid || !passwordValid
@@ -119,11 +125,17 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 					</div>
 					<div className="mb-8">
 						<AuthInput
-							name={PASSWORD_INPUT.name}
+							name={
+								isPasswordShown
+									? PASSWORD_VISIBLE_INPUT.name
+									: PASSWORD_INPUT.name
+							}
 							text={userInfo.password}
 							placeholder={PASSWORD_INPUT.placeholder}
 							userInfo={userInfo}
 							dispatch={dispatch}
+							isPasswordShown={isPasswordShown}
+							updateIsPassWordShown={updateIsPassWordShown}
 						/>
 						{!passwordValid && (
 							<Validation>{ValidationAuth.password}</Validation>
