@@ -5,7 +5,6 @@ import {
 	getElementAtEvent,
 	getElementsAtEvent,
 } from "react-chartjs-2";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 import {
 	Chart as ChartJS,
@@ -160,23 +159,14 @@ const CustomLineChart = ({ start, end, achieveDay }: Props) => {
 	return (
 		<>
 			<div className="flex justify-end items-center gap-1">
-				<label htmlFor="mySelect">
-					<FiChevronDown />
-				</label>
 				<select
 					id="mySelect"
-					className="text-sm outline-none relative"
+					className="text-sm outline-none relative border border-main bg-main py-1 text-white px-2 rounded-xl"
 					onChange={filterChartHandler}
 				>
-					<option value="day" className="absolute">
-						일별
-					</option>
-					<option value="week" className="absolute">
-						주별
-					</option>
-					<option value="month" className="absolute">
-						월별
-					</option>
+					<option value="day">일간</option>
+					<option value="week">주간</option>
+					<option value="month">월간</option>
 				</select>
 			</div>
 
