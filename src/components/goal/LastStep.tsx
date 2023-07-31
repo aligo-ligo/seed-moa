@@ -4,6 +4,7 @@ import { TargetCreateProps } from "../../types/TargetTypes";
 import { formatDate, getDayFromDiff, getNowDate } from "../../utils/formatDate";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { LAST_DESCRIPTION, LAST_TITLE } from "../../utils/constant/target";
+import BlackBoard from "../common/BlackBoard";
 
 const LastStep = ({ setStep }: TargetCreateProps) => {
 	const { getGoal, getSubGoal, getRoutine, getEndDate } = useGetFormData();
@@ -15,37 +16,45 @@ const LastStep = ({ setStep }: TargetCreateProps) => {
 
 	return (
 		<TargetCreateLayout title={LAST_TITLE} description={LAST_DESCRIPTION}>
-			<section className="border-2 border-main p-10 rounded-xl">
-				<div className="flex justify-center mb-10">
-					<h1 className="text-2xl font-bold inline-block">Goal Token</h1>
-				</div>
-				<div className="mb-4">
-					<h2 className="text-xl font-semibold mb-2">목표</h2>
-					<p>{getGoal}</p>
-				</div>
-				<div className="mb-4">
-					<h2 className="text-xl font-semibold mb-2">세분화된 목표</h2>
-					{getSubGoal.map((subgoal, index) => {
-						return <div key={index}>{subgoal.value}</div>;
-					})}
-				</div>
-				<div className="mb-4">
-					<h2 className="text-xl font-semibold mb-2">루틴</h2>
-					{getRoutine.map((subgoal, index) => {
-						return <div key={index}>{subgoal.value}</div>;
-					})}
-				</div>
-				<div className="mb-4">
-					<h2 className="text-xl font-semibold mb-2">기간</h2>
-					<div className="flex gap-2">
-						<p>{`${getNowDate()} ~ ${formatDate(getEndDate)} `}</p>
-						<p className="font-semibold">{`(${getDayFromDiff(
-							getNowDate(),
-							formatDate(getEndDate)
-						)}일)`}</p>
+			<BlackBoard>
+				<div className="py-8 px-20 w-full">
+					<div className="py-2 border-2 bg-gradient-to-r from-main bg-[#0a310a]">
+						<p className="text-2xl font-bold text-center">{getGoal}</p>
+					</div>
+					<h2 className="text-xl font-medium mt-10 text-center">하위 목표 </h2>
+					<div className="flex flex-col items-start justify-start w-full">
+						{getSubGoal.map((subgoal, index) => {
+							return (
+								<div key={index} className="py-1 font-semibold">
+									{`${index + 1}. ${subgoal.value}`}
+								</div>
+							);
+						})}
+					</div>
+
+					<h2 className="text-xl font-medium mt-10 text-center">나만의 루틴</h2>
+					<div className="flex flex-col items-start justify-start w-full">
+						{getRoutine.map((subgoal, index) => {
+							return (
+								<div key={index} className="py-1 font-semibold">{`${
+									index + 1
+								}. ${subgoal.value}`}</div>
+							);
+						})}
+					</div>
+					<div className="mt-10">
+						<h2 className="text-xl font-medium mb-2 text-center">기간</h2>
+						<div className="flex gap-2 justify-center">
+							<p>{`${getNowDate()} ~ ${formatDate(getEndDate)} `}</p>
+							<p className="font-semibold">{`(${getDayFromDiff(
+								getNowDate(),
+								formatDate(getEndDate)
+							)}일)`}</p>
+						</div>
 					</div>
 				</div>
-			</section>
+			</BlackBoard>
+
 			<div className="flex gap-4">
 				<TargetStepButton
 					prev="duration"

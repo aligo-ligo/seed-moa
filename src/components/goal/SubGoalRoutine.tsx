@@ -8,6 +8,7 @@ import {
 } from "../../utils/constant/target";
 import TargetStepButton from "../logic/TargetStepButton";
 import Validation from "../auth/Validation";
+import BlackBoard from "../common/BlackBoard";
 
 const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 	const {
@@ -45,11 +46,10 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 	return (
 		<TargetCreateLayout title={SUBGOAL_TITLE} description={SUBGOAL_DESCRIPTION}>
 			<section className="mb-10">
-				<div className="flex items-center justify-center flex-col h-40 border-4 border-[#854d3c] bg-[#0a310a] text-white relative">
-					<p className="w-8 border-2 border-white absolute bottom-0 left-20"></p>
+				<BlackBoard>
 					<h2 className="text-lg font-bold mb-2">이전 페이지에 작성한 목표</h2>
 					<p>{getGoal}</p>
-				</div>
+				</BlackBoard>
 
 				<div className="flex items-center justify-between mt-10">
 					<h2 className="text-lg font-bold mb-2">세분화 목표</h2>
