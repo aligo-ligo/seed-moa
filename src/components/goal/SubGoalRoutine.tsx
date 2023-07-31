@@ -90,6 +90,11 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 						)}
 					</div>
 				))}
+				<div className="text-center">
+					<Validation>
+						{!!errors?.subGoal && "세부 목표를 작성해주세요"}
+					</Validation>
+				</div>
 			</section>
 			<section className="mb-10">
 				<div className="flex items-center justify-between">
@@ -130,6 +135,9 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 						)}
 					</div>
 				))}
+				<div className="text-center">
+					<Validation>{!!errors?.routine && "루틴을 작성해주세요"}</Validation>
+				</div>
 			</section>
 			<div className="flex gap-4">
 				<TargetStepButton
@@ -149,8 +157,8 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 					다음
 				</TargetStepButton>
 			</div>
-			{/* <Validation>{errors?.goal?.message?.toString()}</Validation> */}
-			<Validation>{errors?.root?.message}</Validation>
+
+			{/* <Validation>{errors?.root?.message}</Validation> */}
 		</TargetCreateLayout>
 	);
 };
