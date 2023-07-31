@@ -5,6 +5,7 @@ export const TOAST_TYPE = {
 	toastB: "toastB",
 	createToast: "createToast",
 	logoutToast: "logoutToast",
+	backToast: "backToast",
 } as const;
 
 export type ToastType = keyof typeof TOAST_TYPE;

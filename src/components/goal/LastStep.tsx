@@ -9,11 +9,6 @@ import BlackBoard from "../common/BlackBoard";
 const LastStep = ({ setStep }: TargetCreateProps) => {
 	const { getGoal, getSubGoal, getRoutine, getEndDate } = useGetFormData();
 
-	console.log("goal", getGoal);
-	console.log("sub", getSubGoal);
-	console.log("routine", getRoutine);
-	console.log("endDate", formatDate(getEndDate));
-
 	return (
 		<TargetCreateLayout title={LAST_TITLE} description={LAST_DESCRIPTION}>
 			<BlackBoard>

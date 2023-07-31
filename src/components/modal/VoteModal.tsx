@@ -9,8 +9,6 @@ type Props = {
 const VoteModal = ({ closeModal, success, targetId: id }: Props) => {
 	const { voteMutation } = useModifyTarget(id);
 
-	console.log(id);
-	console.log("voteModal", success);
 	const handleClick = () => {
 		voteMutation.mutate({ id, success });
 		closeModal();

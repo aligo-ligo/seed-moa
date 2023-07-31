@@ -36,7 +36,6 @@ const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
 	});
 
 	const getGoal: string = getValues("goal");
-	console.log("goal in sub", getGoal);
 
 	const subgoalWatch = watch("subGoal");
 	const routineWatch = watch("routine");

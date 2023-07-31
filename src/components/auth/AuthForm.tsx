@@ -84,7 +84,6 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
 			authService
 				?.signIn(userInfo)
 				.then((data) => {
-					console.log("data", data);
 					if ("accessToken" in data) {
 						navigate("/target");
 					}

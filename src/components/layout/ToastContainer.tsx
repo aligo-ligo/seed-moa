@@ -21,7 +21,6 @@ const ToastContainer = ({
 	const { duration } = config;
 	const { toastList, close } = useToastList();
 
-	console.log("duration", duration);
 	const isShown = toastList.includes(toastType);
 
 	useEffect(() => {

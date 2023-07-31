@@ -33,7 +33,6 @@ export default function AuthInput({
 			: dispatch({ type: `SET_${name}`, data: value });
 	};
 
-	console.log(name, isPasswordShown);
 	const { emailValid, passwordValid, nickNameValid } = userInfo;
 
 	let inputClass = "";

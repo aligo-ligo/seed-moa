@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import Step from "../components/goal/Step";
 import Goal from "../components/goal/Goal";
@@ -16,7 +16,9 @@ import {
 import { useTarget } from "../hooks/useTarget";
 import CreateBar from "../components/target/animationBars/CreateBar";
 import useToastList from "../hooks/useToastList";
-import CreateToast from "../components/toast/CreateToast";
+import { useEventListener } from "usehooks-ts";
+import { usePreventGoBack } from "../hooks/usePreventLeave";
+import GobackToast from "../components/toast/GobackToast";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
 	goal: yup.string().required("목표를 입력해주세요"),
@@ -51,8 +53,6 @@ const TargetCreate = () => {
 	});
 
 	const onSubmitHandler = (data: TargetInfoType) => {
-		console.log("최종", data);
-		console.log(message);
 		targetService
 			?.postTarget(data)
 			.then((res) => {
@@ -61,6 +61,8 @@ const TargetCreate = () => {
 			})
 			.catch((error) => setMessage(error.APIMessage));
 	};
+
+	usePreventGoBack();
 
 	return (
 		<div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
@@ -84,6 +86,7 @@ const TargetCreate = () => {
 					</Step>
 				</form>
 			</FormProvider>
+			<GobackToast />
 		</div>
 	);
 };

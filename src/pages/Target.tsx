@@ -26,7 +26,6 @@ const Target = () => {
 		fontSize: "40px",
 		cursor: "pointer",
 	};
-	console.log("target", targets);
 
 	return (
 		<div className={`relative flex flex-col min-h-screen px-6 pb-10`}>

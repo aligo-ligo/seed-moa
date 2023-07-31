@@ -22,7 +22,6 @@ const TargetDetail = () => {
 	const targetService = useTarget();
 	const { data: target, isLoading } = useTargetOnUser(id, targetService);
 
-	console.log("targetDetail", target);
 	const {
 		isModalOpen,
 		openModal,

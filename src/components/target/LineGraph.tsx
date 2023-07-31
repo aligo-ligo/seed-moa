@@ -49,7 +49,6 @@ const CustomLineChart = ({ start, end, achieveDay }: Props) => {
 	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
 	const chartRef = useRef<ChartJS<"line", AchievementDate, string>>(null);
 	const getDateList = getDateRange(start, end);
-	console.log("chartRef", chartRef);
 
 	//event: MouseEvent<HTMLCanvasElement>
 	const filterChartHandler = () => {
@@ -58,13 +57,11 @@ const CustomLineChart = ({ start, end, achieveDay }: Props) => {
 		if (!chart) {
 			return;
 		}
-		console.log("chart", formatDate(chart.scales.x.min));
 
 		const selectElement = document.getElementById(
 			"mySelect"
 		) as HTMLSelectElement;
 		const selectedValue = selectElement?.value as SelectKey;
-		console.log("check", selectedValue);
 
 		setIsWhichChart(selectedValue);
 

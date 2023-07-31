@@ -20,7 +20,7 @@ const TargetGuest = () => {
 	const { data: target, isLoading } = useTargetOnGuest(id, guestService);
 	const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 	const isUser = localStorage.getItem("accessToken");
-	console.log("tes", !!isUser);
+
 	const percentage = calculatePercentage(
 		target?.successVote,
 		target?.voteTotal
