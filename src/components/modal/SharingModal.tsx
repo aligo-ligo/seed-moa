@@ -34,9 +34,9 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 			</p>
 			<div className="flex items-center my-8 border-main border-2 border-solid rounded-md py-2 px-4 relative">
 				<input
-					defaultValue={shareUrl}
-					type="text"
+					value={shareUrl}
 					className="placeholder:text-xs w-full outline-none text-emerald-800"
+					readOnly
 				/>
 				<StyledButton styleName="copy" type="button" onClick={clickHandler}>
 					복사
