@@ -53,7 +53,7 @@ const Target = () => {
 									type="button"
 									onClick={onClickHandler}
 									title={label}
-									style={{ ...arrowStyles, left: 15 }}
+									style={{ ...arrowStyles, left: 15, top: 200 }}
 								>
 									<FiChevronsLeft className="text-orange-500 bg-orange-100" />
 								</button>
@@ -65,9 +65,9 @@ const Target = () => {
 									type="button"
 									onClick={onClickHandler}
 									title={label}
-									style={{ ...arrowStyles, right: 15 }}
+									style={{ ...arrowStyles, right: 15, top: 200 }}
 								>
-									<FiChevronsRight className="text-orange-500  bg-orange-100" />
+									<FiChevronsRight className="text-orange-500 bg-orange-100" />
 								</button>
 							)
 						}

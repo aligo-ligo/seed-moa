@@ -7,7 +7,10 @@ const OAuth = () => {
 
 	const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${APP_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 	return (
-		<Link to={KAKAO_AUTH_URI} className="block mt-10 w-full hover:opacity-80">
+		<Link
+			to={KAKAO_AUTH_URI}
+			className="block mt-2 mb-10 w-full hover:opacity-80"
+		>
 			<img src={kakaoLogo} alt="카카오버튼" className="w-full" />
 		</Link>
 	);

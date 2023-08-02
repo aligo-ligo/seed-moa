@@ -37,7 +37,6 @@ const LandingPage = () => {
 					alt="로고"
 					className="w-3/5  pointer-events-none"
 				/>
-				{/* <img src={`${img}/logo.png`} alt="로고" className="w-3/5" /> */}
 
 				<div className="flex flex-col items-center w-80">
 					<h2 className="text-xl desktop:text-2xl font-medium text-gray mt-12 mb-2 pointer-events-none">
@@ -62,7 +61,7 @@ const LandingPage = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center justify-center w-[90%] desktop:w-[60%] mt-10 gap-2">
+			<div className="flex flex-col items-center justify-center w-[90%] desktop:w-[60%] gap-2">
 				<StyledButton
 					styleName="landing"
 					onClick={() => navigate("/signin")}

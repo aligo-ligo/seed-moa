@@ -111,7 +111,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
 											}}
 										>
 											<div className="w-8">{icon}</div>
-											<div className="px-4 py-6">{title}</div>
+											<div className="py-6">{title}</div>
 										</a>
 									);
 								}
@@ -146,14 +146,14 @@ const landingSidebarData = [
 		link: "/signin",
 	},
 	{
+		title: "익명 피드백 주기",
+		icon: <FiEdit />,
+		link: "https://naver.me/5P2zatjt",
+	},
+	{
 		title: "서비스 이용 노하우",
 		icon: <FiEdit />,
 		link: "/faq",
-	},
-	{
-		title: "피드백 폼으로 이동하기",
-		icon: <FiEdit />,
-		link: "https://naver.me/5P2zatjt",
 	},
 ];
 
@@ -164,13 +164,13 @@ const sidebarData = [
 		link: "/target",
 	},
 	{
+		title: "익명 피드백 주기",
+		icon: <img src={LoudOli} alt="사진" />,
+		link: "https://naver.me/5P2zatjt",
+	},
+	{
 		title: "서비스 이용 노하우",
 		icon: <img src={LouderOli} alt="사진" />,
 		link: "/faq",
-	},
-	{
-		title: "피드백 폼으로 이동하기",
-		icon: <img src={LoudOli} alt="사진" />,
-		link: "https://naver.me/5P2zatjt",
 	},
 ];

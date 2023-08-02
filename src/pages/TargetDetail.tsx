@@ -119,7 +119,7 @@ const TargetDetail = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-col item-center justify-center gap-4 m-20 px-16">
+				<div className="flex flex-col item-center justify-center gap-4 m-20">
 					<StyledButton
 						styleName="sharing"
 						type="button"

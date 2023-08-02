@@ -14,6 +14,7 @@ const Authorization: React.FC<AuthorizationProps> = ({ children }) => {
 
 	useEffect(() => {
 		if (!isLogged) {
+			console.log("--afefae-----------");
 			navigate("/signin");
 		}
 	}, [isLogged, updateHook, navigate]);

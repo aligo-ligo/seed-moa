@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
 import LineGraphPrep from "../components/target/LineGraphPrep";
+import LineGraph from "../components/target/LineGraph";
 import ProgressBar from "../components/target/animationBars/ProgressBar";
 import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
@@ -11,7 +12,7 @@ import { calculatePercentage } from "../utils/calculatePercentage";
 import { useTargetOnGuest } from "../hooks/useGetTargets";
 import Checkbox from "../components/target/Checkbox";
 import SkeletonElement from "../components/layout/Skeleton";
-import TargetEmptyForm from "../components/target/TargetEmptyForm";
+import Header from "../components/target/Header";
 
 const TargetGuest = () => {
 	const { id } = useParams();
@@ -26,6 +27,7 @@ const TargetGuest = () => {
 		target?.voteTotal
 	);
 
+	const name = localStorage.getItem("userNickName");
 	const {
 		isModalOpen,
 		openModal,
@@ -35,9 +37,14 @@ const TargetGuest = () => {
 		changeModalType,
 	} = usePopUp();
 
+	if (!target) {
+		return null;
+	}
+
 	return (
-		<section className="mt-10">
+		<section className="">
 			<div className="relative flex flex-col min-h-screen px-6 mb-10">
+				<Header name={name} />
 				<div>
 					<h1 className="font-semibold text-3xl text-center pointer-events-none">
 						{target?.goal}
@@ -47,7 +54,11 @@ const TargetGuest = () => {
 							<h2 className="font-semibold text-xl pointer-events-none">
 								성취 그래프
 							</h2>
-							<LineGraphPrep word={"성취도 그래프 커밍쑨"} />
+							<LineGraph
+								start={target?.startDate}
+								end={target?.endDate}
+								achieveDay={target?.achievementDate}
+							/>
 						</div>
 						<div>
 							<h2 className="font-semibold text-xl">체크 포인트</h2>

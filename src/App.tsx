@@ -30,7 +30,6 @@ function App() {
 	const targetService = new TargetServiceImpl(client.withToken());
 	const guestService = new GuestServiceImpl(client.withoutToken());
 	const routerObject = createBrowserRouter(routerInfo);
-	console.log("------------------------------------");
 
 	return (
 		<QueryClientProvider client={queryClient}>

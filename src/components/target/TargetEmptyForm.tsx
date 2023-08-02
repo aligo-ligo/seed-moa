@@ -1,4 +1,4 @@
-import { OliBodyEmptyImage } from "../../utils/constant/image";
+import { OliBodyImage } from "../../utils/constant/image";
 import SkeletonElement from "../layout/Skeleton";
 interface Props {
 	isLoading: boolean;
@@ -14,7 +14,7 @@ const TargetEmptyForm = ({ isLoading }: Props) => {
 				<div className="mt-12 w-full h-[200px] px-6 mb-6 flex items-center justify-center">
 					{isLoading && <SkeletonElement type="avatar" />}
 					<div className="w-60 px-6 mb-6 ">
-						<img src={OliBodyEmptyImage} alt="자그마한 로고 사진" />
+						<img src={OliBodyImage} alt="자그마한 로고 사진" />
 					</div>
 				</div>
 				<div className="flex">

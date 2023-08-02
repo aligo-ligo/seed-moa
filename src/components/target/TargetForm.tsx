@@ -37,10 +37,12 @@ const TargetForm = ({
 				</div>
 				<div className="flex">
 					<div className="flex flex-col w-1/2 p-2">
-						<label className="mb-2  font-medium">성취률</label>
+						<label className="text-sm desktop:text-base mb-2 font-medium ">
+							성취률
+						</label>
 						<ProgressBar completed={achievementPer} />
 					</div>
-					<div className="flex flex-col w-1/2 p-2">
+					<div className="text-sm desktop:text-base flex flex-col w-1/2 p-2">
 						<label className="mb-2  font-medium">성공 예측률</label>
 						<ProgressBar completed={votePercentage} />
 					</div>

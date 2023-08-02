@@ -1,10 +1,5 @@
 import { useRef, useState } from "react";
-import {
-	Line,
-	getDatasetAtEvent,
-	getElementAtEvent,
-	getElementsAtEvent,
-} from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 import {
 	Chart as ChartJS,
@@ -14,7 +9,6 @@ import {
 	LinearScale, //y axis
 	PointElement,
 	TimeScale,
-	Filler,
 } from "chart.js";
 import zoomPlugin from "chartjs-plugin-zoom";
 import "chartjs-adapter-date-fns";
@@ -22,7 +16,6 @@ import "chartjs-adapter-date-fns";
 import { SelectKey } from "../../types/Chart";
 import {
 	convertDateForDay,
-	createDate,
 	formatDate,
 	getDateRange,
 	getPrevDate,
@@ -41,8 +34,7 @@ ChartJS.register(
 	CategoryScale, // x axis
 	LinearScale, //y axis
 	PointElement,
-	TimeScale,
-	Filler
+	TimeScale
 );
 
 const CustomLineChart = ({ start, end, achieveDay }: Props) => {
@@ -64,10 +56,6 @@ const CustomLineChart = ({ start, end, achieveDay }: Props) => {
 		const selectedValue = selectElement?.value as SelectKey;
 
 		setIsWhichChart(selectedValue);
-
-		// printDatasetAtEvent(getDatasetAtEvent(chart, event));
-		// printElementAtEvent(getElementAtEvent(chart, event));
-		// printElementsAtEvent(getElementsAtEvent(chart, event));
 	};
 
 	const data = {
@@ -78,7 +66,7 @@ const CustomLineChart = ({ start, end, achieveDay }: Props) => {
 				label: "목표 성취율",
 				backgroundColor: "#BACB91",
 				borderColor: "#BACB91",
-				fill: true,
+				fill: false,
 				tension: 0.4,
 				showLine: true,
 			},

@@ -15,9 +15,16 @@ const VoteModal = ({ closeModal, success, targetId: id }: Props) => {
 	};
 	return (
 		<>
-			<div>투표는 변경하실 수 없어요 </div>
-			{success ? <p>성공에 한표~</p> : <p>실패에 한표!</p>}
-			<div className="flex w-full justify-center gap-10">
+			<div className="text-lg font-bold">투표는 변경하실 수 없어요</div>
+			<div className="my-5">
+				{success ? (
+					<p>성공하실 것 같나요?</p>
+				) : (
+					<p>타겟이 현실성이 없다고 생각하시나요?</p>
+				)}
+			</div>
+
+			<div className="flex w-full justify-center gap-5 desktop:gap-10">
 				<button
 					className="p-2 border border-main rounded-md bg-main text-white hover:bg-mainHover hover:border-mainHover"
 					onClick={handleClick}

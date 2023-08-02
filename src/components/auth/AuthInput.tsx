@@ -74,9 +74,12 @@ export default function AuthInput({
 
 				{isPasswordShown !== "non" ? (
 					isPasswordShown ? (
-						<FiEye onClick={updateIsPassWordShown} />
+						<FiEye onClick={updateIsPassWordShown} className="cursor-pointer" />
 					) : (
-						<FiEyeOff onClick={updateIsPassWordShown} />
+						<FiEyeOff
+							onClick={updateIsPassWordShown}
+							className="cursor-pointer"
+						/>
 					)
 				) : null}
 			</div>
