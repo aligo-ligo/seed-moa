@@ -11,7 +11,7 @@ const TargetCreateLayout = ({ title, description, children }: Props) => {
 		<div
 			className={`${
 				title === GOAL_TITLE && "py-10"
-			} flex flex-col desktop:p-10 mt-8 w-full`}
+			} flex flex-col desktop:p-10 mt-8 w-full min-h-max`}
 		>
 			<div className="mt-2 mb-16">
 				<h1 className="text-2xl desktop:text-3xl w-3/4 font-semibold desktop:font-bold">
