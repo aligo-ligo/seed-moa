@@ -6,7 +6,6 @@ const ProgressBar = ({ completed = 0 }: Props) => {
 	const zeroCompleted = completed === 0;
 	const isOverTwenty = completed > 25;
 	const forScaleIssueSolved = `${250 - completed}%`;
-	console.log(forScaleIssueSolved);
 
 	return (
 		<div className="h-8 w-full bg-[#e0e0de] rounded-md relative">

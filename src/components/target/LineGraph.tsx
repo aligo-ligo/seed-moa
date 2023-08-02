@@ -1,82 +1,168 @@
-import { useRef, useEffect } from "react";
-import Chart from "chart.js/auto";
-import { heroImage } from "../../utils/constant/image";
+import { useRef, useState } from "react";
+import { Line } from "react-chartjs-2";
 
-const resizeImage = (
-	image: HTMLImageElement,
-	width: number,
-	height: number
-) => {
-	const canvas = document.createElement("canvas");
-	canvas.width = width;
-	canvas.height = height;
-	const ctx = canvas.getContext("2d");
-	if (ctx && image.complete) {
-		ctx.drawImage(image, 0, 0, width, height);
-	}
-	return canvas;
-};
+import {
+	Chart as ChartJS,
+	ChartOptions,
+	LineElement,
+	CategoryScale, // x axis
+	LinearScale, //y axis
+	PointElement,
+	TimeScale,
+} from "chart.js";
+import zoomPlugin from "chartjs-plugin-zoom";
+import "chartjs-adapter-date-fns";
 
-const CustomLineChart = () => {
-	const chartRef = useRef<HTMLCanvasElement | null>(null);
-	const chartInstanceRef = useRef<any>(null);
-	const test = [1, 2, 3, 4, 5, 6];
+import { SelectKey } from "../../types/Chart";
+import {
+	convertDateForDay,
+	formatDate,
+	getDateRange,
+	getPrevDate,
+} from "../../utils/formatDate";
+import { AchievementDate } from "../../types/TargetTypes";
 
-	useEffect(() => {
-		const chartCanvas = chartRef?.current?.getContext("2d");
-		const image = new Image();
-		image.src = heroImage;
+interface Props {
+	start: string;
+	end: string;
+	achieveDay: AchievementDate;
+}
 
-		image.onload = () => {
-			const resizedImage = resizeImage(image, 30, 30);
-			if (chartCanvas) {
-				chartInstanceRef.current = new Chart(chartCanvas, {
-					type: "line",
-					data: {
-						labels: test,
-						datasets: [
-							{
-								label: "Sales of the Week",
-								data: [30, 6, 9],
-								backgroundColor: "aqua",
-								borderColor: "aqua",
-								fill: false,
-								tension: 0.4,
-								showLine: true,
-								pointStyle: resizedImage,
-								pointRadius: 30, // 데이터 포인트의 크기를 0으로 설정하여 숨깁니다.
-							},
-						],
+ChartJS.register(
+	zoomPlugin,
+	LineElement,
+	CategoryScale, // x axis
+	LinearScale, //y axis
+	PointElement,
+	TimeScale
+);
+
+const CustomLineChart = ({ start, end, achieveDay }: Props) => {
+	const [isWhichChart, setIsWhichChart] = useState<SelectKey>("day");
+	const chartRef = useRef<ChartJS<"line", AchievementDate, string>>(null);
+	const getDateList = getDateRange(start, end);
+
+	//event: MouseEvent<HTMLCanvasElement>
+	const filterChartHandler = () => {
+		const { current: chart } = chartRef;
+
+		if (!chart) {
+			return;
+		}
+
+		const selectElement = document.getElementById(
+			"mySelect"
+		) as HTMLSelectElement;
+		const selectedValue = selectElement?.value as SelectKey;
+
+		setIsWhichChart(selectedValue);
+	};
+
+	const data = {
+		labels: getDateList,
+		datasets: [
+			{
+				data: achieveDay,
+				label: "목표 성취율",
+				backgroundColor: "#BACB91",
+				borderColor: "#BACB91",
+				fill: false,
+				tension: 0.4,
+				showLine: true,
+			},
+		],
+	};
+
+	const options: ChartOptions<"line"> = {
+		responsive: true,
+		plugins: {
+			legend: {
+				display: false,
+			},
+			zoom: {
+				limits: {
+					x: { min: new Date(start).getTime(), max: new Date(end).getTime() },
+				},
+				zoom: {
+					wheel: {
+						enabled: true,
 					},
-					options: {
-						responsive: true,
-						scales: {
-							y: {
-								ticks: {
-									stepSize: 100,
-									callback: (value: string | number) => value + "%",
-								},
-								min: 0,
-								max: 100,
-							},
-							x: {
-								grid: {
-									display: false,
-								},
-							},
-						},
+					pinch: {
+						enabled: true,
 					},
-				});
-			}
-		};
-		return () => {
-			if (chartInstanceRef.current) {
-				chartInstanceRef.current.destroy();
-			}
-		};
-	}, []);
+					mode: "x",
+				},
+				pan: {
+					enabled: true,
+					mode: "x",
+				},
+			},
+		},
+		scales: {
+			x: {
+				type: "time",
+				time: {
+					unit: `${isWhichChart}`,
+				},
+				border: {
+					display: false,
+				},
+				offset: false,
+				min: getPrevDate(formatDate(new Date().toDateString())),
+				max: end,
+				ticks: {
+					autoSkip: false,
+					stepSize: 1,
+					maxTicksLimit: 10,
+					font: {
+						size: 10,
+					},
 
-	return <canvas ref={chartRef} />;
+					callback: (value: string | number) =>
+						convertDateForDay(formatDate(value)),
+				},
+
+				grid: {
+					display: false, //뒷배경 라인 없애기
+				},
+			},
+
+			y: {
+				ticks: {
+					stepSize: 50,
+					callback: (value: string | number) => value + "%",
+				},
+				border: {
+					display: false,
+				},
+				min: 0,
+				max: 100,
+			},
+		},
+	};
+
+	return (
+		<>
+			<div className="flex justify-end items-center gap-1">
+				<select
+					id="mySelect"
+					className="text-sm outline-none relative border border-main bg-main py-1 text-white px-2 rounded-xl"
+					onChange={filterChartHandler}
+				>
+					<option value="day">일간</option>
+					<option value="week">주간</option>
+					<option value="month">월간</option>
+				</select>
+			</div>
+
+			<Line
+				fallbackContent="null"
+				data={data}
+				options={options}
+				ref={chartRef}
+			/>
+		</>
+	);
 };
 
 export default CustomLineChart;

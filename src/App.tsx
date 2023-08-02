@@ -15,6 +15,7 @@ import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
 import { CheckModalProvider } from "./context/CheckModalContext";
 import { HelmetProvider } from "react-helmet-async";
+import { domMax, LazyMotion } from "framer-motion";
 
 function App() {
 	const queryClient = new QueryClient(QueryClientOptions);
@@ -24,34 +25,35 @@ function App() {
 		tokenRepository
 	);
 
+	// 의존성 주입 인젝터라는 것이 상황에 따라 다른 의존성 넣으주려고 사용한다.
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
 	const targetService = new TargetServiceImpl(client.withToken());
 	const guestService = new GuestServiceImpl(client.withoutToken());
 	const routerObject = createBrowserRouter(routerInfo);
 
 	return (
-		<>
-			<QueryClientProvider client={queryClient}>
-				<GuestProvider guestService={guestService}>
-					<AuthProvider authService={authService}>
-						<TargetProvider targetService={targetService}>
-							<SideBarProvider>
-								<ModalProvider>
-									<CheckModalProvider>
+		<QueryClientProvider client={queryClient}>
+			<GuestProvider guestService={guestService}>
+				<AuthProvider authService={authService}>
+					<TargetProvider targetService={targetService}>
+						<SideBarProvider>
+							<ModalProvider>
+								<CheckModalProvider>
+									<LazyMotion features={domMax}>
 										<HelmetProvider>
 											<main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
 												<RouterProvider router={routerObject} />
 											</main>
 										</HelmetProvider>
-									</CheckModalProvider>
-								</ModalProvider>
-							</SideBarProvider>
-						</TargetProvider>
-					</AuthProvider>
-				</GuestProvider>
-				<ReactQueryDevtools />
-			</QueryClientProvider>
-		</>
+									</LazyMotion>
+								</CheckModalProvider>
+							</ModalProvider>
+						</SideBarProvider>
+					</TargetProvider>
+				</AuthProvider>
+			</GuestProvider>
+			<ReactQueryDevtools />
+		</QueryClientProvider>
 	);
 }
 

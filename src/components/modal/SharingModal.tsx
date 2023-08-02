@@ -23,7 +23,6 @@ const SharingModal = ({ shareUrl, closeModal }: Props) => {
 		}
 	};
 
-	console.log(value);
 	return (
 		<div className="bg-white rounded-md">
 			<div className="flex justify-end cursor-pointer">
