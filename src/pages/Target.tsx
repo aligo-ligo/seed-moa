@@ -3,7 +3,7 @@ import Header from "../components/target/Header";
 import TargetForm from "../components/target/TargetForm";
 import { FiEdit } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
-import { CSSProperties, Suspense } from "react";
+import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
 import { useTarget } from "../hooks/useTarget";
@@ -32,15 +32,16 @@ const Target = () => {
 			<Header name={name} />
 			<section className="flex flex-col mt-10 h-full">
 				<h1 className="font-semibold text-2xl pointer-events-none">
-					현재 타켓 목록
+					현재 타겟 목록
 				</h1>
 				<div className="flex flex-row justify-center mt-8 h-full">
-					{isLoading && (
+					{targets?.length === 0 && (
 						<div className="flex flex-col items-end">
-							<SkeletonElement type="text" />
-							<TargetEmptyForm />
+							{isLoading && <SkeletonElement type="text" />}
+							<TargetEmptyForm isLoading={isLoading} />
 						</div>
 					)}
+
 					<Carousel
 						className="w-3/4 desktop:w-2/3"
 						useKeyboardArrows

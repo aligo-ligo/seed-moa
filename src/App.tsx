@@ -25,6 +25,7 @@ function App() {
 		tokenRepository
 	);
 
+	// 의존성 주입 인젝터라는 것이 상황에 따라 다른 의존성 넣으주려고 사용한다.
 	const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
 	const targetService = new TargetServiceImpl(client.withToken());
 	const guestService = new GuestServiceImpl(client.withoutToken());

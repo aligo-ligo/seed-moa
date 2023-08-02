@@ -99,6 +99,22 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
 					) : (
 						<div>
 							{landingSidebarData.map(({ title, link, icon }, index) => {
+								if (link.startsWith("https")) {
+									return (
+										<a
+											target="blank"
+											key={index}
+											className="flex items-center cursor-pointer font-bold px-4 hover:text-gray"
+											href={link}
+											onClick={() => {
+												closeSideBar();
+											}}
+										>
+											<div className="w-8">{icon}</div>
+											<div className="px-4 py-6">{title}</div>
+										</a>
+									);
+								}
 								return (
 									<div
 										key={index}
@@ -136,8 +152,8 @@ const landingSidebarData = [
 	},
 	{
 		title: "피드백 폼으로 이동하기",
-		icon: <img src={LoudOli} alt="사진" />,
-		link: "/faq",
+		icon: <FiEdit />,
+		link: "https://naver.me/5P2zatjt",
 	},
 ];
 
