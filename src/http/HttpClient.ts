@@ -25,7 +25,6 @@ export default class HttpClient {
 							this.tokenRepository.remove(ACCESS_TOKEN);
 							this.tokenRepository.remove(USER_ID);
 							this.tokenRepository.remove(NICK_NAME);
-							window.location.replace("/signin");
 						} else {
 							throw new HTTPError(
 								response?.status,

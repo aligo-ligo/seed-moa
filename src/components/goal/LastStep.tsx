@@ -4,18 +4,14 @@ import { TargetCreateProps } from "../../types/TargetTypes";
 import { formatDate, getDayFromDiff, getNowDate } from "../../utils/formatDate";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { LAST_DESCRIPTION, LAST_TITLE } from "../../utils/constant/target";
+import BlackBoard from "../common/BlackBoard";
 
 const LastStep = ({ setStep }: TargetCreateProps) => {
 	const { getGoal, getSubGoal, getRoutine, getEndDate } = useGetFormData();
 
-	console.log("goal", getGoal);
-	console.log("sub", getSubGoal);
-	console.log("routine", getRoutine);
-	console.log("endDate", formatDate(getEndDate));
-
 	return (
 		<TargetCreateLayout title={LAST_TITLE} description={LAST_DESCRIPTION}>
-			<section className="border-2 border-main p-10 rounded-xl">
+			<section className="border-2 border-main py-8 px-6 rounded-xl">
 				<div className="flex justify-center mb-10">
 					<h1 className="text-2xl font-bold inline-block">Goal Token</h1>
 				</div>
@@ -35,9 +31,9 @@ const LastStep = ({ setStep }: TargetCreateProps) => {
 						return <div key={index}>{subgoal.value}</div>;
 					})}
 				</div>
-				<div className="mb-4">
+				<div className="mb-4 ">
 					<h2 className="text-xl font-semibold mb-2">기간</h2>
-					<div className="flex gap-2">
+					<div className="flex-col desktop:flex-row flex gap-2">
 						<p>{`${getNowDate()} ~ ${formatDate(getEndDate)} `}</p>
 						<p className="font-semibold">{`(${getDayFromDiff(
 							getNowDate(),

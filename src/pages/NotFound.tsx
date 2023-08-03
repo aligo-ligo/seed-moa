@@ -5,8 +5,6 @@ import { LoudOli } from "../utils/constant/image";
 const NotFound = () => {
 	const error = useRouteError();
 
-	console.log(error);
-
 	if (isRouteErrorResponse(error)) {
 		return (
 			<section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
