@@ -10,11 +10,13 @@ import { useTarget } from "../hooks/useTarget";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useAllTarget } from "../hooks/useGetTargets";
+import SkeletonElement from "../components/layout/Skeleton";
+import CreateToast from "../components/toast/CreateToast";
 
 const Target = () => {
 	const navigate = useNavigate();
 	const targetService = useTarget();
-	const { data: targets } = useAllTarget(targetService);
+	const { data: targets, isLoading } = useAllTarget(targetService);
 	const name = localStorage.getItem("userNickName");
 
 	const arrowStyles: CSSProperties = {
@@ -29,13 +31,19 @@ const Target = () => {
 		<div className={`relative flex flex-col min-h-screen px-6 pb-10`}>
 			<Header name={name} />
 			<section className="flex flex-col mt-10 h-full">
-				<h1 className="font-semibold text-2xl">현재 타켓 목록</h1>
+				<h1 className="font-semibold text-2xl pointer-events-none">
+					현재 타겟 목록
+				</h1>
 				<div className="flex flex-row justify-center mt-8 h-full">
-					{(targets === undefined || targets.length === 0) && (
-						<TargetEmptyForm />
+					{targets?.length === 0 && (
+						<div className="flex flex-col items-end">
+							{isLoading && <SkeletonElement type="text" />}
+							<TargetEmptyForm isLoading={isLoading} />
+						</div>
 					)}
+
 					<Carousel
-						className="w-full desktop:w-2/3"
+						className="w-3/4 desktop:w-2/3"
 						useKeyboardArrows
 						showThumbs={false}
 						showIndicators={false}
@@ -45,7 +53,7 @@ const Target = () => {
 									type="button"
 									onClick={onClickHandler}
 									title={label}
-									style={{ ...arrowStyles, left: 15 }}
+									style={{ ...arrowStyles, left: 15, top: 200 }}
 								>
 									<FiChevronsLeft className="text-orange-500 bg-orange-100" />
 								</button>
@@ -57,9 +65,9 @@ const Target = () => {
 									type="button"
 									onClick={onClickHandler}
 									title={label}
-									style={{ ...arrowStyles, right: 15 }}
+									style={{ ...arrowStyles, right: 15, top: 200 }}
 								>
-									<FiChevronsRight className="text-orange-500  bg-orange-100" />
+									<FiChevronsRight className="text-orange-500 bg-orange-100" />
 								</button>
 							)
 						}
@@ -77,27 +85,26 @@ const Target = () => {
 								id,
 								userId,
 								goal,
-								subGoalTotal,
-								successCount,
 								voteTotal,
 								successVote,
+								achievementPer,
 							}) => (
 								<TargetForm
-									key={userId}
+									key={id}
 									{...{
 										id,
 										userId,
 										goal,
-										subGoalTotal,
-										successCount,
 										voteTotal,
 										successVote,
+										achievementPer,
 									}}
 								/>
 							)
 						)}
 					</Carousel>
 				</div>
+
 				<StyledButton
 					styleName="target"
 					type="button"
@@ -106,6 +113,7 @@ const Target = () => {
 					<FiEdit className="mx-auto text-white text-2xl" />
 				</StyledButton>
 			</section>
+			<CreateToast />
 		</div>
 	);
 };

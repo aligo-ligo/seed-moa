@@ -1,3 +1,5 @@
+import { GOAL_TITLE } from "../../utils/constant/target";
+
 type Props = {
 	title: string;
 	description: string;
@@ -6,7 +8,11 @@ type Props = {
 
 const TargetCreateLayout = ({ title, description, children }: Props) => {
 	return (
-		<div className="phone:p-0 flex flex-col desktop:p-10 mt-8 w-full">
+		<div
+			className={`${
+				title === GOAL_TITLE && "py-10"
+			} flex flex-col desktop:p-10 mt-8 w-full min-h-max`}
+		>
 			<div className="mt-2 mb-16">
 				<h1 className="text-2xl desktop:text-3xl w-3/4 font-semibold desktop:font-bold">
 					{title}

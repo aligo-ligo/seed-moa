@@ -11,27 +11,16 @@ import { useTargetOnUser } from "../hooks/useGetTargets";
 import { useTarget } from "../hooks/useTarget";
 
 import RoutineBox from "../components/target/RoutineBox";
-import LineGraphPrep from "../components/target/LineGraphPrep";
+import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
+import SkeletonElement from "../components/layout/Skeleton";
 
 const TargetDetail = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const name = localStorage.getItem("userNickName");
 	const targetService = useTarget();
-	const { data: target } = useTargetOnUser(id, targetService);
-
-	if (!id) {
-		throw new Error("url 오류입니다.");
-	}
-	if (!name) {
-		throw new Error("닉네임 오류입니다.");
-	}
-
-	const percentage = calculatePercentage(
-		target?.successVote,
-		target?.voteTotal
-	);
+	const { data: target, isLoading } = useTargetOnUser(id, targetService);
 
 	const {
 		isModalOpen,
@@ -41,21 +30,55 @@ const TargetDetail = () => {
 		buttonModalType,
 		changeModalType,
 	} = usePopUp();
+	if (!target) {
+		return null;
+	}
+	const votePercentage = calculatePercentage(
+		target?.successVote,
+		target?.voteTotal
+	);
+
+	// const checkPointPercentage = calculatePercentage(
+	// 	target?.successCount,
+	// 	target?.subGoalTotal
+	// );
+
+	if (!target) {
+		return null;
+	}
 
 	return (
 		<div className="relative flex flex-col min-h-screen px-6 mb-10">
 			<Header name={name} />
-			<Meta name={name} id={id} />
+			{name && id && <Meta name={name} id={id} />}
+
 			<div>
-				<h1 className="font-semibold text-3xl text-center">{target?.goal}</h1>
+				<h1 className="font-semibold text-3xl text-center pointer-events-none">
+					{target?.goal}
+				</h1>
 				<div className="flex flex-col gap-6 mt-10">
 					<div>
-						<p className="font-semibold text-xl">성취 그래프</p>
-						{/* <LineGraph /> */}
-						<LineGraphPrep />
+						<div className="flex justify-between">
+							<p className="font-semibold text-xl pointer-events-none">
+								성취 그래프
+							</p>
+						</div>
+
+						<LineGraph
+							start={target?.startDate}
+							end={target?.endDate}
+							achieveDay={target?.achievementDate}
+						/>
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">체크 포인트</h2>
+						{isLoading && (
+							<>
+								<SkeletonElement type="title" />
+								<SkeletonElement type="title" />
+							</>
+						)}
+
 						{target?.subGoal?.map((subGoal, index) => {
 							return (
 								<Checkbox
@@ -71,6 +94,12 @@ const TargetDetail = () => {
 					</div>
 					<div>
 						<h2 className="font-semibold text-xl">루틴</h2>
+						{isLoading && (
+							<>
+								<SkeletonElement type="title" />
+								<SkeletonElement type="title" />
+							</>
+						)}
 						{target?.routine.map((routine, index) => {
 							return (
 								<RoutineBox key={index} id={index}>
@@ -86,11 +115,11 @@ const TargetDetail = () => {
 								target?.voteTotal || 0
 							}명 참여했어요`}</p>
 						</div>
-						<ProgressBar completed={percentage} />
+						<ProgressBar completed={votePercentage} />
 					</div>
 				</div>
 
-				<div className="flex flex-col item-center justify-center gap-4 m-20 px-16">
+				<div className="flex flex-col item-center justify-center gap-4 m-20">
 					<StyledButton
 						styleName="sharing"
 						type="button"

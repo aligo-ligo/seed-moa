@@ -15,7 +15,6 @@ export default class AuthServiceImpl implements AuthService {
 	}
 
 	async signUp({ email, password, nickName }: UserInfoType) {
-		console.log("Signup 서버로 가는 인자", email, password, nickName);
 		const response = await this.httpClient.post<AuthResponse>("users/signup", {
 			email,
 			password,
@@ -29,7 +28,6 @@ export default class AuthServiceImpl implements AuthService {
 	}
 
 	async signIn({ email, password }: UserInfoType) {
-		console.log("SignIn 서버로 가는 인자", email, password);
 		const response = await this.httpClient.post<AuthResponse>("users/signin", {
 			email,
 			password,

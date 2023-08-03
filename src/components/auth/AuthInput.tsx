@@ -1,12 +1,15 @@
-import React from "react";
+import React, { KeyboardEventHandler, useState } from "react";
 import { ActionType, UserInfoType } from "../../types/AuthType";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 interface AuthInputProps {
 	placeholder: string;
 	text: string;
-	name: "EMAIL" | "PASSWORD" | "NICKNAME";
+	name: "EMAIL" | "PASSWORD" | "NICKNAME" | "TEXT";
 	userInfo: UserInfoType;
 	dispatch: React.Dispatch<ActionType>;
+	isPasswordShown?: boolean | "non";
+	updateIsPassWordShown?: () => void;
 }
 
 export default function AuthInput({
@@ -15,14 +18,19 @@ export default function AuthInput({
 	name,
 	userInfo,
 	dispatch,
+	isPasswordShown = "non",
+	updateIsPassWordShown,
 }: AuthInputProps) {
 	const isEmail = name === "EMAIL";
-	const isPassword = name === "PASSWORD";
+	const isPassword = name === "PASSWORD" || "TEXT";
 	const isNickName = name === "NICKNAME";
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.currentTarget;
-		dispatch({ type: `SET_${name}`, data: value });
+
+		name === "TEXT"
+			? dispatch({ type: `SET_PASSWORD`, data: value })
+			: dispatch({ type: `SET_${name}`, data: value });
 	};
 
 	const { emailValid, passwordValid, nickNameValid } = userInfo;
@@ -42,7 +50,6 @@ export default function AuthInput({
 			: "border-fail ease-in duration-1000";
 	}
 
-	console.log("userInfoInInput", userInfo);
 	return (
 		<>
 			<label className="text-base block mb-2 font-medium">
@@ -52,18 +59,29 @@ export default function AuthInput({
 				</span>
 			</label>
 			<div
-				className={`flex items-center  ${inputClass} border-2 border-solid rounded-md py-2 px-4 relative`}
+				className={`flex items-center ${inputClass} border-2 border-solid rounded-md py-2 px-4 relative`}
 			>
 				<input
 					name={name}
 					value={text}
 					placeholder={placeholder}
-					className="placeholder:text-xs w-full outline-none text-emerald-800"
+					className="placeholder:text-xs w-full outline-none text-emerald-800 "
 					type={name.toLowerCase()}
 					onChange={handleChange}
 					required
 					autoComplete="on"
 				/>
+
+				{isPasswordShown !== "non" ? (
+					isPasswordShown ? (
+						<FiEye onClick={updateIsPassWordShown} className="cursor-pointer" />
+					) : (
+						<FiEyeOff
+							onClick={updateIsPassWordShown}
+							className="cursor-pointer"
+						/>
+					)
+				) : null}
 			</div>
 		</>
 	);

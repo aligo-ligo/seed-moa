@@ -11,7 +11,7 @@ export default class GuestServiceImpl implements GuestService {
 
 	async getGuestTarget(id: string | undefined) {
 		const { data } = await this.httpClient.get<TargetType>(`result?id=${id}`);
-		console.log("Service", data);
+
 		return data;
 	}
 	async getTargetVote({ id, success }: VoteResponseType) {

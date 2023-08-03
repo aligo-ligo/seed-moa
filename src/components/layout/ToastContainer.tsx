@@ -15,13 +15,12 @@ interface Props {
 const ToastContainer = ({
 	children,
 	toastType,
-	config = { duration: 1000 },
+	config = { duration: 2000 },
 }: Props) => {
 	const ref = document.querySelector("#toast-root");
 	const { duration } = config;
 	const { toastList, close } = useToastList();
 
-	console.log("duration", duration);
 	const isShown = toastList.includes(toastType);
 
 	useEffect(() => {

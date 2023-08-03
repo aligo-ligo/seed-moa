@@ -6,11 +6,13 @@ import { createPortal } from "react-dom";
 import ModalContent from "../components/common/ModalContent";
 import usePopUp from "../hooks/usePopUp";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/constant/auth";
+import LogoutToast from "../components/toast/LogoutToast";
 
 const Auth = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const { closeModal, outside } = usePopUp();
+
 	const nickName = localStorage.getItem("userNickName");
 
 	const isLogin = pathname === SIGN_IN_URL;
@@ -38,6 +40,7 @@ const Auth = () => {
 					/>,
 					document.body
 				)}
+			<LogoutToast />
 		</section>
 	);
 };
