@@ -127,7 +127,7 @@ const TargetGuest = () => {
 								styleName="result"
 								type="button"
 								onClick={() => {
-									navigate("/target/8");
+									navigate(`/target/${id}`);
 								}}
 							>
 								상세 페이지로 돌아가기
