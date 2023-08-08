@@ -4,7 +4,6 @@ import { TargetCreateProps } from "../../types/TargetTypes";
 import { formatDate, getDayFromDiff, getNowDate } from "../../utils/formatDate";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { LAST_DESCRIPTION, LAST_TITLE } from "../../utils/constant/target";
-import BlackBoard from "../common/BlackBoard";
 
 const LastStep = ({ setStep }: TargetCreateProps) => {
 	const { getGoal, getSubGoal, getRoutine, getEndDate } = useGetFormData();

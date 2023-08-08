@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import Step from "../components/goal/Step";
 import Goal from "../components/goal/Goal";
@@ -8,15 +8,11 @@ import SubGoalRoutine from "../components/goal/SubGoalRoutine";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import {
-	TargetCreateProps,
-	TargetInfoType,
-	TargetStepType,
-} from "../types/TargetTypes";
+import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
 import { useTarget } from "../hooks/useTarget";
 import CreateBar from "../components/target/animationBars/CreateBar";
 import useToastList from "../hooks/useToastList";
-import { useEventListener } from "usehooks-ts";
+
 import { usePreventGoBack } from "../hooks/usePreventLeave";
 import GobackToast from "../components/toast/GobackToast";
 
@@ -43,6 +39,7 @@ const TargetCreate = () => {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState("");
 	const [step, setStep] = useState<TargetStepType>("goal");
+	console.log(message);
 
 	const methods = useForm<TargetInfoType>({
 		defaultValues: {
@@ -55,7 +52,7 @@ const TargetCreate = () => {
 	const onSubmitHandler = (data: TargetInfoType) => {
 		targetService
 			?.postTarget(data)
-			.then((res) => {
+			.then(() => {
 				show("createToast");
 				navigate("/target");
 			})

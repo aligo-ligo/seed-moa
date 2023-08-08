@@ -15,7 +15,7 @@ const usePopUp = () => {
 	} = useContext(ModalContext);
 	const outside = useRef<any>(null);
 
-	const handlerOutside = (e: any) => {
+	const handlerOutside = () => {
 		closeSideBar();
 		closeModal();
 	};

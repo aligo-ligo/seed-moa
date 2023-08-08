@@ -13,6 +13,7 @@ type Props = {
 const SharingModal = ({ shareUrl, closeModal }: Props) => {
 	const { show } = useToastList();
 	const [value, copy] = useCopyToClipboard();
+	console.log(value);
 
 	const clickHandler = () => {
 		if (shareUrl) {
