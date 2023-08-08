@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
@@ -7,7 +8,10 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), visualizer() as PluginOption],
+	plugins: [react(), visualizer() as PluginOption, sentryVitePlugin({
+        org: "aligoligo",
+        project: "aliogo_oligo"
+    })],
 	test: {
 		globals: true,
 		environment: "jsdom",
