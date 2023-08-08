@@ -11,7 +11,16 @@
 
 **알리고 올리고 공유 기반 목표 달성 웹 서비스입니다.**
 
-연초에 다이어리에 적었던 2023년 목표를 위해 열심히 살고 계신가요? 시도만 N번째인 다이어터 혹은 취준생들을 위한 위한 서비스를 출시합니다. 게임적인 요소를 통해 주변 사람들에게 공유하여 자신의 목표와 목표를 이루기 위한 세분화된 목표 그리고 루틴등을 공유해 응원과 친구들의 의견을 받아볼 수 있습니다. 궁극적으로 목표 달성을 하는데 조금이라도 도움이 됐으면 하는 바람에서 시작하게된 프로젝트입니다.
+취준생들을 위한 목표 달성 서비스를 출시했습니다. 자신의 목표와 목표를 이루기 위한 세분화 목표 그리고 루틴을 지인들에게 공유하여 투표 및 응원의 댓글을 받아볼 수 있습니다. 취준생 여러분들이 목표를 성취하는데 조금이라도 도움이 됐으면 하는 바람에서 시작하게된 프로젝트입니다
+
+👉 [Aligo Oligo 바로가기](https://www.aligoligo.me/)
+
+```tsx
+//test를 위한 아이디와 비번
+id : test@test.com
+
+password : test123456
+```
 
 [진행 과정 노션 페이지 확인하기](https://www.notion.so/1d2cfc5161254e07add110bc3fdc3457)
 
@@ -50,40 +59,42 @@
   </tr>
 </table>
 
-## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 기술 스택
+## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> MVP 개발 내용(주요 기능)
 
-1. next.js (v13.4) -> react.js [이유 보러 가기](https://www.notion.so/Next-js-react-3c05b2fc8d064f81b37f07e21053e6ca)
-2. Typescript
-3. react-query
-4. axios
+1. Context를 활용한 유저 정보 관리
+2. 목표 생성 퍼널 기능
+3. 목표 상세 체크 포인트 (세분화 목표) 성취 그래프 반영 기능
+4. 목표 공유 기능
+5. 목표 결과 페이지 투표 기능
+6. 유저 액션에 따른 Toast UI 기능
+7. 모바일 친화적인 이벤트 기능
 
 ## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> UI
 
-<div>
-<img  src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/b5943a39-39ea-47f1-b495-2c68c02eb96c" alt="landing" width="200px"/>
-<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/c6a6ed64-8ed5-4611-9291-aa7863604dd7" alt="landing" width="200px"/>
-<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/badb4f26-59e7-4902-86f0-a3d669853d38" alt="landing" width="200px"/>
-
-</div>
-<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/1dc71300-495f-4bef-9e1d-543f980ec5f8" alt="landing" width="200px"/>
-<img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/699eb20b-1312-47bd-8e10-917b7ac24347" alt="landing" width="200px"/>
+<img  src="https://github.com/CodyMan0/aligoligo/assets/93697790/38846307-0a03-4141-84cd-20d7613dbfb9" alt="landingAndAuth" />
+<img src="https://github.com/CodyMan0/aligoligo/assets/93697790/cc8f8e0c-1bfa-4387-907f-572f80aa9767" alt="targetCreate" />
+<img src="https://github.com/CodyMan0/aligoligo/assets/93697790/1ff9bfab-d7cb-4290-aced-7ef4fca4474e" alt="main" />
+<img src="https://github.com/CodyMan0/aligoligo/assets/93697790/6d5b9588-d1cf-476f-b267-24144c43ce34" alt="sidebar" />
 
 ## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 디자인 및 와이어프레임!
 
 [알리고올리고 피그마 보러가기 ](https://www.figma.com/file/6AZLv4Oolyakjjbj9fV9Y7/%EC%95%8C%EB%A6%AC%EA%B3%A0-%EC%98%AC%EB%A6%AC%EA%B3%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?type=design&node-id=0-1&mode=design&t=fOlAyICiQyFJfjtj-0)
 
-## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> issue Template
+## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 회고
 
-```md
-🚅 Issue 한 줄 요약
-이슈를 한줄로 요약해주세요.
+1. **커뮤니케이션의 기준을 세우다.**
+2. **피그마를 활용한 UI Interface 설계 후, 구현하여 능률 향상.**
+3. **완벽하진 않아도 스프린트와 회고를 통해 프로젝트 리딩**
+4. **그럼에도 불구하고 밀린 베포 일정에 대한 회고**
 
-🤷 Issue 세부 내용
-무슨 이슈인가요?
+👉 [자세한 회고 보러 가기](https://www.notion.so/59c58de6aaa34c9093ad1fa1ebb049e1#4b6a015785434639ac7302a8b8f96dde)
 
-✨ 기대 결과
-어떤 결과물을 원하시나요?
+## <img src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/37ea3489-8c58-40c4-a220-468f5a49a643" alt="logo_img" width="25px"/> 기술 스택
 
-📸 스크린샷
-이슈에 해당하는 부분을 보여주세요.
-```
+1. next.js (v13.4) -> **react.js** [이유 보러 가기](https://www.notion.so/Next-js-react-3c05b2fc8d064f81b37f07e21053e6ca)
+2. **Typescript**
+3. **Tanstack-query** (react-query)
+4. **axios**
+5. **zustand**
+6. **react-chartjs-2**
+7. **react-hook-form**
