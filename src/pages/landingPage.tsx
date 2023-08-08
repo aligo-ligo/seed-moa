@@ -16,6 +16,7 @@ const LandingPage = () => {
 	const guestService = useGuest();
 	const { data: target, isLoading } = useInfo(guestService);
 	// const img = import.meta.env.VITE_BASE_URL;
+	console.log("렌딩");
 
 	useEffect(() => {
 		if (isLoggedIn) {

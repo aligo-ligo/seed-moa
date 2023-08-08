@@ -1,4 +1,4 @@
-import React, { KeyboardEventHandler, useState } from "react";
+import React from "react";
 import { ActionType, UserInfoType } from "../../types/AuthType";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 

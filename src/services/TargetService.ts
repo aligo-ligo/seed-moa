@@ -25,13 +25,7 @@ export default class TargetServiceImpl implements TargetService {
 		return data;
 	}
 
-	async postTarget({
-		goal,
-		subGoal,
-		routine,
-		endDate,
-		penalty,
-	}: TargetInfoType) {
+	async postTarget({ goal, subGoal, routine, endDate }: TargetInfoType) {
 		const { data } = await this.httpClient.post<TargetCreateResultType>(
 			"target/create",
 			{
@@ -39,7 +33,6 @@ export default class TargetServiceImpl implements TargetService {
 				subGoal,
 				routine,
 				endDate,
-				penalty,
 			}
 		);
 		return data;
