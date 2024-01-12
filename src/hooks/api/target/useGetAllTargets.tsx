@@ -2,14 +2,10 @@ import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
 import { get } from "../../../libs/api";
 import { TargetType } from "../../../types/TargetTypes";
 
-export interface Response {
-  question_feedback: Promise<TargetType[]>;
-}
-
-const useGetAllTargets = (options?: UseQueryOptions<Response>) => {
-  return useQuery<Response>({
+const useGetAllTargets = (options?: UseQueryOptions<TargetType[]>) => {
+  return useQuery<TargetType[]>({
     queryKey: ["targets"],
-    queryFn: () => get<Response>(`target/list`),
+    queryFn: () => get<TargetType[]>(`target/list`),
     ...options,
   });
 };

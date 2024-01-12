@@ -7,8 +7,6 @@ import CustomException from '../exceptions/CustomException';
 import { errorMessage } from '../exceptions/messages';
 
 
-
-
 const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:7070';
 const PRODUCTION_API_URL = 'https://www.aligoligo.store:8080';
 

@@ -11,13 +11,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SkeletonElement from "../components/layout/Skeleton";
 import CreateToast from "../components/toast/CreateToast";
 import useGetAllTargets from "../hooks/api/target/useGetAllTargets";
-import { useTarget } from "../hooks/useTarget";
-import { useAllTarget } from "../hooks/useGetTargets";
 
 const Target = () => {
   const navigate = useNavigate();
-  // const targetService = useTarget();
-  // const { data: targets, isLoading } = useAllTarget(targetService);
   const { data: targets, isLoading } = useGetAllTargets();
   console.log("targets", targets);
   const name = localStorage.getItem("userNickName");
