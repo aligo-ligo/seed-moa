@@ -1,13 +1,12 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import HTTPError from "./HttpError";
-import { TokenRepository } from "../repository/tokenRepository";
 import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/constant/auth";
 
 export default class HttpClient {
 	httpClient: AxiosInstance;
-	tokenRepository: TokenRepository;
 
-	constructor(private baseUrl: string, tokenRepository: TokenRepository) {
+
+	constructor(private baseUrl: string) {
 		this.httpClient = axios.create({
 			baseURL: this.baseUrl,
 		});
@@ -22,9 +21,9 @@ export default class HttpClient {
 					if (response) {
 						const { status } = response;
 						if (status === 401) {
-							this.tokenRepository.remove(ACCESS_TOKEN);
-							this.tokenRepository.remove(USER_ID);
-							this.tokenRepository.remove(NICK_NAME);
+							localStorage.removeItem(ACCESS_TOKEN);
+							localStorage.removeItem(USER_ID);
+							localStorage.removeItem(NICK_NAME);
 						} else {
 							throw new HTTPError(
 								response?.status,
@@ -38,12 +37,11 @@ export default class HttpClient {
 			}
 		);
 
-		this.tokenRepository = tokenRepository;
 	}
 
 	withToken() {
 		this.httpClient.interceptors.request.use((config) => {
-			const token = this.tokenRepository.get(ACCESS_TOKEN);
+			const token = localStorage.getItem(ACCESS_TOKEN);
 			console.log("in WIthToken", token);
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;

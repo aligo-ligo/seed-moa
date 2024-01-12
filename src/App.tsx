@@ -9,7 +9,6 @@ import TargetServiceImpl from "./services/TargetService";
 import { TargetProvider } from "./context/TargetContext";
 import { SideBarProvider } from "./context/SideBarContext";
 import { routerInfo } from "./utils/router";
-import { TokenRepository } from "./repository/tokenRepository";
 import { ModalProvider } from "./context/ModalContext";
 import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
@@ -42,16 +41,12 @@ Sentry.init({
 
 function App() {
   const queryClient = new QueryClient(QueryClientOptions);
-  const tokenRepository = new TokenRepository();
 
   //개발 서버일떄와 서버 일떄 일일이 분기해주는게 맞는걸까?!
-  const client = new HttpClient(
-    import.meta.env.VITE_LOCAL_SERVER_URL,
-    tokenRepository
-  );
+  const client = new HttpClient(import.meta.env.VITE_LOCAL_SERVER_URL);
 
   // 의존성 주입 인젝터라는 것이 상황에 따라 다른 의존성 넣으주려고 사용한다.
-  const authService = new AuthServiceImpl(client.httpClient, tokenRepository);
+  const authService = new AuthServiceImpl(client.httpClient);
   const targetService = new TargetServiceImpl(client.withToken());
   const guestService = new GuestServiceImpl(client.withoutToken());
   const routerObject = createBrowserRouter(routerInfo);
