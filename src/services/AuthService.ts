@@ -2,7 +2,8 @@ import { AxiosInstance } from "axios";
 // import HTTPError from "../network/httpError";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
 
-import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/constant/auth";
+
+import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
 
 export default class AuthServiceImpl implements AuthService {
 
@@ -19,9 +20,9 @@ export default class AuthServiceImpl implements AuthService {
 			nickName,
 		});
 		const { data } = response;
-			localStorage.setItem(ACCESS_TOKEN, data.accessToken);
-			localStorage.setItem(USER_ID, data.user.id.toString());
-			localStorage.setItem(NICK_NAME, data.user.nickName.toString());
+			localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
+			localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
+			localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 
@@ -31,9 +32,9 @@ export default class AuthServiceImpl implements AuthService {
 			password,
 		});
 		const { data } = response;
-			localStorage.setItem(ACCESS_TOKEN, data.accessToken);
-			localStorage.setItem(USER_ID, data.user.id.toString());
-			localStorage.setItem(NICK_NAME, data.user.nickName.toString());
+localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
+			localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
+			localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 
@@ -48,15 +49,15 @@ export default class AuthServiceImpl implements AuthService {
 		);
 
 		const { data } = response;
-		localStorage.setItem(ACCESS_TOKEN, data.accessToken);
-		localStorage.setItem(USER_ID, data.user.id.toString());
-		localStorage.setItem(NICK_NAME, data.user.nickName.toString());
+		localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
+		localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
+		localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 
 	logout() {
-		localStorage.remove(ACCESS_TOKEN);
-		localStorage.remove(NICK_NAME);
-		localStorage.remove(USER_ID);
+		localStorage.remove(LOCAL_STORAGE_KEY.accessToken);
+		localStorage.remove(LOCAL_STORAGE_KEY.userId);
+		localStorage.remove(LOCAL_STORAGE_KEY.nickName);
 	}
 }

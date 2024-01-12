@@ -9,8 +9,8 @@ import { errorMessage } from '../exceptions/messages';
 
 
 
-const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:8080';
-const PRODUCTION_API_URL = 'https://www.aligoligo.store:7070';
+const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:7070';
+const PRODUCTION_API_URL = 'https://www.aligoligo.store:8080';
 
 const instance = axios.create({
   baseURL: isProd(import.meta.env.MODE) ? PRODUCTION_API_URL : DEVELOPMENT_API_URL,
@@ -21,6 +21,7 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') return config;
 
   const accessToken = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  console.log('intercep',accessToken)
   if (!config.headers) return config;
   if (!accessToken) return config;
 

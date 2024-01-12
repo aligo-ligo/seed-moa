@@ -6,17 +6,19 @@ import { Carousel } from "react-responsive-carousel";
 import { CSSProperties } from "react";
 import StyledButton from "../components/common/StyledButton";
 import TargetEmptyForm from "../components/target/TargetEmptyForm";
-import { useTarget } from "../hooks/useTarget";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useAllTarget } from "../hooks/useGetTargets";
 import SkeletonElement from "../components/layout/Skeleton";
 import CreateToast from "../components/toast/CreateToast";
+import useGetAllTargets from "../hooks/api/target/useGetAllTargets";
+import { useTarget } from "../hooks/useTarget";
+import { useAllTarget } from "../hooks/useGetTargets";
 
 const Target = () => {
   const navigate = useNavigate();
-  const targetService = useTarget();
-  const { data: targets, isLoading } = useAllTarget(targetService);
+  // const targetService = useTarget();
+  // const { data: targets, isLoading } = useAllTarget(targetService);
+  const { data: targets, isLoading } = useGetAllTargets();
   console.log("targets", targets);
   const name = localStorage.getItem("userNickName");
 
@@ -36,7 +38,7 @@ const Target = () => {
           현재 타겟 목록
         </h1>
         <div className="flex flex-row justify-center mt-8 h-full">
-          {targets?.length === 0 && (
+          {typeof targets === "undefined" && (
             <div className="flex flex-col items-end">
               {isLoading && <SkeletonElement type="text" />}
               <TargetEmptyForm isLoading={isLoading} />
