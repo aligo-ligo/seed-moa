@@ -3,7 +3,7 @@ export type TargetResponse = Promise<TargetType[]>;
 export interface TargetService {
 	getAllTarget: () => TargetResponse;
 	getTarget: (id: string | undefined) => Promise<TargetType>;
-	postTarget: (targetInfo: TargetInfoType) => Promise<TargetCreateResultType>;
+	postTarget: (targetInfo: TargetInfoType) => Promise<CreateTargetResponse>;
 	postSubGoal: (subGoalInfo: PostSubGoalType) => Promise<PostResultType>;
 }
 
@@ -57,7 +57,7 @@ export type TargetInfoType = {
 	endDate: string;
 };
 
-export type TargetCreateResultType = number;
+export type CreateTargetResponse = number;
 export type PostSubGoalType = {
 	id: string | undefined;
 	value: string;

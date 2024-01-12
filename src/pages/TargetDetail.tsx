@@ -7,8 +7,6 @@ import usePopUp from "../hooks/usePopUp";
 import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
 import StyledButton from "../components/common/StyledButton";
-import { useTargetOnUser } from "../hooks/useGetTargets";
-import { useTarget } from "../hooks/useTarget";
 
 import RoutineBox from "../components/target/RoutineBox";
 import LineGraph from "../components/target/LineGraph";
