@@ -28,8 +28,3 @@ export const NICKNAME_INPUT = {
 export const SIGN_IN_URL = "/signin";
 export const SIGN_UP_URL = "/signup";
 
-// 로컬 스토리지
-export const ACCESS_TOKEN = "accessToken";
-export const USER_ID = "userId";
-export const NICK_NAME = "userNickName";
-export const IS_LOGGED_IN = "isLoggedIn";

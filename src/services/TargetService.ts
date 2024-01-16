@@ -1,8 +1,8 @@
 import { AxiosInstance } from "axios";
 import {
+	CreateTargetResponse,
 	PostResultType,
 	PostSubGoalType,
-	TargetCreateResultType,
 	TargetInfoType,
 	TargetResponse,
 	TargetService,
@@ -12,6 +12,7 @@ import {
 export default class TargetServiceImpl implements TargetService {
 	constructor(private httpClient: AxiosInstance) {}
 
+	// useGetAllTargets 리팩토링 
 	async getAllTarget() {
 		const { data } = await this.httpClient.get<TargetResponse>(`target/list`);
 		return data;
@@ -26,7 +27,7 @@ export default class TargetServiceImpl implements TargetService {
 	}
 
 	async postTarget({ goal, subGoal, routine, endDate }: TargetInfoType) {
-		const { data } = await this.httpClient.post<TargetCreateResultType>(
+		const { data } = await this.httpClient.post<CreateTargetResponse>(
 			"target/create",
 			{
 				goal,

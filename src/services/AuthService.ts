@@ -1,17 +1,16 @@
 import { AxiosInstance } from "axios";
 // import HTTPError from "../network/httpError";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
-import { TokenRepository } from "../repository/tokenRepository";
-import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/constant/auth";
+
+
+import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
 
 export default class AuthServiceImpl implements AuthService {
-	tokenRepository: TokenRepository;
+
 
 	constructor(
 		private httpClient: AxiosInstance,
-		tokenRepository: TokenRepository
 	) {
-		this.tokenRepository = tokenRepository;
 	}
 
 	async signUp({ email, password, nickName }: UserInfoType) {
@@ -21,9 +20,9 @@ export default class AuthServiceImpl implements AuthService {
 			nickName,
 		});
 		const { data } = response;
-		this.tokenRepository.save(ACCESS_TOKEN, data.accessToken);
-		this.tokenRepository.save(USER_ID, data.user.id.toString());
-		this.tokenRepository.save(NICK_NAME, data.user.nickName.toString());
+			localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
+			localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
+			localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 
@@ -33,9 +32,9 @@ export default class AuthServiceImpl implements AuthService {
 			password,
 		});
 		const { data } = response;
-		this.tokenRepository.save(ACCESS_TOKEN, data.accessToken);
-		this.tokenRepository.save(USER_ID, data.user.id.toString());
-		this.tokenRepository.save(NICK_NAME, data.user.nickName.toString());
+localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
+			localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
+			localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 
@@ -50,15 +49,15 @@ export default class AuthServiceImpl implements AuthService {
 		);
 
 		const { data } = response;
-		this.tokenRepository.save(ACCESS_TOKEN, data.accessToken);
-		this.tokenRepository.save(USER_ID, data.user.id.toString());
-		this.tokenRepository.save(NICK_NAME, data.user.nickName.toString());
+		localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
+		localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
+		localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 
 	logout() {
-		this.tokenRepository.remove(ACCESS_TOKEN);
-		this.tokenRepository.remove(NICK_NAME);
-		this.tokenRepository.remove(USER_ID);
+		localStorage.remove(LOCAL_STORAGE_KEY.accessToken);
+		localStorage.remove(LOCAL_STORAGE_KEY.userId);
+		localStorage.remove(LOCAL_STORAGE_KEY.nickName);
 	}
 }

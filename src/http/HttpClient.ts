@@ -1,13 +1,13 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import HTTPError from "./HttpError";
-import { TokenRepository } from "../repository/tokenRepository";
-import { ACCESS_TOKEN, NICK_NAME, USER_ID } from "../utils/constant/auth";
+import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
+
 
 export default class HttpClient {
 	httpClient: AxiosInstance;
-	tokenRepository: TokenRepository;
 
-	constructor(private baseUrl: string, tokenRepository: TokenRepository) {
+
+	constructor(private baseUrl: string) {
 		this.httpClient = axios.create({
 			baseURL: this.baseUrl,
 		});
@@ -22,9 +22,9 @@ export default class HttpClient {
 					if (response) {
 						const { status } = response;
 						if (status === 401) {
-							this.tokenRepository.remove(ACCESS_TOKEN);
-							this.tokenRepository.remove(USER_ID);
-							this.tokenRepository.remove(NICK_NAME);
+							localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+							localStorage.removeItem(LOCAL_STORAGE_KEY.userId);
+							localStorage.removeItem(LOCAL_STORAGE_KEY.nickName);
 						} else {
 							throw new HTTPError(
 								response?.status,
@@ -38,12 +38,11 @@ export default class HttpClient {
 			}
 		);
 
-		this.tokenRepository = tokenRepository;
 	}
 
 	withToken() {
 		this.httpClient.interceptors.request.use((config) => {
-			const token = this.tokenRepository.get(ACCESS_TOKEN);
+			const token = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
 			console.log("in WIthToken", token);
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;

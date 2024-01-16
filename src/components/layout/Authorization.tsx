@@ -1,25 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN } from "../../utils/constant/auth";
+
 import { useEffect } from "react";
 import { useGenerationStore } from "../../store/store";
+import { LOCAL_STORAGE_KEY } from "../../utils/constant/storage";
 
 interface AuthorizationProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Authorization: React.FC<AuthorizationProps> = ({ children }) => {
-	const isLogged = Boolean(localStorage.getItem(ACCESS_TOKEN));
-	const { updateHook } = useGenerationStore();
-	const navigate = useNavigate();
+  const isLogged = Boolean(localStorage.getItem(LOCAL_STORAGE_KEY.accessToken));
+  const { updateHook } = useGenerationStore();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!isLogged) {
-			console.log("--afefae-----------");
-			navigate("/signin");
-		}
-	}, [isLogged, updateHook, navigate]);
+  useEffect(() => {
+    if (!isLogged) {
+      console.log("--afefae-----------");
+      navigate("/signin");
+    }
+  }, [isLogged, updateHook, navigate]);
 
-	return <>{children}</>;
+  return <>{children}</>;
 };
 
 export default Authorization;
