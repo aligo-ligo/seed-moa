@@ -12,7 +12,6 @@ import { routerInfo } from "./utils/router";
 import { ModalProvider } from "./context/ModalContext";
 import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
-import { CheckModalProvider } from "./context/CheckModalContext";
 import { HelmetProvider } from "react-helmet-async";
 import { domMax, LazyMotion } from "framer-motion";
 import * as Sentry from "@sentry/react";
@@ -58,15 +57,13 @@ function App() {
           <TargetProvider targetService={targetService}>
             <SideBarProvider>
               <ModalProvider>
-                <CheckModalProvider>
-                  <LazyMotion features={domMax}>
-                    <HelmetProvider>
-                      <main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
-                        <RouterProvider router={routerObject} />
-                      </main>
-                    </HelmetProvider>
-                  </LazyMotion>
-                </CheckModalProvider>
+                <LazyMotion features={domMax}>
+                  <HelmetProvider>
+                    <main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+                      <RouterProvider router={routerObject} />
+                    </main>
+                  </HelmetProvider>
+                </LazyMotion>
               </ModalProvider>
             </SideBarProvider>
           </TargetProvider>

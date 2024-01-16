@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import StyledButton from "../common/StyledButton";
-import { CheckModalContext } from "../../context/CheckModalContext";
 
 import { PostSubGoalType } from "../../types/TargetTypes";
 import {
@@ -11,6 +10,7 @@ import {
 } from "@tanstack/react-query";
 import { TARGET_KEY } from "../../utils/constant/queryKeyConstants";
 import usePostSubGoal from "../../hooks/api/subGoal/usePostSubGoalById";
+import { useSubGoalStore } from "../../store/store";
 
 type Props = {
   closeModal: () => void;
@@ -18,9 +18,11 @@ type Props = {
 };
 
 const CheckModal = ({ closeModal, targetId }: Props) => {
-  const { subGoalValue, isSubGoalComplete } = useContext(CheckModalContext);
+  // const { subGoalValue, isSubGoalComplete } = useContext(CheckModalContext);
+  const { subGoalValue, CheckedDate } = useSubGoalStore();
+
   const data =
-    isSubGoalComplete === null
+    CheckedDate === null
       ? {
           id: targetId,
           value: subGoalValue,
@@ -42,7 +44,7 @@ const CheckModal = ({ closeModal, targetId }: Props) => {
   return (
     <div className="bg-white rounded-md">
       <h1 className="font-semibold text-xl mb-5"> 체크 포인트 최종 확인 </h1>
-      {isSubGoalComplete === null ? (
+      {CheckedDate === null ? (
         <>
           <p className="font-light text-sm">
             매일 루틴을 이행하여 해당 세분화 목표를 달성하셨나요?
