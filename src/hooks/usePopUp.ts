@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
-import { SideBarContext } from "../context/SideBarContext";
 import { ModalContext } from "../context/ModalContext";
+import { SideBarContext } from "../context/SideBarContext";
 import { useOnClickOutside } from "./useOnClickOutside";
 
 const usePopUp = () => {

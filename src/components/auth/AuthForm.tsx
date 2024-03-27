@@ -1,10 +1,9 @@
 import { useReducer, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthService } from "../../hooks/useAuth";
 import { ActionType, UserInfoType } from "../../types/AuthType";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import AuthInput from "./AuthInput";
 import Warnning from "./Warning";
-import { useAuthService } from "../../hooks/useAuth";
 
 import {
   EMAIL_INPUT,
@@ -16,8 +15,8 @@ import {
 
 import { LogoImage } from "../../utils/constant/image";
 
-import Validation from "./Validation";
 import StyledButton from "../common/StyledButton";
+import Validation from "./Validation";
 
 const ACTION_CONST = {
   SET_EMAIL: "SET_EMAIL",

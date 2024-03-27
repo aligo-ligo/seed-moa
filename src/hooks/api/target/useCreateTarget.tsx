@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 
+import { post } from "../../../libs/api";
 import {
   CreateTargetResponse,
   TargetInfoType,
 } from "../../../types/TargetTypes";
-import { post } from "../../../libs/api";
 
 const useCreateTarget = () => {
   return useMutation<CreateTargetResponse, unknown, TargetInfoType>({

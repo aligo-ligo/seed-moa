@@ -1,14 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import Header from "../components/target/Header";
-import TargetForm from "../components/target/TargetForm";
-import { FiEdit } from "react-icons/fi";
-import { Carousel } from "react-responsive-carousel";
 import { CSSProperties } from "react";
-import StyledButton from "../components/common/StyledButton";
-import TargetEmptyForm from "../components/target/TargetEmptyForm";
-import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
+import { FiChevronsLeft, FiChevronsRight, FiEdit } from "react-icons/fi";
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useNavigate } from "react-router-dom";
+import StyledButton from "../components/common/StyledButton";
 import SkeletonElement from "../components/layout/Skeleton";
+import Header from "../components/target/Header";
+import TargetEmptyForm from "../components/target/TargetEmptyForm";
+import TargetForm from "../components/target/TargetForm";
 import CreateToast from "../components/toast/CreateToast";
 import useGetAllTargets from "../hooks/api/target/useGetAllTargets";
 

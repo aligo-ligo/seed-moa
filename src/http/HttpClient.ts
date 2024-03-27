@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
-import HTTPError from "./HttpError";
 import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
+import HTTPError from "./HttpError";
 
 
 export default class HttpClient {

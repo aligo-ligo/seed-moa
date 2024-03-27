@@ -1,17 +1,17 @@
-import Header from "../components/target/Header";
-import { useNavigate, useParams } from "react-router-dom";
-import ProgressBar from "../components/target/animationBars/ProgressBar";
-import { calculatePercentage } from "../utils/calculatePercentage";
-import Checkbox from "../components/target/Checkbox";
-import usePopUp from "../hooks/usePopUp";
-import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ModalContent from "../components/common/ModalContent";
 import StyledButton from "../components/common/StyledButton";
+import ProgressBar from "../components/target/animationBars/ProgressBar";
+import Checkbox from "../components/target/Checkbox";
+import Header from "../components/target/Header";
+import usePopUp from "../hooks/usePopUp";
+import { calculatePercentage } from "../utils/calculatePercentage";
 
-import RoutineBox from "../components/target/RoutineBox";
-import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
 import SkeletonElement from "../components/layout/Skeleton";
+import LineGraph from "../components/target/LineGraph";
+import RoutineBox from "../components/target/RoutineBox";
 import useGetTargetById from "../hooks/api/target/useGetTargetById";
 
 const TargetDetail = () => {

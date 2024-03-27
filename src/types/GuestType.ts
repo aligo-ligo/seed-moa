@@ -1,4 +1,4 @@
-import { TargetCreateResultType, TargetType } from "./TargetTypes";
+import { TargetType } from "./TargetTypes";
 
 export interface GuestService {
 	getUserAndTargetNum: () => Promise<UserAndTargetNumType>;
@@ -6,7 +6,7 @@ export interface GuestService {
 	getTargetVote: ({
 		id,
 		success,
-	}: VoteResponseType) => Promise<TargetCreateResultType>;
+	}: VoteResponseType) => any;
 }
 
 export type VoteResponseType = {

@@ -1,16 +1,14 @@
-import { useContext } from "react";
-
 import StyledButton from "../common/StyledButton";
 
-import { PostSubGoalType } from "../../types/TargetTypes";
 import {
   UseMutationOptions,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { TARGET_KEY } from "../../utils/constant/queryKeyConstants";
 import usePostSubGoal from "../../hooks/api/subGoal/usePostSubGoalById";
 import { useSubGoalStore } from "../../store/store";
+import { PostSubGoalType } from "../../types/TargetTypes";
+import { TARGET_KEY } from "../../utils/constant/queryKeyConstants";
 
 type Props = {
   closeModal: () => void;

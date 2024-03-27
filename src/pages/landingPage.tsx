@@ -3,12 +3,12 @@ import StyledButton from "../components/common/StyledButton";
 
 import { LogoImage, OliBodyImage } from "../utils/constant/image";
 
-import Header from "../components/target/Header";
 import { useEffect } from "react";
-import { useGuest } from "../hooks/useGuest";
-import { useInfo } from "../hooks/useGetInfo";
-import SkeletonElement from "../components/layout/Skeleton";
 import OAuth from "../components/auth/OAuth";
+import SkeletonElement from "../components/layout/Skeleton";
+import Header from "../components/target/Header";
+import { useInfo } from "../hooks/useGetInfo";
+import { useGuest } from "../hooks/useGuest";
 import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
 
 const LandingPage = () => {

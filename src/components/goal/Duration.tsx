@@ -1,11 +1,11 @@
+import "react-datepicker/dist/react-datepicker.css";
 import { useFormContext } from "react-hook-form";
 import { TargetCreateProps } from "../../types/TargetTypes";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
-import DatePickerComponent from "./DatePicker/DatePickerComponent";
 import Validation from "../auth/Validation";
+import TargetCreateLayout from "../layout/TargetCreateLayout";
 import TargetStepButton from "../logic/TargetStepButton";
-import "react-datepicker/dist/react-datepicker.css";
 import "./DatePicker/css/react-datepicker.css";
+import DatePickerComponent from "./DatePicker/DatePickerComponent";
 
 import {
   DURATION_DESCRIPTION,

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { TargetService } from "../types/TargetTypes";
 import { GuestService } from "../types/GuestType";
+import { TargetService } from "../types/TargetTypes";
 import {
 	GUEST_KEY,
 	TARGET_KEY,
