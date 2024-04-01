@@ -13,7 +13,7 @@ const authAPI = {
   },
   /** 일반 회원 가입 요청 */
   postSignup: async ({ email, password, nickName }: UserInfoType) => {
-    const { data } = await baseInstance.post<AuthResponse>("users/signup", {
+    const { data } = await baseInstance.post<AuthResponse>("/users/signup", {
       email,
       password,
       nickName,
@@ -22,7 +22,7 @@ const authAPI = {
   },
   /** 일반 로그인 요청 */
   postSignin: async ({ email, password }: UserInfoType) => {
-    const { data } = await baseInstance.post<AuthResponse>("users/signin", {
+    const { data } = await baseInstance.post<AuthResponse>("/users/signin", {
       email,
       password,
     });

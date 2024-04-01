@@ -30,7 +30,7 @@ const KakaoLoginPage = () => {
         navigate(ROUTER_PATHS.TARGET);
       } catch (error) {
         //TODO : 에러 처리
-        console.log(error);
+        setTimeout(() => navigate(ROUTER_PATHS.ROOT), 1000);
       }
     })();
   }, []);
