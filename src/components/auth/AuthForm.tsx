@@ -1,6 +1,6 @@
+import { useAuthService } from "@/hooks/useAuth";
 import { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthService } from "../../hooks/useAuth";
 import { ActionType, UserInfoType } from "../../types/AuthType";
 import AuthInput from "./AuthInput";
 import Warnning from "./Warning";
