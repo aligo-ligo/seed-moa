@@ -3,30 +3,19 @@ import StyledButton from "../components/common/StyledButton";
 
 import { LogoImage, OliBodyImage } from "../utils/constant/image";
 
-import { useEffect } from "react";
 import OAuth from "../components/auth/OAuth";
 import SkeletonElement from "../components/layout/Skeleton";
 import Header from "../components/target/Header";
 import { useInfo } from "../hooks/useGetInfo";
 import { useGuest } from "../hooks/useGuest";
-import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const guestService = useGuest();
   const { data: target, isLoading } = useInfo(guestService);
-  // const img = import.meta.env.VITE_BASE_URL;
-  console.log("렌딩");
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/target");
-    }
-  }, [navigate, isLoggedIn]);
 
   return (
-    <section className="relative flex flex-col items-center justify-start px-6 min-h-screen ">
+    <section className="relative flex flex-col items-center justify-start px-6 min-h-screen">
       <Header />
       <div className="flex flex-col items-center justify-center ">
         <img

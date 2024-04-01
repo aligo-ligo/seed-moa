@@ -14,16 +14,20 @@ import {
 
 import { LogoImage } from "../../utils/constant/image";
 
+import { LOCAL_STORAGE_KEY } from "@/utils/constant/storage";
+import { ROUTER_PATHS } from "@/utils/router";
 import { useAuthService } from "../../hooks/useAuth";
 import StyledButton from "../common/StyledButton";
 import Validation from "./Validation";
 
+// TODO : 상수 분리하자
 const ACTION_CONST = {
   SET_EMAIL: "SET_EMAIL",
   SET_PASSWORD: "SET_PASSWORD",
   SET_NICKNAME: "SET_NICKNAME",
 } as const;
 
+// TODO :  reducer 분리하자
 const authReducer = (state: UserInfoType, action: ActionType) => {
   switch (action.type) {
     case ACTION_CONST.SET_EMAIL: {
@@ -55,6 +59,7 @@ const initialState: UserInfoType = {
   passwordValid: true,
   nickNameValid: true,
 };
+
 interface AuthFormProps {
   name: string;
   isLogin: boolean;
@@ -77,17 +82,20 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
     ? !emailValid || !passwordValid
     : !emailValid || !passwordValid || !nickNameValid;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // TODO : 변수명이 햇갈림 isLogin -> isLoginPath
     if (isLogin) {
-      authService
-        ?.signIn(userInfo)
-        .then((data) => {
-          if ("accessToken" in data) {
-            navigate("/target");
-          }
-        })
-        .catch((error) => setMessage(error.signInMessage));
+      try {
+        const data = await authService?.signIn(userInfo);
+        localStorage.setItem(
+          LOCAL_STORAGE_KEY.accessToken,
+          data?.accessToken as string
+        );
+        navigate(ROUTER_PATHS.TARGET);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       authService
         ?.signUp(userInfo)

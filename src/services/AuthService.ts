@@ -32,9 +32,6 @@ export default class AuthServiceImpl implements AuthService {
 			password,
 		});
 		const { data } = response;
-localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
-			localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
-			localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
 		return data;
 	}
 

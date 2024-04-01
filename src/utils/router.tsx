@@ -15,6 +15,7 @@ export const ROUTER_PATHS = {
   SIGNIN: "/signin",
   SIGNUP: "/signup",
   SIGNIN_REDIRECT_KAKAO: "/kakao",
+  TARGET: "/target",
 } as const;
 
 export const routerChildrenInfo = [
@@ -39,7 +40,7 @@ export const routerChildrenInfo = [
     withAuthorization: false,
   },
   {
-    path: "target",
+    path: ROUTER_PATHS.TARGET,
     element: <Target />,
     withAuthorization: true,
   },
