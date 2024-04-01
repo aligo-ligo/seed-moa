@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
 import IMAGE_MAP from "@/constants/image";
-import { useAuthService } from "../../hooks/useAuth";
 import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
 
+import STORAGE_KEYS from "@/constants/storageKeys";
 import "../../styles/Sidebar.css";
 
 type Props = {
@@ -14,13 +14,13 @@ type Props = {
   name: string | null | undefined;
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
+  const navigate = useNavigate();
   const { isSideBarOpen, outside, closeSideBar } = usePopUp();
   const { show } = useToastList();
-  const authService = useAuthService();
-  const navigate = useNavigate();
 
-  const hook = () => {
-    authService?.logout();
+  const handleLogout = () => {
+    localStorage.removeItem(STORAGE_KEYS.accessToken);
+    localStorage.removeItem(STORAGE_KEYS.nickName);
     show("logoutToast");
     closeSideBar();
   };
@@ -52,7 +52,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
               {isNameExisted && (
                 <button
                   className="flex justify-center items-center text-orange-400"
-                  onClick={hook}
+                  onClick={handleLogout}
                 >
                   로그아웃하기
                 </button>
