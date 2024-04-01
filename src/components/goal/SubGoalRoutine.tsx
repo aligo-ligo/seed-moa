@@ -1,6 +1,6 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
-import { SUBGOAL_DESCRIPTION, SUBGOAL_TITLE } from "../../constant/target";
+import { SUBGOAL_DESCRIPTION, SUBGOAL_TITLE } from "../../constants/target";
 import { TargetCreateProps } from "../../types/TargetTypes";
 import Validation from "../auth/Validation";
 import BlackBoard from "../common/BlackBoard";

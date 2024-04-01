@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import {
-    GUEST_KEY,
-    TARGET_KEY,
-    TARGET_LIST_KEY,
-} from "../constant/queryKeyConstants";
+	GUEST_KEY,
+	TARGET_KEY,
+	TARGET_LIST_KEY,
+} from "../constants/queryKeyConstants";
 import { GuestService } from "../types/GuestType";
 import { TargetService } from "../types/TargetTypes";
 

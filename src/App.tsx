@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { domMax, LazyMotion } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { QueryClientOptions } from "./constant/contants";
+import { QueryClientOptions } from "./constants/contants";
 import { AuthProvider } from "./context/AuthContext";
 import { GuestProvider } from "./context/GuestContext";
 import { ModalProvider } from "./context/ModalContext";

@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthForm from "../components/auth/AuthForm";
 import ModalContent from "../components/common/ModalContent";
 import LogoutToast from "../components/toast/LogoutToast";
-import { SIGN_IN_URL, SIGN_UP_URL } from "../constant/auth";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../constants/auth";
 import usePopUp from "../hooks/usePopUp";
 
 const Auth = () => {

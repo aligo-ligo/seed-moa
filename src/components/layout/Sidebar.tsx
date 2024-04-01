@@ -1,7 +1,7 @@
 import { FiEdit, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { LoudOli, LouderOli, OliImage } from "../../constant/image";
+import { LoudOli, LouderOli, OliImage } from "../../constants/image";
 import { useAuthService } from "../../hooks/useAuth";
 import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";

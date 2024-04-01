@@ -1,5 +1,5 @@
 import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
-import { TARGET_KEY } from "../../../constant/queryKeyConstants";
+import { TARGET_KEY } from "../../../constants/queryKeyConstants";
 import { get } from "../../../libs/api";
 import { TargetType } from "../../../types/TargetTypes";
 

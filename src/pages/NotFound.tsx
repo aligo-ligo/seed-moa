@@ -1,6 +1,6 @@
 import { Link, isRouteErrorResponse, useRouteError } from "react-router-dom";
 import logo from "../assets/logo/hero.jpeg";
-import { LoudOli } from "../constant/image";
+import { LoudOli } from "../constants/image";
 
 const NotFound = () => {
   const error = useRouteError();

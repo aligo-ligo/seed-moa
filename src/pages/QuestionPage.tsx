@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Header from "../components/target/Header";
-import { OliBodyImage } from "../constant/image";
+import { OliBodyImage } from "../constants/image";
 import { useGenerationStore } from "../store/store";
 
 const QuestionPage = () => {

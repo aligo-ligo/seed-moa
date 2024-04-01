@@ -7,7 +7,7 @@ import TargetStepButton from "../logic/TargetStepButton";
 import "./DatePicker/css/react-datepicker.css";
 import DatePickerComponent from "./DatePicker/DatePickerComponent";
 
-import { DURATION_DESCRIPTION, DURATION_TITLE } from "../../constant/target";
+import { DURATION_DESCRIPTION, DURATION_TITLE } from "../../constants/target";
 
 const Duration = ({ setStep }: TargetCreateProps) => {
   const {

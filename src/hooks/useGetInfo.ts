@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { LANDING_KEY } from "../constant/queryKeyConstants";
+import { LANDING_KEY } from "../constants/queryKeyConstants";
 import { GuestService } from "../types/GuestType";
 
 export const useInfo = (guestService: GuestService) => {

@@ -1,4 +1,4 @@
-import { LightOliImage, OliImage } from "../../constant/image";
+import { LightOliImage, OliImage } from "../../constants/image";
 import usePopUp from "../../hooks/usePopUp";
 import Sidebar from "../layout/Sidebar";
 

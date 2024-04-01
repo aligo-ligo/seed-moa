@@ -1,4 +1,4 @@
-import { LAST_DESCRIPTION, LAST_TITLE } from "../../constant/target";
+import { LAST_DESCRIPTION, LAST_TITLE } from "../../constants/target";
 import { useGetFormData } from "../../hooks/useGetFormData";
 import { TargetCreateProps } from "../../types/TargetTypes";
 import { formatDate, getDayFromDiff, getNowDate } from "../../utils/formatDate";

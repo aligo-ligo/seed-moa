@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { TARGET_KEY } from "../constant/queryKeyConstants";
+import { TARGET_KEY } from "../constants/queryKeyConstants";
 import { PostSubGoalType } from "../types/TargetTypes";
 import { useTarget } from "./useTarget";
 

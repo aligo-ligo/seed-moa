@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { OliBodyImage } from "../../constant/image";
+import { OliBodyImage } from "../../constants/image";
 import { TargetType } from "../../types/TargetTypes";
 import { calculatePercentage } from "../../utils/calculatePercentage";
 import ProgressBar from "./animationBars/ProgressBar";

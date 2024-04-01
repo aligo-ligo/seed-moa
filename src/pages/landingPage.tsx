@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import StyledButton from "../components/common/StyledButton";
 
-import { LogoImage, OliBodyImage } from "../constant/image";
+import { LogoImage, OliBodyImage } from "../constants/image";
 
 import OAuth from "../components/auth/OAuth";
 import SkeletonElement from "../components/layout/Skeleton";

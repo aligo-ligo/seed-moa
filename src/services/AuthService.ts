@@ -3,7 +3,7 @@ import { AxiosInstance } from "axios";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
 
 
-import { LOCAL_STORAGE_KEY } from "../constant/storage";
+import { LOCAL_STORAGE_KEY } from "../constants/storageKeys";
 
 export default class AuthServiceImpl implements AuthService {
 
