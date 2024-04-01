@@ -1,5 +1,5 @@
+import { LightOliImage, OliImage } from "../../constant/image";
 import usePopUp from "../../hooks/usePopUp";
-import { LightOliImage, OliImage } from "../../utils/constant/image";
 import Sidebar from "../layout/Sidebar";
 
 type Props = {

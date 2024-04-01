@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import {
+    GUEST_KEY,
+    TARGET_KEY,
+    TARGET_LIST_KEY,
+} from "../constant/queryKeyConstants";
 import { GuestService } from "../types/GuestType";
 import { TargetService } from "../types/TargetTypes";
-import {
-	GUEST_KEY,
-	TARGET_KEY,
-	TARGET_LIST_KEY,
-} from "../utils/constant/queryKeyConstants";
 
 export const useAllTarget = (targetService: TargetService) => {
 	return useQuery([TARGET_LIST_KEY], () => {

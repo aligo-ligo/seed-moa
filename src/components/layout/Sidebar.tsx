@@ -1,12 +1,12 @@
 import { FiEdit, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import { LoudOli, LouderOli, OliImage } from "../../constant/image";
 import { useAuthService } from "../../hooks/useAuth";
 import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
 import { useGenerationStore } from "../../store/store";
 import "../../styles/Sidebar.css";
-import { LoudOli, LouderOli, OliImage } from "../../utils/constant/image";
 
 type Props = {
   isNameExisted: boolean;

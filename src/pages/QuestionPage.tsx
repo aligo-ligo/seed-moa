@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Header from "../components/target/Header";
+import { OliBodyImage } from "../constant/image";
 import { useGenerationStore } from "../store/store";
-import { OliBodyImage } from "../utils/constant/image";
 
 const QuestionPage = () => {
   const { updateHook } = useGenerationStore();

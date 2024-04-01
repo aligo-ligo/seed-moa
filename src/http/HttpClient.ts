@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
-import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
+import { LOCAL_STORAGE_KEY } from "../constant/storage";
 import HTTPError from "./HttpError";
 
 

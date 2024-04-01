@@ -1,4 +1,4 @@
-import { OliBodyImage } from "../../utils/constant/image";
+import { OliBodyImage } from "../../constant/image";
 import SkeletonElement from "../layout/Skeleton";
 interface Props {
   isLoading: boolean;

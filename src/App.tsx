@@ -1,20 +1,20 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { QueryClientOptions } from "./utils/constant/contants";
+import { domMax, LazyMotion } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClientOptions } from "./constant/contants";
+import { AuthProvider } from "./context/AuthContext";
+import { GuestProvider } from "./context/GuestContext";
+import { ModalProvider } from "./context/ModalContext";
+import { SideBarProvider } from "./context/SideBarContext";
+import { TargetProvider } from "./context/TargetContext";
 import HttpClient from "./http/HttpClient";
 import AuthServiceImpl from "./services/AuthService";
-import { AuthProvider } from "./context/AuthContext";
-import TargetServiceImpl from "./services/TargetService";
-import { TargetProvider } from "./context/TargetContext";
-import { SideBarProvider } from "./context/SideBarContext";
-import { routerInfo } from "./utils/router";
-import { ModalProvider } from "./context/ModalContext";
-import { GuestProvider } from "./context/GuestContext";
 import GuestServiceImpl from "./services/GuestService";
-import { HelmetProvider } from "react-helmet-async";
-import { domMax, LazyMotion } from "framer-motion";
-import * as Sentry from "@sentry/react";
+import TargetServiceImpl from "./services/TargetService";
+import { routerInfo } from "./utils/router";
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,

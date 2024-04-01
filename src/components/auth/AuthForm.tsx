@@ -10,11 +10,11 @@ import {
   PASSWORD_INPUT,
   PASSWORD_VISIBLE_INPUT,
   ValidationAuth,
-} from "@/utils/constant/auth";
+} from "@/constant/auth";
 
-import { LogoImage } from "../../utils/constant/image";
+import { LogoImage } from "../../constant/image";
 
-import { LOCAL_STORAGE_KEY } from "@/utils/constant/storage";
+import { LOCAL_STORAGE_KEY } from "@/constant/storage";
 import { ROUTER_PATHS } from "@/utils/router";
 import { useAuthService } from "../../hooks/useAuth";
 import StyledButton from "../common/StyledButton";

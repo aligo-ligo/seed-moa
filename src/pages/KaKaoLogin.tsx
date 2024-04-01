@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { OliImage } from "@/constant/image";
 import { useAuthService } from "@/hooks/useAuth";
-import { OliImage } from "@/utils/constant/image";
 
 export default function KakaoLogin() {
   //TODO : const code = new URL(window.location.href).searchParams.get("code"); 에서 useSearchParams 훅 사용한 이유!
