@@ -1,4 +1,3 @@
-import { useAuthService } from "@/hooks/useAuth";
 import { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ActionType, UserInfoType } from "../../types/AuthType";
@@ -11,10 +10,11 @@ import {
   PASSWORD_INPUT,
   PASSWORD_VISIBLE_INPUT,
   ValidationAuth,
-} from "../../utils/constant/auth";
+} from "@/utils/constant/auth";
 
 import { LogoImage } from "../../utils/constant/image";
 
+import { useAuthService } from "../../hooks/useAuth";
 import StyledButton from "../common/StyledButton";
 import Validation from "./Validation";
 
