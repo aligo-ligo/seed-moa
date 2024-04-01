@@ -95,8 +95,8 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
     if (isLogin) {
       try {
         const data = await signInMutateAsync(userInfo);
-
         localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
+        localStorage.setItem(STORAGE_KEYS.nickName, data.userLoginDTO.nickName);
         navigate(ROUTER_PATHS.TARGET);
       } catch (error) {
         //TODO : 에러 처리
@@ -105,8 +105,8 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
     } else {
       try {
         const data = await signUpMutateAsync(userInfo);
-
         localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
+        localStorage.setItem(STORAGE_KEYS.nickName, data.userLoginDTO.nickName);
         // TODO : 회원가입 후 어디로 보낼지 고민하여 구현
         navigate(ROUTER_PATHS.TARGET);
       } catch (error) {
