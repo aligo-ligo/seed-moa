@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthService } from "../hooks/useAuth";
-import { OliImage } from "../utils/constant/image";
+
+import { useAuthService } from "@/hooks/useAuth";
+import { OliImage } from "@/utils/constant/image";
 
 export default function KakaoLogin() {
   const code = new URL(window.location.href).searchParams.get("code");
