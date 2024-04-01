@@ -8,7 +8,6 @@ import { ROUTER_PATHS } from "@/utils/router";
 import { useMutation } from "@tanstack/react-query";
 
 const KakaoLoginPage = () => {
-  //TODO : const code = new URL(window.location.href).searchParams.get("code"); 에서 useSearchParams 훅 사용한 이유!
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code") as string;
 
@@ -17,6 +16,11 @@ const KakaoLoginPage = () => {
 
   useEffect(() => {
     (async () => {
+      if (!code) {
+        navigate(ROUTER_PATHS.ROOT);
+        return;
+      }
+
       try {
         const data = await mutateAsync(code);
         localStorage.setItem(
