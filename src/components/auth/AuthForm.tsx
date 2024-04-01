@@ -12,10 +12,11 @@ import {
   ValidationAuth,
 } from "@/constants/auth";
 
+import authAPI from "@/api/auth/apis";
 import IMAGE_MAP from "@/constants/image";
 import STORAGE_KEYS from "@/constants/storageKeys";
 import { ROUTER_PATHS } from "@/utils/router";
-import { useAuthService } from "../../hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
 import StyledButton from "../common/StyledButton";
 import Validation from "./Validation";
 
@@ -66,11 +67,18 @@ interface AuthFormProps {
 }
 
 export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
-  const [message, setMessage] = useState("");
+  const [message, _] = useState("");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [userInfo, dispatch] = useReducer(authReducer, initialState);
   const { emailValid, passwordValid, nickNameValid } = userInfo;
-  const authService = useAuthService();
+
+  const { mutateAsync: signInMutateAsync } = useMutation({
+    mutationFn: authAPI.postSignin,
+  });
+  const { mutateAsync: signUpMutateAsync } = useMutation({
+    mutationFn: authAPI.postSignup,
+  });
+
   const navigate = useNavigate();
 
   const updateIsPassWordShown = () => {
@@ -86,24 +94,25 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
     // TODO : 변수명이 햇갈림 isLogin -> isLoginPath
     if (isLogin) {
       try {
-        const data = await authService?.signIn(userInfo);
-        localStorage.setItem(
-          STORAGE_KEYS.accessToken,
-          data?.accessToken as string
-        );
+        const data = await signInMutateAsync(userInfo);
+
+        localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
         navigate(ROUTER_PATHS.TARGET);
       } catch (error) {
+        //TODO : 에러 처리
         console.log(error);
       }
     } else {
-      authService
-        ?.signUp(userInfo)
-        .then((data) => {
-          if ("accessToken" in data) {
-            navigate("/target");
-          }
-        })
-        .catch((error) => setMessage(error.signUpMessage));
+      try {
+        const data = await signUpMutateAsync(userInfo);
+
+        localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
+        // TODO : 회원가입 후 어디로 보낼지 고민하여 구현
+        navigate(ROUTER_PATHS.TARGET);
+      } catch (error) {
+        //TODO : 404 및 500 에러 처리
+        console.log(error);
+      }
     }
   };
 
