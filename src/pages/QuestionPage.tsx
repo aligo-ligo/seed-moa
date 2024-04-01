@@ -1,16 +1,8 @@
-import { useEffect } from "react";
 import Header from "../components/target/Header";
 
 import IMAGE_MAP from "@/constants/image";
-import { useGenerationStore } from "../store/store";
 
 const QuestionPage = () => {
-  const { updateHook } = useGenerationStore();
-
-  useEffect(() => {
-    console.log("reRendering");
-  }, [updateHook]);
-
   const userNickName = localStorage.getItem("userNickName");
 
   return (

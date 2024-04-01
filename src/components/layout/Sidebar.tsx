@@ -6,7 +6,7 @@ import IMAGE_MAP from "@/constants/image";
 import { useAuthService } from "../../hooks/useAuth";
 import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
-import { useGenerationStore } from "../../store/store";
+
 import "../../styles/Sidebar.css";
 
 type Props = {
@@ -15,14 +15,12 @@ type Props = {
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
   const { isSideBarOpen, outside, closeSideBar } = usePopUp();
-  const { setUpdateHook } = useGenerationStore();
   const { show } = useToastList();
   const authService = useAuthService();
   const navigate = useNavigate();
 
   const hook = () => {
     authService?.logout();
-    setUpdateHook(true);
     show("logoutToast");
     closeSideBar();
   };
