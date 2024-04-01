@@ -1,5 +1,6 @@
+import KakaoLoginPage from "@/pages/KaKaoLogin";
 import Auth from "../pages/Auth";
-import KakaoLogin from "../pages/KaKaoLogin";
+
 import NotFound from "../pages/NotFound";
 import QuestionPage from "../pages/QuestionPage";
 import Target from "../pages/Target";
@@ -36,7 +37,7 @@ export const routerChildrenInfo = [
   },
   {
     path: ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO,
-    element: <KakaoLogin />,
+    element: <KakaoLoginPage />,
     withAuthorization: false,
   },
   {

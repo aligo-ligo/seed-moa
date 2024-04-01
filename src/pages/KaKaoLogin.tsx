@@ -1,30 +1,34 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import authAPI from "@/api/auth/apis";
 import IMAGE_MAP from "@/constants/image";
-import { useAuthService } from "@/hooks/useAuth";
+import STORAGE_KEYS from "@/constants/storageKeys";
+import { ROUTER_PATHS } from "@/utils/router";
+import { useMutation } from "@tanstack/react-query";
 
-export default function KakaoLogin() {
+const KakaoLoginPage = () => {
   //TODO : const code = new URL(window.location.href).searchParams.get("code"); 에서 useSearchParams 훅 사용한 이유!
   const [searchParams] = useSearchParams();
-  const code = searchParams.get("code");
+  const code = searchParams.get("code") as string;
 
-  const authService = useAuthService();
+  const { mutateAsync } = useMutation({ mutationFn: authAPI.postKakaoCode });
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getKakaoToken = async () => {
-      await authService
-        ?.kakaoSignin(code)
-        .then(() => {
-          navigate("/target");
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
-    };
-
-    getKakaoToken();
+    (async () => {
+      try {
+        const data = await mutateAsync(code);
+        localStorage.setItem(
+          STORAGE_KEYS.accessToken,
+          data.accessToken as string
+        );
+        navigate(ROUTER_PATHS.TARGET);
+      } catch (error) {
+        //TODO : 에러 처리
+        console.log(error);
+      }
+    })();
   }, []);
 
   return (
@@ -43,4 +47,6 @@ export default function KakaoLogin() {
       </div>
     </section>
   );
-}
+};
+
+export default KakaoLoginPage;
