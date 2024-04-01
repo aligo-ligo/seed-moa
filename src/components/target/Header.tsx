@@ -1,4 +1,4 @@
-import { LightOliImage, OliImage } from "../../constants/image";
+import IMAGE_MAP from "@/constants/image";
 import usePopUp from "../../hooks/usePopUp";
 import Sidebar from "../layout/Sidebar";
 
@@ -14,9 +14,9 @@ const Header = ({ name }: Props) => {
     <div className="flex py-6 justify-between items-center w-full h-full">
       <div className="flex justify-center items-center gap-2">
         <picture>
-          <source srcSet={LightOliImage} type="image/webp" />
+          <source srcSet={IMAGE_MAP.oliIconWithWebp} type="image/webp" />
           <img
-            src={OliImage}
+            src={IMAGE_MAP.oliIcon}
             alt="자그마한 로고 사진"
             className="phone:w-10 phone:border cursor-pointer desktop:w-12 desktop:border-2  p-1 rounded-xl"
             onClick={openSideBar}

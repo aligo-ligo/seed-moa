@@ -1,4 +1,4 @@
-import { LoudOli } from "../../../constants/image";
+import IMAGE_MAP from "@/constants/image";
 
 type Props = {
   step: keyof typeof getPercentFormStep;
@@ -28,7 +28,7 @@ const CreateBar = ({ step }: Props) => {
         ></div>
         <div className={`${getLocationFromStep[step]}`}>
           <img
-            src={LoudOli}
+            src={IMAGE_MAP.mainOliImage}
             alt="oli"
             className={`absolute h-8 -left-5 transform -translate-y-1/2 z-10 transition-transform duration-300`}
           />

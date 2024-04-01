@@ -1,9 +1,10 @@
 import { AxiosInstance } from "axios";
 // import HTTPError from "../network/httpError";
+import STORAGE_KEYS from "@/constants/storageKeys";
 import { AuthResponse, AuthService, UserInfoType } from "../types/AuthType";
 
 
-import { LOCAL_STORAGE_KEY } from "../constants/storageKeys";
+
 
 export default class AuthServiceImpl implements AuthService {
 
@@ -20,9 +21,9 @@ export default class AuthServiceImpl implements AuthService {
 			nickName,
 		});
 		const { data } = response;
-			localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
-			localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
-			localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
+			localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
+			localStorage.setItem(STORAGE_KEYS.userId, data.user.id.toString());
+			localStorage.setItem(STORAGE_KEYS.nickName, data.user.nickName.toString());
 		return data;
 	}
 
@@ -46,15 +47,15 @@ export default class AuthServiceImpl implements AuthService {
 		);
 
 		const { data } = response;
-		localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, data.accessToken);
-		localStorage.setItem(LOCAL_STORAGE_KEY.userId, data.user.id.toString());
-		localStorage.setItem(LOCAL_STORAGE_KEY.nickName, data.user.nickName.toString());
+		localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
+		localStorage.setItem(STORAGE_KEYS.userId, data.user.id.toString());
+		localStorage.setItem(STORAGE_KEYS.nickName, data.user.nickName.toString());
 		return data;
 	}
 
 	logout() {
-		localStorage.remove(LOCAL_STORAGE_KEY.accessToken);
-		localStorage.remove(LOCAL_STORAGE_KEY.userId);
-		localStorage.remove(LOCAL_STORAGE_KEY.nickName);
+		localStorage.remove(STORAGE_KEYS.accessToken);
+		localStorage.remove(STORAGE_KEYS.userId);
+		localStorage.remove(STORAGE_KEYS.nickName);
 	}
 }

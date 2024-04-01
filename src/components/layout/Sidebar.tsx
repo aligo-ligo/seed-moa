@@ -1,7 +1,8 @@
 import { FiEdit, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { LoudOli, LouderOli, OliImage } from "../../constants/image";
+
+import IMAGE_MAP from "@/constants/image";
 import { useAuthService } from "../../hooks/useAuth";
 import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
@@ -159,17 +160,17 @@ const landingSidebarData = [
 const sidebarData = [
   {
     title: "메인 페이지",
-    icon: <img src={OliImage} alt="사진" />,
+    icon: <img src={IMAGE_MAP.oliIcon} alt="사진" />,
     link: "/target",
   },
   {
     title: "익명 피드백 주기",
-    icon: <img src={LoudOli} alt="사진" />,
+    icon: <img src={IMAGE_MAP.shockedOliIcon} alt="사진" />,
     link: "https://naver.me/5P2zatjt",
   },
   {
     title: "서비스 이용 노하우",
-    icon: <img src={LouderOli} alt="사진" />,
+    icon: <img src={IMAGE_MAP.theMostShockedOliIcon} alt="사진" />,
     link: "/faq",
   },
 ];

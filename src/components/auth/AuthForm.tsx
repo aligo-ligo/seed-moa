@@ -12,9 +12,8 @@ import {
   ValidationAuth,
 } from "@/constants/auth";
 
-import { LogoImage } from "../../constants/image";
-
-import { LOCAL_STORAGE_KEY } from "@/constants/storageKeys";
+import IMAGE_MAP from "@/constants/image";
+import STORAGE_KEYS from "@/constants/storageKeys";
 import { ROUTER_PATHS } from "@/utils/router";
 import { useAuthService } from "../../hooks/useAuth";
 import StyledButton from "../common/StyledButton";
@@ -89,7 +88,7 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
       try {
         const data = await authService?.signIn(userInfo);
         localStorage.setItem(
-          LOCAL_STORAGE_KEY.accessToken,
+          STORAGE_KEYS.accessToken,
           data?.accessToken as string
         );
         navigate(ROUTER_PATHS.TARGET);
@@ -111,7 +110,11 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
   return (
     <>
       <div className="flex flex-col  items-center mb-8 p-3 gap-10">
-        <img src={LogoImage} alt="로고" className="w-4/5 pointer-events-none" />
+        <img
+          src={IMAGE_MAP.logoImage}
+          alt="로고"
+          className="w-4/5 pointer-events-none"
+        />
       </div>
       <form
         action="submit"

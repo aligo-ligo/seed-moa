@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { OliImage } from "@/constants/image";
+import IMAGE_MAP from "@/constants/image";
 import { useAuthService } from "@/hooks/useAuth";
 
 export default function KakaoLogin() {
@@ -31,11 +31,11 @@ export default function KakaoLogin() {
     <section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
       <div className="flex flex-col items-center justify-center">
         <div className="flex gap-4">
-          <img src={OliImage} alt="사진" className="" />
-          <img src={OliImage} alt="사진" className="" />
-          <img src={OliImage} alt="사진" className="" />
-          <img src={OliImage} alt="사진" className="" />
-          <img src={OliImage} alt="사진" className="" />
+          <img src={IMAGE_MAP.oliIcon} alt="loading_oli_image" />
+          <img src={IMAGE_MAP.oliIcon} alt="loading_oli_image" />
+          <img src={IMAGE_MAP.oliIcon} alt="loading_oli_image" />
+          <img src={IMAGE_MAP.oliIcon} alt="loading_oli_image" />
+          <img src={IMAGE_MAP.oliIcon} alt="loading_oli_image" />
         </div>
 
         <h1 className="mt-10 text-xl text-orange-500">카카오톡 로그인 중..</h1>

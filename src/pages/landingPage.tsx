@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import StyledButton from "../components/common/StyledButton";
 
-import { LogoImage, OliBodyImage } from "../constants/image";
-
+import IMAGE_MAP from "@/constants/image";
 import OAuth from "../components/auth/OAuth";
 import SkeletonElement from "../components/layout/Skeleton";
 import Header from "../components/target/Header";
@@ -19,12 +18,12 @@ const LandingPage = () => {
       <Header />
       <div className="flex flex-col items-center justify-center ">
         <img
-          src={OliBodyImage}
+          src={IMAGE_MAP.mainOliImage}
           alt="히어로"
           className="w-2/5 pointer-events-none"
         />
         <img
-          src={LogoImage}
+          src={IMAGE_MAP.logoImage}
           alt="로고"
           className="w-3/5  pointer-events-none"
         />

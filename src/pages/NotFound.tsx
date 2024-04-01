@@ -1,6 +1,6 @@
+import IMAGE_MAP from "@/constants/image";
 import { Link, isRouteErrorResponse, useRouteError } from "react-router-dom";
 import logo from "../assets/logo/hero.jpeg";
-import { LoudOli } from "../constants/image";
 
 const NotFound = () => {
   const error = useRouteError();
@@ -10,9 +10,9 @@ const NotFound = () => {
       <section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
         <div className="flex flex-col items-center justify-center">
           <div className="flex gap-4">
-            <img src={LoudOli} alt="사진" className="" />
-            <img src={LoudOli} alt="사진" className="" />
-            <img src={LoudOli} alt="사진" className="" />
+            <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
+            <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
+            <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
           </div>
           <h1 className="text-3xl desktop:text-4xl font-bold mt-4 mb-4">
             {error.status}
