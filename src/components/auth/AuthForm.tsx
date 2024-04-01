@@ -1,6 +1,5 @@
 import { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ActionType, UserInfoType } from "../../types/AuthType";
 import AuthInput from "./AuthInput";
 import Warnning from "./Warning";
 
@@ -15,50 +14,11 @@ import {
 import authAPI from "@/api/auth/apis";
 import IMAGE_MAP from "@/constants/image";
 import STORAGE_KEYS from "@/constants/storageKeys";
+import { authReducer, initialState } from "@/store/reducer";
 import { ROUTER_PATHS } from "@/utils/router";
 import { useMutation } from "@tanstack/react-query";
 import StyledButton from "../common/StyledButton";
 import Validation from "./Validation";
-
-// TODO : 상수 분리하자
-const ACTION_CONST = {
-  SET_EMAIL: "SET_EMAIL",
-  SET_PASSWORD: "SET_PASSWORD",
-  SET_NICKNAME: "SET_NICKNAME",
-} as const;
-
-// TODO :  reducer 분리하자
-const authReducer = (state: UserInfoType, action: ActionType) => {
-  switch (action.type) {
-    case ACTION_CONST.SET_EMAIL: {
-      const email = action.data;
-      const emailValid = email.includes("@") && email.length >= 3;
-
-      return { ...state, email, emailValid };
-    }
-    case ACTION_CONST.SET_PASSWORD: {
-      const password = action.data;
-      const passwordValid = password.length >= 8;
-      return { ...state, password, passwordValid };
-    }
-    case ACTION_CONST.SET_NICKNAME: {
-      const nickName = action.data;
-      const nickNameValid = nickName.length >= 3 && nickName.length < 11;
-      return { ...state, nickName, nickNameValid };
-    }
-    default:
-      throw new Error("Unknown Action");
-  }
-};
-
-const initialState: UserInfoType = {
-  email: "",
-  password: "",
-  nickName: "",
-  emailValid: true,
-  passwordValid: true,
-  nickNameValid: true,
-};
 
 interface AuthFormProps {
   name: string;
