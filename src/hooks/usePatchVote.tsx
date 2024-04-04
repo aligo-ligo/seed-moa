@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { GUEST_KEY } from "../constants/queryKeyConstants";
 import { VoteResponseType } from "../types/GuestType";
-import { GUEST_KEY } from "../utils/constant/queryKeyConstants";
 import { useGuest } from "./useGuest";
 
 const usePatchVote = (id: string | undefined) => {

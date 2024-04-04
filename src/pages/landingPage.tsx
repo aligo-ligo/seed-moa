@@ -1,41 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import StyledButton from "../components/common/StyledButton";
 
-import { LogoImage, OliBodyImage } from "../utils/constant/image";
-
-import { useEffect } from "react";
+import IMAGE_MAP from "@/constants/image";
 import OAuth from "../components/auth/OAuth";
 import SkeletonElement from "../components/layout/Skeleton";
 import Header from "../components/target/Header";
 import { useInfo } from "../hooks/useGetInfo";
 import { useGuest } from "../hooks/useGuest";
-import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const guestService = useGuest();
   const { data: target, isLoading } = useInfo(guestService);
-  // const img = import.meta.env.VITE_BASE_URL;
-  console.log("렌딩");
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/target");
-    }
-  }, [navigate, isLoggedIn]);
 
   return (
-    <section className="relative flex flex-col items-center justify-start px-6 min-h-screen ">
+    <section className="relative flex flex-col items-center justify-start px-6 min-h-screen">
       <Header />
       <div className="flex flex-col items-center justify-center ">
         <img
-          src={OliBodyImage}
+          src={IMAGE_MAP.mainOliImage}
           alt="히어로"
           className="w-2/5 pointer-events-none"
         />
         <img
-          src={LogoImage}
+          src={IMAGE_MAP.logoImage}
           alt="로고"
           className="w-3/5  pointer-events-none"
         />

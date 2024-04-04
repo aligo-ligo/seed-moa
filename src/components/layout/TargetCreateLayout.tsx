@@ -1,4 +1,4 @@
-import { GOAL_TITLE } from "../../utils/constant/target";
+import { GOAL_TITLE } from "../../constants/target";
 
 type Props = {
   title: string;

@@ -1,27 +1,26 @@
 import { FiEdit, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { useAuthService } from "../../hooks/useAuth";
+
+import IMAGE_MAP from "@/constants/image";
 import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
-import { useGenerationStore } from "../../store/store";
+
+import STORAGE_KEYS from "@/constants/storageKeys";
 import "../../styles/Sidebar.css";
-import { LoudOli, LouderOli, OliImage } from "../../utils/constant/image";
 
 type Props = {
   isNameExisted: boolean;
   name: string | null | undefined;
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
-  const { isSideBarOpen, outside, closeSideBar } = usePopUp();
-  const { setUpdateHook } = useGenerationStore();
-  const { show } = useToastList();
-  const authService = useAuthService();
   const navigate = useNavigate();
+  const { isSideBarOpen, outside, closeSideBar } = usePopUp();
+  const { show } = useToastList();
 
-  const hook = () => {
-    authService?.logout();
-    setUpdateHook(true);
+  const handleLogout = () => {
+    localStorage.removeItem(STORAGE_KEYS.accessToken);
+    localStorage.removeItem(STORAGE_KEYS.nickName);
     show("logoutToast");
     closeSideBar();
   };
@@ -53,7 +52,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
               {isNameExisted && (
                 <button
                   className="flex justify-center items-center text-orange-400"
-                  onClick={hook}
+                  onClick={handleLogout}
                 >
                   로그아웃하기
                 </button>
@@ -159,17 +158,17 @@ const landingSidebarData = [
 const sidebarData = [
   {
     title: "메인 페이지",
-    icon: <img src={OliImage} alt="사진" />,
+    icon: <img src={IMAGE_MAP.oliIcon} alt="사진" />,
     link: "/target",
   },
   {
     title: "익명 피드백 주기",
-    icon: <img src={LoudOli} alt="사진" />,
+    icon: <img src={IMAGE_MAP.shockedOliIcon} alt="사진" />,
     link: "https://naver.me/5P2zatjt",
   },
   {
     title: "서비스 이용 노하우",
-    icon: <img src={LouderOli} alt="사진" />,
+    icon: <img src={IMAGE_MAP.theMostShockedOliIcon} alt="사진" />,
     link: "/faq",
   },
 ];

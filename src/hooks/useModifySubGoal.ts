@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { TARGET_KEY } from "../constants/queryKeyConstants";
 import { PostSubGoalType } from "../types/TargetTypes";
-import { TARGET_KEY } from "../utils/constant/queryKeyConstants";
 import { useTarget } from "./useTarget";
 
 const useModifySubGoal = (id: string | undefined) => {

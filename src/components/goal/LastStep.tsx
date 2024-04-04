@@ -1,6 +1,6 @@
+import { LAST_DESCRIPTION, LAST_TITLE } from "../../constants/target";
 import { useGetFormData } from "../../hooks/useGetFormData";
 import { TargetCreateProps } from "../../types/TargetTypes";
-import { LAST_DESCRIPTION, LAST_TITLE } from "../../utils/constant/target";
 import { formatDate, getDayFromDiff, getNowDate } from "../../utils/formatDate";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import TargetStepButton from "../logic/TargetStepButton";

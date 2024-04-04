@@ -1,7 +1,7 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../constants/target";
 import { TargetStepType } from "../../types/TargetTypes";
-import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../utils/constant/target";
 import Validation from "../auth/Validation";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import TargetStepButton from "../logic/TargetStepButton";
