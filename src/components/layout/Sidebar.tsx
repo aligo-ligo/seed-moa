@@ -16,7 +16,7 @@ type Props = {
 };
 const Sidebar = ({ isNameExisted, name }: Props) => {
   const navigate = useNavigate();
-  const { isSideBarOpen, outside, closeSideBar } = usePopUp();
+  const { isOpen, outside, closeSideBar } = usePopUp();
   const { show } = useToastList();
 
   const handleLogout = () => {
@@ -31,7 +31,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
     <>
       <CSSTransition
         nodeRef={outside}
-        in={isSideBarOpen}
+        in={isOpen}
         timeout={300}
         classNames="sidebar"
         unmountOnExit

@@ -1,41 +1,31 @@
-import React, { createContext, useState } from "react";
+import { createContext, PropsWithChildren, useState } from "react";
 
 export type SideBarContextProps = {
-  isSideBarOpen: boolean;
+  isOpen: boolean;
   openSideBar: () => void;
   closeSideBar: () => void;
 };
 
-export interface SideBarProviderProps {
-  children: React.ReactNode;
-}
-
 const initialValue: SideBarContextProps = {
-  isSideBarOpen: false,
-  openSideBar: () => {
-    console.log("Open SideBar placeholder");
-  },
-  closeSideBar: () => {
-    console.log("Open SideBar placeholder");
-  },
+  isOpen: false,
+  openSideBar: () => {},
+  closeSideBar: () => {},
 };
 
 export const SideBarContext = createContext<SideBarContextProps>(initialValue);
-export const SideBarProvider = ({ children }: SideBarProviderProps) => {
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+export const SideBarProvider = ({ children }: PropsWithChildren) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const openSideBar = () => {
-    setIsSideBarOpen(true);
+    setIsOpen(true);
   };
 
   const closeSideBar = () => {
-    setIsSideBarOpen(false);
+    setIsOpen(false);
   };
 
   return (
-    <SideBarContext.Provider
-      value={{ isSideBarOpen, openSideBar, closeSideBar }}
-    >
+    <SideBarContext.Provider value={{ isOpen, openSideBar, closeSideBar }}>
       {children}
     </SideBarContext.Provider>
   );
