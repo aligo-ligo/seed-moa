@@ -12,10 +12,6 @@ export type UserInfoType = {
 	nickNameValid: boolean;
 };
 
-export type ValidProperties = Pick<
-	UserInfoType,
-	keyof UserInfoType & `${string}Valid`
->;
 
 export type AuthResponse = {
 	accessToken: string;
@@ -24,9 +20,3 @@ export type AuthResponse = {
 	};
 };
 
-export interface AuthService {
-	signIn: (userInfo: UserInfoType) => Promise<AuthResponse>;
-	signUp: (userInfo: UserInfoType) => Promise<AuthResponse>;
-	kakaoSignin: (code: string | null) => Promise<AuthResponse>;
-	logout: () => void;
-}

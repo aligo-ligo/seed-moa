@@ -1,4 +1,4 @@
-import { ActionType, UserInfoType } from "@/types/AuthType";
+import { ActionType, UserInfoType } from "@/types/auth";
 
 export const ACTION_CONST = {
   SET_EMAIL: "SET_EMAIL",

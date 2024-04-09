@@ -1,6 +1,6 @@
 import React from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { ActionType, UserInfoType } from "../../types/AuthType";
+import { ActionType, UserInfoType } from "../../types/auth";
 
 interface AuthInputProps {
   placeholder: string;
@@ -8,7 +8,7 @@ interface AuthInputProps {
   name: "EMAIL" | "PASSWORD" | "NICKNAME" | "TEXT";
   userInfo: UserInfoType;
   dispatch: React.Dispatch<ActionType>;
-  isPasswordShown?: boolean | "non";
+  isPasswordShown?: boolean | "none";
   updateIsPassWordShown?: () => void;
 }
 
@@ -18,7 +18,7 @@ export default function AuthInput({
   name,
   userInfo,
   dispatch,
-  isPasswordShown = "non",
+  isPasswordShown = "none",
   updateIsPassWordShown,
 }: AuthInputProps) {
   const isEmail = name === "EMAIL";
@@ -72,7 +72,7 @@ export default function AuthInput({
           autoComplete="on"
         />
 
-        {isPasswordShown !== "non" ? (
+        {isPasswordShown !== "none" ? (
           isPasswordShown ? (
             <FiEye onClick={updateIsPassWordShown} className="cursor-pointer" />
           ) : (

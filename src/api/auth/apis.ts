@@ -1,5 +1,5 @@
 import { baseInstance } from "@/libs/api";
-import { AuthResponse, UserInfoType } from "@/types/AuthType";
+import { AuthResponse, UserInfoType } from "@/types/auth";
 
 const authAPI = {
   /** 카카오 인가 코드 전송 후 로그인 토큰 받아오기 */
