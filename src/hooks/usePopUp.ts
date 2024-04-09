@@ -3,8 +3,10 @@ import { ModalContext } from "../context/ModalContext";
 import { SideBarContext } from "../context/SideBarContext";
 import { useOnClickOutside } from "./useOnClickOutside";
 
+//TODO : 기능 별로 분리하여 정확한 역할을 기준으로 분리
+
 const usePopUp = () => {
-	const { isSideBarOpen, openSideBar, closeSideBar } =
+	const { isOpen, openSideBar, closeSideBar } =
 		useContext(SideBarContext);
 	const {
 		isModalOpen,
@@ -23,7 +25,7 @@ const usePopUp = () => {
 	useOnClickOutside(outside, handlerOutside);
 
 	return {
-		isSideBarOpen,
+		isOpen,
 		outside,
 		openSideBar,
 		closeSideBar,
