@@ -16,6 +16,7 @@ const StyledButton = ({
   styleName,
   disable,
 }: StyledButtonType) => {
+  // TODO : BUTTON 컴포넌트 디자인 시스템으로 분리
   const styleCategories: IStyleCateType = {
     result: "text-sm text-main hover:text-mainHover",
     landing:
