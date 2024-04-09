@@ -4,7 +4,7 @@ import React, { forwardRef } from "react";
 interface KakaoLoginButtonProps extends React.ComponentProps<"a"> {}
 
 const KakaoLoginButton = forwardRef<HTMLAnchorElement, KakaoLoginButtonProps>(
-  ({ children = "카카오 로그인", ...props }, ref) => {
+  ({ children = "3초만에 카카오 로그인", ...props }, ref) => {
     console.log(props, ref);
     return (
       <a
