@@ -1,7 +1,9 @@
+import axios, { isAxiosError } from 'axios';
+
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { isProd } from '@/utils/env';
-import axios, { isAxiosError } from 'axios';
+
 
 
 const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:7070';
@@ -32,8 +34,9 @@ authInstance.interceptors.response.use(
   async (error) => {
     // TODO : accessToken 만료 처리! 및 refeshToken 도입
     if (isAxiosError(error)) {
-      switch (error.response?.data) {
-        case ERROR_RESPONSES: {
+      switch (error.response?.status) {
+        case ERROR_RESPONSES.accessExpired : {
+          // TODO : reissue API 필요할 듯
           localStorage.removeItem(STORAGE_KEYS.accessToken);
           break;
         }
