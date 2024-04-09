@@ -1,4 +1,3 @@
-import { sentryVitePlugin } from "@sentry/vite-plugin";
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
@@ -8,10 +7,7 @@ import { defineConfig, type PluginOption } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), visualizer() as PluginOption, sentryVitePlugin({
-        org: "aligoligo",
-        project: "aliogo_oligo"
-    })],
+	plugins: [react(), visualizer() as PluginOption],
     resolve: {
         alias: [
           { find: "@", replacement: "/src" },
