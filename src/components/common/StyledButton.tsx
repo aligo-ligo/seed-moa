@@ -20,7 +20,7 @@ const StyledButton = ({
   const styleCategories: IStyleCateType = {
     result: "text-sm text-main hover:text-mainHover",
     landing:
-      "text-lg w-full h-14 bg-main rounded-md text-xl text-white hover:bg-mainHover ease-in duration-100",
+      " w-full bg-main rounded-[6.25rem] text-sm font-bold text-white hover:bg-mainHover ease-in duration-100 px-4 py-5",
     ladingSignUp: "text-lg desktop:text-xl text-main ",
     login: `w-full text-lg ${
       disable ? "bg-mainHover" : "bg-main"
@@ -45,6 +45,7 @@ const StyledButton = ({
   const getStyleClasses = styleCategories[styleName];
   return (
     <>
+      {/* TODO 버튼 디자인 시스템 만들자 (아이콘 넣고 싶은데 현재 구조로 어려움) */}
       <Button
         type={type}
         onClick={onClick}
