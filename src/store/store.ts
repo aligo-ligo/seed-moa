@@ -1,15 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from 'zustand/middleware'
-
-interface GenerationState {
-	updateHook: boolean;
-	setUpdateHook: (updateHook: any) => void;
-}
-
-export const useGenerationStore = create<GenerationState>((set) => ({
-	updateHook: false,
-	setUpdateHook: (updateHook) => set({ updateHook: !updateHook }),
-}));
+import { devtools, persist } from 'zustand/middleware';
 
 
 interface SubGoalState {

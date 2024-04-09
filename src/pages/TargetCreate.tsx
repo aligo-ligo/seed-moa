@@ -1,21 +1,21 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import Step from "../components/goal/Step";
+import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import Duration from "../components/goal/Duration";
 import Goal from "../components/goal/Goal";
 import LastStep from "../components/goal/LastStep";
-import Duration from "../components/goal/Duration";
+import Step from "../components/goal/Step";
 import SubGoalRoutine from "../components/goal/SubGoalRoutine";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
 
 import CreateBar from "../components/target/animationBars/CreateBar";
 import useToastList from "../hooks/useToastList";
 
-import { usePreventGoBack } from "../hooks/usePreventLeave";
 import GobackToast from "../components/toast/GobackToast";
 import useCreateTarget from "../hooks/api/target/useCreateTarget";
+import { usePreventGoBack } from "../hooks/usePreventLeave";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
   goal: yup.string().required("목표를 입력해주세요"),

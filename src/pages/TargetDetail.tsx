@@ -1,25 +1,16 @@
-import Header from "../components/target/Header";
-import { useNavigate, useParams } from "react-router-dom";
-import ProgressBar from "../components/target/animationBars/ProgressBar";
-import { calculatePercentage } from "../utils/calculatePercentage";
-import Checkbox from "../components/target/Checkbox";
-import usePopUp from "../hooks/usePopUp";
-import ModalContent from "../components/common/ModalContent";
 import { createPortal } from "react-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ModalContent from "../components/common/ModalContent";
 import StyledButton from "../components/common/StyledButton";
+import Header from "../components/target/Header";
+import usePopUp from "../hooks/usePopUp";
 
-import RoutineBox from "../components/target/RoutineBox";
-import LineGraph from "../components/target/LineGraph";
 import Meta from "../components/common/Meta";
-import SkeletonElement from "../components/layout/Skeleton";
-import useGetTargetById from "../hooks/api/target/useGetTargetById";
 
 const TargetDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const name = localStorage.getItem("userNickName");
-  const { data: target, isLoading } = useGetTargetById(id as string);
-  console.log("target", target);
 
   const {
     isModalOpen,
@@ -29,22 +20,16 @@ const TargetDetail = () => {
     buttonModalType,
     changeModalType,
   } = usePopUp();
-  if (!target) {
-    return null;
-  }
-  const votePercentage = calculatePercentage(
-    target?.successVote,
-    target?.voteTotal
-  );
+
+  // const votePercentage = calculatePercentage(
+  //   target?.successVote,
+  //   target?.voteTotal
+  // );
 
   // const checkPointPercentage = calculatePercentage(
   // 	target?.successCount,
   // 	target?.subGoalTotal
   // );
-
-  if (!target) {
-    return null;
-  }
 
   return (
     <div className="relative flex flex-col min-h-screen px-6 mb-10">
@@ -53,7 +38,7 @@ const TargetDetail = () => {
 
       <div>
         <h1 className="font-semibold text-3xl text-center pointer-events-none">
-          {target?.goal}
+          {/* {target?.goal} */}
         </h1>
         <div className="flex flex-col gap-6 mt-10">
           <div>
@@ -63,22 +48,22 @@ const TargetDetail = () => {
               </p>
             </div>
 
-            <LineGraph
+            {/* <LineGraph
               start={target?.startDate}
               end={target?.endDate}
               achieveDay={target?.achievementDate}
-            />
+            /> */}
           </div>
           <div>
             <h2 className="font-semibold text-xl">체크 포인트</h2>
-            {isLoading && (
+            {/* {isLoading && (
               <>
                 <SkeletonElement type="title" />
                 <SkeletonElement type="title" />
               </>
-            )}
+            )} */}
 
-            {target?.subGoal?.map((subGoal, index) => {
+            {/* {target?.subGoal?.map((subGoal, index) => {
               return (
                 <Checkbox
                   type="detail"
@@ -89,11 +74,11 @@ const TargetDetail = () => {
                   {subGoal.value}
                 </Checkbox>
               );
-            })}
+            })} */}
           </div>
           <div>
             <h2 className="font-semibold text-xl">루틴</h2>
-            {isLoading && (
+            {/* {isLoading && (
               <>
                 <SkeletonElement type="title" />
                 <SkeletonElement type="title" />
@@ -105,16 +90,16 @@ const TargetDetail = () => {
                   {routine.value}
                 </RoutineBox>
               );
-            })}
+            })} */}
           </div>
           <div>
             <div className="flex justify-between items-center">
               <h2 className="font-semibold text-xl mb-8">성공 예측률 투표</h2>
-              <p className="text-xs font-bold">{`${
+              {/* <p className="text-xs font-bold">{`${
                 target?.voteTotal || 0
-              }명 참여했어요`}</p>
+              }명 참여했어요`}</p> */}
             </div>
-            <ProgressBar completed={votePercentage} />
+            {/* <ProgressBar completed={votePercentage} /> */}
           </div>
         </div>
 
@@ -144,7 +129,6 @@ const TargetDetail = () => {
           createPortal(
             <ModalContent
               targetId={id}
-              shareUrl={target?.url}
               buttonModalType={buttonModalType}
               outside={outside}
               closeModal={closeModal}

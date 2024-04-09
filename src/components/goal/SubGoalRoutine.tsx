@@ -1,14 +1,11 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
+import { SUBGOAL_DESCRIPTION, SUBGOAL_TITLE } from "../../constants/target";
 import { TargetCreateProps } from "../../types/TargetTypes";
-import {
-  SUBGOAL_DESCRIPTION,
-  SUBGOAL_TITLE,
-} from "../../utils/constant/target";
-import TargetStepButton from "../logic/TargetStepButton";
 import Validation from "../auth/Validation";
 import BlackBoard from "../common/BlackBoard";
+import TargetCreateLayout from "../layout/TargetCreateLayout";
+import TargetStepButton from "../logic/TargetStepButton";
 
 const SubGoalRoutine = ({ setStep }: TargetCreateProps) => {
   const {

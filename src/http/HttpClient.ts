@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
+
+import STORAGE_KEYS from "@/constants/storageKeys";
 import HTTPError from "./HttpError";
-import { LOCAL_STORAGE_KEY } from "../utils/constant/storage";
 
 
 export default class HttpClient {
@@ -22,9 +23,9 @@ export default class HttpClient {
 					if (response) {
 						const { status } = response;
 						if (status === 401) {
-							localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
-							localStorage.removeItem(LOCAL_STORAGE_KEY.userId);
-							localStorage.removeItem(LOCAL_STORAGE_KEY.nickName);
+							localStorage.removeItem(STORAGE_KEYS.accessToken);
+							localStorage.removeItem(STORAGE_KEYS.userId);
+							localStorage.removeItem(STORAGE_KEYS.nickName);
 						} else {
 							throw new HTTPError(
 								response?.status,
@@ -42,7 +43,7 @@ export default class HttpClient {
 
 	withToken() {
 		this.httpClient.interceptors.request.use((config) => {
-			const token = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+			const token = localStorage.getItem(STORAGE_KEYS.accessToken);
 			console.log("in WIthToken", token);
 			if (config.headers && token) {
 				config.headers.Authorization = `Bearer ${token}`;

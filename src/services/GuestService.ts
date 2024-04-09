@@ -1,10 +1,10 @@
 import { AxiosInstance } from "axios";
-import { TargetCreateResultType, TargetType } from "../types/TargetTypes";
 import {
 	GuestService,
 	UserAndTargetNumType,
 	VoteResponseType,
 } from "../types/GuestType";
+import { TargetType } from "../types/TargetTypes";
 
 export default class GuestServiceImpl implements GuestService {
 	constructor(private httpClient: AxiosInstance) {}
@@ -15,7 +15,7 @@ export default class GuestServiceImpl implements GuestService {
 		return data;
 	}
 	async getTargetVote({ id, success }: VoteResponseType) {
-		const { data } = await this.httpClient.get<TargetCreateResultType>(
+		const { data } = await this.httpClient.get(
 			`target/vote?id=${id}&success=${success}`
 		);
 
