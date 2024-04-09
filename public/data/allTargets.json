@@ -1,0 +1,71 @@
+[
+	{
+		"user_id": 1,
+		"start_date": "2023-06-16",
+		"end_date": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량할꺼야 1",
+		"routine": [
+			{ "name": "routine", "value": "매일 물 마신다." },
+			{ "name": "routine", "value": "운동을 매일 한다." },
+			{ "name": "routine", "value": "찌개를 먹지 않는다." }
+		],
+
+		"sub_goal": [
+			{ "name": "subGoal", "value": "1kg 감량" },
+			{ "name": "subGoal", "value": "3kg 감량" },
+			{ "name": "subGoal", "value": "4kg 감량" }
+		],
+		"penalty": "김밥 그리고 떡볶이 쏜다. 절대 이번에는 실패란 없다.",
+		"subgoal_total": 4,
+		"success_count": 2,
+		"success_vote": 4,
+		"failure_vote": 4,
+		"vote_total": 8
+	},
+	{
+		"user_id": 2,
+		"start_date": "2023-06-16",
+		"end_date": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다22.",
+		"routine": [
+			{ "name": "routine", "value": "매일 물 마신다." },
+			{ "name": "routine", "value": "운동을 매일 한다." },
+			{ "name": "routine", "value": "찌개를 먹지 않는다." }
+		],
+
+		"sub_goal": [
+			{ "name": "subGoal", "value": "1kg 감량" },
+			{ "name": "subGoal", "value": "3kg 감량" },
+			{ "name": "subGoal", "value": "4kg 감량" }
+		],
+		"penalty": "김밥 그리고 떡볶이 쏜다. 절대 이번에는 실패란 없다.",
+		"subgoal_total": 6,
+		"success_count": 1,
+		"success_vote": 6,
+		"failure_vote": 5,
+		"vote_total": 11
+	},
+	{
+		"user_id": 3,
+		"start_date": "2023-06-16",
+		"end_date": "2023-07-23",
+		"goal": "이번달 내가 꼭 5kg 감량한다3.",
+		"routine": [
+			{ "name": "routine", "value": "매일 물 마신다." },
+			{ "name": "routine", "value": "운동을 매일 한다." },
+			{ "name": "routine", "value": "찌개를 먹지 않는다." }
+		],
+
+		"sub_goal": [
+			{ "name": "subGoal", "value": "1kg 감량" },
+			{ "name": "subGoal", "value": "3kg 감량" },
+			{ "name": "subGoal", "value": "4kg 감량" }
+		],
+		"penalty": "김밥 그리고 떡볶이 쏜다. 절대 이번에는 실패란 없다.",
+		"subgoal_total": 3,
+		"success_count": 1,
+		"success_vote": 1,
+		"failure_vote": 1,
+		"vote_total": 2
+	}
+]

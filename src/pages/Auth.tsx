@@ -1,11 +1,12 @@
-import { createPortal } from "react-dom";
-import { FiArrowLeft } from "react-icons/fi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/auth/AuthForm";
+import { FiArrowLeft } from "react-icons/fi";
+import { createPortal } from "react-dom";
 import ModalContent from "../components/common/ModalContent";
-import LogoutToast from "../components/toast/LogoutToast";
-import { SIGN_IN_URL, SIGN_UP_URL } from "../constants/auth";
 import usePopUp from "../hooks/usePopUp";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../utils/constant/auth";
+import LogoutToast from "../components/toast/LogoutToast";
 
 const Auth = () => {
   const { pathname } = useLocation();

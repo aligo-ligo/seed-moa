@@ -1,11 +1,12 @@
-import { authInstance } from "@/libs/api";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
+import { get } from "../../../libs/api";
 import { TargetType } from "../../../types/TargetTypes";
 
-const useGetAllTargets = () => {
-  return useQuery({
+const useGetAllTargets = (options?: UseQueryOptions<TargetType[]>) => {
+  return useQuery<TargetType[]>({
     queryKey: ["targets"],
-    queryFn: () => authInstance.get<TargetType[]>(`target/list`),
+    queryFn: () => get<TargetType[]>(`target/list`),
+    ...options,
   });
 };
 

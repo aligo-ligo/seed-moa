@@ -1,7 +1,10 @@
 import { useReducer, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { ActionType, UserInfoType } from "../../types/AuthType";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthInput from "./AuthInput";
 import Warnning from "./Warning";
+import { useAuthService } from "../../hooks/useAuth";
 
 import {
   EMAIL_INPUT,
@@ -9,17 +12,50 @@ import {
   PASSWORD_INPUT,
   PASSWORD_VISIBLE_INPUT,
   ValidationAuth,
-} from "@/constants/auth";
+} from "../../utils/constant/auth";
 
-import authAPI from "@/api/auth/apis";
-import IMAGE_MAP from "@/constants/image";
-import STORAGE_KEYS from "@/constants/storageKeys";
-import { authReducer, initialState } from "@/store/reducer";
-import { ROUTER_PATHS } from "@/utils/router";
-import { useMutation } from "@tanstack/react-query";
-import StyledButton from "../common/StyledButton";
+import { LogoImage } from "../../utils/constant/image";
+
 import Validation from "./Validation";
+import StyledButton from "../common/StyledButton";
 
+const ACTION_CONST = {
+  SET_EMAIL: "SET_EMAIL",
+  SET_PASSWORD: "SET_PASSWORD",
+  SET_NICKNAME: "SET_NICKNAME",
+} as const;
+
+const authReducer = (state: UserInfoType, action: ActionType) => {
+  switch (action.type) {
+    case ACTION_CONST.SET_EMAIL: {
+      const email = action.data;
+      const emailValid = email.includes("@") && email.length >= 3;
+
+      return { ...state, email, emailValid };
+    }
+    case ACTION_CONST.SET_PASSWORD: {
+      const password = action.data;
+      const passwordValid = password.length >= 8;
+      return { ...state, password, passwordValid };
+    }
+    case ACTION_CONST.SET_NICKNAME: {
+      const nickName = action.data;
+      const nickNameValid = nickName.length >= 3 && nickName.length < 11;
+      return { ...state, nickName, nickNameValid };
+    }
+    default:
+      throw new Error("Unknown Action");
+  }
+};
+
+const initialState: UserInfoType = {
+  email: "",
+  password: "",
+  nickName: "",
+  emailValid: true,
+  passwordValid: true,
+  nickNameValid: true,
+};
 interface AuthFormProps {
   name: string;
   isLogin: boolean;
@@ -27,18 +63,11 @@ interface AuthFormProps {
 }
 
 export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
-  const [message, _] = useState("");
+  const [message, setMessage] = useState("");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [userInfo, dispatch] = useReducer(authReducer, initialState);
   const { emailValid, passwordValid, nickNameValid } = userInfo;
-
-  const { mutateAsync: signInMutateAsync } = useMutation({
-    mutationFn: authAPI.postSignin,
-  });
-  const { mutateAsync: signUpMutateAsync } = useMutation({
-    mutationFn: authAPI.postSignup,
-  });
-
+  const authService = useAuthService();
   const navigate = useNavigate();
 
   const updateIsPassWordShown = () => {
@@ -49,41 +78,33 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
     ? !emailValid || !passwordValid
     : !emailValid || !passwordValid || !nickNameValid;
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO : 변수명이 햇갈림 isLogin -> isLoginPath
     if (isLogin) {
-      try {
-        const data = await signInMutateAsync(userInfo);
-        localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
-        localStorage.setItem(STORAGE_KEYS.nickName, data.userLoginDTO.nickName);
-        navigate(ROUTER_PATHS.TARGET);
-      } catch (error) {
-        //TODO : 에러 처리
-        console.log(error);
-      }
+      authService
+        ?.signIn(userInfo)
+        .then((data) => {
+          if ("accessToken" in data) {
+            navigate("/target");
+          }
+        })
+        .catch((error) => setMessage(error.signInMessage));
     } else {
-      try {
-        const data = await signUpMutateAsync(userInfo);
-        localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
-        localStorage.setItem(STORAGE_KEYS.nickName, data.userLoginDTO.nickName);
-        // TODO : 회원가입 후 어디로 보낼지 고민하여 구현
-        navigate(ROUTER_PATHS.TARGET);
-      } catch (error) {
-        //TODO : 404 및 500 에러 처리
-        console.log(error);
-      }
+      authService
+        ?.signUp(userInfo)
+        .then((data) => {
+          if ("accessToken" in data) {
+            navigate("/target");
+          }
+        })
+        .catch((error) => setMessage(error.signUpMessage));
     }
   };
 
   return (
     <>
       <div className="flex flex-col  items-center mb-8 p-3 gap-10">
-        <img
-          src={IMAGE_MAP.logoImage}
-          alt="로고"
-          className="w-4/5 pointer-events-none"
-        />
+        <img src={LogoImage} alt="로고" className="w-4/5 pointer-events-none" />
       </div>
       <form
         action="submit"

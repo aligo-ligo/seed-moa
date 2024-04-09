@@ -1,16 +1,21 @@
-import { CSSProperties } from "react";
-import { FiChevronsLeft, FiChevronsRight, FiEdit } from "react-icons/fi";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useNavigate } from "react-router-dom";
-import StyledButton from "../components/common/StyledButton";
 import Header from "../components/target/Header";
+import TargetForm from "../components/target/TargetForm";
+import { FiEdit } from "react-icons/fi";
+import { Carousel } from "react-responsive-carousel";
+import { CSSProperties } from "react";
+import StyledButton from "../components/common/StyledButton";
+import TargetEmptyForm from "../components/target/TargetEmptyForm";
+import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import SkeletonElement from "../components/layout/Skeleton";
 import CreateToast from "../components/toast/CreateToast";
+import useGetAllTargets from "../hooks/api/target/useGetAllTargets";
 
 const Target = () => {
   const navigate = useNavigate();
-  // const { data: targets, isLoading } = useGetAllTargets();
-
+  const { data: targets, isLoading } = useGetAllTargets();
+  console.log("targets", targets);
   const name = localStorage.getItem("userNickName");
 
   const arrowStyles: CSSProperties = {
@@ -29,6 +34,13 @@ const Target = () => {
           현재 타겟 목록
         </h1>
         <div className="flex flex-row justify-center mt-8 h-full">
+          {typeof targets === "undefined" && (
+            <div className="flex flex-col items-end">
+              {isLoading && <SkeletonElement type="text" />}
+              <TargetEmptyForm isLoading={isLoading} />
+            </div>
+          )}
+
           <Carousel
             className="w-3/4 desktop:w-2/3"
             useKeyboardArrows
@@ -66,7 +78,30 @@ const Target = () => {
                 <span className="text-black font-bold text-sm">{`${total}개의 목표 중 ${currentItem}번째`}</span>
               );
             }}
-          ></Carousel>
+          >
+            {targets?.map(
+              ({
+                id,
+                userId,
+                goal,
+                voteTotal,
+                successVote,
+                achievementPer,
+              }) => (
+                <TargetForm
+                  key={id}
+                  {...{
+                    id,
+                    userId,
+                    goal,
+                    voteTotal,
+                    successVote,
+                    achievementPer,
+                  }}
+                />
+              )
+            )}
+          </Carousel>
         </div>
 
         <StyledButton

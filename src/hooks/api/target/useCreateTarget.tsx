@@ -1,12 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { authInstance } from "@/libs/api";
-import { CreateTargetResponse } from "../../../types/TargetTypes";
+import {
+  CreateTargetResponse,
+  TargetInfoType,
+} from "../../../types/TargetTypes";
+import { post } from "../../../libs/api";
 
 const useCreateTarget = () => {
-  return useMutation({
-    mutationFn: ({ goal, subGoal, routine, endDate }: any) =>
-      authInstance.post<CreateTargetResponse>("/target/create", {
+  return useMutation<CreateTargetResponse, unknown, TargetInfoType>({
+    mutationFn: ({ goal, subGoal, routine, endDate }) =>
+      post<CreateTargetResponse>("/target/create", {
         goal,
         subGoal,
         routine,
