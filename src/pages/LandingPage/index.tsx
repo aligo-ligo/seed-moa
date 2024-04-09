@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import StyledButton from "../components/common/StyledButton";
+import StyledButton from "../../components/common/StyledButton";
 
 import IMAGE_MAP from "@/constants/image";
-import OAuth from "../components/auth/OAuth";
-import SkeletonElement from "../components/layout/Skeleton";
-import Header from "../components/target/Header";
-import { useInfo } from "../hooks/useGetInfo";
-import { useGuest } from "../hooks/useGuest";
+import OAuth from "../../components/auth/OAuth";
+import SkeletonElement from "../../components/layout/Skeleton";
+import Header from "../../components/target/Header";
+import { useInfo } from "../../hooks/useGetInfo";
+import { useGuest } from "../../hooks/useGuest";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const LandingPage = () => {
   const { data: target, isLoading } = useInfo(guestService);
 
   return (
-    <section className="relative flex flex-col items-center justify-start px-6 min-h-screen">
+    <div className="relative flex flex-col items-center justify-start px-6 min-h-screen">
       <Header />
       <div className="flex flex-col items-center justify-center ">
         <img
@@ -61,7 +61,7 @@ const LandingPage = () => {
         </StyledButton>
         <OAuth />
       </div>
-    </section>
+    </div>
   );
 };
 

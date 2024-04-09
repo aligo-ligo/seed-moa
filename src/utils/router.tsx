@@ -1,13 +1,14 @@
 import KakaoLoginPage from "@/pages/KaKaoLogin";
-import Auth from "../pages/Auth";
 
-import NotFound from "../pages/NotFound";
+import Auth from "@/pages/Auth";
+import LandingPage from "@/pages/LandingPage";
+import NotFound from "@/pages/NotFound";
+
 import QuestionPage from "../pages/QuestionPage";
 import Target from "../pages/Target";
 import TargetCreate from "../pages/TargetCreate";
 import TargetDetail from "../pages/TargetDetail";
 import TargetGuest from "../pages/TargetGuest";
-import LandingPage from "../pages/landingPage";
 
 export const ROUTER_PATHS = {
   ROOT: "/",
