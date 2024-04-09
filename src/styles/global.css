@@ -1,60 +1,81 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap");
-
-:root {
-	--primary: #87995c;
-	--secondary: #bacb91;
-}
-
-* {
-	scrollbar-width: thin;
-	scrollbar-color: var(--secondary) var(--primary);
-}
-
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-	width: 15px;
-}
-
-*::-webkit-scrollbar-track {
-	background: var(--primary);
-	border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb {
-	background-color: var(--secondary);
-	border-radius: 50px;
-	border: 1px solid var(--primary);
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #87995c;
+  --secondary: #bacb91;
+}
+
+@layer base {
+  :root {
+    --layout-max-w: 540px;
+    --layout-min-h: 100dvh;
+  }
+  .layout {
+    @apply mx-auto min-h-[var(--layout-min-h)] w-full max-w-[var(--layout-max-w)];
+  }
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 50px;
+  border: 1px solid var(--primary);
+}
+
 body {
-	position: relative;
-	width: 100%;
-	font-family: "Noto Sans KR", sans-serif;
-	background-color: rgb(244 244 245/1);
+  position: relative;
+  width: 100%;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: rgb(244 244 245/1);
 }
 a {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #toast-root {
-	position: fixed;
-	left: 50%;
-	bottom: 24px;
-	z-index: 9999;
-	transform: translate(-50%, -50%);
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 select {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-o-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

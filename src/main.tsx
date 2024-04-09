@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <ModalProvider>
             <LazyMotion features={domMax}>
               <HelmetProvider>
-                <main className="phone:w-full desktop:w-desktop desktop:mx-auto bg-white min-h-screen overflow-auto scroll-smooth">
+                <main className="layout bg-white scroll-smooth">
                   <RouterProvider router={routerObject} />
                 </main>
               </HelmetProvider>
