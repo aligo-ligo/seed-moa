@@ -7,6 +7,7 @@ import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
 
 import STORAGE_KEYS from "@/constants/storageKeys";
+import { ROUTER_PATHS } from "@/utils/router";
 import "../../styles/Sidebar.css";
 
 type Props = {
@@ -21,8 +22,9 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
   const handleLogout = () => {
     localStorage.removeItem(STORAGE_KEYS.accessToken);
     localStorage.removeItem(STORAGE_KEYS.nickName);
+    navigate(ROUTER_PATHS.ROOT);
+    // TODO : 루트로 이동 후 토스트가 보이지 않고 siginin 페이지로 이동해야 보이는 문제 발생
     show("logoutToast");
-    closeSideBar();
   };
 
   return (
