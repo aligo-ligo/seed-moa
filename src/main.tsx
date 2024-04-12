@@ -3,11 +3,10 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { domMax, LazyMotion } from "framer-motion";
 
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { QueryClientOptions } from "./constants/contants";
+import { queryClientOption } from "./constants/contants";
 import { GuestProvider } from "./context/GuestContext";
 import { ModalProvider } from "./context/ModalContext.tsx";
 import { SideBarProvider } from "./context/SideBarContext.tsx";
@@ -19,7 +18,7 @@ import { routerInfo } from "./utils/router";
 
 import "./styles/global.css";
 
-const queryClient = new QueryClient(QueryClientOptions);
+const queryClient = new QueryClient(queryClientOption);
 
 const client = new HttpClient(import.meta.env.VITE_LOCAL_SERVER_URL);
 
@@ -44,6 +43,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </SideBarProvider>
       </TargetProvider>
     </GuestProvider>
-    <ReactQueryDevtools />
   </QueryClientProvider>
 );

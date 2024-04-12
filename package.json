@@ -14,7 +14,7 @@
 		"@hookform/resolvers": "^3.1.1",
 		"@sentry/react": "^7.61.1",
 		"@sentry/vite-plugin": "^2.5.0",
-		"@tanstack/react-query": "^4.29.13",
+		"@tanstack/react-query": "^5.17.15",
 		"@tanstack/react-query-devtools": "^4.29.13",
 		"@types/react-datepicker": "^4.11.2",
 		"@types/react-transition-group": "^4.4.6",
