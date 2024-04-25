@@ -1,6 +1,6 @@
 export const API_PATHS = {
   All_TARGET: "/target/list",
-  TARGET_DETAIL: (targetId: string) => `target/detail?id=${targetId}` as const,
+  TARGET_DETAIL: (targetId: number) => `target/detail?id=${targetId}` as const,
   TARGET_CREATE: "target/create",
   TARGET_SUBGOAL: "target/update",
 } as const;

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import KakaoLoginButton from "@/components/auth/KakaoLoginButton";
 import StyledButton from "@/components/common/StyledButton";
 import IMAGE_MAP from "@/constants/image";
-import { ROUTER_PATHS } from "@/utils/router";
+
+import { ROUTER_PATHS } from "@/constants/routerPath";
 import SkeletonElement from "../../components/layout/Skeleton";
 import Header from "../../components/target/Header";
 import { useInfo } from "../../hooks/useGetInfo";

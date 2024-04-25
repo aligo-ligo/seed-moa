@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { OliBodyImage } from "../../constants/image";
+
+import IMAGE_MAP from "@/constants/image";
 import { TargetType } from "../../types/TargetTypes";
 import { calculatePercentage } from "../../utils/calculatePercentage";
 import ProgressBar from "./animationBars/ProgressBar";
@@ -32,7 +33,7 @@ const TargetForm = ({
         <h2 className="font-bold text-2xl truncate">{goal}</h2>
         <div className="px-6 mb-6 desktop:p-2 flex items-center justify-center ">
           <div className="w-60 px-6 mb-6 ">
-            <img src={OliBodyImage} alt="자그마한 로고 사진" />
+            <img src={IMAGE_MAP.mainOliImage} alt="자그마한 로고 사진" />
           </div>
         </div>
         <div className="flex">

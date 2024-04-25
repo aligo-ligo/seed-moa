@@ -56,7 +56,7 @@ export type TargetInfoType = {
 };
 
 export type CreateTargetResponse = number;
-export type PostSubGoalType = {
+export type SubGoal = {
 	id: string | undefined;
 	value: string;
 	completeDate: string | null;
