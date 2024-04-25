@@ -5,20 +5,12 @@ import LandingPage from "@/pages/LandingPage";
 import NotFound from "@/pages/NotFound";
 
 import QuestionPage from "../pages/QuestionPage";
-import Target from "../pages/Target";
+
+import { ROUTER_PATHS } from "@/constants/routerPath";
+
+import TargetPage from "@/pages/TargePage";
 import TargetCreate from "../pages/TargetCreate";
 import TargetDetail from "../pages/TargetDetail";
-import TargetGuest from "../pages/TargetGuest";
-
-export const ROUTER_PATHS = {
-  ROOT: "/",
-  TEST_CONSTANT: "/test/const",
-  MODAL_TEST: "/modal-test",
-  SIGNIN: "/signin",
-  SIGNUP: "/signup",
-  SIGNIN_REDIRECT_KAKAO: "/kakao",
-  TARGET: "/target",
-} as const;
 
 export const routerChildrenInfo = [
   {
@@ -43,7 +35,7 @@ export const routerChildrenInfo = [
   },
   {
     path: ROUTER_PATHS.TARGET,
-    element: <Target />,
+    element: <TargetPage />,
     withAuthorization: true,
   },
   {
@@ -61,13 +53,7 @@ export const routerChildrenInfo = [
     element: <QuestionPage />,
     withAuthorization: false,
   },
-  {
-    path: "result/:id",
-    element: <TargetGuest />,
-    withAuthorization: false,
-  },
 ];
-
 export const routerInfo = [
   {
     path: ROUTER_PATHS.ROOT,
