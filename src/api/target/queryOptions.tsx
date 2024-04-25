@@ -9,6 +9,11 @@ const targetOptions = {
       queryKey: [...targetOptions.all] as const,
       queryFn: () => targetAPI.getAllTargets(),
     }),
+  detailTarget: (targetId: number) =>
+    queryOptions({
+      queryKey: ["target", targetId] as const,
+      queryFn: () => targetAPI.getDetailTarget(targetId),
+    }),
 };
 
 export default targetOptions;
