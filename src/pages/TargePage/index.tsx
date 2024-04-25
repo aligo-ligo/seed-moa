@@ -38,7 +38,7 @@ const TargetPage = () => {
         <div className="flex flex-row justify-center mt-8 h-full">
           {isLoading && (
             <div className="flex flex-col items-end">
-              <TargetEmptyForm isLoading={isLoading} />
+              <TargetEmptyForm />
             </div>
           )}
           {status === "success" && (
