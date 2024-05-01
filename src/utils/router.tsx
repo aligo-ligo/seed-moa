@@ -44,7 +44,7 @@ export const routerChildrenInfo = [
     withAuthorization: true,
   },
   {
-    path: "target/create",
+    path: ROUTER_PATHS.CREATE_TARGET,
     element: <TargetCreate />,
     withAuthorization: true,
   },
