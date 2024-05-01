@@ -22,7 +22,8 @@ export const authInstance = axios.create({
 });
 
 authInstance.interceptors.request.use((config) => {
-  config.headers.accessToken = localStorage.getItem(STORAGE_KEYS.accessToken);
+  const token = localStorage.getItem(STORAGE_KEYS.accessToken);
+  config.headers.Authorization = `Bearer ${token}`
 
   return config;
 });

@@ -4,7 +4,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import authAPI from "@/api/auth/apis";
 import IMAGE_MAP from "@/constants/image";
 import STORAGE_KEYS from "@/constants/storageKeys";
-import { ROUTER_PATHS } from "@/utils/router";
+
+import { ROUTER_PATHS } from "@/constants/routerPath";
 import { useMutation } from "@tanstack/react-query";
 
 const KakaoLoginPage = () => {
@@ -27,6 +28,7 @@ const KakaoLoginPage = () => {
           STORAGE_KEYS.accessToken,
           data.accessToken as string
         );
+        localStorage.setItem(STORAGE_KEYS.nickName, data.userLoginDTO.nickName);
         navigate(ROUTER_PATHS.TARGET);
       } catch (error) {
         //TODO : 에러 처리

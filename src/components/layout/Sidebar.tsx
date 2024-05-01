@@ -7,7 +7,8 @@ import usePopUp from "../../hooks/usePopUp";
 import useToastList from "../../hooks/useToastList";
 
 import STORAGE_KEYS from "@/constants/storageKeys";
-import { ROUTER_PATHS } from "@/utils/router";
+
+import { ROUTER_PATHS } from "@/constants/routerPath";
 import "../../styles/Sidebar.css";
 
 type Props = {

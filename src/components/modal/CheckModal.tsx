@@ -1,41 +1,39 @@
 import StyledButton from "../common/StyledButton";
 
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { TARGET_KEY } from "../../constants/queryKeyConstants";
-import usePostSubGoal from "../../hooks/api/subGoal/usePostSubGoalById";
+import targetAPI from "@/api/target/apis";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSubGoalStore } from "../../store/store";
-import { PostSubGoalType } from "../../types/TargetTypes";
 
 type Props = {
   closeModal: () => void;
   targetId: string | undefined;
 };
 
+export type postSubgoalType = {
+  targetId: number;
+  value: string;
+  completeDate: string | null;
+};
+
 const CheckModal = ({ closeModal, targetId }: Props) => {
-  // const { subGoalValue, isSubGoalComplete } = useContext(CheckModalContext);
   const { subGoalValue, CheckedDate } = useSubGoalStore();
+  const queryClient = useQueryClient();
 
-  const data =
-    CheckedDate === null
-      ? {
-          id: targetId,
-          value: subGoalValue,
-          completeDate: new Date().toString(),
-        }
-      : {
-          id: targetId,
-          value: subGoalValue,
-          completeDate: null,
-        };
+  const { mutate } = useMutation({
+    mutationFn: targetAPI.postSubGoalStatus,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["target", targetId] });
+    },
+  });
 
-  const postMutation = usePostMutation(targetId, data);
-
+  const currentDate = new Date().toString();
+  const data = {
+    targetId: Number(targetId),
+    value: subGoalValue,
+    completeDate: CheckedDate === null ? currentDate : null,
+  };
   const handleClick = () => {
-    postMutation.mutate();
+    mutate(data);
     closeModal();
   };
 
@@ -81,26 +79,3 @@ const CheckModal = ({ closeModal, targetId }: Props) => {
 };
 
 export default CheckModal;
-
-const usePostMutation = (
-  id: string | undefined,
-  request: PostSubGoalType,
-  options?: UseMutationOptions<void, unknown, void>
-) => {
-  const queryClient = useQueryClient();
-  const postSubgoal = usePostSubGoal();
-
-  const mutation = useMutation(
-    () => {
-      return postSubgoal(request);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([TARGET_KEY, id]);
-      },
-      ...options,
-    }
-  );
-
-  return mutation;
-};

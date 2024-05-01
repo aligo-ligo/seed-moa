@@ -1,10 +1,7 @@
-export type TargetResponse = Promise<TargetType[]>;
 
-export interface TargetService {
-	getAllTarget: () => TargetResponse;
-	getTarget: (id: string | undefined) => Promise<TargetType>;
-	postTarget: (targetInfo: TargetInfoType) => Promise<CreateTargetResponse>;
-	postSubGoal: (subGoalInfo: PostSubGoalType) => Promise<PostResultType>;
+export type TargetResponseType = {
+	page : null | number,
+	targetInfo : TargetType[]
 }
 
 export interface TargetType {
@@ -23,6 +20,7 @@ export interface TargetType {
 	voteTotal: number;
 	url: string;
 }
+
 
 export interface AchievementDate {
 	[key: string]: number;
@@ -58,7 +56,7 @@ export type TargetInfoType = {
 };
 
 export type CreateTargetResponse = number;
-export type PostSubGoalType = {
+export type SubGoal = {
 	id: string | undefined;
 	value: string;
 	completeDate: string | null;
