@@ -4,7 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import targetAPI from '@/api/target/apis';
 
 const INITIAL_PAGE_NO = 0;
-const COMMENT_COUNT_PER_PAGE = 10;
+const COMMENT_COUNT_PER_PAGE = 5;
 
 const useGetPaginatedTarget = () => {
   return useInfiniteQuery({
@@ -25,7 +25,7 @@ const useGetPaginatedTarget = () => {
       }
       return null;
     },
-    select: (data) => data.pages,
+    select: (data) => data.pages[0].targetInfo,
   });
 };
 

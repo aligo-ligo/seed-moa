@@ -8,11 +8,12 @@ import Goal from "../components/goal/Goal";
 import LastStep from "../components/goal/LastStep";
 import Step from "../components/goal/Step";
 import SubGoalRoutine from "../components/goal/SubGoalRoutine";
-import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
 
 import CreateBar from "../components/target/animationBars/CreateBar";
 import useToastList from "../hooks/useToastList";
 
+import { TargetInfoType } from "@/types/target/type";
+import { TargetStepType } from "@/types/TargetTypes";
 import GobackToast from "../components/toast/GobackToast";
 import useCreateTarget from "../hooks/api/target/useCreateTarget";
 import { usePreventGoBack } from "../hooks/usePreventLeave";

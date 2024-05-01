@@ -15,7 +15,7 @@ const ProgressBarWithLabel = ({
   return (
     <div className="w-full flex-col">
       <p className="text-center">{children}</p>
-      <div className="h-8 w-full bg-[#e0e0de] rounded-md relative">
+      <div className="relative h-8 w-full bg-gray-100 rounded-md ">
         <p
           className={`absolute top-1/2 transform -translate-y-1/2 flex  z-10 ${
             isLeftSideLabel ? "left-2 text-white" : "right-2 text-black"
