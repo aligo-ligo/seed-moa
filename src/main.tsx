@@ -12,16 +12,16 @@ import { ModalProvider } from "./context/ModalContext.tsx";
 import { SideBarProvider } from "./context/SideBarContext.tsx";
 import HttpClient from "./http/HttpClient";
 import GuestServiceImpl from "./services/GuestService";
-import TargetServiceImpl from "./services/TargetService";
 import { routerInfo } from "./utils/router";
 
 import "./styles/global.css";
+
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient(queryClientOption);
 
 const client = new HttpClient(import.meta.env.VITE_LOCAL_SERVER_URL);
 
-const targetService = new TargetServiceImpl(client.withToken());
 const guestService = new GuestServiceImpl(client.withoutToken());
 const routerObject = createBrowserRouter(routerInfo);
 
@@ -40,5 +40,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </ModalProvider>
       </SideBarProvider>
     </GuestProvider>
+    <ReactQueryDevtools />
   </QueryClientProvider>
 );

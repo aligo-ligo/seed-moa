@@ -25,7 +25,7 @@ const useGetPaginatedTarget = () => {
       }
       return null;
     },
-    select: (data) => data.pages[0].targetInfo,
+    select: (data) => data.pages[0],
   });
 };
 

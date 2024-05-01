@@ -4,11 +4,12 @@ import TargetCard from "./TargetCard";
 
 const TargetList = () => {
   const { data: targets, status, isLoading } = useGetPaginatedTarget();
+  console.log("targets", targets);
 
   return (
     <ul className="flex flex-col gap-6">
       {status === "success" &&
-        targets.map((target) => {
+        targets.targetInfo.map((target) => {
           return <TargetCard key={target.id} {...target} />;
         })}
 
