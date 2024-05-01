@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+import { Config } from "tailwindcss";
+import { colors } from './src/styles/theme/color';
+
+const config: Config = {
 	content: ["./src/**/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		fontFamily: {
@@ -9,30 +11,12 @@ export default {
 			scale: {
 				25: "0.25",
 			},
-			colors: {
-				main: "#87995C",
-				mainDeep: "#52681D",
-				mainHover: "#BACB91",
-				lightGray: "#D9D9D9",
-				lighterGray: "#ececec",
-				gray: "#999",
-				darkGray: "#525252",
-				success: "#4785FF",
-				skyblue: "#C9E5FE",
-				fail: "#ff3131",
-				skyRed: "#FCDDD9",
-				info: "#17a2b8",
-				warning: "#ffce21",
-				white: "#fff",
-			},
+			colors,
 			spacing: {
 				28: "7rem",
 			},
 			letterSpacing: {
 				tighter: "-.04em",
-			},
-			lineHeight: {
-				tight: 1.2,
 			},
 			fontSize: {
 				"5xl": "2.5rem",
@@ -56,3 +40,5 @@ export default {
 	},
 	plugins: [],
 };
+
+export default config;
