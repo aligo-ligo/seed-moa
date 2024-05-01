@@ -15,7 +15,7 @@ const TargetPage = () => {
   const name = localStorage.getItem("userNickName");
 
   return (
-    <div className="relative flex flex-col px-6 pb-10 h-scno-scrollbar scroll-smooth">
+    <div className="relative flex flex-col px-6 pb-10 h-screen no-scrollbar scroll-smooth">
       <Suspense fallback={<></>}>
         <Header name={name} />
       </Suspense>
