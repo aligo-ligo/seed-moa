@@ -7,7 +7,7 @@ import usePopUp from "../hooks/usePopUp";
 
 import targetOptions from "@/api/target/queryOptions";
 import SkeletonElement from "@/components/layout/Skeleton";
-import ProgressBar from "@/components/target/animationBars/ProgressBar";
+import ProgressBar from "@/components/target/animationBars/ProgressBarWithLabel";
 import Checkbox from "@/components/target/Checkbox";
 import CustomLineChart from "@/components/target/LineGraph";
 import RoutineBox from "@/components/target/RoutineBox";

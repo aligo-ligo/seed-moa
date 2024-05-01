@@ -13,4 +13,5 @@ export const ROUTER_PATHS = {
   SIGNUP: "/signup",
   SIGNIN_REDIRECT_KAKAO: "/kakao",
   TARGET: "/target",
+  CREATE_TARGET: "/target/create",
 } as const;

@@ -1,13 +1,14 @@
+import { GetAllPaginatedTargetRequest } from "@/types/target/type";
 import { queryOptions } from "@tanstack/react-query";
 import targetAPI from "./apis";
 
 const targetOptions = {
   all: ["targets"] as const,
 
-  targets: () =>
+  targets: ({ page, size }: GetAllPaginatedTargetRequest) =>
     queryOptions({
       queryKey: [...targetOptions.all] as const,
-      queryFn: () => targetAPI.getAllTargets(),
+      queryFn: () => targetAPI.getAllPaginatedTargets({ page, size }),
     }),
   detailTarget: (targetId: number) =>
     queryOptions({

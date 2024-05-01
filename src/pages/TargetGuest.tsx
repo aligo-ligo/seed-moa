@@ -8,7 +8,7 @@ import Checkbox from "../components/target/Checkbox";
 import Header from "../components/target/Header";
 import LineGraph from "../components/target/LineGraph";
 import LineGraphPrep from "../components/target/LineGraphPrep";
-import ProgressBar from "../components/target/animationBars/ProgressBar";
+import ProgressBar from "../components/target/animationBars/ProgressBarWithLabel";
 import { useTargetOnGuest } from "../hooks/useGetTargets";
 import { useGuest } from "../hooks/useGuest";
 import usePopUp from "../hooks/usePopUp";
