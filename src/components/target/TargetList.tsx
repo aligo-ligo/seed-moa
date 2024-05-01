@@ -10,7 +10,6 @@ const TargetList = () => {
     status,
     isLoading,
   } = useGetPaginatedTarget();
-  console.log("targets", targets);
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
 
   //TODO : 컴포넌트로 분리할 수 있지 않을까?!
