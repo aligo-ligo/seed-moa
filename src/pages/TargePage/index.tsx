@@ -12,16 +12,15 @@ import { useNavigate } from "react-router-dom";
 
 const TargetPage = () => {
   const navigate = useNavigate();
-  const name = localStorage.getItem("userNickName");
 
   return (
     <div className="relative flex flex-col px-6 pb-10 h-screen no-scrollbar scroll-smooth">
       <Suspense fallback={<></>}>
-        <Header name={name} />
+        <Header />
       </Suspense>
       <div className="flex-1 flex flex-col mt-10">
         <h1 className="pointer-events-none mb-8">
-          <Typography type="heading1"> {name} 목표록</Typography>
+          <Typography type="heading1"> 씨앗 저장소</Typography>
         </h1>
         <TargetList />
       </div>

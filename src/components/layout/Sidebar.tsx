@@ -11,18 +11,14 @@ import STORAGE_KEYS from "@/constants/storageKeys";
 import { ROUTER_PATHS } from "@/constants/routerPath";
 import "../../styles/Sidebar.css";
 
-type Props = {
-  isNameExisted: boolean;
-  name: string | null | undefined;
-};
-const Sidebar = ({ isNameExisted, name }: Props) => {
+const Sidebar = () => {
   const navigate = useNavigate();
   const { isOpen, outside, closeSideBar } = usePopUp();
   const { show } = useToastList();
+  const isLoggedin = localStorage.getItem(STORAGE_KEYS.accessToken);
 
   const handleLogout = () => {
     localStorage.removeItem(STORAGE_KEYS.accessToken);
-    localStorage.removeItem(STORAGE_KEYS.nickName);
     navigate(ROUTER_PATHS.ROOT);
     // TODO : 루트로 이동 후 토스트가 보이지 않고 siginin 페이지로 이동해야 보이는 문제 발생
     show("logoutToast");
@@ -45,14 +41,8 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
             <FiX onClick={closeSideBar} onKeyDown={closeSideBar} />
           </div>
           <div className="px-4 py-6">
-            {isNameExisted ? (
-              <p className=" font-semibold">{`안녕하세요 ${name}님`}</p>
-            ) : (
-              <p className=" font-semibold">로그인을 해주세요</p>
-            )}
-
             <div className="pt-4 text-gray font-semibold">
-              {isNameExisted && (
+              {isLoggedin && (
                 <button
                   className="flex justify-center items-center text-orange-400"
                   onClick={handleLogout}
@@ -62,7 +52,7 @@ const Sidebar = ({ isNameExisted, name }: Props) => {
               )}
             </div>
           </div>
-          {isNameExisted ? (
+          {isLoggedin ? (
             <div>
               {sidebarData.map(({ title, link, icon }, index) => {
                 if (link.startsWith("https")) {

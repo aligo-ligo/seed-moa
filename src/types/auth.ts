@@ -15,8 +15,6 @@ export type UserInfoType = {
 
 export type AuthResponse = {
 	accessToken: string;
-	userLoginDTO: {
-		nickName: string;
-	};
+	accessTokenExpiredTime : number
 };
 

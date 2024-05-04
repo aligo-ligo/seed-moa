@@ -2,12 +2,7 @@ import IMAGE_MAP from "@/constants/image";
 import usePopUp from "../../hooks/usePopUp";
 import Sidebar from "../layout/Sidebar";
 
-type Props = {
-  name?: string | null;
-};
-
-const Header = ({ name }: Props) => {
-  const isNameExisted = !!name === true;
+const Header = () => {
   const { openSideBar } = usePopUp();
 
   return (
@@ -24,12 +19,7 @@ const Header = ({ name }: Props) => {
           />
         </picture>
       </div>
-      {isNameExisted && (
-        <h1 className="font-semibold pointer-events-none">
-          안녕하세요 {name}님
-        </h1>
-      )}
-      <Sidebar isNameExisted={isNameExisted} name={name} />
+      <Sidebar />
     </header>
   );
 };

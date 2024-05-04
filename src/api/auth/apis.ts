@@ -9,6 +9,7 @@ const authAPI = {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
       },
     });
+    console.log('data',data)
     return data;
   },
   /** 일반 회원 가입 요청 */
