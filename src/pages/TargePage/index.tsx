@@ -19,7 +19,7 @@ const TargetPage = () => {
         <Header>
           <Header.Logo />
           <Link to={"/my"}>
-            <Profile width={32} color="gray" />
+            <Profile width={32} />
           </Link>
         </Header>
       </Suspense>

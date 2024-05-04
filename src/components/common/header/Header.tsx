@@ -21,7 +21,7 @@ const Header = ({ children, className, ...props }: HeaderProps) => {
 };
 
 const Logo = () => {
-  return <LogoSVG width={26} />;
+  return <LogoSVG width={26} height={68} />;
 };
 
 type TextProps = {

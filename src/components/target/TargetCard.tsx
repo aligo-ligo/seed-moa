@@ -18,7 +18,7 @@ const TargetCard = ({
   const navigate = useNavigate();
   return (
     <li
-      className="flex flex-col items-center justify-between w-full h-48 rounded-xl border-2 border-main p-4 cursor-pointer"
+      className="flex flex-col items-center justify-between w-full h-48 rounded-xl border border-gray-100 p-4 cursor-pointer bg-gray-10"
       onClick={() => navigate(`/target/${id}`)}
     >
       <Typography

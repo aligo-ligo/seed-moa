@@ -11,7 +11,7 @@ const Background = ({ imageUrl, children }: BackgroundProps) => {
 
   return (
     <div
-      className={` bg-[url('public/background.png')] bg-no-repeat bg-cover bg-center bg-fixed`}
+      className={` bg-[url('/background.png')] bg-no-repeat bg-cover bg-center bg-fixed`}
     >
       {children}
     </div>

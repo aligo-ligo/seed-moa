@@ -1,5 +1,6 @@
 export const colors = {
   gray: {
+    10: "#F9FAFB",
     50: "#EBF0F5",
     100: "#E0E8EF",
     200: "#CCD8E3",
@@ -12,7 +13,7 @@ export const colors = {
     900: "#23282E",
     1000: "#151719",
   },
-  primary: {
+  primary: { 
     100: "#FFF5FA",
     200: "#FFE0F0",
     300: "#FFCCE6",
@@ -43,5 +44,4 @@ export const colors = {
   fail: "#ff3131",
   skyRed: "#FCDDD9",
   info: "#17a2b8",
-  white: "#fff",
 };
