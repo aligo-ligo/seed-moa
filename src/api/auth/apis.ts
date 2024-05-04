@@ -1,5 +1,6 @@
 import { API_PATHS } from "@/constants/routerPath";
-import { baseInstance } from "@/libs/api";
+import STORAGE_KEYS from "@/constants/storageKeys";
+import { authInstance, baseInstance } from "@/libs/api";
 import { AuthResponse } from "@/types/auth";
 
 const authAPI = {
@@ -14,9 +15,21 @@ const authAPI = {
         },
       }
     );
-    console.log("data", data);
+
+    console.log('data',data)
     return data;
   },
+
+    /** 토큰 재발급 */
+    getReissue: async () => {
+      const { data } = await authInstance.get(API_PATHS.AUTH_REISSUE, {
+        headers: {
+          refreshToken: localStorage.getItem(STORAGE_KEYS.refreshToken),
+        },
+      });
+      return data;
+    },
+  
 
 };
 

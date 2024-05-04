@@ -29,6 +29,10 @@ const KakaoLoginPage = () => {
           STORAGE_KEYS.accessToken,
           data.accessToken as string
         );
+        localStorage.setItem(
+          STORAGE_KEYS.refreshToken,
+          data.refreshToken as string
+        );
         setTimeout(() => navigate(ROUTER_PATHS.TARGET), 1000);
       } catch (error) {
         //TODO : 에러 처리
