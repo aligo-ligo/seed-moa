@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: "SUIT", sans-serif;
+  font-family: "Pretendard", sans-serif;
   background-color: rgb(244 244 245/1);
 }
 a {
@@ -35,6 +35,37 @@ a {
   font-family: "Jalnan OTF";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
     format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 700;
+  src: url("/src/assets/fonts/Pretendard/Pretendard-Bold.woff2"),
+    url("/src/assets/fonts/Pretendard/Pretendard-Bold.woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600;
+  src: url("/src/assets/fonts/Pretendard/Pretendard-SemiBold.woff2"),
+    url("/src/assets/fonts/Pretendard/Pretendard-SemiBold.woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  src: url("/src/assets/fonts/Pretendard/Pretendard-Medium.woff2"),
+    url("/src/assets/fonts/Pretendard/Pretendard-Medium.woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  src: url("/src/assets/fonts/Pretendard/Pretendard-Regular.woff2"),
+    url("/src/assets/fonts/Pretendard/Pretendard-Regular.woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 300;
+  src: url("/src/assets/fonts/Pretendard/Pretendard-Light.woff2"),
+    url("/src/assets/fonts/Pretendard/Pretendard-RegLightular.woff");
 }
 
 #toast-root {

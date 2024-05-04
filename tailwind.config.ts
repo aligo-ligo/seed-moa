@@ -12,17 +12,8 @@ const config: Config = {
 				25: "0.25",
 			},
 			colors,
-			spacing: {
-				28: "7rem",
-			},
-			letterSpacing: {
-				tighter: "-.04em",
-			},
-			fontSize: {
-				"5xl": "2.5rem",
-				"6xl": "2.75rem",
-				"7xl": "4.5rem",
-				"8xl": "6.25rem",
+			fontFamily: {
+				'jalnan': ['Jalnan OTF']
 			},
 			boxShadow: {
 				sm: "0 5px 10px rgba(0, 0, 0, 0.12)",
