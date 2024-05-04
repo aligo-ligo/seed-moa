@@ -10,7 +10,7 @@ const Header = ({ children, className, ...props }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "sticky bg-inherit top-0 z-50 h-[68px] flex w-full items-center justify-between py-3xs px-2xs",
+        "sticky bg-inherit top-0 z-50 h-[68px] flex w-full items-center justify-between backdrop-blur-sm",
         className
       )}
       {...props}
@@ -21,7 +21,7 @@ const Header = ({ children, className, ...props }: HeaderProps) => {
 };
 
 const Logo = () => {
-  return <LogoSVG width={26} height={68} />;
+  return <LogoSVG width={32} height={68} className="ml-1" />;
 };
 
 type TextProps = {
