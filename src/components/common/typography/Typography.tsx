@@ -13,6 +13,7 @@ const typographyVariants = cva("", {
       heading4: "text-[16px] font-semibold leading-[155%]",
       body1: "text-[18px] font-medium leading-[155%]",
       body2: "text-[16px] font-medium leading-[155%]",
+      section1: "text-[14px] font-semibold leading-[155%]",
     },
   },
   defaultVariants: {
