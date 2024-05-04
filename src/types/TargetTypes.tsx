@@ -1,9 +1,4 @@
-export type TargetStepType =
-  | "goal"
-  | "subGoal"
-  | "duration"
-  | "lastStep"
-  | "done";
+export type TargetStepType = "goal" | "subGoal" | "duration";
 
 export type CreateTargetResponse = number;
 export type SubGoal = {

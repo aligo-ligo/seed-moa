@@ -1,35 +1,29 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import Duration from "../components/goal/Duration";
 import Goal from "../components/goal/Goal";
-import LastStep from "../components/goal/LastStep";
 import Step from "../components/goal/Step";
-import SubGoalRoutine from "../components/goal/SubGoalRoutine";
 
-import CreateBar from "../components/target/animationBars/CreateBar";
 import useToastList from "../hooks/useToastList";
 
+import ChevronLeft from "@/assets/icon/ChevronLeft";
+import Duration from "@/components/goal/Duration";
+import ProgressBar from "@/components/target/animationBars/CreateBar";
+import { steps } from "@/constants/step";
 import { TargetInfoType } from "@/types/target/type";
 import { TargetStepType } from "@/types/TargetTypes";
+import Routine from "../components/goal/Routine";
 import GobackToast from "../components/toast/GobackToast";
 import useCreateTarget from "../hooks/api/target/useCreateTarget";
-import { usePreventGoBack } from "../hooks/usePreventLeave";
 
 const targetSchema: yup.ObjectSchema<any> = yup.object({
-  goal: yup.string().required("목표를 입력해주세요"),
-  subGoal: yup.array().of(
-    yup.object().shape({
-      id: yup.string(),
-      value: yup.string().required("세부 목표를 작성해주세요"),
-    })
-  ),
+  goal: yup.string().required("열매를 맺을 씨앗(목표)을/를 입력해주세요"),
   routine: yup.array().of(
     yup.object().shape({
       id: yup.string(),
-      value: yup.string().required("세부 목표를 작성해주세요"),
+      value: yup.string().required("루틴은 필수예요"),
     })
   ),
   endDate: yup.string().required("목표 달성일을 지정해주세요"),
@@ -37,12 +31,31 @@ const targetSchema: yup.ObjectSchema<any> = yup.object({
 
 const TargetCreate = () => {
   const { show } = useToastList();
-  // const targetService = useTarget();
   const { mutate: createTarget } = useCreateTarget();
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
-  const [step, setStep] = useState<TargetStepType>("goal");
-  console.log(message);
+
+  // const [step, setStep] = useState<T[number]>(steps[0]);
+
+  const [step, setStep] = useState<TargetStepType[number]>(steps[0]);
+  const currentIdx = steps.indexOf(step);
+
+  const hasPrev = currentIdx > 0;
+  const hasNext = currentIdx < steps.length - 1;
+
+  const toPrev = useCallback(() => {
+    if (!hasPrev) {
+      navigate(-1);
+    }
+    setStep(steps[currentIdx - 1]);
+  }, [currentIdx, hasPrev, steps]);
+
+  const toNext = useCallback(() => {
+    if (!hasNext) {
+      return;
+    }
+
+    setStep(steps[currentIdx + 1]);
+  }, [currentIdx, hasNext, steps]);
 
   const methods = useForm<TargetInfoType>({
     defaultValues: {
@@ -64,29 +77,26 @@ const TargetCreate = () => {
     });
   };
 
-  usePreventGoBack();
-
   return (
-    <div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
+    <div className="relative flex flex-col items-center w-full h-dvh px-6">
       <FormProvider {...methods}>
-        <form
-          onSubmit={methods.handleSubmit(onSubmitHandler)}
-          className="w-full relative"
+        <div
+          className="h-[68px] flex w-full items-center justify-between backdrop-blur-sm"
+          onClick={toPrev}
+          role="presentation"
         >
-          <CreateBar step={step} />
-          <Step check={step === "goal"}>
-            <Goal setStep={setStep} />
-          </Step>
-          <Step check={step === "subGoal"}>
-            <SubGoalRoutine setStep={setStep} />
-          </Step>
-          <Step check={step === "duration"}>
-            <Duration setStep={setStep} />
-          </Step>
-          <Step check={step === "lastStep"}>
-            <LastStep setStep={setStep} />
-          </Step>
-        </form>
+          <ChevronLeft width={20} height={20} color="white" />
+        </div>
+        <ProgressBar step={step} />
+        <Step check={step === "goal"}>
+          <Goal toNext={toNext} />
+        </Step>
+        <Step check={step === "routine"}>
+          <Routine toNext={toNext} />
+        </Step>
+        <Step check={step === "duration"}>
+          <Duration toNext={toNext} />
+        </Step>
       </FormProvider>
       <GobackToast />
     </div>

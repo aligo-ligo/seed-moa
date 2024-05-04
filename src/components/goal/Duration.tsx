@@ -1,6 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { useFormContext } from "react-hook-form";
-import { TargetCreateProps } from "../../types/TargetTypes";
 import Validation from "../auth/Validation";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import TargetStepButton from "../logic/TargetStepButton";
@@ -9,7 +8,11 @@ import DatePickerComponent from "./DatePicker/DatePickerComponent";
 
 import { DURATION_DESCRIPTION, DURATION_TITLE } from "../../constants/target";
 
-const Duration = ({ setStep }: TargetCreateProps) => {
+type DurationProps = {
+  toNext: () => void;
+};
+
+const Duration = ({ toNext }: DurationProps) => {
   const {
     getValues,
     formState: { errors },
@@ -24,22 +27,13 @@ const Duration = ({ setStep }: TargetCreateProps) => {
     >
       <DatePickerComponent name={endDate} />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
-      <div className="flex gap-4">
-        <TargetStepButton
-          prev="subGoal"
-          present={["endDate"]}
-          next="lastStep"
-          setStep={setStep}
-        >
-          이전
-        </TargetStepButton>
-
+      <div className="absolute bottom-5 w-full">
         <TargetStepButton
           present={["endDate"]}
-          next="lastStep"
-          setStep={setStep}
+          next="duration"
+          setStep={toNext}
         >
-          다음
+          제출하기
         </TargetStepButton>
       </div>
     </TargetCreateLayout>

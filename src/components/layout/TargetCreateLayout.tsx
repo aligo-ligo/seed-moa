@@ -1,4 +1,4 @@
-import { GOAL_TITLE } from "../../constants/target";
+import { Typography } from "../common/typography/Typography";
 
 type Props = {
   title: string;
@@ -8,16 +8,10 @@ type Props = {
 
 const TargetCreateLayout = ({ title, description, children }: Props) => {
   return (
-    <div
-      className={`${
-        title === GOAL_TITLE && "py-10"
-      } flex flex-col desktop:p-10 mt-8 w-full min-h-max`}
-    >
+    <div className="relative flex flex-col mt-2 w-full h-full text-white">
       <div className="mt-2 mb-16">
-        <h1 className="text-2xl desktop:text-3xl w-3/4 font-semibold desktop:font-bold">
-          {title}
-        </h1>
-        <h2 className="text-base text-gray font-medium mt-2">{description}</h2>
+        <Typography type="title1">{title}</Typography>
+        <Typography type="heading3">{description}</Typography>
       </div>
 
       {children}

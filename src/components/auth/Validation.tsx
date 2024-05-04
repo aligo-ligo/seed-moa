@@ -1,3 +1,5 @@
+import { Typography } from "../common/typography/Typography";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -5,7 +7,9 @@ type Props = {
 const Validation = ({ children }: Props) => {
   return (
     <div>
-      <p className="text-fail text-sm ml-1 m-2">{children}</p>
+      <Typography type="section1" className="text-fail ml-1 m-2">
+        {children}
+      </Typography>
     </div>
   );
 };

@@ -2,13 +2,17 @@ import { Pages } from "../response";
 
 export type TargetResponseType = {
   pages: Pages;
-  targetInfo: PreviewTargetType[];
+  seedInfo: PreviewTargetType[];
 };
 
-export type PreviewTargetType = Pick<
-  TargetType,
-  "id" | "achievementPer" | "userId" | "goal"
-> & { successRate: number };
+export type PreviewTargetType = {
+  id: number;
+  startDate: string;
+  endDate: string;
+  seed: string;
+  routineCount: number;
+  seedState: string;
+};
 
 export interface TargetType {
   id: number;

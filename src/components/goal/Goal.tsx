@@ -1,7 +1,5 @@
-import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../constants/target";
-import { TargetStepType } from "../../types/TargetTypes";
 import Validation from "../auth/Validation";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
 import TargetStepButton from "../logic/TargetStepButton";
@@ -9,11 +7,11 @@ import TargetStepButton from "../logic/TargetStepButton";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
-type Props = {
-  setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
+type GoalProps = {
+  toNext: () => void;
 };
 
-const Goal = ({ setStep }: Props) => {
+const Goal = ({ toNext }: GoalProps) => {
   const navigate = useNavigate();
   const {
     register,
@@ -27,25 +25,19 @@ const Goal = ({ setStep }: Props) => {
 
   return (
     <TargetCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
-      <div
-        className="absolute left-0 top-6 text-main text-base my-10 desktop:mx-10 flex items-center gap-1 cursor-pointer"
-        onClick={() => {
-          navigate("/target");
-        }}
-      >
-        메인페이지로
-        <FiArrowLeft />
-      </div>
       <input
         type="text"
-        className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
-        placeholder="목표를 작성해주세요"
+        className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b-2 border-primary-300 bg-transparent"
+        placeholder="씨앗(목표)를 작성해주세요"
         {...register("goal")}
       />
       <Validation>{errors?.goal?.message?.toString()}</Validation>
-      <TargetStepButton present={["goal"]} next="subGoal" setStep={setStep}>
-        다음
-      </TargetStepButton>
+
+      <div className="absolute bottom-5 w-full">
+        <TargetStepButton present={["goal"]} next="subGoal" setStep={toNext}>
+          다음
+        </TargetStepButton>
+      </div>
     </TargetCreateLayout>
   );
 };

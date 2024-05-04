@@ -10,17 +10,10 @@ import { Typography } from "../common/typography/Typography";
 
 type TargetCardProps = {
   id: number;
-  goal: string;
-  achievementPer: number;
-  successRate: number;
+  seed: string;
 };
 
-const TargetCard = ({
-  id,
-  goal,
-  successRate,
-  achievementPer,
-}: TargetCardProps) => {
+const TargetCard = ({ id, seed }: TargetCardProps) => {
   const navigate = useNavigate();
 
   /** width, getStageFromLevel */
@@ -53,7 +46,7 @@ const TargetCard = ({
             type="heading2"
             className="overflow-hidden whitespace-nowrap truncate"
           >
-            {goal}
+            {seed}
           </Typography>
           <div>
             <Typography

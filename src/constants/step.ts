@@ -1,0 +1,1 @@
+export const steps = ['goal','routine','duration']

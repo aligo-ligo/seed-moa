@@ -1,21 +1,15 @@
-import SvgKakaoLogo from "@/assets/logo/KakaoLogo";
+import ChevronLeft from "@/assets/icon/ChevronLeft";
 import Button from "@/components/common/button/Button";
 import { useNavigate } from "react-router-dom";
 
-type Props = {
-  icon?: "chevronLeft" | "x";
-};
-
-const Previous = ({ icon = "chevronLeft" }: Props) => {
+const Previous = () => {
   const navigate = useNavigate();
-
   return (
     <Button
       variant="empty"
       iconOnly
-      Icon={<SvgKakaoLogo />}
+      Icon={<ChevronLeft width={20} height={20} color="white" />}
       onClick={() => navigate(-1)}
-      className="!p-0"
     />
   );
 };
