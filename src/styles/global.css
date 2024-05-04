@@ -11,7 +11,7 @@
 
 @layer base {
   :root {
-    --layout-max-w: 540px;
+    --layout-max-w: 410px;
     --layout-min-h: 100dvh;
   }
   .layout {

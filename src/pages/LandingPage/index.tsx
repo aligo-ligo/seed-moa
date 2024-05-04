@@ -1,12 +1,10 @@
-import { useNavigate } from "react-router-dom";
-
 import KakaoLoginButton from "@/components/auth/KakaoLoginButton";
-import StyledButton from "@/components/common/StyledButton";
-import IMAGE_MAP from "@/constants/image";
 
+import Logo from "@/assets/logo/Logo";
+import ReversedLogo from "@/assets/logo/ReversedLogo";
+import { Typography } from "@/components/common/typography/Typography";
 import { ROUTER_PATHS } from "@/constants/routerPath";
 import SkeletonElement from "../../components/layout/Skeleton";
-import Header from "../../components/target/Header";
 import { useInfo } from "../../hooks/useGetInfo";
 import { useGuest } from "../../hooks/useGuest";
 
@@ -15,56 +13,50 @@ const LandingPage = () => {
   const REDIRECT_URI = `${window.location.origin}${ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO}`;
 
   const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${APP_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  const navigate = useNavigate();
   const guestService = useGuest();
   const { data: target, isLoading } = useInfo(guestService);
 
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-start px-6">
-      <Header />
-      <div className="flex flex-col items-center justify-center h-[70%]">
-        <img
-          src={IMAGE_MAP.mainOliImage}
-          alt="Hero-image"
-          className="w-2/5 pointer-events-none"
-        />
-        <img
-          src={IMAGE_MAP.logoImage}
-          alt="logo-image"
-          className="w-3/5 pointer-events-none"
-        />
-
-        <div className="flex flex-col items-center">
-          <h2 className="text-xl desktop:text-2xl  text-gray mt-8 pointer-events-none font-bold">
-            공유하여 목표를 달성해보세요!
-          </h2>
-
-          {isLoading ? (
-            <div className=" mt-8 mb-4 text-lg desktop:text-xl font-semibold text-gray w-full">
-              <SkeletonElement type="landing" />
-              <SkeletonElement type="landing" />
+    <div className="relative w-full h-dvh flex flex-col items-center justify-start p-6">
+      <div className="flex flex-col w-full items-center h-[80%]">
+        <div className="w-full flex flex-col h-[80%] pt-12">
+          <div className="flex flex-col items-center gap-4">
+            <Typography type="title1" className="text-white">
+              씨드 모아
+            </Typography>
+            <div className="flex flex-col items-center">
+              <Typography type="heading2" className="text-white">
+                목표 달성을 위한
+              </Typography>
+              <Typography type="heading2" className="text-white">
+                나만의 습관 형성 서비스
+              </Typography>
             </div>
-          ) : (
-            <div className="flex flex-col justify-center items-center mb-10 mt-10 pointer-events-none">
-              <p className=" text-lg desktop:text-xl font-medium text-gray mb-2">
-                {`${target?.userCount} 명의 유저가 ${target?.targetCount}개의`}
-              </p>
-              <p className=" text-lg desktop:text-xl font-medium text-gray ">
-                목표를 위해 달려가고 있어요
-              </p>
-            </div>
-          )}
+          </div>
+          <div className="w-full relative flex-1 gap-4">
+            <Logo width={160} className="absolute top-0 left-0" />
+            <ReversedLogo className="absolute bottom-0 right-0" />
+          </div>
         </div>
+
+        {isLoading ? (
+          <div className=" mt-8 mb-4 text-lg desktop:text-xl font-semibold text-gray w-full">
+            <SkeletonElement type="landing" />
+            <SkeletonElement type="landing" />
+          </div>
+        ) : (
+          <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12">
+            <Typography type="heading3">
+              전체 {target?.userCount} 명의 유저가
+            </Typography>
+            <Typography type="heading3">
+              총 {target?.targetCount}개의 씨앗을 심었어요!
+            </Typography>
+          </div>
+        )}
       </div>
 
       <div className="absolute bottom-5 w-full px-6">
-        <StyledButton
-          styleName="landing"
-          onClick={() => navigate("/signin")}
-          type="button"
-        >
-          일반 로그인
-        </StyledButton>
         <KakaoLoginButton href={KAKAO_AUTH_URI} />
       </div>
     </div>

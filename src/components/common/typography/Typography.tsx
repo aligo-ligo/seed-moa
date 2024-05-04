@@ -6,15 +6,11 @@ import { forwardRef } from "react";
 const typographyVariants = cva("", {
   variants: {
     type: {
+      title1: "text-[30px] font-semibold leading-[155%]",
       heading1: "text-[24px] font-bold leading-[145%]",
       heading2: "text-[22px] font-semibold leading-[145%]",
       heading3: "text-[18px] font-semibold leading-[155%]",
       heading4: "text-[16px] font-semibold leading-[155%]",
-      title1: "text-[20px] font-semibold leading-[155%]",
-      title2: "text-[18px] font-semibold leading-[155%]",
-      title3: "text-[16px] font-semibold leading-[155%]",
-      title4: "text-[14px] font-semibold leading-[155%]",
-      title5: "text-[12px] font-semibold leading-[155%]",
       body1: "text-[18px] font-medium leading-[155%]",
       body2: "text-[16px] font-medium leading-[155%]",
     },

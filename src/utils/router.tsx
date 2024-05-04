@@ -8,6 +8,7 @@ import QuestionPage from "../pages/QuestionPage";
 
 import { ROUTER_PATHS } from "@/constants/routerPath";
 
+import App from "@/App";
 import TargetPage from "@/pages/TargePage";
 import TargetCreate from "../pages/TargetCreate";
 import TargetDetail from "../pages/TargetDetail";
@@ -56,7 +57,8 @@ export const routerChildrenInfo = [
 ];
 export const routerInfo = [
   {
-    path: ROUTER_PATHS.ROOT,
+    path: "/",
+    element: <App />,
     errorElement: <NotFound />,
     children: routerChildrenInfo,
   },
