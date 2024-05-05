@@ -10,8 +10,6 @@ const LandingPage = () => {
   const REDIRECT_URI = `${window.location.origin}${ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO}`;
 
   const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${APP_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  // const guestService = useGuest();
-  // const { data: target, isLoading } = useInfo(guestService);
 
   return (
     <div className="relative w-full h-dvh flex flex-col items-center justify-start p-6">
