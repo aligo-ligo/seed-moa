@@ -11,7 +11,7 @@ const LandingPage = () => {
 
   const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${APP_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   // const guestService = useGuest();
-  //   const { data: target, isLoading } = useInfo(guestService);
+  // const { data: target, isLoading } = useInfo(guestService);
 
   return (
     <div className="relative w-full h-dvh flex flex-col items-center justify-start p-6">
@@ -35,8 +35,8 @@ const LandingPage = () => {
             <ReversedLogo className="absolute bottom-0 right-0" />
           </div>
         </div>
-
-        {/* {isLoading ? (
+        {/* 
+        {isLoading ? (
           <div className=" mt-8 mb-4 text-lg desktop:text-xl font-semibold text-gray w-full">
             <SkeletonElement type="landing" />
             <SkeletonElement type="landing" />

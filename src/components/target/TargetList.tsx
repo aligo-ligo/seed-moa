@@ -2,6 +2,7 @@ import useGetPaginatedTarget from "@/hooks/useGetPaginatedTarget";
 import { useEffect, useRef } from "react";
 import { Spinner } from "../common/spinner/Spinner";
 import TargetCard from "./TargetCard";
+import TargetEmptyCard from "./TargetEmptyCard";
 
 const TargetList = () => {
   const {
@@ -33,6 +34,8 @@ const TargetList = () => {
         targets.map((target) => {
           return <TargetCard key={target.id} {...target} />;
         })}
+
+      {targets?.length === 0 && <TargetEmptyCard />}
 
       <div className="flex justify-center mt-10" ref={lastTargetElementRef}>
         {isLoading && <Spinner />}
