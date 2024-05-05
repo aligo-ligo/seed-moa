@@ -6,7 +6,7 @@ export const API_PATHS = {
 
   All_TARGET: "/api/seed",
   TARGET_DETAIL: (targetId: number) => `target/detail?id=${targetId}` as const,
-  CREATE_SEED: "api/seed",
+  CREATE_SEED: "/api/seed",
   TARGET_SUBGOAL: "target/update",
 } as const;
 
@@ -19,4 +19,5 @@ export const ROUTER_PATHS = {
   SIGNIN_REDIRECT_KAKAO: "/kakao",
   TARGET: "/target",
   CREATE_TARGET: "/target/create",
+  MYPAGE: "/mypage",
 } as const;

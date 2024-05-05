@@ -4,12 +4,13 @@ import Auth from "@/pages/Auth";
 import LandingPage from "@/pages/LandingPage";
 import NotFound from "@/pages/NotFound";
 
-import QuestionPage from "../pages/QuestionPage";
+import QuestionPage from "../pages/Mypage";
 
 import { ROUTER_PATHS } from "@/constants/routerPath";
 
 import App from "@/App";
 import TargetPage from "@/pages/TargePage";
+import Mypage from "../pages/Mypage";
 import TargetCreate from "../pages/TargetCreate";
 import TargetDetail from "../pages/TargetDetail";
 
@@ -52,6 +53,11 @@ export const routerChildrenInfo = [
   {
     path: "faq",
     element: <QuestionPage />,
+    withAuthorization: false,
+  },
+  {
+    path: ROUTER_PATHS.MYPAGE,
+    element: <Mypage />,
     withAuthorization: false,
   },
 ];

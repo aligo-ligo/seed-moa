@@ -18,7 +18,7 @@ const TargetPage = () => {
       <Suspense fallback={<></>}>
         <Header>
           <Header.Logo />
-          <Link to={""}>
+          <Link to={"/mypage"}>
             <Profile width={32} />
           </Link>
         </Header>
