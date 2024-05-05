@@ -56,7 +56,7 @@ const TargetCreate = () => {
   const methods = useForm<SeedResponseType>({
     defaultValues: {
       seed: "",
-      routines: [{}, {}],
+      routines: [{}],
       endDate: "",
     },
     resolver: yupResolver(targetSchema),

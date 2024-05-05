@@ -24,8 +24,15 @@ const Duration = () => {
     >
       <DatePickerComponent name={endDate} />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
-      <div className="absolute bottom-5 w-full">
-        <Button type="submit">제출하기</Button>
+
+      <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
+        <Button
+          className=" w-full h-16 hover:bg-gray-800 duration-300"
+          color="gray-1000"
+          type="submit"
+        >
+          제출하기
+        </Button>
       </div>
     </TargetCreateLayout>
   );

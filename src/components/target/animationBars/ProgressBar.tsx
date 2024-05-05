@@ -4,13 +4,12 @@ type ProgressbarProps = {
   step: TargetStepType[number];
 };
 const getPercentFormStep: any = {
-  goal: `scale-x-[33%]`,
-  routine: `scale-x-[66%]`,
+  seed: `scale-x-[33%]`,
+  routines: `scale-x-[66%]`,
   duration: `scale-x-100`,
 };
 
 const ProgressBar = ({ step }: ProgressbarProps) => {
-  console.log("step", step);
   return (
     <div className="sticky top-0overflow-x-hidden overflow-y-hidden z-10 w-full">
       <div className="h-2 w-full bg-gray-50 rounded-md relative">
