@@ -2,8 +2,8 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from "../../constants/target";
 import Validation from "../auth/Validation";
+import Button from "../common/button/Button";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
-import TargetStepButton from "../logic/TargetStepButton";
 
 type RoutineProps = {
   toNext: () => void;
@@ -17,14 +17,14 @@ const Routine = ({ toNext }: RoutineProps) => {
   } = useFormContext();
 
   const {
-    fields: routine,
+    fields: routines,
     append: routineAppend,
     remove: routineRemove,
   } = useFieldArray({
-    name: "routine",
+    name: "routines",
   });
 
-  const routineWatch = watch("routine");
+  const routineWatch = watch("routines");
   const minRoutine = routineWatch.length === 1;
 
   return (
@@ -46,7 +46,7 @@ const Routine = ({ toNext }: RoutineProps) => {
           목표를 달성하기 위해 매일 해야하는 것들을 정리해보세요
         </h2>
 
-        {routine.map((field, index) => (
+        {routines.map((field, index) => (
           <div className="flex items-center justify-center mt-5" key={field.id}>
             <span className="font-semibold text-xl pr-4">{index + 1}</span>
             <input
@@ -54,7 +54,7 @@ const Routine = ({ toNext }: RoutineProps) => {
               defaultValue={""}
               className="placeholder:text-s w-full h-10 outline-none text-emerald-800  border-b-2 border-main"
               placeholder="루틴을 작성해보세요"
-              {...register(`routine.${index}.value` as const)}
+              {...register(`routines.${index}.value` as const)}
             />
 
             {!minRoutine && (
@@ -69,18 +69,12 @@ const Routine = ({ toNext }: RoutineProps) => {
           </div>
         ))}
         <div className="text-center">
-          <Validation>{!!errors?.routine && "루틴을 작성해주세요"}</Validation>
+          <Validation>{!!errors?.routines && "루틴을 작성해주세요"}</Validation>
         </div>
       </section>
 
       <div className="absolute bottom-5 w-full">
-        <TargetStepButton
-          present={["routine"]}
-          next="duration"
-          setStep={toNext}
-        >
-          다음
-        </TargetStepButton>
+        <Button onClick={toNext}>다음</Button>
       </div>
     </TargetCreateLayout>
   );

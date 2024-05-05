@@ -20,7 +20,6 @@ export interface TargetType {
   startDate: string;
   endDate: string;
   goal: string;
-  subGoal: SubGoalType[];
   routine: RoutineType[];
   penalty: string;
   achievementDate: AchievementDate;
@@ -36,16 +35,9 @@ export type GetAllPaginatedTargetRequest = {
   size: number;
 };
 
-export type SubGoalType = React.ReactNode & {
-  id: number;
-  value: string;
-  completedDate: string | null;
-};
-
-export type TargetInfoType = {
-  goal: string;
-  subGoal: SubGoalType[];
-  routine: RoutineType[];
+export type SeedResponseType = {
+  seed: string;
+  routines: RoutineType[];
   endDate: string;
 };
 

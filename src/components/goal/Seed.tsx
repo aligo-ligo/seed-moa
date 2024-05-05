@@ -1,27 +1,19 @@
-import { useNavigate } from "react-router-dom";
 import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../constants/target";
 import Validation from "../auth/Validation";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
-import TargetStepButton from "../logic/TargetStepButton";
 
-import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
+import Button from "../common/button/Button";
 
-type GoalProps = {
+type SeedProps = {
   toNext: () => void;
 };
 
-const Goal = ({ toNext }: GoalProps) => {
-  const navigate = useNavigate();
+const Seed = ({ toNext }: SeedProps) => {
   const {
     register,
-    setFocus,
     formState: { errors },
   } = useFormContext();
-
-  useEffect(() => {
-    setFocus("goal");
-  }, [setFocus]);
 
   return (
     <TargetCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
@@ -29,17 +21,15 @@ const Goal = ({ toNext }: GoalProps) => {
         type="text"
         className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b-2 border-primary-300 bg-transparent"
         placeholder="씨앗(목표)를 작성해주세요"
-        {...register("goal")}
+        {...register("seed")}
       />
-      <Validation>{errors?.goal?.message?.toString()}</Validation>
+      <Validation>{errors?.seed?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 w-full">
-        <TargetStepButton present={["goal"]} next="subGoal" setStep={toNext}>
-          다음
-        </TargetStepButton>
+        <Button onClick={toNext}>다음</Button>
       </div>
     </TargetCreateLayout>
   );
 };
 
-export default Goal;
+export default Seed;

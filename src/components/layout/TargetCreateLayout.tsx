@@ -8,7 +8,7 @@ type Props = {
 
 const TargetCreateLayout = ({ title, description, children }: Props) => {
   return (
-    <div className="relative flex flex-col mt-2 w-full h-full text-white">
+    <div className=" flex flex-col mt-2 w-full h-full text-white">
       <div className="mt-2 mb-16">
         <Typography type="title1">{title}</Typography>
         <Typography type="heading3">{description}</Typography>

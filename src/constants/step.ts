@@ -1,1 +1,1 @@
-export const steps = ['goal','routine','duration']
+export const steps = ['seed','routines','duration']

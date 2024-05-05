@@ -2,21 +2,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useFormContext } from "react-hook-form";
 import Validation from "../auth/Validation";
 import TargetCreateLayout from "../layout/TargetCreateLayout";
-import TargetStepButton from "../logic/TargetStepButton";
 import "./DatePicker/css/react-datepicker.css";
 import DatePickerComponent from "./DatePicker/DatePickerComponent";
 
 import { DURATION_DESCRIPTION, DURATION_TITLE } from "../../constants/target";
+import Button from "../common/button/Button";
 
-type DurationProps = {
-  toNext: () => void;
-};
-
-const Duration = ({ toNext }: DurationProps) => {
+const Duration = () => {
   const {
     getValues,
     formState: { errors },
   } = useFormContext();
+  console.log("errors", errors);
 
   const endDate = getValues("endDate");
 
@@ -28,13 +25,7 @@ const Duration = ({ toNext }: DurationProps) => {
       <DatePickerComponent name={endDate} />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
       <div className="absolute bottom-5 w-full">
-        <TargetStepButton
-          present={["endDate"]}
-          next="duration"
-          setStep={toNext}
-        >
-          제출하기
-        </TargetStepButton>
+        <Button type="submit">제출하기</Button>
       </div>
     </TargetCreateLayout>
   );

@@ -2,6 +2,7 @@ import { queryOptions } from "@tanstack/react-query";
 import targetAPI from "./apis";
 
 const targetOptions = {
+  //TODO : queryOption 리팩터링 예정
   all: ["targets"] as const,
 
   targets: () =>
