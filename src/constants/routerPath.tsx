@@ -1,4 +1,6 @@
 export const API_PATHS = {
+  USER_INFO: "/api/init",
+
   AUTH_LOGIN_KAKAO: "/api/auth/kakao",
   AUTH_REISSUE: "/api/auth/reissue",
 

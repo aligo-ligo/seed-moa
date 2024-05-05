@@ -1,11 +1,16 @@
 import KakaoLoginButton from "@/components/auth/KakaoLoginButton";
 
+import targetOptions from "@/api/target/queryOptions";
 import Logo from "@/assets/logo/Logo";
 import ReversedLogo from "@/assets/logo/ReversedLogo";
 import { Typography } from "@/components/common/typography/Typography";
+import SkeletonElement from "@/components/layout/Skeleton";
 import { ROUTER_PATHS } from "@/constants/routerPath";
+import { useQuery } from "@tanstack/react-query";
 
 const LandingPage = () => {
+  const { data: seed, isLoading } = useQuery(targetOptions.totalInfo());
+
   const APP_KEY = import.meta.env.VITE_KAKAO_CLIENT_ID;
   const REDIRECT_URI = `${window.location.origin}${ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO}`;
 
@@ -33,7 +38,7 @@ const LandingPage = () => {
             <ReversedLogo className="absolute bottom-0 right-0" />
           </div>
         </div>
-        {/* 
+
         {isLoading ? (
           <div className=" mt-8 mb-4 text-lg desktop:text-xl font-semibold text-gray w-full">
             <SkeletonElement type="landing" />
@@ -41,14 +46,14 @@ const LandingPage = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12">
-            <Typography type="heading3">
-              전체 {target?.userCount} 명의 유저가
+            <Typography type="heading2">
+              전체 {seed?.totalUserCount} 명의 유저가
             </Typography>
-            <Typography type="heading3">
-              총 {target?.targetCount}개의 씨앗을 심었어요!
+            <Typography type="heading2">
+              총 {seed?.totalSeedCount}개의 씨앗을 심었어요!
             </Typography>
           </div>
-        )} */}
+        )}
       </div>
 
       <div className="absolute bottom-5 w-full px-6">
