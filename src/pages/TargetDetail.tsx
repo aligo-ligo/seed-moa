@@ -47,7 +47,9 @@ const TargetDetail = () => {
 
           <div className="w-48">{seedStateObj['SEED']}</div>
         </div>
-        <div className="flex-1 w-full">
+        <div className="flex-1 w-full flex flex-col gap-4">
+          <Task />
+          <Task />
           <Task />
         </div>
       </div>
