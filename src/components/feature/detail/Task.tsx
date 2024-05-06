@@ -10,24 +10,36 @@ interface TaskProps {
   initialIsDone?: boolean;
   routineTitle: string;
   routineId: number;
+  completedRoutineToday: boolean;
   onDoneClick: VoidFunction;
 }
 
-const Task = ({ routineTitle, routineId, initialIsDone = false }: TaskProps) => {
+const Task = ({
+  routineTitle,
+  routineId,
+  completedRoutineToday,
+  initialIsDone = false,
+  onDoneClick,
+}: TaskProps) => {
   const [isDone, setIsDone] = useState(initialIsDone);
   const [isEditing, setIsEditing] = useState(false);
   const { value: editText, handleChange: handleEditText } = useInput(routineTitle);
   const isMyGoal = false;
-  const CheckIcon = isDone ? CheckedIcon : UnCheckedIcon;
+  const CheckIcon = completedRoutineToday ? CheckedIcon : UnCheckedIcon;
+
+  const handleRoutineClick = () => {
+    if (completedRoutineToday) return;
+    onDoneClick();
+  };
   return (
     <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-      <button className="w-[24px] h-[24px]">
+      <button onClick={handleRoutineClick} className="w-[24px] h-[24px]">
         <CheckIcon width={24} height={24} />
       </button>
       <div className="flex w-full justify-between items-center">
         <Typography
           type="body2"
-          className={`${!isMyGoal && isDone && 'line-through text-gray-40'}`}
+          className={`${completedRoutineToday && 'line-through text-gray-400'}`}
         >
           {routineTitle}
         </Typography>

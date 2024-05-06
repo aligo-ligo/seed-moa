@@ -5,7 +5,7 @@ import { GetAllPaginatedTargetRequest } from '@/types/target/type';
 import targetAPI from './apis';
 
 const targetOptions = {
-  all: ['targets'] as const,
+  all: ['seed'] as const,
 
   targets: ({ page, size }: GetAllPaginatedTargetRequest) =>
     queryOptions({

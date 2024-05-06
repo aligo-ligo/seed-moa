@@ -17,12 +17,11 @@ import { seedStateObj } from '@/components/target/TargetCard';
 const TargetDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: seed, isLoading } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
   console.log(seed);
 
   // const { isModalOpen, openModal, closeModal, outside, buttonModalType, changeModalType } =
   //   usePopUp();
-  const count = 1;
   const total = 20;
 
   return (

@@ -1,6 +1,6 @@
-import { useMutation } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
-import targetAPI from '@/api/target/apis';
+import useRoutineMutation from '@/hooks/useRoutineMutation';
 import { RoutineDetailType } from '@/types/target/type';
 import Task from './Task';
 
@@ -9,14 +9,13 @@ type TaskListProps = {
 };
 
 const TaskList = ({ tasks }: TaskListProps) => {
-  const { mutate } = useMutation({
-    mutationFn: targetAPI.patchRoutineDone,
-  });
+  const { id } = useParams();
+  const { checkRotine } = useRoutineMutation(Number(id));
 
   return (
     <div className="flex-1 w-full flex flex-col gap-4">
       {tasks.map((routine, index) => {
-        return <Task key={index} {...routine} onDoneClick={() => mutate(routine.routineId)} />;
+        return <Task key={index} {...routine} onDoneClick={() => checkRotine(routine.routineId)} />;
       })}
     </div>
   );

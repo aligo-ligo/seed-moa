@@ -25,8 +25,8 @@ const CheckedIcon = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
           y2="36.1428"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#71CBFF" />
-          <stop offset="1" stop-color="#8C68FF" />
+          <stop stopColor="#71CBFF" />
+          <stop offset="1" stopColor="#BACB91" />
         </linearGradient>
       </defs>
     </svg>
