@@ -1,121 +1,61 @@
-import { useQuery } from '@tanstack/react-query';
-import { createPortal } from 'react-dom';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import targetOptions from '@/api/target/queryOptions';
-import SkeletonElement from '@/components/layout/Skeleton';
-import RoutineBox from '@/components/target/RoutineBox';
-import Meta from '../components/common/Meta';
-import ModalContent from '../components/common/ModalContent';
-import StyledButton from '../components/common/StyledButton';
-import Header from '../components/target/Header';
-import usePopUp from '../hooks/usePopUp';
+import Kakaotalk from '@/assets/icon/Kakaotalk';
+import LinkIcon from '@/assets/icon/Link';
+import Profile from '@/assets/icon/Profile';
+import Button from '@/components/common/button/Button';
+import Header from '@/components/common/header/Header';
+import { Typography } from '@/components/common/typography/Typography';
+import { seedStateObj } from '@/components/target/TargetCard';
 
 const TargetDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: target, status, isLoading } = useQuery(targetOptions.detailTarget(Number(id)));
-  const name = localStorage.getItem('userNickName');
-
-  console.log('target', target);
-
-  const { isModalOpen, openModal, closeModal, outside, buttonModalType, changeModalType } =
-    usePopUp();
+  // const { data: target, status, isLoading } = useQuery(targetOptions.detailTarget(Number(id)));
+  // const { isModalOpen, openModal, closeModal, outside, buttonModalType, changeModalType } =
+  //   usePopUp();
 
   return (
-    <div className="relative flex flex-col min-h-screen px-6 mb-10">
-      <Header />
-      {name && id && <Meta name={name} id={id} />}
+    <div className="relative flex flex-col items-center w-full h-dvh px-6">
+      <Suspense fallback={<></>}>
+        <Header>
+          <Header.Previous />
+          <Link to={'/mypage'}>
+            <Profile width={32} />
+          </Link>
+        </Header>
+      </Suspense>
 
-      <div>
-        <h1 className="font-semibold text-3xl text-center pointer-events-none">{target?.goal}</h1>
-        {status === 'success' && (
-          <div className="flex flex-col gap-6 mt-10">
-            <div>
-              <div className="flex justify-between">
-                <p className="font-semibold text-xl pointer-events-none">성취 그래프</p>
-              </div>
-            </div>
-            <div>
-              <h2 className="font-semibold text-xl">체크 포인트</h2>
-              {isLoading && (
-                <>
-                  <SkeletonElement type="title" />
-                  <SkeletonElement type="title" />
-                </>
-              )}
+      <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
+        목표
+      </Typography>
 
-              {/* {target.subGoal.map((subGoal, index) => {
-                return (
-                  <Checkbox
-                    type="detail"
-                    key={index}
-                    value={subGoal.value}
-                    completedDate={subGoal.completedDate}
-                  >
-                    {subGoal.value}
-                  </Checkbox>
-                );
-              })} */}
-            </div>
-            <div>
-              <h2 className="font-semibold text-xl">루틴</h2>
-              {isLoading && (
-                <>
-                  <SkeletonElement type="title" />
-                  <SkeletonElement type="title" />
-                </>
-              )}
-              {target?.routine.map((routine, index) => {
-                return (
-                  <RoutineBox key={index} id={index}>
-                    {routine.value}
-                  </RoutineBox>
-                );
-              })}
-            </div>
-            <div>
-              <div className="flex justify-between items-center">
-                <h2 className="font-semibold text-xl mb-8">성공 예측률 투표</h2>
-                <p className="text-xs font-bold">{`${target?.voteTotal || 0}명 참여했어요`}</p>
-              </div>
-              {/* <ProgressBar completed={votePercentage} /> */}
-            </div>
-          </div>
-        )}
-
-        <div className="flex flex-col item-center justify-center gap-4 m-20">
-          <StyledButton
-            styleName="sharing"
-            type="button"
-            onClick={() => {
-              openModal();
-              changeModalType('sharing');
-            }}
-          >
-            공유
-          </StyledButton>
-
-          <StyledButton
-            styleName="result"
-            type="button"
-            onClick={() => {
-              navigate(`/result/${id}`);
-            }}
-          >
-            결과 페이지로 이동하기
-          </StyledButton>
+      <div className="flex flex-col h-full">
+        <div className="h-[40%] flex justify-center items-center">
+          <div className="w-48">{seedStateObj['SEED']}</div>
         </div>
-        {isModalOpen &&
-          createPortal(
-            <ModalContent
-              targetId={id}
-              buttonModalType={buttonModalType}
-              outside={outside}
-              closeModal={closeModal}
-            />,
-            document.body,
-          )}
+        <div className="flex-1">input</div>
+      </div>
+
+      <div className="absolute bottom-5 text-xl w-full text-white ">
+        <div className="flex flex-col justify-center items-center">
+          <Typography type="heading3">키우고 있는 씨앗 공유하기</Typography>
+          <div className="flex w-full h-[52px] justify-center gap-3">
+            <Button
+              width="fit"
+              Icon={<LinkIcon width={20} height={20} />}
+              iconOnly
+              className="rounded-[100%] bg-gray-600"
+            />
+            <Button
+              // onClick={handleSendMessage}
+              Icon={<Kakaotalk width={20} height={20} color="black" />}
+              iconOnly
+              className="rounded-[100%] bg-[#FEE500]"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

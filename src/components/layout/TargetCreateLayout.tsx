@@ -1,4 +1,4 @@
-import { Typography } from "../common/typography/Typography";
+import { Typography } from '../common/typography/Typography';
 
 type Props = {
   title: string;
