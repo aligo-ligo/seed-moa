@@ -6,8 +6,11 @@ import LinkIcon from '@/assets/icon/Link';
 import Profile from '@/assets/icon/Profile';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
+import { Tag } from '@/components/common/tag';
+import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
 import { seedStateObj } from '@/components/target/TargetCard';
+import Task from '@/components/Task';
 
 const TargetDetail = () => {
   const { id } = useParams();
@@ -15,6 +18,8 @@ const TargetDetail = () => {
   // const { data: target, status, isLoading } = useQuery(targetOptions.detailTarget(Number(id)));
   // const { isModalOpen, openModal, closeModal, outside, buttonModalType, changeModalType } =
   //   usePopUp();
+  const count = 1;
+  const total = 20;
 
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6">
@@ -31,11 +36,20 @@ const TargetDetail = () => {
         목표
       </Typography>
 
-      <div className="flex flex-col h-full">
-        <div className="h-[40%] flex justify-center items-center">
+      <div className="flex flex-col w-full h-full">
+        <div className=" h-[40%] flex flex-col justify-center items-center">
+          <div className="relative flex w-full justify-end">
+            <Tag className="">{`${count}/${total}`}</Tag>
+            <div className="absolute w-full justify-end flex -top-14 -right-3">
+              <ToolTip title={`47번만 더!`} />
+            </div>
+          </div>
+
           <div className="w-48">{seedStateObj['SEED']}</div>
         </div>
-        <div className="flex-1">input</div>
+        <div className="flex-1 w-full">
+          <Task />
+        </div>
       </div>
 
       <div className="absolute bottom-5 text-xl w-full text-white ">
