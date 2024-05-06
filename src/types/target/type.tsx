@@ -2,13 +2,17 @@ import { Pages } from "../response";
 
 export type TargetResponseType = {
   pages: Pages;
-  targetInfo: PreviewTargetType[];
+  seedInfo: PreviewTargetType[];
 };
 
-export type PreviewTargetType = Pick<
-  TargetType,
-  "id" | "achievementPer" | "userId" | "goal"
-> & { successRate: number };
+export type PreviewTargetType = {
+  id: number;
+  startDate: string;
+  endDate: string;
+  seed: string;
+  routineCount: number;
+  seedState: string;
+};
 
 export interface TargetType {
   id: number;
@@ -16,7 +20,6 @@ export interface TargetType {
   startDate: string;
   endDate: string;
   goal: string;
-  subGoal: SubGoalType[];
   routine: RoutineType[];
   penalty: string;
   achievementDate: AchievementDate;
@@ -32,21 +35,13 @@ export type GetAllPaginatedTargetRequest = {
   size: number;
 };
 
-export type SubGoalType = React.ReactNode & {
-  id: number;
-  value: string;
-  completedDate: string | null;
-};
-
-export type TargetInfoType = {
-  goal: string;
-  subGoal: SubGoalType[];
-  routine: RoutineType[];
+export type SeedResponseType = {
+  seed: string;
+  routines: RoutineType[];
   endDate: string;
 };
 
-export type RoutineType = React.ReactNode & {
-  id: number;
+export type RoutineType = {
   value: string;
 };
 

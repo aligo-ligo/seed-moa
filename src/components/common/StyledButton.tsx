@@ -30,7 +30,7 @@ const StyledButton = ({
     target:
       "mt-12 mb-10 mx-auto w-3/5 h-14 bg-main rounded-lg hover:bg-mainHover",
     targetCreate:
-      "w-full h-16 text-xl bg-main px-10 py-2 mt-10 mb-10 text-white rounded-xl hover:bg-mainHover duration-100",
+      "w-full h-16 text-xl bg-main text-white rounded-xl hover:bg-primary-200 duration-100",
     sharing:
       " h-12 text-xl bg-main py-2 rounded-xl text-white hover:bg-mainHover",
     successVote:

@@ -26,7 +26,7 @@ const useGetPaginatedTarget = () => {
       return null;
     },
 
-    select: (data) => (data.pages ? data.pages.map((page) => page.targetInfo).flat() : []),
+    select: (data) => (data.pages ? data.pages.map((page) => page.seedInfo).flat() : []),
   });
 };
 

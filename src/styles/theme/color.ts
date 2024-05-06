@@ -1,5 +1,6 @@
 export const colors = {
   gray: {
+    10: "#F9FAFB",
     50: "#EBF0F5",
     100: "#E0E8EF",
     200: "#CCD8E3",
@@ -12,15 +13,11 @@ export const colors = {
     900: "#23282E",
     1000: "#151719",
   },
-  primary: {
-    100: "#FFF5FA",
-    200: "#FFE0F0",
-    300: "#FFCCE6",
-    400: "#FFB8DC",
-    500: "#FFA3D2",
-    600: "#FF91C6",
-    700: "#FF75B8",
-    800: "#FF3DA0",
+  primary: { 
+    100 : "#D7E5B7",
+    200 : '#BACB91',
+    300 : "#87995C",
+    400 : "#52681D"
   },
   auth: {
     kakao: "#FEE500",
@@ -43,5 +40,4 @@ export const colors = {
   fail: "#ff3131",
   skyRed: "#FCDDD9",
   info: "#17a2b8",
-  white: "#fff",
 };

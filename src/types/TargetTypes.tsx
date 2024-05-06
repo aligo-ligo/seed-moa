@@ -1,9 +1,4 @@
-export type TargetStepType =
-  | "goal"
-  | "subGoal"
-  | "duration"
-  | "lastStep"
-  | "done";
+export type TargetStepType = "seed" | "routines" | "duration";
 
 export type CreateTargetResponse = number;
 export type SubGoal = {
@@ -14,8 +9,4 @@ export type SubGoal = {
 
 export type ShareResultType = {
   shortUrl: string;
-};
-
-export type TargetCreateProps = {
-  setStep: React.Dispatch<React.SetStateAction<TargetStepType>>;
 };

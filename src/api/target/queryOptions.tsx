@@ -1,5 +1,6 @@
 import { GetAllPaginatedTargetRequest } from "@/types/target/type";
 import { queryOptions } from "@tanstack/react-query";
+import commonAPI from "../common/apis";
 import targetAPI from "./apis";
 
 const targetOptions = {
@@ -14,6 +15,12 @@ const targetOptions = {
     queryOptions({
       queryKey: ["target", targetId] as const,
       queryFn: () => targetAPI.getDetailTarget(targetId),
+    }),
+
+  totalInfo: () =>
+    queryOptions({
+      queryKey: ["total"],
+      queryFn: commonAPI.getUserStatus,
     }),
 };
 

@@ -1,5 +1,6 @@
 import axios, { isAxiosError } from 'axios';
 
+import authAPI from '@/api/auth/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { isProd } from '@/utils/env';
@@ -33,12 +34,25 @@ authInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    const { config } = error;
     // TODO : accessToken 만료 처리! 및 refeshToken 도입
     if (isAxiosError(error)) {
-      switch (error.response?.status) {
-        case ERROR_RESPONSES.accessExpired : {
-          // TODO : reissue API 필요할 듯
+      switch (error.response?.data) {
+        case ERROR_RESPONSES.accessExpired: {
+          const res = await authAPI.getReissue();
+          localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
+          localStorage.setItem(STORAGE_KEYS.refreshToken, res.refreshToken);
+          return axios({
+            ...config,
+            headers: {
+              ...config.headers,
+              accessToken: localStorage.getItem(STORAGE_KEYS.accessToken),
+            },
+          });
+        }
+        case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
+          localStorage.removeItem(STORAGE_KEYS.refreshToken);
           break;
         }
         default:
