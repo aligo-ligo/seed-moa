@@ -1,12 +1,12 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { Suspense } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import targetOptions from '@/api/target/queryOptions';
 import Kakaotalk from '@/assets/icon/Kakaotalk';
 import LinkIcon from '@/assets/icon/Link';
-import Profile from '@/assets/icon/Profile';
+import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Tag } from '@/components/common/tag';
@@ -28,9 +28,7 @@ const TargetDetail = () => {
       <Suspense fallback={<></>}>
         <Header>
           <Header.Previous />
-          <Link to={'/mypage'}>
-            <Profile width={32} />
-          </Link>
+          <TrashIcon width={32} color="#fff" />
         </Header>
       </Suspense>
 
