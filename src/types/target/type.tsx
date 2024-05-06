@@ -1,17 +1,18 @@
-import { Pages } from "../response";
+import { Pages } from '../response';
 
-export type TargetResponseType = {
+export type SeedPaginatedResponseType = {
   pages: Pages;
-  seedInfo: PreviewTargetType[];
+  seedInfo: PreviewSeedType[];
 };
 
-export type PreviewTargetType = {
+export type PreviewSeedType = {
   id: number;
-  startDate: string;
   endDate: string;
+  startDate: string;
   seed: string;
-  routineCount: number;
-  seedState: string;
+  seedState: 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
+  routineInfos: RoutineType[];
+  completedRoutineCount: number;
 };
 
 export interface TargetType {

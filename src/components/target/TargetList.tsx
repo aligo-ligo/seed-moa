@@ -6,8 +6,10 @@ import TargetCard from './TargetCard';
 import TargetEmptyCard from './TargetEmptyCard';
 
 const TargetList = () => {
-  const { data: targets, fetchNextPage, status, isLoading } = useGetPaginatedTarget();
+  const { data: seeds, fetchNextPage, status, isLoading } = useGetPaginatedTarget();
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
+
+  console.log('seeds', seeds);
 
   //TODO : 컴포넌트로 분리할 수 있지 않을까?!
   useEffect(() => {
@@ -22,16 +24,16 @@ const TargetList = () => {
 
     io.observe(lastTargetElementRef.current);
     return () => io.disconnect();
-  }, [fetchNextPage, targets]);
+  }, [fetchNextPage, seeds]);
 
   return (
     <ul className="flex flex-col gap-6">
       {status === 'success' &&
-        targets.map((target) => {
-          return <TargetCard key={target.id} {...target} />;
+        seeds.map((seed) => {
+          return <TargetCard key={seed.id} {...seed} />;
         })}
 
-      {targets?.length === 0 && <TargetEmptyCard />}
+      {seeds?.length === 0 && <TargetEmptyCard />}
 
       <div className="flex justify-center mt-10" ref={lastTargetElementRef}>
         {isLoading && <Spinner />}

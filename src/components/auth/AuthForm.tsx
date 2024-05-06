@@ -13,7 +13,6 @@ import { authReducer, initialState } from '@/store/reducer';
 import StyledButton from '../common/StyledButton';
 import AuthInput from './AuthInput';
 import Validation from './Validation';
-import Warnning from './Warning';
 
 interface AuthFormProps {
   name: string;
@@ -89,7 +88,6 @@ export default function AuthForm({ name, isLogin, url }: AuthFormProps) {
           to={url}
           className="text-sm text-mainHover self-center mt-8 hover:text-main ease-in duration-100"
         ></Link>
-        {message && <Warnning message={message} />}
       </form>
     </>
   );
