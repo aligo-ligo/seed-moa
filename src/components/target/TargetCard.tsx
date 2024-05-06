@@ -5,29 +5,16 @@ import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
 import StemStage from '@/assets/icon/StemStage';
 import TreeStage from '@/assets/icon/TreeStage';
+import { PreviewSeedType } from '@/types/target/type';
 import { fromNowOf } from '@/utils/fromNowOf';
 import { Tag } from '../common/tag';
 import { Typography } from '../common/typography/Typography';
 
-type TargetCardProps = {
-  id: number;
-  seed: string;
-};
-
-const TargetCard = ({ id, seed }: TargetCardProps) => {
+const TargetCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedType) => {
   const navigate = useNavigate();
 
-  /** width, getStageFromLevel */
-  const getStageFromLevel = (width: number, level: number): JSX.Element => {
-    const stageList = [
-      <SeedStage width={width} />,
-      <StemStage width={width} />,
-      <TreeStage width={width} />,
-      <FruitsStage width={width} />,
-    ];
-    return stageList[level];
-  };
-
+  //TODO : startDate으로 정렬 구현!
+  //TODO : TargetCard 컴포넌트 컴파운드로 추후 리팩터링
   return (
     <li
       className="flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10"
@@ -35,44 +22,46 @@ const TargetCard = ({ id, seed }: TargetCardProps) => {
     >
       {/* CARD HEADER */}
       <div className="w-full flex justify-between">
-        <Tag>진행중</Tag>
+        <Tag>{dayjs(endDate).isAfter() ? '진행중' : '종료'}</Tag>
         <Typography type="section1" className="text-gray-500">
-          {fromNowOf(dayjs('2024-05-26').endOf('day'))}
+          {fromNowOf(dayjs(endDate).endOf('day'))}
         </Typography>
       </div>
 
+      {/* CARD BODY */}
       <div className="flex w-full h-full py-2">
         <div className="flex flex-col justify-evenly w-[70%]">
           <Typography type="heading2" className="overflow-hidden whitespace-nowrap truncate">
             {seed}
           </Typography>
           <div>
-            <Typography
-              type="section1"
-              className="text-gray-700 overflow-hidden whitespace-nowrap truncate"
-            >
-              루틴입니다
-            </Typography>
-            <Typography
-              type="section1"
-              className="text-gray-700 overflow-hidden whitespace-nowrap truncate"
-            >
-              루틴입니다aefaefaefae
-            </Typography>
-            <Typography
-              type="section1"
-              className="text-gray-700 overflow-hidden whitespace-nowrap truncate"
-            >
-              루틴입니다awefaefaefafawfeae
-            </Typography>
+            {routineInfos.map((routine, index) => {
+              return (
+                <Typography
+                  type="section1"
+                  className="text-gray-700 overflow-hidden whitespace-nowrap truncate"
+                  key={index}
+                >
+                  {routine.value}
+                </Typography>
+              );
+            })}
           </div>
         </div>
         <div className="flex-1 flex flex-col items-center justify-evenly ">
-          {getStageFromLevel(80, 1)}
+          <div className="w-16">{seedStateObj[seedState]}</div>
         </div>
       </div>
+      {/* CARD FOOTER */}
     </li>
   );
 };
 
 export default TargetCard;
+
+const seedStateObj: Record<string, JSX.Element> = {
+  SEED: <SeedStage />,
+  STEM: <StemStage />,
+  TREE: <TreeStage />,
+  FRUITS: <FruitsStage />,
+};

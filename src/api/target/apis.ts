@@ -2,8 +2,8 @@ import { API_PATHS } from "@/constants/routerPath";
 import { authInstance } from "@/libs/api";
 import {
   GetAllPaginatedTargetRequest,
+  SeedPaginatedResponseType,
   SeedResponseType,
-  TargetResponseType,
   TargetType,
 } from "@/types/target/type";
 
@@ -13,7 +13,7 @@ const targetAPI = {
     page,
     size,
   }: GetAllPaginatedTargetRequest) => {
-    const { data } = await authInstance.get<TargetResponseType>(
+    const { data } = await authInstance.get<SeedPaginatedResponseType>(
       API_PATHS.All_TARGET,
       {
         params: { page, size },

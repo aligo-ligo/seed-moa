@@ -1,14 +1,14 @@
-import { Suspense } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Suspense } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import Add from "@/assets/icon/Plus";
-import Profile from "@/assets/icon/Profile";
-import Button from "@/components/common/button/Button";
-import Header from "@/components/common/header/Header";
-import { Typography } from "@/components/common/typography/Typography";
-import TargetList from "@/components/target/TargetList";
-import CreateToast from "@/components/toast/CreateToast";
-import { ROUTER_PATHS } from "@/constants/routerPath";
+import Add from '@/assets/icon/Plus';
+import Profile from '@/assets/icon/Profile';
+import Button from '@/components/common/button/Button';
+import Header from '@/components/common/header/Header';
+import { Typography } from '@/components/common/typography/Typography';
+import TargetList from '@/components/target/TargetList';
+import CreateToast from '@/components/toast/CreateToast';
+import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const TargetPage = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const TargetPage = () => {
       <Suspense fallback={<></>}>
         <Header>
           <Header.Logo />
-          <Link to={"/mypage"}>
+          <Link to={'/mypage'}>
             <Profile width={32} />
           </Link>
         </Header>

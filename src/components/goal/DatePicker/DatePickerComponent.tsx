@@ -13,7 +13,7 @@ const DatePickerComponent = () => {
       className="placeholder:text-gray-100 w-full h-10 outline-none border-b-2 border-main bg-transparent"
       {...register('endDate')}
       selected={endDateValue}
-      onChange={(date) => setValue('endDate', date)}
+      onChange={(date) => setValue('endDate', date, { shouldValidate: true })}
       placeholderText="날짜를 선택해주세요"
       isClearable
       withPortal
