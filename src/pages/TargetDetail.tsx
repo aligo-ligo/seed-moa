@@ -1,6 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import { Suspense } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import targetOptions from '@/api/target/queryOptions';
 import Kakaotalk from '@/assets/icon/Kakaotalk';
@@ -16,13 +17,10 @@ import { seedStateObj } from '@/components/target/TargetCard';
 
 const TargetDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
-  console.log(seed);
-
-  // const { isModalOpen, openModal, closeModal, outside, buttonModalType, changeModalType } =
-  //   usePopUp();
-  const total = 20;
+  const isFirstVisited = seed.completedRoutineCount === 0;
+  const totalRoutineCount =
+    dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
 
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6">
@@ -42,10 +40,12 @@ const TargetDetail = () => {
       <div className="flex flex-col w-full h-full">
         <div className=" h-[40%] flex flex-col justify-center items-center">
           <div className="relative flex w-full justify-end">
-            <Tag className="">{`${seed.completedRoutineCount}/${total}`}</Tag>
-            <div className="absolute w-full justify-end flex -top-14 -right-3">
-              <ToolTip title={`47번만 더!`} />
-            </div>
+            <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
+            {!isFirstVisited && (
+              <div className="absolute w-full justify-end flex -top-14 -right-3">
+                <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+              </div>
+            )}
           </div>
 
           <div className="w-48">{seedStateObj[seed.state]}</div>
