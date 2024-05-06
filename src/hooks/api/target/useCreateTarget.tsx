@@ -24,7 +24,7 @@ const useCreateSeedMutation = () => {
     },
     onError: () => {
       //TODO: ERROR toast 구현
-      console.log("error");
+      console.error("error");
     },
   });
   return { submitSeed };

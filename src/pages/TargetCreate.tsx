@@ -13,6 +13,7 @@ import { steps } from "@/constants/step";
 import Seed from "@/components/goal/Seed";
 import { SeedResponseType } from "@/types/target/type";
 import { TargetStepType } from "@/types/TargetTypes";
+import dayjs from "dayjs";
 import Routine from "../components/goal/Routine";
 import GobackToast from "../components/toast/GobackToast";
 import useCreateSeedMutation from "../hooks/api/target/useCreateTarget";
@@ -63,8 +64,11 @@ const TargetCreate = () => {
   });
 
   const onSubmitHandler = (data: SeedResponseType) => {
-    console.log("data", data);
-    submitSeed(data);
+    const updateEndDateData = {
+      ...data,
+      endDate: dayjs(data.endDate).format("YYYY-MM-DD"),
+    };
+    submitSeed(updateEndDateData);
   };
 
   return (

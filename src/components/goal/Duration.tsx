@@ -10,19 +10,15 @@ import Button from "../common/button/Button";
 
 const Duration = () => {
   const {
-    getValues,
     formState: { errors },
   } = useFormContext();
-  console.log("errors", errors);
-
-  const endDate = getValues("endDate");
 
   return (
     <TargetCreateLayout
       title={DURATION_TITLE}
       description={DURATION_DESCRIPTION}
     >
-      <DatePickerComponent name={endDate} />
+      <DatePickerComponent />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">

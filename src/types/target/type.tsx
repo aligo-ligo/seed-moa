@@ -41,8 +41,7 @@ export type SeedResponseType = {
   endDate: string;
 };
 
-export type RoutineType = React.ReactNode & {
-  id: number;
+export type RoutineType = {
   value: string;
 };
 
