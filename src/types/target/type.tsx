@@ -5,31 +5,33 @@ export type SeedPaginatedResponseType = {
   seedInfo: PreviewSeedType[];
 };
 
-export type PreviewSeedType = {
+export type SeedType = {
   id: number;
   endDate: string;
   startDate: string;
   seed: string;
-  seedState: 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
-  routineInfos: RoutineType[];
   completedRoutineCount: number;
 };
 
-export interface TargetType {
-  id: number;
-  userId: number;
-  startDate: string;
-  endDate: string;
-  goal: string;
-  routine: RoutineType[];
-  penalty: string;
-  achievementDate: AchievementDate;
-  achievementPer: number;
-  successVote: number;
-  failureVote: number;
-  voteTotal: number;
-  url: string;
-}
+export type PreviewSeedType = SeedType & {
+  seedState: 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
+  routineInfos: RoutineType[];
+};
+
+export type DetailSeedType = SeedType & {
+  state: 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
+  routineDetails: RoutineDetailType[];
+};
+
+type RoutineType = {
+  value: string;
+};
+
+export type RoutineDetailType = {
+  routineId: number;
+  routineTitle: string;
+  completedRoutineToday: boolean;
+};
 
 export type GetAllPaginatedTargetRequest = {
   page: number;
@@ -40,10 +42,6 @@ export type SeedResponseType = {
   seed: string;
   routines: RoutineType[];
   endDate: string;
-};
-
-export type RoutineType = {
-  value: string;
 };
 
 export interface AchievementDate {

@@ -1,10 +1,10 @@
 import { API_PATHS } from "@/constants/routerPath";
 import { authInstance } from "@/libs/api";
 import {
+  DetailSeedType,
   GetAllPaginatedTargetRequest,
   SeedPaginatedResponseType,
-  SeedResponseType,
-  TargetType,
+  SeedResponseType
 } from "@/types/target/type";
 
 const targetAPI = {
@@ -22,10 +22,10 @@ const targetAPI = {
     return data;
   },
 
-  /** 상세 목표 조회 */
-  getDetailTarget: async (targetId: number) => {
-    const { data } = await authInstance.get<TargetType>(
-      API_PATHS.TARGET_DETAIL(targetId)
+  /** 상세 씨앗 정보 조회 */
+  getSeedDetails: async (seedId: number) => {
+    const { data } = await authInstance.get<DetailSeedType>(
+      API_PATHS.SEED_DETAIL(seedId)
     );
     return data;
   },

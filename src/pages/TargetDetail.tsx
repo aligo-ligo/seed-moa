@@ -1,6 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import targetOptions from '@/api/target/queryOptions';
 import Kakaotalk from '@/assets/icon/Kakaotalk';
 import LinkIcon from '@/assets/icon/Link';
 import Profile from '@/assets/icon/Profile';
@@ -9,13 +11,15 @@ import Header from '@/components/common/header/Header';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
+import TaskList from '@/components/feature/detail/TaskList';
 import { seedStateObj } from '@/components/target/TargetCard';
-import Task from '@/components/Task';
 
 const TargetDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  // const { data: target, status, isLoading } = useQuery(targetOptions.detailTarget(Number(id)));
+  const { data: seed, isLoading } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  console.log(seed);
+
   // const { isModalOpen, openModal, closeModal, outside, buttonModalType, changeModalType } =
   //   usePopUp();
   const count = 1;
@@ -33,25 +37,21 @@ const TargetDetail = () => {
       </Suspense>
 
       <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
-        목표
+        {seed.seed}
       </Typography>
 
       <div className="flex flex-col w-full h-full">
         <div className=" h-[40%] flex flex-col justify-center items-center">
           <div className="relative flex w-full justify-end">
-            <Tag className="">{`${count}/${total}`}</Tag>
+            <Tag className="">{`${seed.completedRoutineCount}/${total}`}</Tag>
             <div className="absolute w-full justify-end flex -top-14 -right-3">
               <ToolTip title={`47번만 더!`} />
             </div>
           </div>
 
-          <div className="w-48">{seedStateObj['SEED']}</div>
+          <div className="w-48">{seedStateObj[seed.state]}</div>
         </div>
-        <div className="flex-1 w-full flex flex-col gap-4">
-          <Task />
-          <Task />
-          <Task />
-        </div>
+        <TaskList tasks={seed.routineDetails} />
       </div>
 
       <div className="absolute bottom-5 text-xl w-full text-white ">

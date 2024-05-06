@@ -4,22 +4,19 @@ import CheckedIcon from '@/assets/icon/CheckedIcon';
 import EllipsisVerticalIcon from '@/assets/icon/EllipsisVerticalIcon';
 import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import { useInput } from '@/hooks/useInput';
-import { Typography } from './common/typography/Typography';
+import { Typography } from '../../common/typography/Typography';
 
 interface TaskProps {
   initialIsDone?: boolean;
-  text: string;
-  targetIds: {
-    goalId: number;
-    taskId: number;
-  };
+  routineTitle: string;
+  routineId: number;
   onDoneClick: VoidFunction;
 }
 
-const Task = ({ text = '123123123', initialIsDone = false }: TaskProps) => {
+const Task = ({ routineTitle, routineId, initialIsDone = false }: TaskProps) => {
   const [isDone, setIsDone] = useState(initialIsDone);
   const [isEditing, setIsEditing] = useState(false);
-  const { value: editText, handleChange: handleEditText } = useInput(text);
+  const { value: editText, handleChange: handleEditText } = useInput(routineTitle);
   const isMyGoal = false;
   const CheckIcon = isDone ? CheckedIcon : UnCheckedIcon;
   return (
@@ -32,7 +29,7 @@ const Task = ({ text = '123123123', initialIsDone = false }: TaskProps) => {
           type="body2"
           className={`${!isMyGoal && isDone && 'line-through text-gray-40'}`}
         >
-          {text}
+          {routineTitle}
         </Typography>
         <button>
           <EllipsisVerticalIcon width={20} />
