@@ -1,5 +1,6 @@
-import SvgKakaoLogo from "@/assets/logo/KakaoLogo";
 import React, { forwardRef } from "react";
+
+import SvgKakaoLogo from "@/assets/logo/KakaoLogo";
 
 interface KakaoLoginButtonProps extends React.ComponentProps<"a"> {}
 

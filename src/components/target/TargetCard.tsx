@@ -1,12 +1,13 @@
-import FruitsStage from "@/assets/icon/FruitsStage";
-import SeedStage from "@/assets/icon/SeedStage";
-import StemStage from "@/assets/icon/StemStage";
-import TreeStage from "@/assets/icon/TreeStage";
-import { fromNowOf } from "@/utils/fromNowOf";
-import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
-import { Tag } from "../common/tag";
-import { Typography } from "../common/typography/Typography";
+import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
+
+import FruitsStage from '@/assets/icon/FruitsStage';
+import SeedStage from '@/assets/icon/SeedStage';
+import StemStage from '@/assets/icon/StemStage';
+import TreeStage from '@/assets/icon/TreeStage';
+import { fromNowOf } from '@/utils/fromNowOf';
+import { Tag } from '../common/tag';
+import { Typography } from '../common/typography/Typography';
 
 type TargetCardProps = {
   id: number;
@@ -36,16 +37,13 @@ const TargetCard = ({ id, seed }: TargetCardProps) => {
       <div className="w-full flex justify-between">
         <Tag>진행중</Tag>
         <Typography type="section1" className="text-gray-500">
-          {fromNowOf(dayjs("2024-05-26").endOf("day"))}
+          {fromNowOf(dayjs('2024-05-26').endOf('day'))}
         </Typography>
       </div>
 
       <div className="flex w-full h-full py-2">
         <div className="flex flex-col justify-evenly w-[70%]">
-          <Typography
-            type="heading2"
-            className="overflow-hidden whitespace-nowrap truncate"
-          >
+          <Typography type="heading2" className="overflow-hidden whitespace-nowrap truncate">
             {seed}
           </Typography>
           <div>

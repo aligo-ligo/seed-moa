@@ -1,6 +1,7 @@
-import ChevronLeft from "@/assets/icon/ChevronLeft";
-import Button from "@/components/common/button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+import ChevronLeft from '@/assets/icon/ChevronLeft';
+import Button from '@/components/common/button/Button';
 
 const Previous = () => {
   const navigate = useNavigate();

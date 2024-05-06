@@ -1,8 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode, useEffect } from "react";
-import { createPortal } from "react-dom";
-import useToastList from "../../hooks/useToastList";
-import { ToastType } from "../../store/toastStore";
+import { AnimatePresence, motion } from 'framer-motion';
+import { ReactNode, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+
+import useToastList from '../../hooks/useToastList';
+import { ToastType } from '../../store/toastStore';
 
 interface Props {
   children: ReactNode;
@@ -12,12 +13,8 @@ interface Props {
   };
 }
 
-const ToastContainer = ({
-  children,
-  toastType,
-  config = { duration: 2000 },
-}: Props) => {
-  const ref = document.querySelector("#toast-root");
+const ToastContainer = ({ children, toastType, config = { duration: 2000 } }: Props) => {
+  const ref = document.querySelector('#toast-root');
   const { duration } = config;
   const { toastList, close } = useToastList();
 
@@ -49,13 +46,13 @@ const ToastContainer = ({
           initial={{ opacity: 0.5, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0.5, y: 12 }}
-          transition={{ ease: "easeOut" }}
+          transition={{ ease: 'easeOut' }}
         >
           {children}
         </motion.div>
       )}
     </AnimatePresence>,
-    ref
+    ref,
   );
 };
 

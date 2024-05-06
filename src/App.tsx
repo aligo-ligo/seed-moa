@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+
 import Background from "./components/Background";
 import IMAGE_MAP from "./constants/image";
 

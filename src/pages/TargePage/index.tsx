@@ -1,14 +1,14 @@
+import { Suspense } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import Add from "@/assets/icon/Plus";
+import Profile from "@/assets/icon/Profile";
 import Button from "@/components/common/button/Button";
+import Header from "@/components/common/header/Header";
 import { Typography } from "@/components/common/typography/Typography";
 import TargetList from "@/components/target/TargetList";
 import CreateToast from "@/components/toast/CreateToast";
 import { ROUTER_PATHS } from "@/constants/routerPath";
-import { Suspense } from "react";
-
-import Add from "@/assets/icon/Plus";
-import Profile from "@/assets/icon/Profile";
-import Header from "@/components/common/header/Header";
-import { Link, useNavigate } from "react-router-dom";
 
 const TargetPage = () => {
   const navigate = useNavigate();

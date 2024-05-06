@@ -1,9 +1,9 @@
-import { GOAL_DESCRIPTION, GOAL_TITLE } from "../../constants/target";
-import Validation from "../auth/Validation";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
+import { useFormContext } from 'react-hook-form';
 
-import { useFormContext } from "react-hook-form";
-import Button from "../common/button/Button";
+import { GOAL_DESCRIPTION, GOAL_TITLE } from '../../constants/target';
+import Validation from '../auth/Validation';
+import Button from '../common/button/Button';
+import TargetCreateLayout from '../layout/TargetCreateLayout';
 
 type SeedProps = {
   toNext: () => void;
@@ -21,7 +21,7 @@ const Seed = ({ toNext }: SeedProps) => {
         type="text"
         className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b-2 border-primary-300 bg-transparent"
         placeholder="씨앗(목표)를 작성해주세요"
-        {...register("seed")}
+        {...register('seed')}
       />
       <Validation>{errors?.seed?.message?.toString()}</Validation>
 

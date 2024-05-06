@@ -1,5 +1,6 @@
 import React from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+
 import { ActionType, UserInfoType } from "../../types/auth";
 
 interface AuthInputProps {

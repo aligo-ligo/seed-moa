@@ -1,5 +1,5 @@
-import "../../styles/skeleton.css";
-const SkeletonElement = ({ type }: any) => {
+import '../../styles/skeleton.css';
+const SkeletonElement = ({ type }: { type: string }) => {
   const classes = `skeleton ${type}`;
   return (
     <>
