@@ -22,6 +22,7 @@ const TargetDetail = () => {
   const totalRoutineCount =
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
 
+  console.log(seed.endDate, seed.startDate);
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6">
       <Suspense fallback={<></>}>
