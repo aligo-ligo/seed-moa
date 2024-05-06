@@ -38,6 +38,12 @@ const targetAPI = {
     return data
   },
 
+  /** 루틴 일부 수정 */
+  patchRoutineDone:  async(seedId : number) => {
+    const {data} = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_DONE(seedId))
+    return data
+  },
+
 };
 
 export default targetAPI;
