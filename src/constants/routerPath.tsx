@@ -7,6 +7,7 @@ export const API_PATHS = {
   All_TARGET: '/api/seed',
   SEED_DETAIL: (seedId: number) => `/api/seed/${seedId}`,
   SEED_DETAIL_ROUTINE_DONE: (routineId: number) => `/api/seed/routine/end/${routineId}`,
+  SEED_DETAIL_ROUTINE_TITLE: (routineId: number) => `/api/seed/routine/${routineId}`,
   CREATE_SEED: '/api/seed',
   TARGET_SUBGOAL: 'target/update',
 } as const;

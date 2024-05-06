@@ -1,50 +1,50 @@
-import { API_PATHS } from "@/constants/routerPath";
-import { authInstance } from "@/libs/api";
+import { API_PATHS } from '@/constants/routerPath';
+import { authInstance } from '@/libs/api';
 import {
   DetailSeedType,
   GetAllPaginatedTargetRequest,
   SeedPaginatedResponseType,
-  SeedResponseType
-} from "@/types/target/type";
+  SeedResponseType,
+} from '@/types/target/type';
 
 const targetAPI = {
   /** 모든 목표 페이지 네이션 전체 조회 */
-  getAllPaginatedTargets: async ({
-    page,
-    size,
-  }: GetAllPaginatedTargetRequest) => {
-    const { data } = await authInstance.get<SeedPaginatedResponseType>(
-      API_PATHS.All_TARGET,
-      {
-        params: { page, size },
-      }
-    );
+  getAllPaginatedTargets: async ({ page, size }: GetAllPaginatedTargetRequest) => {
+    const { data } = await authInstance.get<SeedPaginatedResponseType>(API_PATHS.All_TARGET, {
+      params: { page, size },
+    });
     return data;
   },
 
   /** 상세 씨앗 정보 조회 */
   getSeedDetails: async (seedId: number) => {
-    const { data } = await authInstance.get<DetailSeedType>(
-      API_PATHS.SEED_DETAIL(seedId)
-    );
+    const { data } = await authInstance.get<DetailSeedType>(API_PATHS.SEED_DETAIL(seedId));
     return data;
   },
 
-    /** 씨앗 생성 */
-  postSeed: async({seed, routines,endDate}:SeedResponseType) => {
-    const {data} = await authInstance.post(API_PATHS.CREATE_SEED, {
-      seed, routines,endDate
-    })
-    return data
+  /** 씨앗 생성 */
+  postSeed: async ({ seed, routines, endDate }: SeedResponseType) => {
+    const { data } = await authInstance.post(API_PATHS.CREATE_SEED, {
+      seed,
+      routines,
+      endDate,
+    });
+    return data;
   },
 
-  /** 루틴 일부 수정 */
-  patchRoutineDone:  async(seedId : number) => {
-    const {data} = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_DONE(seedId))
-    console.log('data',data)
-    return data
+  /** 루틴 완료 상태 수정 */
+  patchRoutineDone: async (routineId: number) => {
+    const { data } = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_DONE(routineId));
+    return data;
   },
 
+  /** 루틴 내용 수정 */
+  patchRoutineTitle: async (routineId: number, routineTitle: string) => {
+    const { data } = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_TITLE(routineId),{
+      routineTitle
+    });
+    return data;
+  },
 };
 
 export default targetAPI;

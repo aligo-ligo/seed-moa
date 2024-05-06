@@ -14,7 +14,7 @@ const targetOptions = {
     }),
   detailTarget: (seedId: number) =>
     queryOptions({
-      queryKey: ['seed', seedId] as const,
+      queryKey: [...targetOptions.all, seedId] as const,
       queryFn: () => targetAPI.getSeedDetails(seedId),
     }),
 

@@ -6,6 +6,7 @@ import Submit from '@/assets/icon/Submit';
 import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import { Typography } from '@/components/common/typography/Typography';
 import { useInput } from '@/hooks/useInput';
+import useRoutineTitleMutation from '@/hooks/useRoutineTitleMutation';
 import { TaskEditInput } from './TaskEditInput';
 
 interface TaskProps {
@@ -16,28 +17,21 @@ interface TaskProps {
   onDoneClick: VoidFunction;
 }
 
-const Task = ({
-  routineTitle,
-  routineId,
-  completedRoutineToday,
-  initialIsDone = false,
-  onDoneClick,
-}: TaskProps) => {
-  const [isDone, setIsDone] = useState(initialIsDone);
+const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: TaskProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const EditInputRef = useRef<HTMLInputElement>(null);
-  console.log(isEditing);
+  const { updateRoutineTitle } = useRoutineTitleMutation(routineId);
   const { value: editText, handleChange: handleEditText } = useInput(routineTitle);
   const CheckIcon = completedRoutineToday ? CheckedIcon : UnCheckedIcon;
 
-  console.log('EditInputRef', EditInputRef);
   const handleRoutineClick = () => {
     if (completedRoutineToday) return;
     onDoneClick();
   };
 
   const handlePatchRoutineTitle = () => {
-    // mutate({ ...targetIds, newDescription: editText });
+    //TODO : 캐시 무효화가 안되는 문제, 동일한 로직 다른 곳에서는 무효화 진행됨
+    updateRoutineTitle({ routineId, routineTitle: editText });
     setIsEditing(false);
   };
   return (
@@ -61,15 +55,17 @@ const Task = ({
           >
             {routineTitle}
           </Typography>
-          <button
-            onClick={() => {
-              //TODO :  라이프 사이클과 관련된 에러, 빠르게 학습해서 해결
-              EditInputRef.current?.focus();
-              setIsEditing(true);
-            }}
-          >
-            <EllipsisVerticalIcon width={20} />
-          </button>
+          {!completedRoutineToday && (
+            <button
+              onClick={() => {
+                //TODO :  라이프 사이클과 관련된 에러, 빠르게 학습해서 해결
+                EditInputRef.current?.focus();
+                setIsEditing(true);
+              }}
+            >
+              <EllipsisVerticalIcon width={20} />
+            </button>
+          )}
         </div>
       )}
     </div>
