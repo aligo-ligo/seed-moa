@@ -1,16 +1,12 @@
-import useGetPaginatedTarget from "@/hooks/useGetPaginatedTarget";
-import { useEffect, useRef } from "react";
-import { Spinner } from "../common/spinner/Spinner";
-import TargetCard from "./TargetCard";
-import TargetEmptyCard from "./TargetEmptyCard";
+import { useEffect, useRef } from 'react';
+
+import useGetPaginatedTarget from '@/hooks/useGetPaginatedTarget';
+import { Spinner } from '../common/spinner/Spinner';
+import TargetCard from './TargetCard';
+import TargetEmptyCard from './TargetEmptyCard';
 
 const TargetList = () => {
-  const {
-    data: targets,
-    fetchNextPage,
-    status,
-    isLoading,
-  } = useGetPaginatedTarget();
+  const { data: targets, fetchNextPage, status, isLoading } = useGetPaginatedTarget();
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
 
   //TODO : 컴포넌트로 분리할 수 있지 않을까?!
@@ -26,11 +22,11 @@ const TargetList = () => {
 
     io.observe(lastTargetElementRef.current);
     return () => io.disconnect();
-  }, [targets]);
+  }, [fetchNextPage, targets]);
 
   return (
     <ul className="flex flex-col gap-6">
-      {status === "success" &&
+      {status === 'success' &&
         targets.map((target) => {
           return <TargetCard key={target.id} {...target} />;
         })}

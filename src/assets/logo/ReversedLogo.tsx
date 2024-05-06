@@ -1,10 +1,5 @@
-import type { SVGProps } from "react";
-const ReversedLogo = ({
-  width = 198,
-  height = 184,
-  fill = "currentColor",
-  ...props
-}: SVGProps<SVGSVGElement>) => (
+import type { SVGProps } from 'react';
+const ReversedLogo = ({ width = 198, height = 184, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width={width}
     height={height}
@@ -20,22 +15,8 @@ const ReversedLogo = ({
       transform="matrix(-1 0 0 1 199 0)"
       fill="url(#pattern0_587_496)"
     />
-    <ellipse
-      cx="7.5"
-      cy="12"
-      rx="7.5"
-      ry="12"
-      transform="matrix(-1 0 0 1 107 68)"
-      fill="#151719"
-    />
-    <ellipse
-      cx="7.5"
-      cy="12"
-      rx="7.5"
-      ry="12"
-      transform="matrix(-1 0 0 1 57 68)"
-      fill="#151719"
-    />
+    <ellipse cx="7.5" cy="12" rx="7.5" ry="12" transform="matrix(-1 0 0 1 107 68)" fill="#151719" />
+    <ellipse cx="7.5" cy="12" rx="7.5" ry="12" transform="matrix(-1 0 0 1 57 68)" fill="#151719" />
     <path
       d="M82.5566 132.716C81.8677 136.16 79.6498 137.904 76.4259 137.904C73.8571 137.904 72.1815 133.418 72.1815 131.301"
       stroke="#151719"
@@ -43,16 +24,8 @@ const ReversedLogo = ({
       strokeLinecap="round"
     />
     <defs>
-      <pattern
-        id="pattern0_587_496"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlinkHref="#image0_587_496"
-          transform="scale(0.00502513 0.00543478)"
-        />
+      <pattern id="pattern0_587_496" patternContentUnits="objectBoundingBox" width="1" height="1">
+        <use xlinkHref="#image0_587_496" transform="scale(0.00502513 0.00543478)" />
       </pattern>
       <image
         id="image0_587_496"

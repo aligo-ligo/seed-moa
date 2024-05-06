@@ -1,15 +1,13 @@
-import { FiEdit, FiX } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import { FiEdit, FiX } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
-import IMAGE_MAP from "@/constants/image";
-import usePopUp from "../../hooks/usePopUp";
-import useToastList from "../../hooks/useToastList";
-
-import STORAGE_KEYS from "@/constants/storageKeys";
-
-import { ROUTER_PATHS } from "@/constants/routerPath";
-import "../../styles/Sidebar.css";
+import IMAGE_MAP from '@/constants/image';
+import { ROUTER_PATHS } from '@/constants/routerPath';
+import STORAGE_KEYS from '@/constants/storageKeys';
+import usePopUp from '../../hooks/usePopUp';
+import useToastList from '../../hooks/useToastList';
+import '../../styles/Sidebar.css';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -21,18 +19,12 @@ const Sidebar = () => {
     localStorage.removeItem(STORAGE_KEYS.accessToken);
     navigate(ROUTER_PATHS.ROOT);
     // TODO : 루트로 이동 후 토스트가 보이지 않고 siginin 페이지로 이동해야 보이는 문제 발생
-    show("logoutToast");
+    show('logoutToast');
   };
 
   return (
     <>
-      <CSSTransition
-        nodeRef={outside}
-        in={isOpen}
-        timeout={300}
-        classNames="sidebar"
-        unmountOnExit
-      >
+      <CSSTransition nodeRef={outside} in={isOpen} timeout={300} classNames="sidebar" unmountOnExit>
         <div
           ref={outside}
           className="sidebar p-3 bg-lighterGray w-2/3 desktop:w-1/2 shadow-2xl h-full"
@@ -55,7 +47,7 @@ const Sidebar = () => {
           {isLoggedin ? (
             <div>
               {sidebarData.map(({ title, link, icon }, index) => {
-                if (link.startsWith("https")) {
+                if (link.startsWith('https')) {
                   return (
                     <a
                       target="blank"
@@ -90,7 +82,7 @@ const Sidebar = () => {
           ) : (
             <div>
               {landingSidebarData.map(({ title, link, icon }, index) => {
-                if (link.startsWith("https")) {
+                if (link.startsWith('https')) {
                   return (
                     <a
                       target="blank"
@@ -132,36 +124,36 @@ export default Sidebar;
 
 const landingSidebarData = [
   {
-    title: "로그인 하러가기",
+    title: '로그인 하러가기',
     icon: <FiEdit />,
-    link: "/signin",
+    link: '/signin',
   },
   {
-    title: "익명 피드백 주기",
+    title: '익명 피드백 주기',
     icon: <FiEdit />,
-    link: "https://naver.me/5P2zatjt",
+    link: 'https://naver.me/5P2zatjt',
   },
   {
-    title: "서비스 이용 노하우",
+    title: '서비스 이용 노하우',
     icon: <FiEdit />,
-    link: "/faq",
+    link: '/faq',
   },
 ];
 
 const sidebarData = [
   {
-    title: "메인 페이지",
+    title: '메인 페이지',
     icon: <img src={IMAGE_MAP.oliIcon} alt="사진" />,
-    link: "/target",
+    link: '/target',
   },
   {
-    title: "익명 피드백 주기",
+    title: '익명 피드백 주기',
     icon: <img src={IMAGE_MAP.shockedOliIcon} alt="사진" />,
-    link: "https://naver.me/5P2zatjt",
+    link: 'https://naver.me/5P2zatjt',
   },
   {
-    title: "서비스 이용 노하우",
+    title: '서비스 이용 노하우',
     icon: <img src={IMAGE_MAP.theMostShockedOliIcon} alt="사진" />,
-    link: "/faq",
+    link: '/faq',
   },
 ];

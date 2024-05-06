@@ -1,12 +1,12 @@
-import KakaoLoginButton from "@/components/auth/KakaoLoginButton";
+import { useQuery } from '@tanstack/react-query';
 
-import targetOptions from "@/api/target/queryOptions";
-import Logo from "@/assets/logo/Logo";
-import ReversedLogo from "@/assets/logo/ReversedLogo";
-import { Typography } from "@/components/common/typography/Typography";
-import SkeletonElement from "@/components/layout/Skeleton";
-import { ROUTER_PATHS } from "@/constants/routerPath";
-import { useQuery } from "@tanstack/react-query";
+import targetOptions from '@/api/target/queryOptions';
+import Logo from '@/assets/logo/Logo';
+import ReversedLogo from '@/assets/logo/ReversedLogo';
+import KakaoLoginButton from '@/components/auth/KakaoLoginButton';
+import { Typography } from '@/components/common/typography/Typography';
+import SkeletonElement from '@/components/layout/Skeleton';
+import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const LandingPage = () => {
   const { data: seed, isLoading } = useQuery(targetOptions.totalInfo());
@@ -46,12 +46,8 @@ const LandingPage = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12">
-            <Typography type="heading2">
-              전체 {seed?.totalUserCount} 명의 유저가
-            </Typography>
-            <Typography type="heading2">
-              총 {seed?.totalSeedCount}개의 씨앗을 심었어요!
-            </Typography>
+            <Typography type="heading2">전체 {seed?.totalUserCount} 명의 유저가</Typography>
+            <Typography type="heading2">총 {seed?.totalSeedCount}개의 씨앗을 심었어요!</Typography>
           </div>
         )}
       </div>

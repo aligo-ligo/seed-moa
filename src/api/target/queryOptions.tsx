@@ -1,6 +1,7 @@
-import { GetAllPaginatedTargetRequest } from "@/types/target/type";
 import { queryOptions } from "@tanstack/react-query";
-import commonAPI from "../common/apis";
+
+import commonAPI from "@/api/common/apis";
+import { GetAllPaginatedTargetRequest } from "@/types/target/type";
 import targetAPI from "./apis";
 
 const targetOptions = {

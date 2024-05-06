@@ -1,6 +1,7 @@
-import IMAGE_MAP from "@/constants/image";
-import { Link, isRouteErrorResponse, useRouteError } from "react-router-dom";
-import logo from "../assets/logo/hero.jpeg";
+import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
+
+import IMAGE_MAP from '@/constants/image';
+import logo from '../assets/logo/hero.jpeg';
 
 const NotFound = () => {
   const error = useRouteError();
@@ -14,12 +15,8 @@ const NotFound = () => {
             <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
             <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
           </div>
-          <h1 className="text-3xl desktop:text-4xl font-bold mt-4 mb-4">
-            {error.status}
-          </h1>
-          <h2 className="text-2xl desktop:text-2xl font-bold mt-4 mb-4">
-            {error.statusText}
-          </h2>
+          <h1 className="text-3xl desktop:text-4xl font-bold mt-4 mb-4">{error.status}</h1>
+          <h2 className="text-2xl desktop:text-2xl font-bold mt-4 mb-4">{error.statusText}</h2>
 
           <h2 className="text-xl desktop:text-xl font-bold mt-4 mb-4 cursor-pointer hover:text-mainHover">
             <Link to="/">랜딩 페이지로 이동하기</Link>

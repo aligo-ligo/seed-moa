@@ -1,10 +1,11 @@
-import { useFieldArray, useFormContext } from "react-hook-form";
-import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
-import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from "../../constants/target";
-import Validation from "../auth/Validation";
-import Button from "../common/button/Button";
-import { Typography } from "../common/typography/Typography";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import { FiMinusSquare, FiPlusSquare } from 'react-icons/fi';
+
+import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from '../../constants/target';
+import Validation from '../auth/Validation';
+import Button from '../common/button/Button';
+import { Typography } from '../common/typography/Typography';
+import TargetCreateLayout from '../layout/TargetCreateLayout';
 
 type RoutineProps = {
   toNext: () => void;
@@ -22,10 +23,10 @@ const Routine = ({ toNext }: RoutineProps) => {
     append: routineAppend,
     remove: routineRemove,
   } = useFieldArray({
-    name: "routines",
+    name: 'routines',
   });
 
-  const routineWatch = watch("routines");
+  const routineWatch = watch('routines');
   const minRoutineCount = routineWatch.length === 1;
   const maxRoutineCount = routineWatch.length < 3;
 
@@ -67,7 +68,7 @@ const Routine = ({ toNext }: RoutineProps) => {
         </div>
       ))}
       <div className="text-center">
-        <Validation>{!!errors?.routines && "루틴을 작성해주세요"}</Validation>
+        <Validation>{!!errors?.routines && '루틴을 작성해주세요'}</Validation>
       </div>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">

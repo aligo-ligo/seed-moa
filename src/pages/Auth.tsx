@@ -1,18 +1,19 @@
-import { createPortal } from "react-dom";
-import { FiArrowLeft } from "react-icons/fi";
-import { useLocation, useNavigate } from "react-router-dom";
-import AuthForm from "../components/auth/AuthForm";
-import ModalContent from "../components/common/ModalContent";
-import LogoutToast from "../components/toast/LogoutToast";
-import { SIGN_IN_URL, SIGN_UP_URL } from "../constants/auth";
-import usePopUp from "../hooks/usePopUp";
+import { createPortal } from 'react-dom';
+import { FiArrowLeft } from 'react-icons/fi';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import AuthForm from '../components/auth/AuthForm';
+import ModalContent from '../components/common/ModalContent';
+import LogoutToast from '../components/toast/LogoutToast';
+import { SIGN_IN_URL, SIGN_UP_URL } from '../constants/auth';
+import usePopUp from '../hooks/usePopUp';
 
 const Auth = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { closeModal, outside } = usePopUp();
 
-  const nickName = localStorage.getItem("userNickName");
+  const nickName = localStorage.getItem('userNickName');
 
   const isLogin = pathname === SIGN_IN_URL;
 
@@ -21,23 +22,19 @@ const Auth = () => {
       <FiArrowLeft
         className="absolute left-0 top-0 text-main text-5xl my-10 mx-6"
         onClick={() => {
-          navigate("/");
+          navigate('/');
         }}
       />
       <AuthForm
-        name={isLogin ? "로그인" : "회원가입"}
+        name={isLogin ? '로그인' : '회원가입'}
         isLogin={isLogin}
         url={isLogin ? SIGN_UP_URL : SIGN_IN_URL}
       />
 
       {!!nickName &&
         createPortal(
-          <ModalContent
-            closeModal={closeModal}
-            buttonModalType="auth"
-            outside={outside}
-          />,
-          document.body
+          <ModalContent closeModal={closeModal} buttonModalType="auth" outside={outside} />,
+          document.body,
         )}
       <LogoutToast />
     </section>

@@ -1,10 +1,5 @@
-import type { SVGProps } from "react";
-const Logo = ({
-  width = 198,
-  height = 184,
-  fill = "currentColor",
-  ...props
-}: SVGProps<SVGSVGElement>) => (
+import type { SVGProps } from 'react';
+const Logo = ({ width = 198, height = 184, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width={width}
     height={height}
@@ -24,16 +19,8 @@ const Logo = ({
       strokeLinecap="round"
     />
     <defs>
-      <pattern
-        id="pattern0_578_190"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlinkHref="#image0_578_190"
-          transform="scale(0.00502513 0.00543478)"
-        />
+      <pattern id="pattern0_578_190" patternContentUnits="objectBoundingBox" width="1" height="1">
+        <use xlinkHref="#image0_578_190" transform="scale(0.00502513 0.00543478)" />
       </pattern>
       <image
         id="image0_578_190"

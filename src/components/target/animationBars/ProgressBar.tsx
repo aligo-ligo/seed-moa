@@ -1,9 +1,9 @@
-import { TargetStepType } from "@/types/TargetTypes";
+import { TargetStepType } from '@/types/TargetTypes';
 
 type ProgressbarProps = {
   step: TargetStepType[number];
 };
-const getPercentFormStep: any = {
+const getPercentFormStep: Record<string, string> = {
   seed: `scale-x-[33%]`,
   routines: `scale-x-[66%]`,
   duration: `scale-x-100`,

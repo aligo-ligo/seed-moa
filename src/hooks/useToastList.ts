@@ -1,6 +1,7 @@
 // useToastList.ts
 
 import { useCallback } from "react";
+
 import { ToastType, toastStore } from "../store/toastStore";
 
 const useToastList = () => {

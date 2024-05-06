@@ -1,4 +1,5 @@
 import { useContext, useRef } from "react";
+
 import { ModalContext } from "../context/ModalContext";
 import { SideBarContext } from "../context/SideBarContext";
 import { useOnClickOutside } from "./useOnClickOutside";
@@ -15,7 +16,7 @@ const usePopUp = () => {
 		buttonModalType,
 		changeModalType,
 	} = useContext(ModalContext);
-	const outside = useRef<any>(null);
+	const outside = useRef(null);
 
 	const handlerOutside = () => {
 		closeSideBar();

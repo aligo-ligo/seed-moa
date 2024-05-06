@@ -1,12 +1,12 @@
-import "react-datepicker/dist/react-datepicker.css";
-import { useFormContext } from "react-hook-form";
-import Validation from "../auth/Validation";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
-import "./DatePicker/css/react-datepicker.css";
-import DatePickerComponent from "./DatePicker/DatePickerComponent";
+import 'react-datepicker/dist/react-datepicker.css';
+import { useFormContext } from 'react-hook-form';
 
-import { DURATION_DESCRIPTION, DURATION_TITLE } from "../../constants/target";
-import Button from "../common/button/Button";
+import { DURATION_DESCRIPTION, DURATION_TITLE } from '../../constants/target';
+import Validation from '../auth/Validation';
+import Button from '../common/button/Button';
+import TargetCreateLayout from '../layout/TargetCreateLayout';
+import './DatePicker/css/react-datepicker.css';
+import DatePickerComponent from './DatePicker/DatePickerComponent';
 
 const Duration = () => {
   const {
@@ -14,10 +14,7 @@ const Duration = () => {
   } = useFormContext();
 
   return (
-    <TargetCreateLayout
-      title={DURATION_TITLE}
-      description={DURATION_DESCRIPTION}
-    >
+    <TargetCreateLayout title={DURATION_TITLE} description={DURATION_DESCRIPTION}>
       <DatePickerComponent />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
 

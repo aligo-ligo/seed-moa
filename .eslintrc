@@ -1,4 +1,7 @@
 {
+	"root": true,
+
+	"plugins": ["react-refresh"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
@@ -7,11 +10,8 @@
 		"plugin:import/typescript"
 	],
 	"parser": "@typescript-eslint/parser",
-	"parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
-	"plugins": ["react-refresh"],
 	"rules": {
 		"@typescript-eslint/no-unused-vars": ["warn", {}],
-		"prettier/prettier": "off",
 		"import/no-unresolved": "off",
 		"import/order": [
 		  "error",
@@ -25,10 +25,10 @@
 			  }
 			],
 			"pathGroupsExcludedImportTypes": ["react"],
-			"alphabetize": {
-			  "order": "asc",
-			  "caseInsensitive": true
-			},
+			// "alphabetize": {
+			//   "order": "asc",
+			//   "caseInsensitive": true
+			// },
 			"newlines-between": "always"
 		  }
 		]

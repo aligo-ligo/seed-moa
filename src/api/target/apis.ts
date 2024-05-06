@@ -8,7 +8,6 @@ import {
 } from "@/types/target/type";
 
 const targetAPI = {
-
   /** 모든 목표 페이지 네이션 전체 조회 */
   getAllPaginatedTargets: async ({
     page,

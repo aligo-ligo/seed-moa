@@ -1,6 +1,7 @@
-import LogoSVG from "@/assets/logo/Logo";
-import { useNavigate } from "react-router-dom";
-import { Typography } from "../common/typography/Typography";
+import { useNavigate } from 'react-router-dom';
+
+import LogoSVG from '@/assets/logo/Logo';
+import { Typography } from '../common/typography/Typography';
 
 const TargetEmptyCard = () => {
   const navigate = useNavigate();
