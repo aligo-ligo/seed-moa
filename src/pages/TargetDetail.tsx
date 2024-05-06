@@ -12,23 +12,30 @@ import Header from '@/components/common/header/Header';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
+import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import TaskList from '@/components/feature/detail/TaskList';
 import { seedStateObj } from '@/components/target/TargetCard';
+import useBottomSheetState from '@/hooks/useBottomSheetState';
+
+type BottomSheetType = 'askDelete';
 
 const TargetDetail = () => {
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
   const isFirstVisited = seed.completedRoutineCount === 0;
   const totalRoutineCount =
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
 
-  console.log(seed.endDate, seed.startDate);
+  console.log(openedSheet);
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6">
       <Suspense fallback={<></>}>
         <Header>
           <Header.Previous />
-          <TrashIcon width={32} color="#fff" />
+          <button onClick={() => onOpenSheet('askDelete')}>
+            <TrashIcon width={32} color="#fff" />
+          </button>
         </Header>
       </Suspense>
 
@@ -51,6 +58,29 @@ const TargetDetail = () => {
         </div>
         <TaskList tasks={seed.routineDetails} />
       </div>
+
+      <ConfirmBottomSheet
+        isOpen={openedSheet === 'askDelete'}
+        onClose={onCloseSheet}
+        title="씨앗을 삭제하시겠어요?"
+        description="씨앗을 삭제하면 되돌릴 수 없어요."
+        PrimaryButton={
+          <Button
+            width="full"
+            className="h-[52px]"
+            onClick={() => {
+              onCloseSheet();
+            }}
+          >
+            확인
+          </Button>
+        }
+        SecondaryButton={
+          <Button variant="secondary" width="full" onClick={() => onCloseSheet()}>
+            취소
+          </Button>
+        }
+      />
 
       <div className="absolute bottom-5 text-xl w-full text-white ">
         <div className="flex flex-col justify-center items-center">
