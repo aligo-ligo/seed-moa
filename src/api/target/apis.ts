@@ -32,6 +32,12 @@ const targetAPI = {
     return data;
   },
 
+  /** 씨앗 삭제 */
+  deleteSeed: async (seeedId: number) => {
+    const { data } = await authInstance.delete(API_PATHS.SEED_DELETE(seeedId));
+    return data;
+  },
+
   /** 루틴 완료 상태 수정 */
   patchRoutineDone: async (routineId: number) => {
     const { data } = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_DONE(routineId));
@@ -40,8 +46,8 @@ const targetAPI = {
 
   /** 루틴 내용 수정 */
   patchRoutineTitle: async (routineId: number, routineTitle: string) => {
-    const { data } = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_TITLE(routineId),{
-      routineTitle
+    const { data } = await authInstance.patch(API_PATHS.SEED_DETAIL_ROUTINE_TITLE(routineId), {
+      routineTitle,
     });
     return data;
   },

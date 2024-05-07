@@ -8,6 +8,7 @@ export const API_PATHS = {
   SEED_DETAIL: (seedId: number) => `/api/seed/${seedId}`,
   SEED_DETAIL_ROUTINE_DONE: (routineId: number) => `/api/seed/routine/end/${routineId}`,
   SEED_DETAIL_ROUTINE_TITLE: (routineId: number) => `/api/seed/routine/${routineId}`,
+  SEED_DELETE: (seedId: number) => `/api/seed/${seedId}`,
   CREATE_SEED: '/api/seed',
   TARGET_SUBGOAL: 'target/update',
 } as const;

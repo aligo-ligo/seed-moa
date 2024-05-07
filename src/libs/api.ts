@@ -5,8 +5,6 @@ import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { isProd } from '@/utils/env';
 
-
-
 const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:7070';
 const PRODUCTION_API_URL = 'https://www.aligoligo.store:8080';
 
@@ -35,7 +33,6 @@ authInstance.interceptors.response.use(
   },
   async (error) => {
     const { config } = error;
-    // TODO : accessToken 만료 처리! 및 refeshToken 도입
     if (isAxiosError(error)) {
       switch (error.response?.data) {
         case ERROR_RESPONSES.accessExpired: {

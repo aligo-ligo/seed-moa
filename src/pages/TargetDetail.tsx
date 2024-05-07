@@ -16,18 +16,21 @@ import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import TaskList from '@/components/feature/detail/TaskList';
 import { seedStateObj } from '@/components/target/TargetCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
+import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 
 type BottomSheetType = 'askDelete';
 
 const TargetDetail = () => {
+  console.log('렌더링됨.');
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  const { mutate } = useDeleteSeedMutation();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
   const isFirstVisited = seed.completedRoutineCount === 0;
   const totalRoutineCount =
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
 
-  console.log(openedSheet);
+  console.log(seed);
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6">
       <Suspense fallback={<></>}>
@@ -54,7 +57,7 @@ const TargetDetail = () => {
             )}
           </div>
 
-          <div className="w-48">{seedStateObj[seed.state]}</div>
+          <div className="w-48">{seedStateObj[seed.seedState]}</div>
         </div>
         <TaskList tasks={seed.routineDetails} />
       </div>
@@ -69,7 +72,9 @@ const TargetDetail = () => {
             width="full"
             className="h-[52px]"
             onClick={() => {
+              console.log('click after');
               onCloseSheet();
+              mutate(Number(id));
             }}
           >
             확인

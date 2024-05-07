@@ -9,8 +9,6 @@ const TargetList = () => {
   const { data: seeds, fetchNextPage, status, isLoading } = useGetPaginatedTarget();
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
 
-  console.log('seeds', seeds);
-
   //TODO : 컴포넌트로 분리할 수 있지 않을까?!
   useEffect(() => {
     if (!lastTargetElementRef.current) return;
