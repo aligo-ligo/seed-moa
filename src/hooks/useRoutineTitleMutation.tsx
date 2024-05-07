@@ -14,13 +14,11 @@ const useRoutineTitleMutation = (seedId: number) => {
   const { mutate: updateRoutineTitle } = useMutation({
     mutationFn: ({ routineId, routineTitle }: UpdateRoutineTitleType) =>
       targetAPI.patchRoutineTitle(routineId, routineTitle),
-    //TDOD : 쿼리 캐싱 무효화가 진행되지 않는 문제 발생
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: targetOptions.detailTarget(seedId).queryKey,
         refetchType: 'all',
       });
-      console.log('t실행됨');
     },
     onError: () => {
       //TODO: 에러 구현 토스트 UI
