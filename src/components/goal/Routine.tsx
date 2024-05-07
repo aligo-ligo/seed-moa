@@ -1,6 +1,7 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { FiMinusSquare, FiPlusSquare } from 'react-icons/fi';
 
+import Add from '@/assets/icon/Plus';
+import Remove from '@/assets/icon/Remove';
 import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from '../../constants/target';
 import Validation from '../auth/Validation';
 import Button from '../common/button/Button';
@@ -42,7 +43,7 @@ const Routine = ({ toNext }: RoutineProps) => {
               routineAppend({});
             }}
           >
-            <FiPlusSquare />
+            <Add width={16} height={16} color="#ffffff" />
           </button>
         )}
       </div>
@@ -51,7 +52,7 @@ const Routine = ({ toNext }: RoutineProps) => {
         <div className="flex items-center justify-center mt-5" key={routine.id}>
           <input
             type="text"
-            className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b-2 border-primary-300 bg-transparent"
+            className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
             placeholder="루틴을 작성해보세요"
             {...register(`routines.${index}.value` as const)}
           />
@@ -62,7 +63,7 @@ const Routine = ({ toNext }: RoutineProps) => {
               type="button"
               onClick={() => routineRemove(index)}
             >
-              <FiMinusSquare />
+              <Remove width={16} height={16} color="#ffffff" />
             </button>
           )}
         </div>

@@ -10,7 +10,7 @@ const DatePickerComponent = () => {
   return (
     <DatePicker
       dateFormat={`yyyy년 MM월 dd일`}
-      className="placeholder:text-gray-100 w-full h-10 outline-none border-b-2 border-main bg-transparent"
+      className="placeholder:text-gray-100 w-full h-10 outline-none border-b border-gray-200 bg-transparent"
       {...register('endDate')}
       selected={endDateValue}
       onChange={(date) => setValue('endDate', date, { shouldValidate: true })}

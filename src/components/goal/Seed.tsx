@@ -19,7 +19,7 @@ const Seed = ({ toNext }: SeedProps) => {
     <TargetCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
       <input
         type="text"
-        className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b-2 border-primary-300 bg-transparent"
+        className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
         placeholder="씨앗(목표)를 작성해주세요"
         {...register('seed')}
       />

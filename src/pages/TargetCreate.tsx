@@ -17,6 +17,10 @@ import Step from '../components/goal/Step';
 import GobackToast from '../components/toast/GobackToast';
 import useCreateSeedMutation from '../hooks/api/target/useCreateTarget';
 
+// 1.유효성 검사 버튼 트리거 되도록
+// 1. 유효성 yup 타입
+// 1. 달력 3일부터 30일까지만 색 보이도록 구현
+
 const targetSchema: yup.ObjectSchema<SeedResponseType> = yup.object({
   seed: yup.string().required('열매를 맺을 씨앗(목표)을/를 입력해주세요'),
   routines: yup.array().of(

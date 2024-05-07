@@ -1,11 +1,11 @@
 export const GOAL_TITLE = "목표(씨앗)를 작성해주세요!";
-export const GOAL_DESCRIPTION = "(꾸준히 하고 싶은 목표를작성해주세요)";
+export const GOAL_DESCRIPTION = "(꾸준히 하고 싶은 목표를 작성해주세요)";
 
 export const ROUTINE_TITLE = "루틴을 작성해주세요";
 export const ROUTINE_DESCRIPTION = "(최대 3개의 루틴을 만들 수 있어요)"
 
 export const DURATION_TITLE = "언제까지 열매 맺길 원하시나요?!";
-export const DURATION_DESCRIPTION ="(최대 30일까지 가능해요)";
+export const DURATION_DESCRIPTION ="(최소 3일에서 최대 30일까지 가능해요)";
 
 
 export const LAST_TITLE = "최종 확인";
