@@ -2,12 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import targetAPI from '@/api/target/apis';
 import targetOptions from '@/api/target/queryOptions';
-import useToastList from './useToastList';
 
 const useRoutineMutation = (seedId: number) => {
   console.log('seedId', seedId);
   const queryClient = useQueryClient();
-  const { show } = useToastList();
+  // const { show } = useToastList();
 
   const { mutate: checkRotine } = useMutation({
     mutationFn: targetAPI.patchRoutineDone,
