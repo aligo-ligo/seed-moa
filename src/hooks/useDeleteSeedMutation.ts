@@ -15,7 +15,7 @@ const useDeleteSeedMutation = () => {
       onSuccess: () => {
         navigate('/target');
         queryClient.invalidateQueries({
-          queryKey: [targetOptions.all],
+          queryKey: [...targetOptions.all],
           refetchType: 'all',
         });
       },

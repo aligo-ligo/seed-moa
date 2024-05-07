@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import CheckedIcon from '@/assets/icon/CheckedIcon';
 import EllipsisVerticalIcon from '@/assets/icon/EllipsisVerticalIcon';
@@ -18,9 +19,10 @@ interface TaskProps {
 }
 
 const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: TaskProps) => {
+  const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const EditInputRef = useRef<HTMLInputElement>(null);
-  const { updateRoutineTitle } = useRoutineTitleMutation(routineId);
+  const { updateRoutineTitle } = useRoutineTitleMutation(Number(id));
   const { value: editText, handleChange: handleEditText } = useInput(routineTitle);
   const CheckIcon = completedRoutineToday ? CheckedIcon : UnCheckedIcon;
 
@@ -34,6 +36,14 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
     updateRoutineTitle({ routineId, routineTitle: editText });
     setIsEditing(false);
   };
+
+  // 원래 버튼 onClick에 있었음. -> state 변경으로 인해 ref 인지가 안돼, useEffect 활용
+  useEffect(() => {
+    if (EditInputRef.current !== null) {
+      EditInputRef.current.focus();
+    }
+  }, [isEditing]);
+
   return (
     <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
       <button onClick={handleRoutineClick} className="w-[24px] h-[24px]">
@@ -56,13 +66,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
             {routineTitle}
           </Typography>
           {!completedRoutineToday && (
-            <button
-              onClick={() => {
-                //TODO :  라이프 사이클과 관련된 에러, 빠르게 학습해서 해결
-                EditInputRef.current?.focus();
-                setIsEditing(true);
-              }}
-            >
+            <button onClick={() => setIsEditing(true)}>
               <EllipsisVerticalIcon width={20} />
             </button>
           )}

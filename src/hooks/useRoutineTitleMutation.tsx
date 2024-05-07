@@ -8,7 +8,7 @@ type UpdateRoutineTitleType = {
   routineTitle: string;
 };
 
-const useRoutineTitleMutation = (routineId: number) => {
+const useRoutineTitleMutation = (seedId: number) => {
   const queryClient = useQueryClient();
 
   const { mutate: updateRoutineTitle } = useMutation({
@@ -17,7 +17,7 @@ const useRoutineTitleMutation = (routineId: number) => {
     //TDOD : 쿼리 캐싱 무효화가 진행되지 않는 문제 발생
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [...targetOptions.all, routineId],
+        queryKey: targetOptions.detailTarget(seedId).queryKey,
         refetchType: 'all',
       });
       console.log('t실행됨');
