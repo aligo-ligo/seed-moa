@@ -10,16 +10,8 @@ const StemStage = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
     >
       <rect x="0.5" width="155" height="198" fill="url(#pattern0_581_742)" />
       <defs>
-        <pattern
-          id="pattern0_581_742"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_581_742"
-            transform="scale(0.00645161 0.00505051)"
-          />
+        <pattern id="pattern0_581_742" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlinkHref="#image0_581_742" transform="scale(0.00645161 0.00505051)" />
         </pattern>
         <image
           id="image0_581_742"
