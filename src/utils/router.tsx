@@ -1,13 +1,13 @@
-import App from "@/App";
-import { ROUTER_PATHS } from "@/constants/routerPath";
-import Auth from "@/pages/Auth";
-import KakaoLoginPage from "@/pages/KaKaoLogin";
-import LandingPage from "@/pages/LandingPage";
-import NotFound from "@/pages/NotFound";
-import TargetPage from "@/pages/TargePage";
-import { default as Mypage, default as QuestionPage } from "../pages/Mypage";
-import TargetCreate from "../pages/TargetCreate";
-import TargetDetail from "../pages/TargetDetail";
+import App from '@/App';
+import { ROUTER_PATHS } from '@/constants/routerPath';
+import Auth from '@/pages/Auth';
+import KakaoLoginPage from '@/pages/KaKaoLogin';
+import LandingPage from '@/pages/LandingPage';
+import NotFound from '@/pages/NotFound';
+import TargetPage from '@/pages/seedPage';
+import { default as Mypage, default as QuestionPage } from '../pages/Mypage';
+import TargetCreate from '../pages/TargetCreate';
+import TargetDetail from '../pages/TargetDetail';
 
 export const routerChildrenInfo = [
   {
@@ -36,7 +36,7 @@ export const routerChildrenInfo = [
     withAuthorization: true,
   },
   {
-    path: "target/:id",
+    path: 'target/:id',
     element: <TargetDetail />,
     withAuthorization: true,
   },
@@ -46,7 +46,7 @@ export const routerChildrenInfo = [
     withAuthorization: true,
   },
   {
-    path: "faq",
+    path: 'faq',
     element: <QuestionPage />,
     withAuthorization: false,
   },
@@ -58,7 +58,7 @@ export const routerChildrenInfo = [
 ];
 export const routerInfo = [
   {
-    path: "/",
+    path: '/',
     element: <App />,
     errorElement: <NotFound />,
     children: routerChildrenInfo,

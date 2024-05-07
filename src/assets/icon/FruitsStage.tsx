@@ -10,16 +10,8 @@ const FruitsStage = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
     >
       <rect x="0.5" width="155" height="196" fill="url(#pattern0_581_744)" />
       <defs>
-        <pattern
-          id="pattern0_581_744"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_581_744"
-            transform="scale(0.00645161 0.00510204)"
-          />
+        <pattern id="pattern0_581_744" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlinkHref="#image0_581_744" transform="scale(0.00645161 0.00510204)" />
         </pattern>
         <image
           id="image0_581_744"

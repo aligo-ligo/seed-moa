@@ -17,8 +17,7 @@ const config: Config = {
 				'jalnan': ['Jalnan OTF']
 			},
 			boxShadow: {
-				sm: "0 5px 10px rgba(0, 0, 0, 0.12)",
-				md: "0 8px 30px rgba(0, 0, 0, 0.12)",
+				thumb: '0px 0px 7.9px 0px rgba(0, 88, 255, 0.10)',
 			},
 			screens: {
 				phone: "340px",
