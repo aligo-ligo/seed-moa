@@ -1,6 +1,6 @@
-import 'react-datepicker/dist/react-datepicker.css';
 import { useFormContext } from 'react-hook-form';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import { DURATION_DESCRIPTION, DURATION_TITLE } from '../../constants/target';
 import Validation from '../auth/Validation';
 import Button from '../common/button/Button';
@@ -19,11 +19,7 @@ const Duration = () => {
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
-        <Button
-          className=" w-full h-16 hover:bg-gray-800 duration-300"
-          color="gray-1000"
-          type="submit"
-        >
+        <Button className=" w-full h-16 " variant="secondary" type="submit">
           제출하기
         </Button>
       </div>

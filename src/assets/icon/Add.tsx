@@ -1,8 +1,4 @@
-const Add = ({
-  width = 14,
-  height = 14,
-  color,
-}: React.SVGProps<SVGSVGElement>) => {
+const Add = ({ width, height, color }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width={width}

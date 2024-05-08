@@ -1,5 +1,6 @@
 import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 
+import { Typography } from '@/components/common/typography/Typography';
 import { monthFormatDate } from '../../../utils/formatDate';
 
 interface Props {
@@ -16,7 +17,10 @@ const CalenderHeader = ({ date, decreaseMonth, increaseMonth }: Props) => {
       <button type="button" onClick={decreaseMonth} className="text-3xl text-white">
         <FiChevronsLeft />
       </button>
-      <div className=" text-3xl text-white">{dateToString}</div>
+      <Typography type="body1" className="text-white">
+        {dateToString}
+      </Typography>
+
       <button type="button" onClick={increaseMonth} className="text-3xl text-white">
         <FiChevronsRight />
       </button>

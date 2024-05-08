@@ -1,6 +1,7 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { FiMinusSquare, FiPlusSquare } from 'react-icons/fi';
 
+import Add from '@/assets/icon/Add';
+import Remove from '@/assets/icon/Remove';
 import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from '../../constants/target';
 import Validation from '../auth/Validation';
 import Button from '../common/button/Button';
@@ -15,6 +16,7 @@ const Routine = ({ toNext }: RoutineProps) => {
   const {
     register,
     watch,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
@@ -42,7 +44,7 @@ const Routine = ({ toNext }: RoutineProps) => {
               routineAppend({});
             }}
           >
-            <FiPlusSquare />
+            <Add width={16} height={16} color="#ffffff" />
           </button>
         )}
       </div>
@@ -51,8 +53,9 @@ const Routine = ({ toNext }: RoutineProps) => {
         <div className="flex items-center justify-center mt-5" key={routine.id}>
           <input
             type="text"
-            className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b-2 border-primary-300 bg-transparent"
+            className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
             placeholder="루틴을 작성해보세요"
+            autoComplete="off"
             {...register(`routines.${index}.value` as const)}
           />
 
@@ -62,20 +65,24 @@ const Routine = ({ toNext }: RoutineProps) => {
               type="button"
               onClick={() => routineRemove(index)}
             >
-              <FiMinusSquare />
+              <Remove width={16} height={16} color="#ffffff" />
             </button>
           )}
         </div>
       ))}
       <div className="text-center">
-        <Validation>{!!errors?.routines && '루틴을 작성해주세요'}</Validation>
+        <Validation>{!!errors?.routines && '루틴 작성은 필수예요'}</Validation>
       </div>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
         <Button
-          className=" w-full h-16 hover:bg-gray-800 duration-300"
-          color="gray-1000"
-          onClick={toNext}
+          className=" w-full h-16  duration-300"
+          variant="secondary"
+          onClick={async () => {
+            const isValid = await trigger(['routines']);
+            if (!isValid) return;
+            toNext();
+          }}
         >
           다음
         </Button>

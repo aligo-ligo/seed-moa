@@ -1,31 +1,27 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import dayjs from 'dayjs';
 import { useCallback, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
+import { InferType } from 'yup';
 
 import ChevronLeft from '@/assets/icon/ChevronLeft';
 import Duration from '@/components/goal/Duration';
 import Seed from '@/components/goal/Seed';
 import ProgressBar from '@/components/target/animationBars/ProgressBar';
+import { seedSchema } from '@/constants/contants';
 import { steps } from '@/constants/step';
-import { SeedResponseType } from '@/types/target/type';
 import { TargetStepType } from '@/types/TargetTypes';
 import Routine from '../components/goal/Routine';
 import Step from '../components/goal/Step';
 import GobackToast from '../components/toast/GobackToast';
 import useCreateSeedMutation from '../hooks/api/target/useCreateTarget';
 
-const targetSchema: yup.ObjectSchema<SeedResponseType> = yup.object({
-  seed: yup.string().required('열매를 맺을 씨앗(목표)을/를 입력해주세요'),
-  routines: yup.array().of(
-    yup.object().shape({
-      value: yup.string().required('루틴은 필수예요'),
-    }),
-  ),
-  endDate: yup.string().required('목표 달성일을 지정해주세요'),
-});
+// 1.유효성 검사 버튼 트리거 되도록
+// 1. 유효성 yup 타입
+// 1. 달력 3일부터 30일까지만 색 보이도록 구현
+
+export type SeedValidationInferType = InferType<typeof seedSchema>;
 
 const TargetCreate = () => {
   const navigate = useNavigate();
@@ -52,16 +48,16 @@ const TargetCreate = () => {
     setStep(steps[currentIdx + 1]);
   }, [currentIdx, hasNext]);
 
-  const methods = useForm<SeedResponseType>({
+  const methods = useForm<SeedValidationInferType>({
     defaultValues: {
       seed: '',
-      routines: [{}],
+      routines: [{ value: '' }],
       endDate: '',
     },
-    resolver: yupResolver(targetSchema),
+    resolver: yupResolver(seedSchema),
   });
 
-  const onSubmitHandler = (data: SeedResponseType) => {
+  const onSubmitHandler: SubmitHandler<SeedValidationInferType> = (data) => {
     const updateEndDateData = {
       ...data,
       endDate: dayjs(data.endDate).format('YYYY-MM-DD'),
@@ -74,7 +70,7 @@ const TargetCreate = () => {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmitHandler)} className="relative w-full h-dvh">
           <div
-            className="h-[68px] flex w-full items-center justify-between backdrop-blur-sm"
+            className="h-[68px] flex w-full items-center justify-between"
             onClick={toPrev}
             role="presentation"
           >

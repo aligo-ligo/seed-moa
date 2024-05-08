@@ -1,42 +1,46 @@
 react-datepicker {
-	font-size: 1.3rem !important;
+  font-size: 1.3rem !important;
 }
 
 .react-datepicker__current-month {
-	font-size: 1.5rem !important;
+  font-size: 1.5rem !important;
 }
 
 .react-datepicker__header {
-	padding-top: 6px !important;
-	background-color: #52681d;
+  padding-top: 6px !important;
+  background-color: #87995c;
 }
 
 .react-datepicker__current-month,
 .react-datepicker__day-names > .react-datepicker__day-name {
-	color: white;
+  color: white;
 }
 
 .react-datepicker__navigation {
-	top: 13px !important;
+  top: 13px !important;
 }
 
 .react-datepicker__day-name,
 .react-datepicker__day {
-	margin: 0.3rem !important;
+  margin: 0.3rem !important;
 }
 
 .saturday {
-	color: rgb(0, 0, 255) !important;
+  color: rgb(0, 0, 255) !important;
 }
 
 .sunday {
-	color: rgb(255, 0, 0) !important;
+  color: rgb(255, 0, 0) !important;
 }
 
 .react-datepicker__day--disabled {
-	color: #cccccc !important;
+  color: #cccccc !important;
 }
 
 .carousel-status {
-	text-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.react-datepicker__calendar-icon {
+  color: white;
 }
