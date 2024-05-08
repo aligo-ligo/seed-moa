@@ -16,15 +16,7 @@ const Profile = ({ width, height, color }: React.SVGProps<SVGSVGElement>) => {
           fill="#fff"
         />
       </g>
-      <rect
-        x=".75"
-        y=".75"
-        width="30.5"
-        height="30.5"
-        rx="15.25"
-        stroke="#fff"
-        strokeWidth="1.5"
-      />
+      <rect x=".75" y=".75" width="30.5" height="30.5" rx="15.25" stroke="#fff" strokeWidth="1.5" />
       <defs>
         <clipPath id="a">
           <rect width="32" height="32" rx="16" fill="#fff" />

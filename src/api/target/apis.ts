@@ -6,6 +6,7 @@ import {
   SeedPaginatedResponseType,
   SeedResponseType,
 } from '@/types/target/type';
+import { OwnSeedType } from '@/types/user/type';
 
 const targetAPI = {
   /** 모든 목표 페이지 네이션 전체 조회 */
@@ -32,6 +33,12 @@ const targetAPI = {
     return data;
   },
 
+   /** 마이 페이지에 보일 데이터 조회 */
+   getMyInfo: async () => {
+    const { data } = await authInstance.get<OwnSeedType>(API_PATHS.SEED_MINE);
+    return data;
+  },
+
   /** 씨앗 삭제 */
   deleteSeed: async (seeedId: number) => {
     const { data } = await authInstance.delete(API_PATHS.SEED_DELETE(seeedId));
@@ -51,6 +58,8 @@ const targetAPI = {
     });
     return data;
   },
+
+
 };
 
 export default targetAPI;

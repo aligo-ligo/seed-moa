@@ -1,17 +1,17 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes } from 'react';
 
-import LogoSVG from "@/assets/logo/Logo";
-import { cn } from "@/libs/core";
-import { Typography } from "../typography/Typography";
-import Previous from "./components/Previous";
+import LogoSVG from '@/assets/logo/Logo';
+import { cn } from '@/libs/core';
+import { Typography } from '../typography/Typography';
+import Previous from './components/Previous';
 
 type HeaderProps = { children: React.ReactNode } & HTMLAttributes<HTMLElement>;
 const Header = ({ children, className, ...props }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "sticky bg-inherit top-0 z-50 h-[68px] flex w-full items-center justify-between backdrop-blur-sm",
-        className
+        'sticky bg-inherit top-0 z-50 h-[68px] flex w-full items-center justify-between',
+        className,
       )}
       {...props}
     >
