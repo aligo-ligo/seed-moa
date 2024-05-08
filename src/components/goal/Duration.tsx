@@ -19,11 +19,7 @@ const Duration = () => {
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
-        <Button
-          className=" w-full h-16 hover:bg-gray-800 duration-300"
-          variant="secondary"
-          type="submit"
-        >
+        <Button className=" w-full h-16 " variant="secondary" type="submit">
           제출하기
         </Button>
       </div>
