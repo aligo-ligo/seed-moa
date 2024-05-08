@@ -16,6 +16,7 @@ const Routine = ({ toNext }: RoutineProps) => {
   const {
     register,
     watch,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
@@ -70,14 +71,18 @@ const Routine = ({ toNext }: RoutineProps) => {
         </div>
       ))}
       <div className="text-center">
-        <Validation>{!!errors?.routines && '루틴을 작성해주세요'}</Validation>
+        <Validation>{!!errors?.routines && '루틴 작성은 필수예요'}</Validation>
       </div>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
         <Button
-          className=" w-full h-16 hover:bg-gray-800 duration-300"
+          className=" w-full h-16  duration-300"
           variant="secondary"
-          onClick={toNext}
+          onClick={async () => {
+            const isValid = await trigger(['routines']);
+            if (!isValid) return;
+            toNext();
+          }}
         >
           다음
         </Button>

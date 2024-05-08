@@ -12,6 +12,7 @@ type SeedProps = {
 const Seed = ({ toNext }: SeedProps) => {
   const {
     register,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
@@ -27,7 +28,15 @@ const Seed = ({ toNext }: SeedProps) => {
       <Validation>{errors?.seed?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
-        <Button className=" w-full h-16 duration-300" variant="secondary" onClick={toNext}>
+        <Button
+          className=" w-full h-16 duration-300"
+          variant="secondary"
+          onClick={async () => {
+            const isValid = await trigger(['seed']);
+            if (!isValid) return;
+            toNext();
+          }}
+        >
           다음
         </Button>
       </div>

@@ -78,7 +78,7 @@ const TargetCreate = () => {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmitHandler)} className="relative w-full h-dvh">
           <div
-            className="h-[68px] flex w-full items-center justify-between backdrop-blur-sm"
+            className="h-[68px] flex w-full items-center justify-between"
             onClick={toPrev}
             role="presentation"
           >
