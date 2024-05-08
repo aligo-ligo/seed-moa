@@ -23,6 +23,12 @@ const targetOptions = {
       queryKey: ['total'],
       queryFn: commonAPI.getUserStatus,
     }),
+
+  getMyInfo: () =>
+    queryOptions({
+      queryKey: ['my'],
+      queryFn: targetAPI.getMyInfo,
+    }),
 };
 
 export default targetOptions;

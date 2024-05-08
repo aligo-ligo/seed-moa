@@ -6,8 +6,11 @@ import TreeStage from '@/assets/icon/TreeStage';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import UserProfile from '@/components/feature/my/userProfile/UserProfile';
+import useGetOwnInfo from '@/hooks/api/target/useGetOwnInfo';
 
 const Mypage = () => {
+  const { myInfo, sortedStatistics } = useGetOwnInfo();
+
   return (
     <div className="relative flex flex-col px-6 h-dvh">
       <Header>
@@ -17,7 +20,7 @@ const Mypage = () => {
         </Typography>
         <p></p>
       </Header>
-      <UserProfile />
+      <UserProfile name={myInfo.name} email={myInfo.email} />
       <div className="flex justify-center w-full ">
         <div className="flex flex-col w-full mt-4 px-4 py-2 bg-white rounded-lg shadow-[0_1.001px_40px_0_rgba(197,229,255,0.3)] divide-y">
           <div className="w-full h-[48px] flex gap-[36px] items-center justify-center">
@@ -30,29 +33,28 @@ const Mypage = () => {
               <div className="w-12 h-12">
                 <SeedStage width={48} height={48} />
               </div>
-              <Typography>123</Typography>
+              <Typography>{sortedStatistics.SEED}</Typography>
             </div>
+
             <div className="flex-1 flex flex-col items-center pt-4 gap-2">
               <div className="w-12 h-12">
                 <StemStage width={48} height={48} />
               </div>
-              <Typography>123</Typography>
+              <Typography>{sortedStatistics.STEM}</Typography>
             </div>
             <div className="flex-1 flex flex-col items-center pt-4 gap-2">
               <div className="w-12 h-12">
                 <TreeStage width={48} height={48} />
               </div>
-              <Typography>123</Typography>
+              <Typography>{sortedStatistics.TREE}</Typography>
             </div>
             <div className="flex-1 flex flex-col items-center pt-4 gap-2">
               <div className="w-12 h-12">
                 <FruitsStage width={48} height={48} />
               </div>
-              <Typography>123</Typography>
+              <Typography>{sortedStatistics.FRUITS}</Typography>
             </div>
           </div>
-          {/* <LifeMapPrivacySetting isPublic={memberData.lifeMap.isPublic} />
-              <MyPageLifeMapInfo username={memberData.username} /> */}
         </div>
       </div>
       {/* MyPageBody */}

@@ -11,6 +11,8 @@ export const API_PATHS = {
   SEED_DELETE: (seedId: number) => `/api/seed/${seedId}`,
   CREATE_SEED: '/api/seed',
   TARGET_SUBGOAL: 'target/update',
+
+  SEED_MINE: '/api/seed/my',
 } as const;
 
 export const ROUTER_PATHS = {
