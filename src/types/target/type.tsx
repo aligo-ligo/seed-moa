@@ -11,8 +11,10 @@ export type SeedType = {
   startDate: string;
   seed: string;
   completedRoutineCount: number;
-  seedState: 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
+  seedState: SeedStateType;
 };
+
+export type SeedStateType = 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
 
 export type PreviewSeedType = SeedType & {
   routineInfos: RoutineType[];
