@@ -54,6 +54,7 @@ const Routine = ({ toNext }: RoutineProps) => {
             type="text"
             className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
             placeholder="루틴을 작성해보세요"
+            autoComplete="off"
             {...register(`routines.${index}.value` as const)}
           />
 

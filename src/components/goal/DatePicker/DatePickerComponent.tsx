@@ -20,6 +20,7 @@ const DatePickerComponent = () => {
       withPortal
       minDate={new Date(fromNowOfMinDays)}
       maxDate={new Date(fromNowOfMaxDays)}
+      autoComplete="off"
       renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
         <CalenderHeader date={date} decreaseMonth={decreaseMonth} increaseMonth={increaseMonth} />
       )}
