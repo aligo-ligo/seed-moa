@@ -26,11 +26,7 @@ const Seed = ({ toNext }: SeedProps) => {
       <Validation>{errors?.seed?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
-        <Button
-          className=" w-full h-16 hover:bg-gray-800 duration-300"
-          color="gray-1000"
-          onClick={toNext}
-        >
+        <Button className=" w-full h-16 duration-300" variant="secondary" onClick={toNext}>
           다음
         </Button>
       </div>

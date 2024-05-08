@@ -1,6 +1,6 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import Add from '@/assets/icon/Plus';
+import Add from '@/assets/icon/Add';
 import Remove from '@/assets/icon/Remove';
 import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from '../../constants/target';
 import Validation from '../auth/Validation';
@@ -75,7 +75,7 @@ const Routine = ({ toNext }: RoutineProps) => {
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
         <Button
           className=" w-full h-16 hover:bg-gray-800 duration-300"
-          color="gray-1000"
+          variant="secondary"
           onClick={toNext}
         >
           다음

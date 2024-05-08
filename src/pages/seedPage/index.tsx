@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Add from '@/assets/icon/Plus';
+import Add from '@/assets/icon/Add';
 import Profile from '@/assets/icon/Profile';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
@@ -34,7 +34,7 @@ const TargetPage = () => {
         <Button
           onClick={() => navigate(ROUTER_PATHS.CREATE_TARGET)}
           variant="accent"
-          Icon={<Add />}
+          Icon={<Add width={20} height={20} />}
           iconOnly
           className="size-[56px] w-xl rounded-[100%] bg-main"
         />
