@@ -6,11 +6,11 @@ import EllipsisVerticalIcon from '@/assets/icon/EllipsisVerticalIcon';
 import Submit from '@/assets/icon/Submit';
 import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import { Typography } from '@/components/common/typography/Typography';
+import { DELAY_SECOND } from '@/constants/contants';
 import { useInput } from '@/hooks/useInput';
 import useRoutineTitleMutation from '@/hooks/useRoutineTitleMutation';
 import useMusicStore from '@/store/useMusicStore';
 import { TaskEditInput } from './TaskEditInput';
-
 interface TaskProps {
   initialIsDone?: boolean;
   routineTitle: string;
@@ -29,7 +29,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
   const { value: editText, handleChange: handleEditText } = useInput(routineTitle);
   const CheckIcon = completedRoutineToday ? CheckedIcon : UnCheckedIcon;
 
-  const handleRoutineClick = () => {
+  const updateRoutine = () => {
     if (completedRoutineToday) return;
     onDoneClick();
   };
@@ -45,18 +45,19 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
     }
   }, [isEditing]);
 
+  const handleRoutineClick = () => {
+    if (!completedRoutineToday) {
+      toggleMusicPlaying();
+      setTimeout(() => {
+        toggleMusicPlaying();
+      }, DELAY_SECOND);
+    }
+    updateRoutine();
+  };
+
   return (
     <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-      <button
-        onClick={() => {
-          // 루틴 완료를 위해 버튼 클릭시에만 백그라운드 뮤직 재생, 체크한 이후 음악 실행 금지를 위한 코드
-          if (!completedRoutineToday) {
-            toggleMusicPlaying();
-          }
-          handleRoutineClick();
-        }}
-        className="w-[24px] h-[24px]"
-      >
+      <button onClick={handleRoutineClick} className="w-[24px] h-[24px]">
         <CheckIcon width={24} height={24} />
       </button>
 

@@ -22,7 +22,7 @@ const Timer = ({ mountKey, children, delay = 3 }: TimerProps) => {
 
   useTimeout(() => {
     setIsOpen(false);
-  }, delay * 1000);
+  }, delay);
 
   return <TooltipProvider value={{ isOpen, setIsOpen }}>{children}</TooltipProvider>;
 };

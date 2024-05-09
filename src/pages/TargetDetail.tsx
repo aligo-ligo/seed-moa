@@ -17,6 +17,7 @@ import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import TaskList from '@/components/feature/detail/TaskList';
 import Timer from '@/components/feature/detail/timer/Timer';
 import { seedStateObj } from '@/components/target/TargetCard';
+import { DELAY_SECOND } from '@/constants/contants';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 
@@ -52,7 +53,7 @@ const TargetDetail = () => {
             <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
             {!isFirstVisited && (
               <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <Timer delay={3} mountKey="tooltip">
+                <Timer delay={DELAY_SECOND} mountKey="tooltip">
                   <ObserverExitEvent>
                     <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
                   </ObserverExitEvent>
