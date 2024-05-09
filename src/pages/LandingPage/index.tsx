@@ -4,6 +4,7 @@ import targetOptions from '@/api/target/queryOptions';
 import Logo from '@/assets/logo/Logo';
 import ReversedLogo from '@/assets/logo/ReversedLogo';
 import KakaoLoginButton from '@/components/auth/KakaoLoginButton';
+import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
 import SkeletonElement from '@/components/layout/Skeleton';
 import { ROUTER_PATHS } from '@/constants/routerPath';
@@ -52,7 +53,8 @@ const LandingPage = () => {
         )}
       </div>
 
-      <div className="absolute bottom-5 w-full px-6">
+      <div className="absolute bottom-5 w-full px-6 flex flex-col justify-center items-center">
+        <ToolTip title={`빠르게 간편하게`} />
         <KakaoLoginButton href={KAKAO_AUTH_URI} />
       </div>
     </div>
