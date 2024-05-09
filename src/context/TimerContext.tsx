@@ -5,7 +5,7 @@ const TimerCotnext = createContext<{
   setIsOpen: (open: boolean) => void;
 } | null>(null);
 
-export const TooltipProvider = TimerCotnext.Provider;
+export const TimerProvider = TimerCotnext.Provider;
 
 export const useTimerCotnext = () => {
   const context = useContext(TimerCotnext);

@@ -1,16 +1,17 @@
 import { AnimatePresence } from 'framer-motion';
 import { ReactNode } from 'react';
 
-import { useTimerCotnext } from '@/context/TimerContext';
+import { useRoutineContext } from '@/context/RoutineContext';
 
 type OpacityBoxProps = {
   children: ReactNode;
 };
 
 const ObserverExitEvent = ({ children }: OpacityBoxProps) => {
-  const { isOpen } = useTimerCotnext();
+  // const { isOpen } = useTimerCotnext();
+  const { isOpen } = useRoutineContext();
 
-  return <AnimatePresence initial={false}>{isOpen && <>{children}</>}</AnimatePresence>;
+  return <AnimatePresence>{isOpen && <>{children}</>}</AnimatePresence>;
 };
 
 export default ObserverExitEvent;

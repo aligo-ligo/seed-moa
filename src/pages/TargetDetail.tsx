@@ -16,9 +16,7 @@ import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBo
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import RainBackGround from '@/components/feature/detail/RainBackGround';
 import TaskList from '@/components/feature/detail/TaskList';
-import Timer from '@/components/feature/detail/timer/Timer';
 import { seedStateObj } from '@/components/target/TargetCard';
-import { DELAY_SECOND } from '@/constants/contants';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 
@@ -49,16 +47,14 @@ const TargetDetail = () => {
       </Typography>
 
       <div className="flex flex-col w-full h-full">
-        <div className=" h-[40%] flex flex-col justify-center items-center">
+        <div className=" h-[50%] flex flex-col justify-center items-center">
           <div className="relative flex w-full justify-end">
             <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
             {!isFirstVisited && (
               <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <Timer delay={DELAY_SECOND}>
-                  <ObserverExitEvent>
-                    <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
-                  </ObserverExitEvent>
-                </Timer>
+                <ObserverExitEvent>
+                  <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+                </ObserverExitEvent>
               </div>
             )}
           </div>
@@ -113,9 +109,7 @@ const TargetDetail = () => {
         </div>
       </div>
 
-      <Timer delay={DELAY_SECOND}>
-        <RainBackGround />
-      </Timer>
+      <RainBackGround />
     </div>
   );
 };
