@@ -1,5 +1,5 @@
 #!/bin/sh
 cd ../
 mkdir output
-cp -R ./aligo-oligo-next-app/* ./output
-cp -R ./output ./aligo-oligo-next-app/
+cp -R ./aligo-oligo-frontend-latest/* ./output
+cp -R ./output ./aligo-oligo-frontend-latest/
