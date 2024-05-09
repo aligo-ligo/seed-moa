@@ -2,7 +2,7 @@ name: deploy to vercel by pushing git into another repo
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
 
 jobs:
   build:
@@ -20,9 +20,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_SECRET_KEY }}
         with:
-          source-directory: "output"
-          destination-github-username: "CodyMan0"
-          destination-repository-name: "aligoilgo_v2"
+          source-directory: 'output'
+          destination-github-username: 'CodyMan0'
+          destination-repository-name: 'aligoilgo'
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
