@@ -10,6 +10,7 @@ import { DELAY_SECOND } from '@/constants/contants';
 import { useRoutineContext } from '@/context/RoutineContext';
 import { useInput } from '@/hooks/useInput';
 import useRoutineTitleMutation from '@/hooks/useRoutineTitleMutation';
+import useToast from '@/hooks/useToast';
 import useMusicStore from '@/store/useMusicStore';
 import { TaskEditInput } from './TaskEditInput';
 interface TaskProps {
@@ -23,6 +24,7 @@ interface TaskProps {
 const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
   const { onClose } = useRoutineContext();
+  const toast = useToast();
 
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
@@ -51,6 +53,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
     if (!completedRoutineToday) {
       toggleMusicPlaying();
       onClose();
+      toast({ message: 'SEED_ROUTINE_STATE_SUCCESS' });
       setTimeout(() => {
         toggleMusicPlaying();
         onClose();

@@ -5,6 +5,9 @@ import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
 import StemStage from '@/assets/icon/StemStage';
 import TreeStage from '@/assets/icon/TreeStage';
+import FruitsDetailStage from '@/assets/images/FruitsDetailStage';
+import StemDetailStage from '@/assets/images/StemDetailStage';
+import TreeDetailStage from '@/assets/images/TreeDetailStage';
 import { PreviewSeedType } from '@/types/target/type';
 import { fromNowOf } from '@/utils/fromNowOf';
 import { Tag } from '../common/tag';
@@ -59,9 +62,17 @@ const TargetCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedT
 
 export default TargetCard;
 
+//TODO : 어떻게 처리할지 고민해보자
 export const seedStateObj: Record<string, JSX.Element> = {
   SEED: <SeedStage />,
   STEM: <StemStage />,
   TREE: <TreeStage />,
   FRUITS: <FruitsStage />,
+};
+
+export const detailSeedStateObj: Record<string, JSX.Element> = {
+  SEED: <SeedStage width={192} />,
+  STEM: <StemDetailStage width={192} />,
+  TREE: <TreeDetailStage width={320} />,
+  FRUITS: <FruitsDetailStage width={320} />,
 };

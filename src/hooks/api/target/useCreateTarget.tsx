@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import targetAPI from '@/api/target/apis';
 import targetOptions from '@/api/target/queryOptions';
+import useToast from '@/hooks/useToast';
 import useToastList from '@/hooks/useToastList';
 import { SeedResponseType } from '@/types/target/type';
 
@@ -10,6 +11,7 @@ const useCreateSeedMutation = () => {
   const queryClient = useQueryClient();
   const { show } = useToastList();
   const navigate = useNavigate();
+  const toast = useToast();
 
   const { mutate: submitSeed } = useMutation({
     mutationFn: ({ seed, routines, endDate }: SeedResponseType) =>
@@ -21,10 +23,11 @@ const useCreateSeedMutation = () => {
       });
       show('createToast');
       navigate('/target');
+      toast({ message: 'SEED_CREATE_SUCCESS' });
     },
     onError: () => {
       //TODO: ERROR toast 구현
-      console.error('error');
+      toast({ message: 'SEED_CREATE_FAIL' });
     },
   });
   return { submitSeed };
