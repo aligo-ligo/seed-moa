@@ -23,7 +23,6 @@ import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 type BottomSheetType = 'askDelete';
 
 const TargetDetail = () => {
-  console.log('렌더링됨.');
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
   const { mutate } = useDeleteSeedMutation();

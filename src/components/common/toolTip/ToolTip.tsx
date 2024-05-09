@@ -25,12 +25,3 @@ export const ToolTip = ({ title }: ToolTipProps) => {
     </motion.div>
   );
 };
-
-// <motion.div
-// key="modal"
-// initial={{ opacity: 0 }}
-// animate={{ opacity: 1 }}
-// exit={{ opacity: 0 }}
-// >
-// {children}
-// </motion.div>

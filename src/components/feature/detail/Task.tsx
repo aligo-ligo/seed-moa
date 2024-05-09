@@ -8,6 +8,7 @@ import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import { Typography } from '@/components/common/typography/Typography';
 import { useInput } from '@/hooks/useInput';
 import useRoutineTitleMutation from '@/hooks/useRoutineTitleMutation';
+import useMusicStore from '@/store/useMusicStore';
 import { TaskEditInput } from './TaskEditInput';
 
 interface TaskProps {
@@ -19,6 +20,8 @@ interface TaskProps {
 }
 
 const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: TaskProps) => {
+  const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
+
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const EditInputRef = useRef<HTMLInputElement>(null);
@@ -32,12 +35,10 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
   };
 
   const handlePatchRoutineTitle = () => {
-    //TODO : 캐시 무효화가 안되는 문제, 동일한 로직 다른 곳에서는 무효화 진행됨
     updateRoutineTitle({ routineId, routineTitle: editText });
     setIsEditing(false);
   };
 
-  // 원래 버튼 onClick에 있었음. -> state 변경으로 인해 ref 인지가 안돼, useEffect 활용
   useEffect(() => {
     if (EditInputRef.current !== null) {
       EditInputRef.current.focus();
@@ -46,7 +47,16 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
 
   return (
     <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-      <button onClick={handleRoutineClick} className="w-[24px] h-[24px]">
+      <button
+        onClick={() => {
+          // 루틴 완료를 위해 버튼 클릭시에만 백그라운드 뮤직 재생, 체크한 이후 음악 실행 금지를 위한 코드
+          if (!completedRoutineToday) {
+            toggleMusicPlaying();
+          }
+          handleRoutineClick();
+        }}
+        className="w-[24px] h-[24px]"
+      >
         <CheckIcon width={24} height={24} />
       </button>
 
