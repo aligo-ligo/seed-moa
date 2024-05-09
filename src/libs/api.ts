@@ -1,10 +1,9 @@
 import axios, { isAxiosError } from 'axios';
 
+import authAPI from '@/api/auth/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { isProd } from '@/utils/env';
-
-
 
 const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:7070';
 const PRODUCTION_API_URL = 'https://www.aligoligo.store:8080';
@@ -22,7 +21,8 @@ export const authInstance = axios.create({
 });
 
 authInstance.interceptors.request.use((config) => {
-  config.headers.accessToken = localStorage.getItem(STORAGE_KEYS.accessToken);
+  const token = localStorage.getItem(STORAGE_KEYS.accessToken);
+  config.headers.Authorization = `Bearer ${token}`
 
   return config;
 });
@@ -32,12 +32,24 @@ authInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    // TODO : accessToken 만료 처리! 및 refeshToken 도입
+    const { config } = error;
     if (isAxiosError(error)) {
-      switch (error.response?.status) {
-        case ERROR_RESPONSES.accessExpired : {
-          // TODO : reissue API 필요할 듯
+      switch (error.response?.data) {
+        case ERROR_RESPONSES.accessExpired: {
+          const res = await authAPI.getReissue();
+          localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
+          localStorage.setItem(STORAGE_KEYS.refreshToken, res.refreshToken);
+          return axios({
+            ...config,
+            headers: {
+              ...config.headers,
+              accessToken: localStorage.getItem(STORAGE_KEYS.accessToken),
+            },
+          });
+        }
+        case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
+          localStorage.removeItem(STORAGE_KEYS.refreshToken);
           break;
         }
         default:

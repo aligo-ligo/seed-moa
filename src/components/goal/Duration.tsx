@@ -1,46 +1,27 @@
-import "react-datepicker/dist/react-datepicker.css";
-import { useFormContext } from "react-hook-form";
-import { TargetCreateProps } from "../../types/TargetTypes";
-import Validation from "../auth/Validation";
-import TargetCreateLayout from "../layout/TargetCreateLayout";
-import TargetStepButton from "../logic/TargetStepButton";
-import "./DatePicker/css/react-datepicker.css";
-import DatePickerComponent from "./DatePicker/DatePickerComponent";
+import { useFormContext } from 'react-hook-form';
 
-import { DURATION_DESCRIPTION, DURATION_TITLE } from "../../constants/target";
+import 'react-datepicker/dist/react-datepicker.css';
+import { DURATION_DESCRIPTION, DURATION_TITLE } from '../../constants/target';
+import Validation from '../auth/Validation';
+import Button from '../common/button/Button';
+import TargetCreateLayout from '../layout/TargetCreateLayout';
+import './DatePicker/css/react-datepicker.css';
+import DatePickerComponent from './DatePicker/DatePickerComponent';
 
-const Duration = ({ setStep }: TargetCreateProps) => {
+const Duration = () => {
   const {
-    getValues,
     formState: { errors },
   } = useFormContext();
 
-  const endDate = getValues("endDate");
-
   return (
-    <TargetCreateLayout
-      title={DURATION_TITLE}
-      description={DURATION_DESCRIPTION}
-    >
-      <DatePickerComponent name={endDate} />
+    <TargetCreateLayout title={DURATION_TITLE} description={DURATION_DESCRIPTION}>
+      <DatePickerComponent />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
-      <div className="flex gap-4">
-        <TargetStepButton
-          prev="subGoal"
-          present={["endDate"]}
-          next="lastStep"
-          setStep={setStep}
-        >
-          이전
-        </TargetStepButton>
 
-        <TargetStepButton
-          present={["endDate"]}
-          next="lastStep"
-          setStep={setStep}
-        >
-          다음
-        </TargetStepButton>
+      <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
+        <Button className=" w-full h-16 " variant="secondary" type="submit">
+          제출하기
+        </Button>
       </div>
     </TargetCreateLayout>
   );

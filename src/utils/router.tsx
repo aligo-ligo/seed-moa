@@ -1,39 +1,18 @@
-import KakaoLoginPage from "@/pages/KaKaoLogin";
-
-import Auth from "@/pages/Auth";
-import LandingPage from "@/pages/LandingPage";
-import NotFound from "@/pages/NotFound";
-
-import QuestionPage from "../pages/QuestionPage";
-import Target from "../pages/Target";
-import TargetCreate from "../pages/TargetCreate";
-import TargetDetail from "../pages/TargetDetail";
-import TargetGuest from "../pages/TargetGuest";
-
-export const ROUTER_PATHS = {
-  ROOT: "/",
-  TEST_CONSTANT: "/test/const",
-  MODAL_TEST: "/modal-test",
-  SIGNIN: "/signin",
-  SIGNUP: "/signup",
-  SIGNIN_REDIRECT_KAKAO: "/kakao",
-  TARGET: "/target",
-} as const;
+import App from '@/App';
+import { ROUTER_PATHS } from '@/constants/routerPath';
+import { RoutineProvider } from '@/context/RoutineContext';
+import KakaoLoginPage from '@/pages/KaKaoLogin';
+import LandingPage from '@/pages/LandingPage';
+import NotFound from '@/pages/NotFound';
+import TargetPage from '@/pages/seedPage';
+import { default as Mypage, default as QuestionPage } from '../pages/Mypage';
+import TargetCreate from '../pages/TargetCreate';
+import TargetDetail from '../pages/TargetDetail';
 
 export const routerChildrenInfo = [
   {
     index: true,
     element: <LandingPage />,
-    withAuthorization: false,
-  },
-  {
-    path: ROUTER_PATHS.SIGNIN,
-    element: <Auth />,
-    withAuthorization: false,
-  },
-  {
-    path: ROUTER_PATHS.SIGNUP,
-    element: <Auth />,
     withAuthorization: false,
   },
   {
@@ -43,34 +22,38 @@ export const routerChildrenInfo = [
   },
   {
     path: ROUTER_PATHS.TARGET,
-    element: <Target />,
+    element: <TargetPage />,
     withAuthorization: true,
   },
   {
-    path: "target/:id",
-    element: <TargetDetail />,
+    path: 'target/:id',
+    element: (
+      <RoutineProvider>
+        <TargetDetail />
+      </RoutineProvider>
+    ),
     withAuthorization: true,
   },
   {
-    path: "target/create",
+    path: ROUTER_PATHS.CREATE_TARGET,
     element: <TargetCreate />,
     withAuthorization: true,
   },
   {
-    path: "faq",
+    path: 'faq',
     element: <QuestionPage />,
     withAuthorization: false,
   },
   {
-    path: "result/:id",
-    element: <TargetGuest />,
+    path: ROUTER_PATHS.MYPAGE,
+    element: <Mypage />,
     withAuthorization: false,
   },
 ];
-
 export const routerInfo = [
   {
-    path: ROUTER_PATHS.ROOT,
+    path: '/',
+    element: <App />,
     errorElement: <NotFound />,
     children: routerChildrenInfo,
   },

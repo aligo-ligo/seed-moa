@@ -1,41 +1,38 @@
-import DatePicker from "react-datepicker";
-import { createDate, getDayName } from "../../../utils/formatDate";
-import { useFormContext } from "react-hook-form";
-import CalenderHeader from "./CalenderHeader";
+import DatePicker from 'react-datepicker';
+import { useFormContext } from 'react-hook-form';
 
-type Props = {
-	name: Date;
-};
+import { fromNowOfMaxDays, fromNowOfMinDays } from '@/utils/date';
+import { createDate, getDayName } from '../../../utils/formatDate';
+import CalenderHeader from './CalenderHeader';
 
-const DatePickerComponent = ({ name }: Props) => {
-	const { register, setValue } = useFormContext();
-	return (
-		<DatePicker
-			dateFormat={`yyyy년 MM월 dd일`}
-			className="placeholder:text-s w-full h-10 outline-none text-emerald-800 border-b-2 border-main"
-			{...register("endDate")}
-			selected={name}
-			onChange={(date) => setValue("endDate", date, { shouldValidate: true })}
-			placeholderText="날짜를 선택해주세요"
-			isClearable
-			withPortal
-			minDate={new Date()}
-			renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-				<CalenderHeader
-					date={date}
-					decreaseMonth={decreaseMonth}
-					increaseMonth={increaseMonth}
-				/>
-			)}
-			dayClassName={(date) =>
-				getDayName(createDate(date)) === "토"
-					? "saturday"
-					: getDayName(createDate(date)) === "일"
-					? "sunday"
-					: null
-			}
-		/>
-	);
+const DatePickerComponent = () => {
+  const { register, setValue, getValues } = useFormContext();
+  const endDateValue = getValues('endDate');
+  return (
+    <DatePicker
+      dateFormat={`yyyy년 MM월 dd일`}
+      className="flex-1 placeholder:text-gray-100 h-10 outline-none border-b w-full border-gray-200 bg-transparent"
+      {...register('endDate')}
+      selected={endDateValue}
+      onChange={(date) => setValue('endDate', date, { shouldValidate: true })}
+      placeholderText="클릭해서 날짜를 선택해보세요"
+      isClearable
+      withPortal
+      minDate={new Date(fromNowOfMinDays)}
+      maxDate={new Date(fromNowOfMaxDays)}
+      autoComplete="off"
+      renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
+        <CalenderHeader date={date} decreaseMonth={decreaseMonth} increaseMonth={increaseMonth} />
+      )}
+      dayClassName={(date) =>
+        getDayName(createDate(date)) === '토'
+          ? 'saturday'
+          : getDayName(createDate(date)) === '일'
+          ? 'sunday'
+          : null
+      }
+    />
+  );
 };
 
 export default DatePickerComponent;

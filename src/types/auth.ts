@@ -12,11 +12,9 @@ export type UserInfoType = {
 	nickNameValid: boolean;
 };
 
-
 export type AuthResponse = {
 	accessToken: string;
-	userLoginDTO: {
-		nickName: string;
-	};
+	refreshToken: string;
+	accessTokenValidTime: number
 };
 

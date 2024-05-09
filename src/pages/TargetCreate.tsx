@@ -1,93 +1,92 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
-import Duration from "../components/goal/Duration";
-import Goal from "../components/goal/Goal";
-import LastStep from "../components/goal/LastStep";
-import Step from "../components/goal/Step";
-import SubGoalRoutine from "../components/goal/SubGoalRoutine";
-import { TargetInfoType, TargetStepType } from "../types/TargetTypes";
+import { yupResolver } from '@hookform/resolvers/yup';
+import dayjs from 'dayjs';
+import { useCallback, useState } from 'react';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { InferType } from 'yup';
 
-import CreateBar from "../components/target/animationBars/CreateBar";
-import useToastList from "../hooks/useToastList";
+import ChevronLeft from '@/assets/icon/ChevronLeft';
+import Duration from '@/components/goal/Duration';
+import Seed from '@/components/goal/Seed';
+import ProgressBar from '@/components/target/animationBars/ProgressBar';
+import { seedSchema } from '@/constants/contants';
+import { steps } from '@/constants/step';
+import { TargetStepType } from '@/types/TargetTypes';
+import Routine from '../components/goal/Routine';
+import Step from '../components/goal/Step';
+import useCreateSeedMutation from '../hooks/api/target/useCreateTarget';
 
-import GobackToast from "../components/toast/GobackToast";
-import useCreateTarget from "../hooks/api/target/useCreateTarget";
-import { usePreventGoBack } from "../hooks/usePreventLeave";
+// 1.유효성 검사 버튼 트리거 되도록
+// 1. 유효성 yup 타입
+// 1. 달력 3일부터 30일까지만 색 보이도록 구현
 
-const targetSchema: yup.ObjectSchema<any> = yup.object({
-  goal: yup.string().required("목표를 입력해주세요"),
-  subGoal: yup.array().of(
-    yup.object().shape({
-      id: yup.string(),
-      value: yup.string().required("세부 목표를 작성해주세요"),
-    })
-  ),
-  routine: yup.array().of(
-    yup.object().shape({
-      id: yup.string(),
-      value: yup.string().required("세부 목표를 작성해주세요"),
-    })
-  ),
-  endDate: yup.string().required("목표 달성일을 지정해주세요"),
-});
+export type SeedValidationInferType = InferType<typeof seedSchema>;
 
 const TargetCreate = () => {
-  const { show } = useToastList();
-  // const targetService = useTarget();
-  const { mutate: createTarget } = useCreateTarget();
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
-  const [step, setStep] = useState<TargetStepType>("goal");
-  console.log(message);
+  const { submitSeed } = useCreateSeedMutation();
 
-  const methods = useForm<TargetInfoType>({
+  const [step, setStep] = useState<TargetStepType[number]>(steps[0]);
+  const currentIdx = steps.indexOf(step);
+
+  const hasPrev = currentIdx > 0;
+  const hasNext = currentIdx < steps.length - 1;
+
+  const toPrev = useCallback(() => {
+    if (!hasPrev) {
+      navigate(-1);
+    }
+    setStep(steps[currentIdx - 1]);
+  }, [currentIdx, hasPrev, navigate]);
+
+  const toNext = useCallback(() => {
+    if (!hasNext) {
+      return;
+    }
+
+    setStep(steps[currentIdx + 1]);
+  }, [currentIdx, hasNext]);
+
+  const methods = useForm<SeedValidationInferType>({
     defaultValues: {
-      subGoal: [{}, {}],
-      routine: [{}, {}],
+      seed: '',
+      routines: [{ value: '' }],
+      endDate: '',
     },
-    resolver: yupResolver(targetSchema),
+    resolver: yupResolver(seedSchema),
   });
 
-  const onSubmitHandler = (data: TargetInfoType) => {
-    createTarget(data, {
-      onSuccess: (res) => {
-        console.log("res", res);
-        show("createToast");
-        navigate("/target");
-      },
-      //TODO
-      //onError : () => {}
-    });
+  const onSubmitHandler: SubmitHandler<SeedValidationInferType> = (data) => {
+    const updateEndDateData = {
+      ...data,
+      endDate: dayjs(data.endDate).format('YYYY-MM-DD'),
+    };
+    submitSeed(updateEndDateData);
   };
 
-  usePreventGoBack();
-
   return (
-    <div className=" flex flex-col items-center h-screen px-6 pb-10 relative">
+    <div className="relative flex flex-col items-center w-full h-dvh px-6">
       <FormProvider {...methods}>
-        <form
-          onSubmit={methods.handleSubmit(onSubmitHandler)}
-          className="w-full relative"
-        >
-          <CreateBar step={step} />
-          <Step check={step === "goal"}>
-            <Goal setStep={setStep} />
+        <form onSubmit={methods.handleSubmit(onSubmitHandler)} className="relative w-full h-dvh">
+          <div
+            className="h-[68px] flex w-full items-center justify-between"
+            onClick={toPrev}
+            role="presentation"
+          >
+            <ChevronLeft width={20} height={20} color="white" />
+          </div>
+          <ProgressBar step={step} />
+          <Step check={step === 'seed'}>
+            <Seed toNext={toNext} />
           </Step>
-          <Step check={step === "subGoal"}>
-            <SubGoalRoutine setStep={setStep} />
+          <Step check={step === 'routines'}>
+            <Routine toNext={toNext} />
           </Step>
-          <Step check={step === "duration"}>
-            <Duration setStep={setStep} />
-          </Step>
-          <Step check={step === "lastStep"}>
-            <LastStep setStep={setStep} />
+          <Step check={step === 'duration'}>
+            <Duration />
           </Step>
         </form>
       </FormProvider>
-      <GobackToast />
     </div>
   );
 };

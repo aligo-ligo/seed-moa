@@ -1,141 +1,117 @@
-import { createPortal } from "react-dom";
-import { useNavigate, useParams } from "react-router-dom";
-import ModalContent from "../components/common/ModalContent";
-import StyledButton from "../components/common/StyledButton";
-import Header from "../components/target/Header";
-import usePopUp from "../hooks/usePopUp";
+import { useSuspenseQuery } from '@tanstack/react-query';
+import dayjs from 'dayjs';
+import { Suspense } from 'react';
+import { useParams } from 'react-router-dom';
 
-import Meta from "../components/common/Meta";
+import targetOptions from '@/api/target/queryOptions';
+import LinkIcon from '@/assets/icon/Link';
+import TrashIcon from '@/assets/icon/TrashIcon';
+import Button from '@/components/common/button/Button';
+import Header from '@/components/common/header/Header';
+import { Tag } from '@/components/common/tag';
+import { ToolTip } from '@/components/common/toolTip';
+import { Typography } from '@/components/common/typography/Typography';
+import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBox';
+import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
+import RainBackGround from '@/components/feature/detail/RainBackGround';
+import TaskList from '@/components/feature/detail/TaskList';
+import { detailSeedStateObj } from '@/components/target/TargetCard';
+import useBottomSheetState from '@/hooks/useBottomSheetState';
+import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
+import useToast from '@/hooks/useToast';
+import { shareLink } from '@/utils/share';
+
+type BottomSheetType = 'askDelete';
 
 const TargetDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const name = localStorage.getItem("userNickName");
+  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  const { mutate } = useDeleteSeedMutation();
+  const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
+  const totalRoutineCount =
+    dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
+  const toast = useToast();
 
-  const {
-    isModalOpen,
-    openModal,
-    closeModal,
-    outside,
-    buttonModalType,
-    changeModalType,
-  } = usePopUp();
-
-  // const votePercentage = calculatePercentage(
-  //   target?.successVote,
-  //   target?.voteTotal
-  // );
-
-  // const checkPointPercentage = calculatePercentage(
-  // 	target?.successCount,
-  // 	target?.subGoalTotal
-  // );
+  const handleCopyClipboard = () => {
+    try {
+      shareLink({ url: location.href });
+      toast({ message: 'LINK_COPIED' });
+    } catch (error) {
+      toast({ message: 'LINK_COPIED_FAIL' });
+    }
+  };
 
   return (
-    <div className="relative flex flex-col min-h-screen px-6 mb-10">
-      <Header name={name} />
-      {name && id && <Meta name={name} id={id} />}
+    <div className="relative flex flex-col items-center w-full h-dvh px-6 overflow-hidden">
+      <Suspense fallback={<></>}>
+        <Header>
+          <Header.Previous />
+          <button onClick={() => onOpenSheet('askDelete')}>
+            <TrashIcon width={32} color="#fff" />
+          </button>
+        </Header>
+      </Suspense>
 
-      <div>
-        <h1 className="font-semibold text-3xl text-center pointer-events-none">
-          {/* {target?.goal} */}
-        </h1>
-        <div className="flex flex-col gap-6 mt-10">
-          <div>
-            <div className="flex justify-between">
-              <p className="font-semibold text-xl pointer-events-none">
-                성취 그래프
-              </p>
+      <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
+        {seed.seed}
+      </Typography>
+
+      <div className="flex flex-col w-full h-full">
+        <div className=" h-[50%] flex flex-col justify-center items-center">
+          <div className="relative flex w-full justify-end">
+            <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
+            <div className="absolute w-full justify-end flex -top-14 -right-3">
+              <ObserverExitEvent>
+                <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+              </ObserverExitEvent>
             </div>
+          </div>
 
-            {/* <LineGraph
-              start={target?.startDate}
-              end={target?.endDate}
-              achieveDay={target?.achievementDate}
-            /> */}
-          </div>
-          <div>
-            <h2 className="font-semibold text-xl">체크 포인트</h2>
-            {/* {isLoading && (
-              <>
-                <SkeletonElement type="title" />
-                <SkeletonElement type="title" />
-              </>
-            )} */}
-
-            {/* {target?.subGoal?.map((subGoal, index) => {
-              return (
-                <Checkbox
-                  type="detail"
-                  key={index}
-                  value={subGoal.value}
-                  completedDate={subGoal.completedDate}
-                >
-                  {subGoal.value}
-                </Checkbox>
-              );
-            })} */}
-          </div>
-          <div>
-            <h2 className="font-semibold text-xl">루틴</h2>
-            {/* {isLoading && (
-              <>
-                <SkeletonElement type="title" />
-                <SkeletonElement type="title" />
-              </>
-            )}
-            {target?.routine.map((routine, index) => {
-              return (
-                <RoutineBox key={index} id={index}>
-                  {routine.value}
-                </RoutineBox>
-              );
-            })} */}
-          </div>
-          <div>
-            <div className="flex justify-between items-center">
-              <h2 className="font-semibold text-xl mb-8">성공 예측률 투표</h2>
-              {/* <p className="text-xs font-bold">{`${
-                target?.voteTotal || 0
-              }명 참여했어요`}</p> */}
-            </div>
-            {/* <ProgressBar completed={votePercentage} /> */}
-          </div>
+          <div>{detailSeedStateObj[seed.seedState]}</div>
         </div>
-
-        <div className="flex flex-col item-center justify-center gap-4 m-20">
-          <StyledButton
-            styleName="sharing"
-            type="button"
-            onClick={() => {
-              openModal();
-              changeModalType("sharing");
-            }}
-          >
-            공유
-          </StyledButton>
-
-          <StyledButton
-            styleName="result"
-            type="button"
-            onClick={() => {
-              navigate(`/result/${id}`);
-            }}
-          >
-            결과 페이지로 이동하기
-          </StyledButton>
-        </div>
-        {isModalOpen &&
-          createPortal(
-            <ModalContent
-              targetId={id}
-              buttonModalType={buttonModalType}
-              outside={outside}
-              closeModal={closeModal}
-            />,
-            document.body
-          )}
+        <TaskList tasks={seed.routineDetails} />
       </div>
+
+      <ConfirmBottomSheet
+        isOpen={openedSheet === 'askDelete'}
+        onClose={onCloseSheet}
+        title="씨앗을 삭제하시겠어요?"
+        description="씨앗을 삭제하면 되돌릴 수 없어요."
+        PrimaryButton={
+          <Button
+            width="full"
+            className="h-[52px]"
+            onClick={() => {
+              onCloseSheet();
+              mutate(Number(id));
+            }}
+          >
+            확인
+          </Button>
+        }
+        SecondaryButton={
+          <Button variant="secondary" width="full" onClick={() => onCloseSheet()}>
+            취소
+          </Button>
+        }
+      />
+
+      <div className="absolute bottom-5 text-xl w-full text-white">
+        <div className="flex flex-col justify-center items-center ">
+          <Typography type="heading3">키우고 있는 씨앗 공유하기</Typography>
+          <div className="flex size-[52px] justify-center gap-3 mt-3">
+            <Button
+              onClick={handleCopyClipboard}
+              width="full"
+              Icon={<LinkIcon width={20} height={20} />}
+              iconOnly
+              className="rounded-[100%] bg-gray-600"
+            />
+          </div>
+        </div>
+      </div>
+
+      <RainBackGround />
     </div>
   );
 };

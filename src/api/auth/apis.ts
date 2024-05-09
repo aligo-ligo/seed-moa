@@ -1,33 +1,34 @@
-import { baseInstance } from "@/libs/api";
-import { AuthResponse, UserInfoType } from "@/types/auth";
+import { API_PATHS } from "@/constants/routerPath";
+import STORAGE_KEYS from "@/constants/storageKeys";
+import { authInstance, baseInstance } from "@/libs/api";
+import { AuthResponse } from "@/types/auth";
 
 const authAPI = {
   /** 카카오 인가 코드 전송 후 로그인 토큰 받아오기 */
   postKakaoCode: async (code: string) => {
-    const { data } = await baseInstance.post<AuthResponse>(`/users/kakao?code=${code}`, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-      },
-    });
+    const { data } = await baseInstance.post<AuthResponse>(
+      API_PATHS.AUTH_LOGIN_KAKAO,
+      null,
+      {
+        params: {
+          code,
+        },
+      }
+    );
     return data;
   },
-  /** 일반 회원 가입 요청 */
-  postSignup: async ({ email, password, nickName }: UserInfoType) => {
-    const { data } = await baseInstance.post<AuthResponse>("/users/signup", {
-      email,
-      password,
-      nickName,
-    });
-    return data;
-  },
-  /** 일반 로그인 요청 */
-  postSignin: async ({ email, password }: UserInfoType) => {
-    const { data } = await baseInstance.post<AuthResponse>("/users/signin", {
-      email,
-      password,
-    });
-    return data;
-  },
+
+    /** 토큰 재발급 */
+    getReissue: async () => {
+      const { data } = await authInstance.get(API_PATHS.AUTH_REISSUE, {
+        headers: {
+          refreshToken: localStorage.getItem(STORAGE_KEYS.refreshToken),
+        },
+      });
+      return data;
+    },
+  
+
 };
 
 export default authAPI;

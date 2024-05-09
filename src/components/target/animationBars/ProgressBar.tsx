@@ -1,35 +1,22 @@
-type Props = {
-  completed: number | undefined;
+import { TargetStepType } from '@/types/TargetTypes';
+
+type ProgressbarProps = {
+  step: TargetStepType[number];
+};
+const getPercentFormStep: Record<string, string> = {
+  seed: `scale-x-[33%]`,
+  routines: `scale-x-[66%]`,
+  duration: `scale-x-100`,
 };
 
-const ProgressBar = ({ completed = 0 }: Props) => {
-  const zeroCompleted = completed === 0;
-  const isOverTwenty = completed > 25;
-  const forScaleIssueSolved = `${250 - completed}%`;
-
+const ProgressBar = ({ step }: ProgressbarProps) => {
   return (
-    <div className="h-8 w-full bg-[#e0e0de] rounded-md relative">
-      {zeroCompleted && (
+    <div className="sticky top-0overflow-x-hidden overflow-y-hidden z-10 w-full">
+      <div className="h-2 w-full bg-gray-50 rounded-md relative">
         <div
-          className={`w-full h-full p-1 text-black flex justify-center items-center text-xs relative font-semibold`}
-        >
-          <p>0%</p>
-        </div>
-      )}
-
-      <span
-        className={`w-full h-full bg-main rounded-md flex justify-center items-center text-xs font-semibold origin-left transition-transform duration-300 `}
-        style={{ transform: `scaleX(${completed}%)` }}
-      >
-        {isOverTwenty && (
-          <div
-            className={`${isOverTwenty && "text-white"}`}
-            style={{ transform: `scaleX(${forScaleIssueSolved})` }}
-          >
-            {`${completed}%`}
-          </div>
-        )}
-      </span>
+          className={`h-full bg-main rounded-md text-xs ${getPercentFormStep[step]} origin-left transition-transform duration-300`}
+        ></div>
+      </div>
     </div>
   );
 };

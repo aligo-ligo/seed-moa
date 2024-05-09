@@ -1,12 +1,14 @@
 
+import { API_PATHS } from "@/constants/routerPath";
 import { baseInstance } from "@/libs/api";
-import { UserStatusType } from "@/types/GuestType";
+import { UserStatusType } from "@/types/user/type";
+
 
 
 const commonAPI = {
-  /** 사용한 유저와 만들어진 타켓 수 요청 */
+  /** 사용한 유저와 만들어진 씨앗 수 요청 */
   getUserStatus: async () => {
-    const { data } = await baseInstance.get<UserStatusType>("/");
+    const { data } = await baseInstance.get<UserStatusType>(API_PATHS.USER_INFO);
     return data;
   },
 };
