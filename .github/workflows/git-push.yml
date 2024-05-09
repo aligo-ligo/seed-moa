@@ -2,7 +2,7 @@ name: deploy to vercel by pushing git into another repo
 
 on:
   push:
-    branches: [develop]
+    branches: [main]
 
 jobs:
   build:
