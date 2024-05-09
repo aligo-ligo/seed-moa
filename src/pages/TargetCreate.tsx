@@ -14,7 +14,6 @@ import { steps } from '@/constants/step';
 import { TargetStepType } from '@/types/TargetTypes';
 import Routine from '../components/goal/Routine';
 import Step from '../components/goal/Step';
-import GobackToast from '../components/toast/GobackToast';
 import useCreateSeedMutation from '../hooks/api/target/useCreateTarget';
 
 // 1.유효성 검사 버튼 트리거 되도록
@@ -88,7 +87,6 @@ const TargetCreate = () => {
           </Step>
         </form>
       </FormProvider>
-      <GobackToast />
     </div>
   );
 };

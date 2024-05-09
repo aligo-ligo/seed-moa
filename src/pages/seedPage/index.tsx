@@ -7,7 +7,6 @@ import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import TargetList from '@/components/target/TargetList';
-import CreateToast from '@/components/toast/CreateToast';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const TargetPage = () => {
@@ -39,7 +38,6 @@ const TargetPage = () => {
           className="size-[56px] w-xl rounded-[100%] bg-main"
         />
       </div>
-      <CreateToast />
     </div>
   );
 };

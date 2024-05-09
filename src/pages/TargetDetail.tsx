@@ -18,6 +18,7 @@ import TaskList from '@/components/feature/detail/TaskList';
 import { detailSeedStateObj } from '@/components/target/TargetCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
+import useToast from '@/hooks/useToast';
 import { shareLink } from '@/utils/share';
 
 type BottomSheetType = 'askDelete';
@@ -29,9 +30,15 @@ const TargetDetail = () => {
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
   const totalRoutineCount =
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
+  const toast = useToast();
 
   const handleCopyClipboard = () => {
-    shareLink({ url: location.href });
+    try {
+      shareLink({ url: location.href });
+      toast({ message: 'LINK_COPIED' });
+    } catch (error) {
+      toast({ message: 'LINK_COPIED_FAIL' });
+    }
   };
 
   return (
@@ -75,7 +82,6 @@ const TargetDetail = () => {
             width="full"
             className="h-[52px]"
             onClick={() => {
-              console.log('click after');
               onCloseSheet();
               mutate(Number(id));
             }}
