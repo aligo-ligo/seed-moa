@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import targetOptions from '@/api/target/queryOptions';
-import Kakaotalk from '@/assets/icon/Kakaotalk';
 import LinkIcon from '@/assets/icon/Link';
 import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
@@ -19,6 +18,7 @@ import TaskList from '@/components/feature/detail/TaskList';
 import { detailSeedStateObj } from '@/components/target/TargetCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
+import { shareLink } from '@/utils/share';
 
 type BottomSheetType = 'askDelete';
 
@@ -27,9 +27,12 @@ const TargetDetail = () => {
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
   const { mutate } = useDeleteSeedMutation();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
-  const isFirstVisited = seed.completedRoutineCount === 0;
   const totalRoutineCount =
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
+
+  const handleCopyClipboard = () => {
+    shareLink({ url: location.href });
+  };
 
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6 overflow-hidden">
@@ -87,22 +90,16 @@ const TargetDetail = () => {
         }
       />
 
-      <div className="absolute bottom-5 text-xl w-full text-white ">
-        <div className="flex flex-col justify-center items-center">
+      <div className="absolute bottom-5 text-xl w-full text-white">
+        <div className="flex flex-col justify-center items-center ">
           <Typography type="heading3">키우고 있는 씨앗 공유하기</Typography>
-          <div className="flex w-[110px] h-[52px] justify-center gap-3">
+          <div className="flex size-[52px] justify-center gap-3 mt-3">
             <Button
+              onClick={handleCopyClipboard}
               width="full"
               Icon={<LinkIcon width={20} height={20} />}
               iconOnly
               className="rounded-[100%] bg-gray-600"
-            />
-            <Button
-              // onClick={handleSendMessage}
-              width="full"
-              Icon={<Kakaotalk width={20} height={20} color="black" />}
-              iconOnly
-              className="rounded-[100%] bg-[#FEE500]"
             />
           </div>
         </div>
