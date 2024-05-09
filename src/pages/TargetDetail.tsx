@@ -12,8 +12,10 @@ import Header from '@/components/common/header/Header';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
+import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBox';
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import TaskList from '@/components/feature/detail/TaskList';
+import Timer from '@/components/feature/detail/timer/Timer';
 import { seedStateObj } from '@/components/target/TargetCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
@@ -51,7 +53,11 @@ const TargetDetail = () => {
             <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
             {!isFirstVisited && (
               <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+                <Timer delay={3} mountKey="tooltip">
+                  <ObserverExitEvent>
+                    <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+                  </ObserverExitEvent>
+                </Timer>
               </div>
             )}
           </div>
