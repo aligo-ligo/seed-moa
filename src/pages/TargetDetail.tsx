@@ -50,13 +50,11 @@ const TargetDetail = () => {
         <div className=" h-[50%] flex flex-col justify-center items-center">
           <div className="relative flex w-full justify-end">
             <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
-            {!isFirstVisited && (
-              <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <ObserverExitEvent>
-                  <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
-                </ObserverExitEvent>
-              </div>
-            )}
+            <div className="absolute w-full justify-end flex -top-14 -right-3">
+              <ObserverExitEvent>
+                <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+              </ObserverExitEvent>
+            </div>
           </div>
 
           <div>{detailSeedStateObj[seed.seedState]}</div>
