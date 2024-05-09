@@ -11,7 +11,6 @@ import STORAGE_KEYS from '@/constants/storageKeys';
 const KakaoLoginPage = () => {
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code') as string;
-  console.log(code);
 
   const { mutateAsync } = useMutation({ mutationFn: authAPI.postKakaoCode });
   const navigate = useNavigate();

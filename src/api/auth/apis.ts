@@ -15,8 +15,6 @@ const authAPI = {
         },
       }
     );
-
-    console.log('data',data)
     return data;
   },
 

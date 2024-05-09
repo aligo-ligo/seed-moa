@@ -53,7 +53,6 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
     if (!completedRoutineToday) {
       toggleMusicPlaying();
       onClose();
-      toast({ message: 'SEED_ROUTINE_STATE_SUCCESS' });
       setTimeout(() => {
         toggleMusicPlaying();
         onClose();

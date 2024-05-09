@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import targetAPI from '@/api/target/apis';
 import targetOptions from '@/api/target/queryOptions';
+import useToast from './useToast';
 
 const useRoutineMutation = (seedId: number) => {
-  console.log('seedId', seedId);
   const queryClient = useQueryClient();
-  // const { show } = useToastList();
+  const toast = useToast();
 
   const { mutate: checkRotine } = useMutation({
     mutationFn: targetAPI.patchRoutineDone,
@@ -15,10 +15,10 @@ const useRoutineMutation = (seedId: number) => {
         queryKey: targetOptions.detailTarget(seedId).queryKey,
         refetchType: 'all',
       });
+      toast({ message: 'SEED_ROUTINE_STATE_SUCCESS' });
     },
     onError: () => {
-      //TODO: 에러 구현 토스트 UI
-      console.error('error');
+      toast({ message: 'SEED_ROUTINE_STATE_FAIL' });
     },
   });
   return { checkRotine };

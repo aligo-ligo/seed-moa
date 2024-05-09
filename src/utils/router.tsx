@@ -1,7 +1,6 @@
 import App from '@/App';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 import { RoutineProvider } from '@/context/RoutineContext';
-import Auth from '@/pages/Auth';
 import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
 import NotFound from '@/pages/NotFound';
@@ -14,16 +13,6 @@ export const routerChildrenInfo = [
   {
     index: true,
     element: <LandingPage />,
-    withAuthorization: false,
-  },
-  {
-    path: ROUTER_PATHS.SIGNIN,
-    element: <Auth />,
-    withAuthorization: false,
-  },
-  {
-    path: ROUTER_PATHS.SIGNUP,
-    element: <Auth />,
     withAuthorization: false,
   },
   {
