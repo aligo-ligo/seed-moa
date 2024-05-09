@@ -62,8 +62,7 @@ const TargetCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedT
 
 export default TargetCard;
 
-//어떻게 처리할지 고민해보자
-
+//TODO : 어떻게 처리할지 고민해보자
 export const seedStateObj: Record<string, JSX.Element> = {
   SEED: <SeedStage />,
   STEM: <StemStage />,
