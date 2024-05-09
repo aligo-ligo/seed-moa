@@ -34,7 +34,7 @@ const TargetDetail = () => {
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
 
   return (
-    <div className="relative flex flex-col items-center w-full h-dvh px-6">
+    <div className="relative flex flex-col items-center w-full h-dvh px-6 overflow-hidden">
       <Suspense fallback={<></>}>
         <Header>
           <Header.Previous />
@@ -54,7 +54,7 @@ const TargetDetail = () => {
             <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
             {!isFirstVisited && (
               <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <Timer delay={DELAY_SECOND} mountKey="tooltip">
+                <Timer delay={DELAY_SECOND}>
                   <ObserverExitEvent>
                     <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
                   </ObserverExitEvent>
@@ -112,7 +112,10 @@ const TargetDetail = () => {
           </div>
         </div>
       </div>
-      <RainBackGround />
+
+      <Timer delay={DELAY_SECOND}>
+        <RainBackGround />
+      </Timer>
     </div>
   );
 };

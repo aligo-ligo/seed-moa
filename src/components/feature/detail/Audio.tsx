@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import useUpdateEffect from '@/hooks/useUpdateEffect';
 import useMusicStore from '@/store/useMusicStore';
@@ -35,34 +35,17 @@ const Audio = ({ src }: AudioProps) => {
   //   }, fadeOutInterval);
   // };
 
-  /** 최초 렌더링시 아무 곳이나 마우스로 상호작용하면 음악 On/Off 처리 */
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.2;
-    }
-
-    const handleMouseUp = () => {
-      if (audioRef.current && isPlaying) {
-        audioRef.current.play();
-        window.removeEventListener('mouseup', handleMouseUp);
-      }
-    };
-
-    window.addEventListener('mouseup', handleMouseUp);
-    return () => window.removeEventListener('mouseup', handleMouseUp);
-  }, []);
-
   /** isPlaying 변경시 음악 On/Off 처리 */
   useUpdateEffect(() => {
     if (!audioRef.current) {
       return;
     }
+    audioRef.current.volume = 0.2;
 
     if (isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
-      // fadeOut();
     }
   }, [isPlaying]);
 
