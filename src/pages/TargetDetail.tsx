@@ -14,6 +14,7 @@ import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
 import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBox';
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
+import RainBackGround from '@/components/feature/detail/RainBackGround';
 import TaskList from '@/components/feature/detail/TaskList';
 import Timer from '@/components/feature/detail/timer/Timer';
 import { seedStateObj } from '@/components/target/TargetCard';
@@ -111,6 +112,7 @@ const TargetDetail = () => {
           </div>
         </div>
       </div>
+      <RainBackGround />
     </div>
   );
 };
