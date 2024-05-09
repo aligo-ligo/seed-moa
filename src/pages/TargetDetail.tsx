@@ -90,15 +90,16 @@ const TargetDetail = () => {
       <div className="absolute bottom-5 text-xl w-full text-white ">
         <div className="flex flex-col justify-center items-center">
           <Typography type="heading3">키우고 있는 씨앗 공유하기</Typography>
-          <div className="flex w-full h-[52px] justify-center gap-3">
+          <div className="flex w-[110px] h-[52px] justify-center gap-3">
             <Button
-              width="fit"
+              width="full"
               Icon={<LinkIcon width={20} height={20} />}
               iconOnly
               className="rounded-[100%] bg-gray-600"
             />
             <Button
               // onClick={handleSendMessage}
+              width="full"
               Icon={<Kakaotalk width={20} height={20} color="black" />}
               iconOnly
               className="rounded-[100%] bg-[#FEE500]"
