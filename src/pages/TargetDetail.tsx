@@ -12,7 +12,9 @@ import Header from '@/components/common/header/Header';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
+import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBox';
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
+import RainBackGround from '@/components/feature/detail/RainBackGround';
 import TaskList from '@/components/feature/detail/TaskList';
 import { seedStateObj } from '@/components/target/TargetCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
@@ -21,7 +23,6 @@ import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 type BottomSheetType = 'askDelete';
 
 const TargetDetail = () => {
-  console.log('렌더링됨.');
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
   const { mutate } = useDeleteSeedMutation();
@@ -31,7 +32,7 @@ const TargetDetail = () => {
     dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
 
   return (
-    <div className="relative flex flex-col items-center w-full h-dvh px-6">
+    <div className="relative flex flex-col items-center w-full h-dvh px-6 overflow-hidden">
       <Suspense fallback={<></>}>
         <Header>
           <Header.Previous />
@@ -46,12 +47,14 @@ const TargetDetail = () => {
       </Typography>
 
       <div className="flex flex-col w-full h-full">
-        <div className=" h-[40%] flex flex-col justify-center items-center">
+        <div className=" h-[50%] flex flex-col justify-center items-center">
           <div className="relative flex w-full justify-end">
             <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
             {!isFirstVisited && (
               <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+                <ObserverExitEvent>
+                  <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+                </ObserverExitEvent>
               </div>
             )}
           </div>
@@ -105,6 +108,8 @@ const TargetDetail = () => {
           </div>
         </div>
       </div>
+
+      <RainBackGround />
     </div>
   );
 };
