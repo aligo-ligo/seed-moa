@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import dayjs from 'dayjs';
 import { useCallback, useState } from 'react';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { InferType } from 'yup';
 
@@ -14,7 +13,6 @@ import { steps } from '@/constants/step';
 import { TargetStepType } from '@/types/TargetTypes';
 import Routine from '../components/goal/Routine';
 import Step from '../components/goal/Step';
-import useCreateSeedMutation from '../hooks/api/target/useCreateTarget';
 
 // 1.유효성 검사 버튼 트리거 되도록
 // 1. 유효성 yup 타입
@@ -24,7 +22,6 @@ export type SeedValidationInferType = InferType<typeof seedSchema>;
 
 const TargetCreate = () => {
   const navigate = useNavigate();
-  const { submitSeed } = useCreateSeedMutation();
 
   const [step, setStep] = useState<TargetStepType[number]>(steps[0]);
   const currentIdx = steps.indexOf(step);
@@ -56,25 +53,13 @@ const TargetCreate = () => {
     resolver: yupResolver(seedSchema),
   });
 
-  const onSubmitHandler: SubmitHandler<SeedValidationInferType> = (data) => {
-    const updateEndDateData = {
-      ...data,
-      endDate: dayjs(data.endDate).format('YYYY-MM-DD'),
-    };
-    submitSeed(updateEndDateData);
-  };
-
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6">
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmitHandler)} className="relative w-full h-dvh">
-          <div
-            className="h-[68px] flex w-full items-center justify-between"
-            onClick={toPrev}
-            role="presentation"
-          >
+        <section className="relative w-full h-dvh">
+          <header className="h-[68px] flex w-full items-center justify-between" onClick={toPrev}>
             <ChevronLeft width={20} height={20} color="white" />
-          </div>
+          </header>
           <ProgressBar step={step} />
           <Step check={step === 'seed'}>
             <Seed toNext={toNext} />
@@ -85,7 +70,7 @@ const TargetCreate = () => {
           <Step check={step === 'duration'}>
             <Duration />
           </Step>
-        </form>
+        </section>
       </FormProvider>
     </div>
   );
