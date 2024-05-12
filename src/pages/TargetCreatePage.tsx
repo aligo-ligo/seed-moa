@@ -20,7 +20,7 @@ import Step from '../components/goal/Step';
 
 export type SeedValidationInferType = InferType<typeof seedSchema>;
 
-const TargetCreate = () => {
+const TargetCreatePage = () => {
   const navigate = useNavigate();
 
   const [step, setStep] = useState<TargetStepType[number]>(steps[0]);
@@ -76,4 +76,4 @@ const TargetCreate = () => {
   );
 };
 
-export default TargetCreate;
+export default TargetCreatePage;

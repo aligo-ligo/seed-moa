@@ -23,7 +23,7 @@ import { shareLink } from '@/utils/share';
 
 type BottomSheetType = 'askDelete';
 
-const TargetDetail = () => {
+const TargetDetailPage = () => {
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
   const { mutate } = useDeleteSeedMutation();
@@ -116,4 +116,4 @@ const TargetDetail = () => {
   );
 };
 
-export default TargetDetail;
+export default TargetDetailPage;

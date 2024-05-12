@@ -3,11 +3,11 @@ import { ROUTER_PATHS } from '@/constants/routerPath';
 import { RoutineProvider } from '@/context/RoutineContext';
 import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
-import NotFound from '@/pages/NotFound';
+import NotFoundPage from '@/pages/NotFoundPage';
 import TargetPage from '@/pages/seedPage';
-import { default as Mypage, default as QuestionPage } from '../pages/Mypage';
-import TargetCreate from '../pages/TargetCreate';
-import TargetDetail from '../pages/TargetDetail';
+import { default as Mypage } from '../pages/Mypage';
+import TargetCreatePage from '../pages/TargetCreatePage';
+import TargetDetailPage from '../pages/TargetDetailPage';
 
 export const routerChildrenInfo = [
   {
@@ -26,23 +26,18 @@ export const routerChildrenInfo = [
     withAuthorization: true,
   },
   {
-    path: 'target/:id',
+    path: ROUTER_PATHS.TAGET_DETAIL,
     element: (
       <RoutineProvider>
-        <TargetDetail />
+        <TargetDetailPage />
       </RoutineProvider>
     ),
     withAuthorization: true,
   },
   {
     path: ROUTER_PATHS.CREATE_TARGET,
-    element: <TargetCreate />,
+    element: <TargetCreatePage />,
     withAuthorization: true,
-  },
-  {
-    path: 'faq',
-    element: <QuestionPage />,
-    withAuthorization: false,
   },
   {
     path: ROUTER_PATHS.MYPAGE,
@@ -54,7 +49,7 @@ export const routerInfo = [
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFound />,
+    errorElement: <NotFoundPage />,
     children: routerChildrenInfo,
   },
 ];
