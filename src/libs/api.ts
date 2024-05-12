@@ -34,6 +34,8 @@ authInstance.interceptors.response.use(
   async (error) => {
     const { config } = error;
     if (isAxiosError(error)) {
+      // TODO : 백엔드와 메세지 통일되면 처리 필요
+      window.location.href = '/';
       switch (error.response?.data) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();

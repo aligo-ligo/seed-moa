@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
 import useCreateSeedMutation from '@/hooks/api/target/useCreateTarget';
-import { SeedValidationInferType } from '@/pages/TargetCreate';
+import { SeedValidationInferType } from '@/pages/TargetCreatePage';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DURATION_DESCRIPTION, DURATION_TITLE } from '../../constants/target';
 import Validation from '../auth/Validation';
