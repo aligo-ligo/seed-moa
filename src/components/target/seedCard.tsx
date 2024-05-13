@@ -8,24 +8,33 @@ import TreeStage from '@/assets/icon/TreeStage';
 import FruitsDetailStage from '@/assets/images/FruitsDetailStage';
 import StemDetailStage from '@/assets/images/StemDetailStage';
 import TreeDetailStage from '@/assets/images/TreeDetailStage';
+import { cn } from '@/libs/core';
 import { PreviewSeedType } from '@/types/target/type';
 import { fromNowOf } from '@/utils/fromNowOf';
 import { Tag } from '../common/tag';
 import { Typography } from '../common/typography/Typography';
 
-const TargetCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedType) => {
+const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedType) => {
+  console.log('endDate', endDate);
   const navigate = useNavigate();
+  const isInDuration = dayjs(endDate).isAfter();
 
   //TODO : startDate으로 정렬 구현!
-  //TODO : TargetCard 컴포넌트 컴파운드로 추후 리팩터링
+  //TODO : SeedCard 컴포넌트 컴파운드로 추후 리팩터링
   return (
     <li
-      className="flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10"
+      className={cn(
+        `flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10`,
+        `${!isInDuration && 'bg-[#EBF0FF]'}`,
+      )}
       onClick={() => navigate(`/target/${id}`)}
     >
       {/* CARD HEADER */}
       <div className="w-full flex justify-between">
-        <Tag>{dayjs(endDate).isAfter() ? '진행중' : '종료'}</Tag>
+        <Tag variant={isInDuration ? 'primary' : 'secondary'}>
+          {isInDuration ? '진행중' : '종료'}
+        </Tag>
+
         <Typography type="section1" className="text-gray-500">
           {fromNowOf(dayjs(endDate).endOf('day'))}
         </Typography>
@@ -60,7 +69,7 @@ const TargetCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedT
   );
 };
 
-export default TargetCard;
+export default SeedCard;
 
 //TODO : 어떻게 처리할지 고민해보자
 export const seedStateObj: Record<string, JSX.Element> = {

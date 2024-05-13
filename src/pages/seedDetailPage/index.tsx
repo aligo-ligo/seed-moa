@@ -16,7 +16,7 @@ import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBo
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import RainBackGround from '@/components/feature/detail/RainBackGround';
 import TaskList from '@/components/feature/detail/TaskList';
-import { detailSeedStateObj } from '@/components/target/TargetCard';
+import { detailSeedStateObj } from '@/components/target/seedCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';

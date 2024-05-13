@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 
 import useGetPaginatedTarget from '@/hooks/useGetPaginatedTarget';
 import { Spinner } from '../common/spinner/Spinner';
-import TargetCard from './TargetCard';
+import SeedCard from './\bseedCard';
 import TargetEmptyCard from './TargetEmptyCard';
 
-const TargetList = () => {
+const SeedList = () => {
   const { data: seeds, fetchNextPage, status, isLoading } = useGetPaginatedTarget();
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +28,7 @@ const TargetList = () => {
     <ul className="flex flex-col gap-6">
       {status === 'success' &&
         seeds.map((seed) => {
-          return <TargetCard key={seed.id} {...seed} />;
+          return <SeedCard key={seed.id} {...seed} />;
         })}
 
       {seeds?.length === 0 && <TargetEmptyCard />}
@@ -40,4 +40,4 @@ const TargetList = () => {
   );
 };
 
-export default TargetList;
+export default SeedList;

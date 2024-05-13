@@ -6,7 +6,7 @@ import Profile from '@/assets/icon/Profile';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
-import TargetList from '@/components/target/TargetList';
+import SeedList from '@/components/target/seedList';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const TargetPage = () => {
@@ -27,7 +27,7 @@ const TargetPage = () => {
           <Typography type="heading1">땅에 씨앗을 심고</Typography>
           <Typography type="heading1">열매를 맺어봐요</Typography>
         </h1>
-        <TargetList />
+        <SeedList />
       </div>
       <div className="sticky bottom-5 z-20 flex flex-col items-end pr-3xs">
         <Button
