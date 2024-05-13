@@ -4,10 +4,10 @@ import { RoutineProvider } from '@/context/RoutineContext';
 import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import SeedDetailPage from '@/pages/seedDetailPage';
 import TargetPage from '@/pages/seedPage';
 import { default as Mypage } from '../pages/Mypage';
 import TargetCreatePage from '../pages/TargetCreatePage';
-import TargetDetailPage from '../pages/TargetDetailPage';
 
 export const routerChildrenInfo = [
   {
@@ -29,7 +29,7 @@ export const routerChildrenInfo = [
     path: ROUTER_PATHS.TAGET_DETAIL,
     element: (
       <RoutineProvider>
-        <TargetDetailPage />
+        <SeedDetailPage />
       </RoutineProvider>
     ),
     withAuthorization: true,
