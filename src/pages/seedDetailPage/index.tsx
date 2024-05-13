@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { Suspense } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Suspense, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import targetOptions from '@/api/target/queryOptions';
 import LinkIcon from '@/assets/icon/Link';
@@ -26,12 +26,14 @@ type BottomSheetType = 'askDelete';
 
 const SeedDetailPage = () => {
   const { id } = useParams();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const navigate = useNavigate();
   const locations = useLocation();
   const searchParams = new URLSearchParams(locations.search);
   const shareValue = searchParams.get('share');
   const isShared = typeof shareValue === 'string' ? true : false;
 
-  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id), !isDeleted));
   const { mutate } = useDeleteSeedMutation();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
   const totalRoutineCount =
@@ -99,8 +101,10 @@ const SeedDetailPage = () => {
             width="full"
             className="h-[52px]"
             onClick={() => {
-              onCloseSheet();
+              // 선 씨앗 체크 API
               mutate(Number(id));
+              setIsDeleted(true);
+              navigate('/target');
             }}
           >
             확인
