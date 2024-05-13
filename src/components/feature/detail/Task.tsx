@@ -18,9 +18,16 @@ interface TaskProps {
   routineId: number;
   completedRoutineToday: boolean;
   onDoneClick: VoidFunction;
+  isShared: boolean;
 }
 
-const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: TaskProps) => {
+const Task = ({
+  routineTitle,
+  routineId,
+  completedRoutineToday,
+  onDoneClick,
+  isShared,
+}: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
   const { onClose } = useRoutineContext();
 
@@ -61,7 +68,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
 
   return (
     <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-      <button onClick={handleRoutineClick} className="w-[24px] h-[24px]">
+      <button onClick={handleRoutineClick} className="w-[24px] h-[24px]" disabled={isShared}>
         <CheckIcon width={24} height={24} />
       </button>
 
@@ -81,7 +88,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onDoneClick }: T
             {routineTitle}
           </Typography>
           {!completedRoutineToday && (
-            <button onClick={() => setIsEditing(true)}>
+            <button onClick={() => setIsEditing(true)} disabled={isShared}>
               <EllipsisVerticalIcon width={20} />
             </button>
           )}

@@ -1,10 +1,11 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { Suspense } from 'react';
-import { useParams } from 'react-router-dom';
+import { Suspense, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import targetOptions from '@/api/target/queryOptions';
 import LinkIcon from '@/assets/icon/Link';
+import Profile from '@/assets/icon/Profile';
 import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
@@ -23,9 +24,16 @@ import { shareLink } from '@/utils/share';
 
 type BottomSheetType = 'askDelete';
 
-const TargetDetailPage = () => {
+const SeedDetailPage = () => {
   const { id } = useParams();
-  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id)));
+  const [isDeleted, setIsDeleted] = useState(false);
+  const navigate = useNavigate();
+  const locations = useLocation();
+  const searchParams = new URLSearchParams(locations.search);
+  const shareValue = searchParams.get('share');
+  const isShared = typeof shareValue === 'string' ? true : false;
+
+  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id), !isDeleted));
   const { mutate } = useDeleteSeedMutation();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
   const totalRoutineCount =
@@ -34,7 +42,7 @@ const TargetDetailPage = () => {
 
   const handleCopyClipboard = () => {
     try {
-      shareLink({ url: location.href });
+      shareLink({ url: `${location.href}?share=true` });
       toast({ message: 'LINK_COPIED' });
     } catch (error) {
       toast({ message: 'LINK_COPIED_FAIL' });
@@ -45,10 +53,21 @@ const TargetDetailPage = () => {
     <div className="relative flex flex-col items-center w-full h-dvh px-6 overflow-hidden">
       <Suspense fallback={<></>}>
         <Header>
-          <Header.Previous />
-          <button onClick={() => onOpenSheet('askDelete')}>
-            <TrashIcon width={32} color="#fff" />
-          </button>
+          {isShared ? (
+            <Header>
+              <Header.Logo />
+              <Link to={'/'}>
+                <Profile width={32} />
+              </Link>
+            </Header>
+          ) : (
+            <>
+              <Header.Previous />
+              <button onClick={() => onOpenSheet('askDelete')}>
+                <TrashIcon width={32} color="#fff" />
+              </button>
+            </>
+          )}
         </Header>
       </Suspense>
 
@@ -69,7 +88,7 @@ const TargetDetailPage = () => {
 
           <div>{detailSeedStateObj[seed.seedState]}</div>
         </div>
-        <TaskList tasks={seed.routineDetails} />
+        <TaskList tasks={seed.routineDetails} isShared={isShared} />
       </div>
 
       <ConfirmBottomSheet
@@ -82,8 +101,10 @@ const TargetDetailPage = () => {
             width="full"
             className="h-[52px]"
             onClick={() => {
-              onCloseSheet();
+              // 선 씨앗 체크 API
               mutate(Number(id));
+              setIsDeleted(true);
+              navigate('/target');
             }}
           >
             확인
@@ -96,24 +117,26 @@ const TargetDetailPage = () => {
         }
       />
 
-      <div className="absolute bottom-5 text-xl w-full text-white">
-        <div className="flex flex-col justify-center items-center ">
-          <Typography type="heading3">키우고 있는 씨앗 공유하기</Typography>
-          <div className="flex size-[52px] justify-center gap-3 mt-3">
-            <Button
-              onClick={handleCopyClipboard}
-              width="full"
-              Icon={<LinkIcon width={20} height={20} />}
-              iconOnly
-              className="rounded-[100%] bg-gray-600"
-            />
+      {!isShared && (
+        <div className="absolute bottom-5 text-xl w-full text-white">
+          <div className="flex flex-col justify-center items-center ">
+            <Typography type="heading3">키우고 있는 씨앗 공유하기</Typography>
+            <div className="flex size-[52px] justify-center gap-3 mt-3">
+              <Button
+                onClick={handleCopyClipboard}
+                width="full"
+                Icon={<LinkIcon width={20} height={20} />}
+                iconOnly
+                className="rounded-[100%] bg-gray-600"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <RainBackGround />
     </div>
   );
 };
 
-export default TargetDetailPage;
+export default SeedDetailPage;

@@ -35,7 +35,6 @@ authInstance.interceptors.response.use(
     const { config } = error;
     if (isAxiosError(error)) {
       // TODO : 백엔드와 메세지 통일되면 처리 필요
-      window.location.href = '/';
       switch (error.response?.data) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
@@ -52,6 +51,7 @@ authInstance.interceptors.response.use(
         case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
           localStorage.removeItem(STORAGE_KEYS.refreshToken);
+          window.location.href = '/';
           break;
         }
         default:
