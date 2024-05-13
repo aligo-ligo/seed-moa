@@ -11,7 +11,6 @@ type TaskListProps = {
 
 const TaskList = ({ tasks, isShared }: TaskListProps) => {
   const { id } = useParams();
-  console.log('isShared in list', isShared);
   const { checkRotine } = useRoutineMutation(Number(id));
 
   return (

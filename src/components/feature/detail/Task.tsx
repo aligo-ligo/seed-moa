@@ -30,7 +30,6 @@ const Task = ({
 }: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
   const { onClose } = useRoutineContext();
-  console.log('isShared', isShared);
 
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
