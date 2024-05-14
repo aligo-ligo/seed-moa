@@ -1,2 +1,2 @@
-export const MIN_DATE = 1;
-export const MAX_DATE = 30
+export const MIN_DATE = 3;
+export const MAX_DATE = 30;

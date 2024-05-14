@@ -7,3 +7,6 @@ export const fromNowOfMinDays = new Date(currentDate).setDate(currentDate.getDat
 export const fromNowOfMaxDays = new Date(currentDate).setDate(currentDate.getDate() + MAX_DATE);
 
 export const checkActiveDuration = (endDate: string): boolean => dayjs(endDate).isAfter();
+
+
+export const getKrDateName =  (date: Date) => dayjs(date).format('dddd')
