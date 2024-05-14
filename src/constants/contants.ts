@@ -29,3 +29,5 @@ export const seedSchema = yup.object({
   endDate: yup.string().required('목표 달성일을 지정해주세요'),
 });
 
+
+export const FUNNEL_LIST = ['seed','routines','duration'] as const
