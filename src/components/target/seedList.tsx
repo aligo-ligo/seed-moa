@@ -1,41 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { Suspense } from 'react';
 
-import useGetPaginatedTarget from '@/hooks/useGetPaginatedTarget';
+import { PreviewSeedType } from '@/types/target/type';
+import { checkActiveDuration } from '@/utils/date';
 import { Spinner } from '../common/spinner/Spinner';
 import SeedCard from './\bseedCard';
 import TargetEmptyCard from './TargetEmptyCard';
 
-const SeedList = () => {
-  const { data: seeds, fetchNextPage, status, isLoading } = useGetPaginatedTarget();
-  const lastTargetElementRef = useRef<HTMLDivElement>(null);
-
-  //TODO : 컴포넌트로 분리할 수 있지 않을까?!
-  useEffect(() => {
-    if (!lastTargetElementRef.current) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          fetchNextPage();
-        }
-      });
-    });
-
-    io.observe(lastTargetElementRef.current);
-    return () => io.disconnect();
-  }, [fetchNextPage, seeds]);
-
+// TODO : isEndDUration은 확장성을 고려하여 boolean보다 Constant Literal이 좋을 듯
+const SeedList = ({ isActive, seeds }: { isActive: boolean; seeds: PreviewSeedType[] }) => {
   return (
-    <ul className="flex flex-col gap-6">
-      {status === 'success' &&
-        seeds.map((seed) => {
-          return <SeedCard key={seed.id} {...seed} />;
-        })}
-
-      {seeds?.length === 0 && <TargetEmptyCard />}
-
-      <div className="flex justify-center mt-10" ref={lastTargetElementRef}>
-        {isLoading && <Spinner />}
-      </div>
+    <ul className="flex flex-col gap-6 h-fit">
+      <Suspense fallback={<Spinner />}>
+        {seeds?.length === 0 ? (
+          <TargetEmptyCard />
+        ) : (
+          <>
+            {seeds.map((seed) => {
+              const isState = checkActiveDuration(seed.endDate);
+              return isState === isActive ? <SeedCard key={seed.id} {...seed} /> : null;
+            })}
+          </>
+        )}
+      </Suspense>
     </ul>
   );
 };

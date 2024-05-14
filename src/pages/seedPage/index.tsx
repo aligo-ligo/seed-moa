@@ -5,11 +5,10 @@ import Add from '@/assets/icon/Add';
 import Profile from '@/assets/icon/Profile';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
-import { Typography } from '@/components/common/typography/Typography';
-import SeedList from '@/components/target/seedList';
+import SeedPageBody from '@/components/feature/seed/SeedPageBody';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 
-const TargetPage = () => {
+const SeedPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -22,13 +21,7 @@ const TargetPage = () => {
           </Link>
         </Header>
       </Suspense>
-      <div className="flex-1 flex flex-col">
-        <h1 className="pointer-events-none mb-8 text-white">
-          <Typography type="heading1">땅에 씨앗을 심고</Typography>
-          <Typography type="heading1">열매를 맺어봐요</Typography>
-        </h1>
-        <SeedList />
-      </div>
+      <SeedPageBody />
       <div className="sticky bottom-5 z-20 flex flex-col items-end pr-3xs">
         <Button
           onClick={() => navigate(ROUTER_PATHS.CREATE_TARGET)}
@@ -42,4 +35,4 @@ const TargetPage = () => {
   );
 };
 
-export default TargetPage;
+export default SeedPage;

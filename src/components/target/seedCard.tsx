@@ -10,34 +10,34 @@ import StemDetailStage from '@/assets/images/StemDetailStage';
 import TreeDetailStage from '@/assets/images/TreeDetailStage';
 import { cn } from '@/libs/core';
 import { PreviewSeedType } from '@/types/target/type';
+import { checkActiveDuration } from '@/utils/date';
 import { fromNowOf } from '@/utils/fromNowOf';
 import { Tag } from '../common/tag';
 import { Typography } from '../common/typography/Typography';
 
 const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedType) => {
-  console.log('endDate', endDate);
   const navigate = useNavigate();
-  const isInDuration = dayjs(endDate).isAfter();
+  const isActive = checkActiveDuration(endDate);
 
   //TODO : startDate으로 정렬 구현!
   //TODO : SeedCard 컴포넌트 컴파운드로 추후 리팩터링
   return (
     <li
       className={cn(
-        `flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10`,
-        `${!isInDuration && 'bg-[#EBF0FF]'}`,
+        `flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10 `,
+        `${!isActive && 'bg-[#EBF0FF]'}`,
       )}
       onClick={() => navigate(`/target/${id}`)}
     >
       {/* CARD HEADER */}
       <div className="w-full flex justify-between">
-        <Tag variant={isInDuration ? 'primary' : 'secondary'}>
-          {isInDuration ? '진행중' : '종료'}
-        </Tag>
+        <Tag variant={isActive ? 'primary' : 'secondary'}>{isActive ? '진행중' : '종료'}</Tag>
 
-        <Typography type="section1" className="text-gray-500">
-          {fromNowOf(dayjs(endDate).endOf('day'))}
-        </Typography>
+        {isActive && (
+          <Typography type="section1" className="text-gray-500">
+            {fromNowOf(dayjs(endDate))}
+          </Typography>
+        )}
       </div>
 
       {/* CARD BODY */}

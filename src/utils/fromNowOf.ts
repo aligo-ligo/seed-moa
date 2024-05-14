@@ -1,3 +1,4 @@
+
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -27,3 +28,4 @@ dayjs.updateLocale('ko', {
 export const fromNowOf = (date: string | number | Date | dayjs.Dayjs | null | undefined) => {
   return dayjs(date).fromNow();
 };
+
