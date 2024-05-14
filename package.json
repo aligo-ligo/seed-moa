@@ -37,6 +37,7 @@
 		"react-router-dom": "^6.12.1",
 		"react-spring-bottom-sheet": "3.5.0-alpha.0",
 		"react-transition-group": "^4.4.5",
+		"swiper": "^11.1.2",
 		"tailwind-merge": "^2.3.0",
 		"usehooks-ts": "^2.9.1",
 		"yup": "^1.2.0",

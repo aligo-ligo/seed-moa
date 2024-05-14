@@ -16,7 +16,7 @@ import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBo
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import RainBackGround from '@/components/feature/detail/RainBackGround';
 import TaskList from '@/components/feature/detail/TaskList';
-import { detailSeedStateObj } from '@/components/target/TargetCard';
+import { detailSeedStateObj } from '@/components/target/\bseedCard';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';
@@ -78,7 +78,7 @@ const SeedDetailPage = () => {
       <div className="flex flex-col w-full h-full">
         <div className=" h-[50%] flex flex-col justify-center items-center">
           <div className="relative flex w-full justify-end">
-            <Tag className="">{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
+            <Tag>{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
             <div className="absolute w-full justify-end flex -top-14 -right-3">
               <ObserverExitEvent>
                 <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />

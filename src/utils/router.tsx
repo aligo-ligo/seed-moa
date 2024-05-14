@@ -5,7 +5,7 @@ import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import SeedDetailPage from '@/pages/seedDetailPage';
-import TargetPage from '@/pages/seedPage';
+import SeedPage from '@/pages/seedPage';
 import { default as Mypage } from '../pages/Mypage';
 import TargetCreatePage from '../pages/TargetCreatePage';
 
@@ -22,7 +22,7 @@ export const routerChildrenInfo = [
   },
   {
     path: ROUTER_PATHS.TARGET,
-    element: <TargetPage />,
+    element: <SeedPage />,
     withAuthorization: true,
   },
   {
