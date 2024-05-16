@@ -25,7 +25,13 @@ const SeedPage = () => {
         <h1 className="pointer-events-none mb-8 text-white">
           <Typography type="heading1">{`땅에 씨앗을 심고 \n 열매를 맺어봐요.`}</Typography>
         </h1>
-        <Suspense fallback={<Spinner />}>
+        <Suspense
+          fallback={
+            <div className="flex justify-center">
+              <Spinner />
+            </div>
+          }
+        >
           <SeedPageBody />
         </Suspense>
       </div>
