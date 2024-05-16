@@ -6,8 +6,8 @@ import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
 import { detailSeedStateObj } from '@/components/target/\bseedCard';
 import { getDateFromDiff } from '@/utils/date';
-import ObserverExitEvent from '../detail/animatedBox/OpacityBox';
-import TaskList from '../detail/TaskList';
+import ObserverExitEvent from '../../detail/animatedBox/OpacityBox';
+import TaskList from '../../detail/TaskList';
 
 type DetailProps = {
   seedId: number;
