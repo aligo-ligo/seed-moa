@@ -13,17 +13,14 @@ export const routerChildrenInfo = [
   {
     index: true,
     element: <LandingPage />,
-    withAuthorization: false,
   },
   {
     path: ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO,
     element: <KakaoLoginPage />,
-    withAuthorization: false,
   },
   {
     path: ROUTER_PATHS.TARGET,
     element: <SeedPage />,
-    withAuthorization: true,
   },
   {
     path: ROUTER_PATHS.TAGET_DETAIL,
@@ -32,17 +29,14 @@ export const routerChildrenInfo = [
         <SeedDetailPage />
       </RoutineProvider>
     ),
-    withAuthorization: true,
   },
   {
     path: ROUTER_PATHS.CREATE_TARGET,
     element: <SeedCreatePage />,
-    withAuthorization: true,
   },
   {
     path: ROUTER_PATHS.MYPAGE,
     element: <Mypage />,
-    withAuthorization: false,
   },
 ];
 export const routerInfo = [
