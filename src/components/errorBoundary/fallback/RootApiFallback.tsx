@@ -14,10 +14,8 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     error.response?.data.error === ERROR_RESPONSES.authenticationEntryPoint;
 
   if (shouldSkip) {
-    console.log('api -> unknown error', error);
     throw error;
   }
-  console.log('error in API FALLBack', error);
   return (
     <main className="relative w-full h-dvh flex justify-center items-start">
       <div className="w-full h-full flex flex-col items-center justify-center">

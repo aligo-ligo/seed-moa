@@ -9,7 +9,6 @@ import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const RootUnknownFallback = ({ error }: FallbackProps) => {
   const navigate = useNavigate();
-  console.log('error in unknown FALLBack', error);
 
   const shouldSkip =
     isAxiosError(error) &&

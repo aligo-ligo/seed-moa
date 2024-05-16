@@ -31,7 +31,6 @@ const UserDetatilPage = () => {
       await shareLink({ url: `${location.href}?share=true` });
       toast({ message: 'LINK_COPIED' });
     } catch (error) {
-      console.log('catch erorr');
       toast({ message: 'LINK_COPIED_FAIL' });
     }
   };
