@@ -7,7 +7,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import SeedDetailPage from '@/pages/seedDetailPage';
 import SeedPage from '@/pages/seedPage';
 import { default as Mypage } from '../pages/Mypage';
-import TargetCreatePage from '../pages/TargetCreatePage';
+import SeedCreatePage from '../pages/TargetCreatePage';
 
 export const routerChildrenInfo = [
   {
@@ -36,7 +36,7 @@ export const routerChildrenInfo = [
   },
   {
     path: ROUTER_PATHS.CREATE_TARGET,
-    element: <TargetCreatePage />,
+    element: <SeedCreatePage />,
     withAuthorization: true,
   },
   {

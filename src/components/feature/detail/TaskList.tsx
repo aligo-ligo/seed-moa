@@ -21,7 +21,7 @@ const TaskList = ({ tasks, isShared }: TaskListProps) => {
             key={index}
             {...routine}
             isShared={isShared}
-            onDoneClick={() => checkRotine(routine.routineId)}
+            onFinishRoutine={() => checkRotine(routine.routineId)}
           />
         );
       })}

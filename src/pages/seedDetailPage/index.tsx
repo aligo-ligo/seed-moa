@@ -1,5 +1,4 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { Suspense, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
@@ -21,6 +20,7 @@ import useAuth from '@/hooks/auth/useAuth';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';
+import { getDateFromDiff } from '@/utils/date';
 import { shareLink } from '@/utils/share';
 
 type BottomSheetType = 'askDelete';
@@ -31,6 +31,7 @@ const SeedDetailPage = () => {
   const [isDeleted, setIsDeleted] = useState(false);
   const navigate = useNavigate();
   const locations = useLocation();
+  const toast = useToast();
   const searchParams = new URLSearchParams(locations.search);
   const shareValue = searchParams.get('share');
   const isShared = typeof shareValue === 'string' ? true : false;
@@ -38,9 +39,9 @@ const SeedDetailPage = () => {
   const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id), !isDeleted));
   const { mutate } = useDeleteSeedMutation();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
+
   const totalRoutineCount =
-    dayjs(seed.endDate).diff(seed.startDate, 'day') * seed.routineDetails.length;
-  const toast = useToast();
+    getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
 
   console.log('isLoggedIn', isLoggedIn);
 
