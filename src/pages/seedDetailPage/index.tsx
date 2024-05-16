@@ -56,45 +56,45 @@ const SeedDetailPage = () => {
 
   return (
     <div className="relative flex flex-col items-center w-full h-dvh px-6 overflow-hidden">
-      <Suspense fallback={<></>}>
-        <Header>
-          {isShared ? (
-            <Header>
-              <Header.Logo />
-              <Link to={'/'}>
-                <Profile width={32} />
-              </Link>
-            </Header>
-          ) : (
-            <>
-              <Header.Previous />
-              <button onClick={() => onOpenSheet('askDelete')}>
-                <TrashIcon width={32} color="#fff" />
-              </button>
-            </>
-          )}
-        </Header>
-      </Suspense>
+      <Header>
+        {isShared ? (
+          <Header>
+            <Header.Logo />
+            <Link to={'/'}>
+              <Profile width={32} />
+            </Link>
+          </Header>
+        ) : (
+          <>
+            <Header.Previous />
+            <button onClick={() => onOpenSheet('askDelete')}>
+              <TrashIcon width={32} color="#fff" />
+            </button>
+          </>
+        )}
+      </Header>
 
-      <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
-        {seed.seed}
-      </Typography>
+      <Suspense fallback={<>상세 페이지 로딩</>}>
+        <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
+          {seed.seed}
+        </Typography>
 
-      <div className="flex flex-col w-full h-full">
-        <div className=" h-[50%] flex flex-col justify-center items-center">
-          <div className="relative flex w-full justify-end">
-            <Tag>{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
-            <div className="absolute w-full justify-end flex -top-14 -right-3">
-              <ObserverExitEvent>
-                <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
-              </ObserverExitEvent>
+        <div className="flex flex-col w-full h-full">
+          <div className=" h-[50%] flex flex-col justify-center items-center">
+            <div className="relative flex w-full justify-end">
+              <Tag>{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
+              <div className="absolute w-full justify-end flex -top-14 -right-3">
+                <ObserverExitEvent>
+                  <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
+                </ObserverExitEvent>
+              </div>
             </div>
-          </div>
 
-          <div>{detailSeedStateObj[seed.seedState]}</div>
+            <div>{detailSeedStateObj[seed.seedState]}</div>
+          </div>
+          <TaskList tasks={seed.routineDetails} isShared={isShared} />
         </div>
-        <TaskList tasks={seed.routineDetails} isShared={isShared} />
-      </div>
+      </Suspense>
 
       <ConfirmBottomSheet
         isOpen={openedSheet === 'askDelete'}

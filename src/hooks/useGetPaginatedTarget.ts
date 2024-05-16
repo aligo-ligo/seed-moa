@@ -7,7 +7,6 @@ const INITIAL_PAGE_NO = 0;
 const COMMENT_COUNT_PER_PAGE = 5;
 
 const useFilteringSeed = () => {
-
   const { data: seeds, fetchNextPage }  =  useSuspenseInfiniteQuery({
     queryKey: ['seed'],
     initialPageParam: { page: INITIAL_PAGE_NO, size: COMMENT_COUNT_PER_PAGE },

@@ -17,7 +17,6 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     console.log('api -> unknown error', error);
     throw error;
   }
-
   console.log('error in API FALLBack', error);
   return (
     <main className="relative w-full h-dvh flex justify-center items-start">
@@ -44,20 +43,6 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
         </Button>
       </div>
     </main>
-    // <main css={styles.container}>
-    //   <img css={styles.image} src={ErrorImage} alt="오류" />
-    //   <h2 css={styles.title}>네트워크 오류 발생</h2>
-    //   <h2 css={styles.description}>{error.response?.data ?? error.message}</h2>
-    //   <Button
-    //     css={styles.button}
-    //     variant="primary"
-    //     size="sm"
-    //     type="button"
-    //     onClick={resetErrorBoundary}
-    //   >
-    //     재시도
-    //   </Button>
-    // </main>
   );
 };
 
