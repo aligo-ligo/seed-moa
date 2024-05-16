@@ -1,49 +1,38 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { Suspense, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import targetOptions from '@/api/target/queryOptions';
 import LinkIcon from '@/assets/icon/Link';
 import Profile from '@/assets/icon/Profile';
 import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
-import { Tag } from '@/components/common/tag';
-import { ToolTip } from '@/components/common/toolTip';
+import { Spinner } from '@/components/common/spinner/Spinner';
 import { Typography } from '@/components/common/typography/Typography';
-import ObserverExitEvent from '@/components/feature/detail/animatedBox/OpacityBox';
 import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import RainBackGround from '@/components/feature/detail/RainBackGround';
-import TaskList from '@/components/feature/detail/TaskList';
-import { detailSeedStateObj } from '@/components/target/\bseedCard';
-import useAuth from '@/hooks/auth/useAuth';
+import SeedDetailPageBody from '@/components/feature/seed/seedDetailPageBody';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';
-import { getDateFromDiff } from '@/utils/date';
 import { shareLink } from '@/utils/share';
 
 type BottomSheetType = 'askDelete';
 
 const SeedDetailPage = () => {
-  const { isLoggedIn } = useAuth();
   const { id } = useParams();
   const [isDeleted, setIsDeleted] = useState(false);
   const navigate = useNavigate();
   const locations = useLocation();
   const toast = useToast();
   const searchParams = new URLSearchParams(locations.search);
+
+  //TODO: 공유를 통해 들어온 유저 분별하는 로직 깔끔하게 분리하는 방법 찾아보자
   const shareValue = searchParams.get('share');
   const isShared = typeof shareValue === 'string' ? true : false;
 
-  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(id), !isDeleted));
   const { mutate } = useDeleteSeedMutation();
+
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
-
-  const totalRoutineCount =
-    getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
-
-  console.log('isLoggedIn', isLoggedIn);
 
   const handleCopyClipboard = () => {
     try {
@@ -74,26 +63,14 @@ const SeedDetailPage = () => {
         )}
       </Header>
 
-      <Suspense fallback={<>상세 페이지 로딩</>}>
-        <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
-          {seed.seed}
-        </Typography>
-
-        <div className="flex flex-col w-full h-full">
-          <div className=" h-[50%] flex flex-col justify-center items-center">
-            <div className="relative flex w-full justify-end">
-              <Tag>{`${seed.completedRoutineCount}/${totalRoutineCount}`}</Tag>
-              <div className="absolute w-full justify-end flex -top-14 -right-3">
-                <ObserverExitEvent>
-                  <ToolTip title={`${totalRoutineCount - seed.completedRoutineCount}번만 더!`} />
-                </ObserverExitEvent>
-              </div>
-            </div>
-
-            <div>{detailSeedStateObj[seed.seedState]}</div>
+      <Suspense
+        fallback={
+          <div className="flex justify-center">
+            <Spinner />
           </div>
-          <TaskList tasks={seed.routineDetails} isShared={isShared} />
-        </div>
+        }
+      >
+        <SeedDetailPageBody seedId={Number(id)} isDeleted={isDeleted} isShared={isShared} />
       </Suspense>
 
       <ConfirmBottomSheet
