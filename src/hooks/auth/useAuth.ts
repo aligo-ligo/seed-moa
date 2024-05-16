@@ -25,6 +25,7 @@ const useAuth = () => {
         localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken as string);
         localStorage.setItem(STORAGE_KEYS.refreshToken, data.refreshToken as string);
         setIsLoggedIn(true)
+
         setTimeout(() => 
         {
           navigate(ROUTER_PATHS.TARGET)
