@@ -5,7 +5,7 @@ import { SwiperSlide } from 'swiper/react';
 import { ToolTip } from '@/components/common/toolTip';
 import SeedList from '@/components/target/seedList';
 import useAnimationWithTimeout from '@/hooks/useAnimationWithTimeout';
-import useFilteringSeed from '@/hooks/useGetPaginatedTarget';
+import useGetSeedList from '@/hooks/useGetPaginatedTarget';
 import { SeedSwiper } from './SeedSwiper';
 
 const SEED_PAGE_VALUES = [
@@ -18,7 +18,7 @@ const SEED_PAGE_VALUES = [
 ];
 
 const SeedPageBody = () => {
-  const { seeds, fetchNextPage } = useFilteringSeed();
+  const { seeds, fetchNextPage } = useGetSeedList();
   const { controls } = useAnimationWithTimeout();
 
   const lastTargetElementRef = useRef<HTMLDivElement>(null);

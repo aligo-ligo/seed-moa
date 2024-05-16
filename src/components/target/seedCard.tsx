@@ -21,19 +21,27 @@ const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedTyp
 
   //TODO : startDate으로 정렬 구현!
   //TODO : SeedCard 컴포넌트 컴파운드로 추후 리팩터링
+
   return (
     <li
       className={cn(
         `flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10 `,
-        `${!isActive && 'bg-[#EBF0FF]'}`,
+        `${!isActive && 'bg-[#EBF0FF] cursor-auto'}`,
       )}
-      onClick={() => navigate(`/target/${id}`)}
+      onClick={() => {
+        if (!isActive) return;
+        navigate(`/target/${id}`);
+      }}
     >
       {/* CARD HEADER */}
       <div className="w-full flex justify-between">
         <Tag variant={isActive ? 'primary' : 'secondary'}>{isActive ? '진행중' : '종료'}</Tag>
 
-        {isActive && (
+        {isActive ? (
+          <Typography type="section1" className="text-gray-500">
+            {fromNowOf(dayjs(endDate))}
+          </Typography>
+        ) : (
           <Typography type="section1" className="text-gray-500">
             {fromNowOf(dayjs(endDate))}
           </Typography>

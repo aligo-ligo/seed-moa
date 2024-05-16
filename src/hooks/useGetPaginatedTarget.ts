@@ -6,7 +6,7 @@ import targetAPI from '@/api/target/apis';
 const INITIAL_PAGE_NO = 0;
 const COMMENT_COUNT_PER_PAGE = 5;
 
-const useFilteringSeed = () => {
+const useGetSeedList = () => {
   const { data: seeds, fetchNextPage }  =  useSuspenseInfiniteQuery({
     queryKey: ['seed'],
     initialPageParam: { page: INITIAL_PAGE_NO, size: COMMENT_COUNT_PER_PAGE },
@@ -29,7 +29,9 @@ const useFilteringSeed = () => {
     select: (data) => (data.pages ? data.pages.map((page) => page.seedInfo).flat() : []),
   });
 
+  console.log('seeds',seeds)
+
   return { seeds, fetchNextPage}  
 };
 
-export default useFilteringSeed;
+export default useGetSeedList;
