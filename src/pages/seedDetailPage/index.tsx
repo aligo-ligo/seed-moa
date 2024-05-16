@@ -16,6 +16,7 @@ import ConfirmBottomSheet from '@/components/feature/detail/ConfirmBottomSheet';
 import RainBackGround from '@/components/feature/detail/RainBackGround';
 import TaskList from '@/components/feature/detail/TaskList';
 import { detailSeedStateObj } from '@/components/target/\bseedCard';
+import useAuth from '@/hooks/auth/useAuth';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';
@@ -25,6 +26,7 @@ import { shareLink } from '@/utils/share';
 type BottomSheetType = 'askDelete';
 
 const SeedDetailPage = () => {
+  const { isLoggedIn } = useAuth();
   const { id } = useParams();
   const [isDeleted, setIsDeleted] = useState(false);
   const navigate = useNavigate();
@@ -40,6 +42,8 @@ const SeedDetailPage = () => {
 
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
+
+  console.log('isLoggedIn', isLoggedIn);
 
   const handleCopyClipboard = () => {
     try {
