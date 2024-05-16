@@ -33,14 +33,12 @@ authInstance.interceptors.response.use(
   },
   async (error) => {
     const { config } = error;
+    // if (error.response.status === 401) {
+    //   window.location.href = '/';
+    // }
+
     if (isAxiosError(error)) {
-
-      // TODO : 백엔드와 메세지 통일되면 처리 필요
-      if(error.response?.status === 401) {
-        window.location.href = '/';
-      }
-
-      switch (error.response?.data) {
+      switch (error.response?.data.error) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
           localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
