@@ -55,7 +55,7 @@ const SeedPageBody = () => {
                   />
                 </AnimatePresence>
               </div>
-              <SeedList seeds={isActive ? activeSeeds : inactiveSeeds} />
+              <SeedList seeds={isActive ? activeSeeds : inactiveSeeds} isActive={isActive} />
             </SwiperSlide>
           );
         })}

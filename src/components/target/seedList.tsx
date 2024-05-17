@@ -1,24 +1,19 @@
-import { Suspense } from 'react';
-
 import { PreviewSeedType } from '@/types/target/type';
-import { Spinner } from '../common/spinner/Spinner';
 import SeedCard from './\bseedCard';
-import TargetEmptyCard from './TargetEmptyCard';
+import SeedEmptyCard from './SeedEmptyCard';
 
-const SeedList = ({ seeds }: { seeds: PreviewSeedType[] }) => {
+const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
   return (
-    <ul className="flex flex-col gap-6 h-fit">
-      <Suspense fallback={<Spinner />}>
-        {seeds?.length === 0 ? (
-          <TargetEmptyCard />
-        ) : (
-          <>
-            {seeds.map((seed) => {
-              return <SeedCard key={seed.id} {...seed} />;
-            })}
-          </>
-        )}
-      </Suspense>
+    <ul className="flex flex-col gap-6 h-48">
+      {seeds?.length === 0 ? (
+        <SeedEmptyCard isActive={isActive} />
+      ) : (
+        <>
+          {seeds.map((seed) => {
+            return <SeedCard key={seed.id} {...seed} />;
+          })}
+        </>
+      )}
     </ul>
   );
 };
