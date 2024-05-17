@@ -28,7 +28,6 @@ const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedTyp
         `${!isActive && 'bg-[#EBF0FF] cursor-auto'}`,
       )}
       onClick={() => {
-        if (!isActive) return;
         navigate(`/target/${id}`);
       }}
     >
