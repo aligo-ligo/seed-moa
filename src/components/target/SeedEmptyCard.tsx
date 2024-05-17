@@ -39,7 +39,7 @@ const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
           </div>
           <div className="flex-1 flex flex-col items-center justify-evenly ">
             <Typography type="heading3" className="text-primary-400 font-jalnan">
-              종료 씨앗이 아직 없습니다
+              종료 씨앗이 아직 없네요?
             </Typography>
           </div>
         </li>

@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
+import { createContext, HTMLAttributes, useContext } from 'react';
 
+import Droplet from '@/assets/icon/Droplet';
 import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
 import StemStage from '@/assets/icon/StemStage';
@@ -9,80 +10,138 @@ import CloseSign from '@/assets/images/close.png';
 import FruitsDetailStage from '@/assets/images/FruitsDetailStage';
 import StemDetailStage from '@/assets/images/StemDetailStage';
 import TreeDetailStage from '@/assets/images/TreeDetailStage';
+import { Tag } from '@/components/common/tag';
+import { Typography } from '@/components/common/typography/Typography';
 import { cn } from '@/libs/core';
 import { PreviewSeedType } from '@/types/target/type';
-import { checkActiveDuration } from '@/utils/date';
 import { fromNowOf } from '@/utils/fromNowOf';
-import { Tag } from '../../../common/tag';
-import { Typography } from '../../../common/typography/Typography';
+import { seedCardVariant } from './index.variant';
 
-const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedType) => {
-  const navigate = useNavigate();
-  const isActive = checkActiveDuration(endDate);
+export type SeedCardMode = 'active' | 'inactive';
+const SeedCardContext = createContext<SeedCardMode>('active');
 
-  //TODO : startDate으로 정렬 구현!
-  //TODO : SeedCard 컴포넌트 컴파운드로 추후 리팩터링
-
-  // isActive로 인해 달라지는것
-  // 1. UI
-  // 2. 진행중 종료
-  // 3. 기간 유무
-
+const SeedCard = ({
+  mode,
+  children,
+  className,
+  ...props
+}: { mode: SeedCardMode } & HTMLAttributes<HTMLLIElement>) => {
   return (
-    <li
-      className={cn(
-        `relative flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-50 `,
-        `${!isActive && 'cursor-auto'}`,
-      )}
-      onClick={() => {
-        navigate(`/target/${id}`);
-      }}
-    >
-      {/* CARD HEADER */}
-      {!isActive && (
-        <div className="absolute w-28 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <img src={CloseSign} alt="close" />
-        </div>
-      )}
-      <div className="w-full flex justify-between">
-        <Tag variant={isActive ? 'primary' : 'secondary'}>{isActive ? '진행중' : '종료'}</Tag>
-
-        {isActive && (
-          <Typography type="section1" className="text-gray-500">
-            {fromNowOf(dayjs(endDate))}
-          </Typography>
-        )}
-      </div>
-      {/* CARD BODY */}
-      <div className="flex w-full h-full py-2">
-        <div className="flex flex-col justify-evenly w-[70%]">
-          <Typography type="heading2" className="overflow-hidden whitespace-nowrap truncate">
-            {seed}
-          </Typography>
-          <div>
-            {routineInfos.map((routine, index) => {
-              return (
-                <Typography
-                  type="section1"
-                  className="text-gray-700 overflow-hidden whitespace-nowrap truncate"
-                  key={index}
-                >
-                  {routine.value}
-                </Typography>
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex-1 flex flex-col items-center justify-evenly ">
-          <div className="w-16">{seedStateObj[seedState]}</div>
-        </div>
-      </div>
-      {/* CARD FOOTER */}
-    </li>
+    <SeedCardContext.Provider value={mode}>
+      <li className={cn(seedCardVariant({ mode, className }))} {...props}>
+        {children}
+      </li>
+    </SeedCardContext.Provider>
   );
 };
 
-export default SeedCard;
+/**
+ * @description SeedCard Header에서 텍스트를 표현하기 위한 컴포넌트
+ */
+const Header = ({
+  endDate,
+  className,
+  ...props
+}: { endDate: string } & HTMLAttributes<HTMLSpanElement>) => {
+  const mode = useContext(SeedCardContext);
+
+  return (
+    <div className={cn('w-full flex justify-between', className)} {...props}>
+      <Tag variant={mode === 'active' ? 'primary' : 'secondary'}>
+        {mode === 'active' ? '진행중' : '종료'}
+      </Tag>
+
+      {mode === 'active' && (
+        <Typography type="section1" className="text-gray-500">
+          {fromNowOf(dayjs(endDate))}
+        </Typography>
+      )}
+    </div>
+  );
+};
+
+/**
+ * @description SeedCard Body UI를 표현하기 위한 컴포넌트
+ */
+const Body = ({
+  seed,
+  routineInfos,
+  seedState,
+  className,
+  ...props
+}: Pick<PreviewSeedType, 'seed' | 'routineInfos' | 'seedState'> &
+  HTMLAttributes<HTMLSpanElement>) => {
+  return (
+    <div className={cn(`flex w-full h-full py-2`, className)} {...props}>
+      <div className="flex flex-col justify-evenly w-[70%]">
+        <Typography type="heading2" className="overflow-hidden whitespace-nowrap truncate">
+          {seed}
+        </Typography>
+        <div>
+          {routineInfos.map((routine, index) => {
+            return (
+              <Typography
+                type="section1"
+                className="text-gray-700 overflow-hidden whitespace-nowrap truncate"
+                key={index}
+              >
+                {routine.value}
+              </Typography>
+            );
+          })}
+        </div>
+      </div>
+      <div className="flex-1 flex flex-col items-center justify-evenly ">
+        <div className="w-16">{seedStateObj[seedState]}</div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * @description SeedCard 백그라운드 이미지를 위한 컴포넌트 추후 여러 애니메이션 기능 추가 예정
+ */
+const Background = ({ className, ...props }: HTMLAttributes<HTMLSpanElement>) => {
+  const mode = useContext(SeedCardContext);
+  return (
+    <>
+      {mode === 'inactive' ? (
+        <div
+          className={cn(
+            `absolute w-28 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`,
+            className,
+          )}
+          {...props}
+        >
+          <img src={CloseSign} alt="close" />
+        </div>
+      ) : null}
+    </>
+  );
+};
+
+/**
+ * @description SeedCard 푸터로 좋아요 및 확장 가능한 슬롯 컴포넌트
+ */
+const Footer = ({
+  likes,
+  className,
+  ...props
+}: { likes?: number } & HTMLAttributes<HTMLSpanElement>) => {
+  // const mode = useContext(SeedCardContext);
+
+  return (
+    <div className={cn(' w-full flex justify-between', className)} {...props}>
+      <div></div>
+      <div className="flex gap-2 justify-center items-center">
+        <Droplet width={14} />
+        <Typography type="section1">{likes || 0}</Typography>
+      </div>
+    </div>
+  );
+};
+
+export default Object.assign(SeedCard, { Header, Background, Body, Footer });
 
 //TODO : 어떻게 처리할지 고민해보자
 export const seedStateObj: Record<string, JSX.Element> = {

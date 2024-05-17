@@ -15,25 +15,17 @@ export default meta;
 
 type Story = StoryObj<typeof SeedCard>;
 
-const mockSeed = {
-  completedRoutineCount: 1,
-  endDate: '2024-05-23',
-  id: 145,
-  routineInfos: [
-    {
-      value: 'teset',
-    },
-  ],
-  seed: 'ㅁㄷㄹㅁㄷ',
-  seedState: 'SEED' as const,
-  startDate: '2024-05-17',
-};
-
 const mockInActiveSeed = {
   completedRoutineCount: 1,
   endDate: '2024-05-15',
   id: 145,
   routineInfos: [
+    {
+      value: 'teset',
+    },
+    {
+      value: 'teset',
+    },
     {
       value: 'teset',
     },
@@ -44,25 +36,34 @@ const mockInActiveSeed = {
 };
 
 export const Active: Story = {
-  decorators: (Story) => (
-    <main className="w-[410px] layout overflow-auto bg-gray-10 scroll-smooth flex flex-col gap-6">
-      <Story />
-      <Story />
-    </main>
+  render: () => (
+    <div className="w-[410px] layout overflow-auto bg-gray-10 scroll-smooth flex flex-col gap-6">
+      <SeedCard mode="active">
+        <SeedCard.Header endDate="2024-05-20" />
+        <SeedCard.Body
+          seed={mockInActiveSeed.seed}
+          routineInfos={mockInActiveSeed.routineInfos}
+          seedState={mockInActiveSeed.seedState}
+        />
+        <SeedCard.Footer />
+      </SeedCard>
+    </div>
   ),
-  args: {
-    ...mockSeed,
-  },
 };
 
 export const InActive: Story = {
-  decorators: (Story) => (
-    <main className="w-[410px] layout overflow-auto bg-gray-10 scroll-smooth flex flex-col gap-6">
-      <Story />
-      <Story />
-    </main>
+  render: () => (
+    <div className="w-[410px] layout overflow-auto bg-gray-10 scroll-smooth flex flex-col gap-6">
+      <SeedCard mode="inactive">
+        <SeedCard.Header endDate="2024-05-15" />
+        <SeedCard.Background />
+        <SeedCard.Body
+          seed={mockInActiveSeed.seed}
+          routineInfos={mockInActiveSeed.routineInfos}
+          seedState={mockInActiveSeed.seedState}
+        />
+        <SeedCard.Footer />
+      </SeedCard>
+    </div>
   ),
-  args: {
-    ...mockInActiveSeed,
-  },
 };
