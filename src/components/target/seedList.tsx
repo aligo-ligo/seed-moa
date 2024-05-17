@@ -1,8 +1,9 @@
 import { PreviewSeedType } from '@/types/target/type';
-import SeedCard from './\bseedCard';
+import SeedCard from '../feature/seed/SeedCard';
 import SeedEmptyCard from './SeedEmptyCard';
 
 const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
+  console.log('seeds', seeds);
   return (
     <ul className="flex flex-col gap-6 h-48">
       {seeds?.length === 0 ? (

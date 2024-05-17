@@ -13,8 +13,8 @@ import { cn } from '@/libs/core';
 import { PreviewSeedType } from '@/types/target/type';
 import { checkActiveDuration } from '@/utils/date';
 import { fromNowOf } from '@/utils/fromNowOf';
-import { Tag } from '../common/tag';
-import { Typography } from '../common/typography/Typography';
+import { Tag } from '../../../common/tag';
+import { Typography } from '../../../common/typography/Typography';
 
 const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedType) => {
   const navigate = useNavigate();
@@ -44,7 +44,6 @@ const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedTyp
           <img src={CloseSign} alt="close" />
         </div>
       )}
-
       <div className="w-full flex justify-between">
         <Tag variant={isActive ? 'primary' : 'secondary'}>{isActive ? '진행중' : '종료'}</Tag>
 
@@ -54,7 +53,6 @@ const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedTyp
           </Typography>
         )}
       </div>
-
       {/* CARD BODY */}
       <div className="flex w-full h-full py-2">
         <div className="flex flex-col justify-evenly w-[70%]">
