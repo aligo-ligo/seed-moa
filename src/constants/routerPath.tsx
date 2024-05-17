@@ -17,13 +17,9 @@ export const API_PATHS = {
 
 export const ROUTER_PATHS = {
   ROOT: '/',
-  TEST_CONSTANT: '/test/const',
-  MODAL_TEST: '/modal-test',
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
   SIGNIN_REDIRECT_KAKAO: '/kakao',
-  TAGET_DETAIL: `/target/:id`,
-  TARGET: '/target',
-  CREATE_TARGET: '/target/create',
+  TAGET_DETAIL: `/seed/:id`,
+  TARGET: '/seed',
+  CREATE_TARGET: '/seed/create',
   MYPAGE: '/mypage',
 } as const;

@@ -17,7 +17,7 @@ const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boo
               <SeedCard
                 mode={isActive ? 'active' : 'inactive'}
                 key={seed.id}
-                onClick={() => navigate(`/target/${seed.id}`)}
+                onClick={() => navigate(`/seed/${seed.id}`)}
               >
                 <SeedCard.Header endDate="2024-05-20" />
                 <SeedCard.Background />
