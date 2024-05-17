@@ -1,7 +1,7 @@
 import DatePicker from 'react-datepicker';
 import { useFormContext } from 'react-hook-form';
 
-import { fromNowOfMaxDays, fromNowOfMinDays, getKrDateName } from '@/utils/date';
+import { fromNowOfMaxDays, getKrDateName } from '@/utils/date';
 import CalenderHeader from './CalenderHeader';
 
 const DatePickerComponent = () => {
@@ -17,7 +17,7 @@ const DatePickerComponent = () => {
       placeholderText="클릭해서 날짜를 선택해보세요"
       isClearable
       withPortal
-      minDate={new Date(fromNowOfMinDays)}
+      // minDate={new Date(fromNowOfMinDays)}
       maxDate={new Date(fromNowOfMaxDays)}
       autoComplete="off"
       renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
@@ -27,8 +27,8 @@ const DatePickerComponent = () => {
         getKrDateName(date) === '토요일'
           ? 'saturday'
           : getKrDateName(date) === '일요일'
-          ? 'sunday'
-          : null
+            ? 'sunday'
+            : null
       }
     />
   );

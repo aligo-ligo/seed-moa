@@ -4,10 +4,10 @@ import targetOptions from '@/api/target/queryOptions';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
-import { detailSeedStateObj } from '@/components/target/\bseedCard';
 import { getDateFromDiff } from '@/utils/date';
 import ObserverExitEvent from '../../detail/animatedBox/OpacityBox';
 import TaskList from '../../detail/TaskList';
+import { detailSeedStateObj } from '../SeedCard';
 
 type DetailProps = {
   seedId: number;
