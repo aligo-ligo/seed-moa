@@ -1,11 +1,10 @@
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import LinkIcon from '@/assets/icon/Link';
 import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
-import { Spinner } from '@/components/common/spinner/Spinner';
 import { Typography } from '@/components/common/typography/Typography';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
@@ -43,17 +42,8 @@ const UserDetatilPage = () => {
         </button>
       </Header>
 
-      <Suspense
-        fallback={
-          <div className="flex justify-center">
-            <Spinner />
-          </div>
-        }
-      >
-        {/* //TODO : isShared에 따라 컴포넌트 UI 및 기능 변경에 대해 처리 방법 고민 */}
-        <SeedDetailPageBody seedId={Number(id)} isDeleted={isDeleted} isShared={isShared} />
-      </Suspense>
-
+      {/* //TODO : isShared에 따라 컴포넌트 UI 및 기능 변경에 대해 처리 방법 고민 */}
+      <SeedDetailPageBody seedId={Number(id)} isDeleted={isDeleted} isShared={isShared} />
       <ConfirmBottomSheet
         isOpen={openedSheet === 'askDelete'}
         onClose={onCloseSheet}

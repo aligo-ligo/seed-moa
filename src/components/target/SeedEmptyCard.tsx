@@ -25,7 +25,7 @@ const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
           </div>
         </li>
       ) : (
-        <li className="flex flex-col size-full rounded-xl border border-gray-100 p-3 bg-gray-10">
+        <li className="relative flex flex-col size-full rounded-xl border border-gray-100 p-3 bg-gray-10">
           <div className="flex w-full h-full py-2">
             <div className="flex flex-col justify-center items-center w-[50%]">
               <LogoSVG width={80} height={80} className="ml-1" />

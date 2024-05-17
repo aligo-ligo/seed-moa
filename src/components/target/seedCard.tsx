@@ -5,6 +5,7 @@ import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
 import StemStage from '@/assets/icon/StemStage';
 import TreeStage from '@/assets/icon/TreeStage';
+import CloseSign from '@/assets/images/close.png';
 import FruitsDetailStage from '@/assets/images/FruitsDetailStage';
 import StemDetailStage from '@/assets/images/StemDetailStage';
 import TreeDetailStage from '@/assets/images/TreeDetailStage';
@@ -21,17 +22,29 @@ const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedTyp
 
   //TODO : startDate으로 정렬 구현!
   //TODO : SeedCard 컴포넌트 컴파운드로 추후 리팩터링
+
+  // isActive로 인해 달라지는것
+  // 1. UI
+  // 2. 진행중 종료
+  // 3. 기간 유무
+
   return (
     <li
       className={cn(
-        `flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10 `,
-        `${!isActive && 'bg-[#EBF0FF] cursor-auto'}`,
+        `relative flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-50 `,
+        `${!isActive && 'cursor-auto'}`,
       )}
       onClick={() => {
         navigate(`/target/${id}`);
       }}
     >
       {/* CARD HEADER */}
+      {!isActive && (
+        <div className="absolute w-28 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <img src={CloseSign} alt="close" />
+        </div>
+      )}
+
       <div className="w-full flex justify-between">
         <Tag variant={isActive ? 'primary' : 'secondary'}>{isActive ? '진행중' : '종료'}</Tag>
 
