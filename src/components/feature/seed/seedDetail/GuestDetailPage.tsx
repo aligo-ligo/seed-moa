@@ -30,7 +30,7 @@ const GuestDetailPage = () => {
       <CommonSeedDetailBody seed={seed} />
       <div className="absolute bottom-5 text-xl w-full text-white">
         <div className="flex flex-col justify-center items-center ">
-          <Typography type="heading3">햇빛주며 씨앗 응원하기</Typography>
+          <Typography type="heading3">친구의 씨앗 응원하기</Typography>
           <div className="flex size-[60px] justify-center gap-3 mt-3">
             <Button
               width="full"
