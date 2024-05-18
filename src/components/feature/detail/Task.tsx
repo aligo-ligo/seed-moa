@@ -9,6 +9,7 @@ import Logo from '@/assets/logo/Logo';
 import { Typography } from '@/components/common/typography/Typography';
 import { DELAY_SECOND } from '@/constants/contants';
 import { useRoutineContext } from '@/context/RoutineContext';
+import { useSharedStateContext } from '@/context/SharedStateContext';
 import { useInput } from '@/hooks/useInput';
 import useRoutineTitleMutation from '@/hooks/useRoutineTitleMutation';
 import useMusicStore from '@/store/useMusicStore';
@@ -19,18 +20,12 @@ interface TaskProps {
   routineId: number;
   completedRoutineToday: boolean;
   onFinishRoutine: VoidFunction;
-  isShared: boolean;
 }
 
-const Task = ({
-  routineTitle,
-  routineId,
-  completedRoutineToday,
-  onFinishRoutine,
-  isShared,
-}: TaskProps) => {
+const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine }: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
   const { onRainBgOpen, onRainBgClose } = useRoutineContext();
+  const { isShared } = useSharedStateContext();
 
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
