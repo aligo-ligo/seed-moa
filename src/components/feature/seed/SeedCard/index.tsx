@@ -2,10 +2,10 @@ import dayjs from 'dayjs';
 import { createContext, HTMLAttributes, useContext } from 'react';
 
 import CloseIcon from '@/assets/icon/CloseIcon';
-import Droplet from '@/assets/icon/Droplet';
 import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
 import StemStage from '@/assets/icon/StemStage';
+import SunIcon from '@/assets/icon/SunIcon';
 import TreeStage from '@/assets/icon/TreeStage';
 import FruitsDetailStage from '@/assets/images/FruitsDetailStage';
 import StemDetailStage from '@/assets/images/StemDetailStage';
@@ -130,11 +130,12 @@ const Footer = ({
 }: { likes?: number } & HTMLAttributes<HTMLSpanElement>) => {
   // const mode = useContext(SeedCardContext);
 
+  // TODO (study) : Absolute 사용시 상위 엘리먼트의 width를 padding 크기를 포함하지 않고 거져오는 문제 정확히 알기
   return (
-    <div className={cn(' w-full flex justify-between', className)} {...props}>
+    <div className={cn('absolute bottom-0 w-[93%] flex justify-between', className)} {...props}>
       <div></div>
-      <div className="flex gap-2 justify-center items-center">
-        <Droplet width={14} />
+      <div className="flex justify-center items-center">
+        <SunIcon width={50} />
         <Typography type="section1">{likes || 0}</Typography>
       </div>
     </div>

@@ -21,5 +21,5 @@ const animate = {
 
 const transition = {
   duration: 0.1,
-  scale: { type: 'spring', damping: 10, stiffness: 100, restDelta: 0.001 },
+  scale: { type: 'spring', damping: 8, stiffness: 100, restDelta: 0.001 },
 };
