@@ -20,7 +20,6 @@ const SEED_PAGE_VALUES = [
 const SeedPageBody = () => {
   const { activeSeeds, inactiveSeeds, fetchNextPage } = useFilteringSeed();
   const { controls } = useAnimationWithTimeout();
-
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
