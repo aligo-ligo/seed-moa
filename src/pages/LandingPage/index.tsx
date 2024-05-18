@@ -20,16 +20,13 @@ const LandingPage = () => {
     <div className="relative w-full h-dvh flex flex-col items-center justify-start p-6">
       <div className="flex flex-col w-full items-center h-[80%]">
         <div className="w-full flex flex-col h-[80%] pt-12">
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-1">
             <Typography type="title1" className="text-white font-jalnan">
               씨앗 모아
             </Typography>
             <div className="flex flex-col items-center">
-              <Typography type="heading3" className="text-white">
-                목표 달성을 위한
-              </Typography>
-              <Typography type="heading3" className="text-white ">
-                나만의 습관 형성 서비스
+              <Typography type="heading4" className="text-white text-center">
+                {`심는대로 거두는 \n 놀라운 경험을`}
               </Typography>
             </div>
           </div>
