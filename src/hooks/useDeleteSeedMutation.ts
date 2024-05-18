@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import targetAPI from '@/api/target/apis';
-import targetOptions from '@/api/target/queryOptions';
+import seedAPI from '@/api/seed/apis';
+import targetOptions from '@/api/seed/queryOptions';
 import useToast from './useToast';
 
 const useDeleteSeedMutation = () => {
@@ -9,7 +9,7 @@ const useDeleteSeedMutation = () => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
       mutationFn: async (seedId: number) => {
-        await targetAPI.deleteSeed(seedId);
+        await seedAPI.deleteSeed(seedId);
     },
       onSuccess: async () => {
         await queryClient.invalidateQueries({

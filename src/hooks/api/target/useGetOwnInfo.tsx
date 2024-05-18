@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import targetOptions from '@/api/target/queryOptions';
+import targetOptions from '@/api/seed/queryOptions';
 import { SeedStateType } from '@/types/target/type';
 
 const useGetOwnInfo = () => {

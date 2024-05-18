@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import targetOptions from '@/api/target/queryOptions';
+import targetOptions from '@/api/seed/queryOptions';
 import Logo from '@/assets/logo/Logo';
 import ReversedLogo from '@/assets/logo/ReversedLogo';
 import KakaoLoginButton from '@/components/auth/KakaoLoginButton';

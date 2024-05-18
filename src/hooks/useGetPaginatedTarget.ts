@@ -1,6 +1,6 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
-import targetAPI from '@/api/target/apis';
+import seedAPI from '@/api/seed/apis';
 import { PreviewSeedType } from '@/types/target/type';
 import { checkActiveDuration } from '@/utils/date';
 
@@ -13,7 +13,7 @@ const useFilteringSeed = () => {
     queryKey: ['seed'],
     initialPageParam: { page: INITIAL_PAGE_NO, size: COMMENT_COUNT_PER_PAGE },
     queryFn: ({ pageParam }) =>
-      targetAPI.getAllPaginatedTargets({
+      seedAPI.getAllPaginatedTargets({
         page: pageParam.page,
         size: pageParam.size,
       }),

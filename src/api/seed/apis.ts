@@ -8,7 +8,7 @@ import {
 } from '@/types/target/type';
 import { OwnSeedType } from '@/types/user/type';
 
-const targetAPI = {
+const seedAPI = {
   /** 모든 목표 페이지 네이션 전체 조회 */
   getAllPaginatedTargets: async ({ page, size }: GetAllPaginatedTargetRequest) => {
     const { data } = await authInstance.get<SeedPaginatedResponseType>(API_PATHS.All_TARGET, {
@@ -62,4 +62,4 @@ getSeedDetails: async (seedId: number) => {
 
 };
 
-export default targetAPI;
+export default seedAPI;
