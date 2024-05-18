@@ -5,7 +5,6 @@ import SeedCard from '../feature/seed/SeedCard';
 import SeedEmptyCard from './SeedEmptyCard';
 
 const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
-  console.log('seeds', seeds);
   const navigate = useNavigate();
   return (
     <ul className="flex flex-col gap-6">
@@ -20,10 +19,10 @@ const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boo
                 key={seed.id}
                 onClick={() => navigate(`/seed/${seed.id}`)}
               >
-                <SeedCard.Header endDate="2024-05-20" />
+                <SeedCard.Header endDate={seed.endDate} />
                 <SeedCard.Background />
                 <SeedCard.Body
-                  seed={seed.seedName}
+                  seedName={seed.seedName}
                   routineInfos={seed.routineInfos}
                   seedState={seed.seedState}
                 />

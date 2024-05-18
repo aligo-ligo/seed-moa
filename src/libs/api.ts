@@ -34,7 +34,6 @@ baseInstance.interceptors.response.use(
   },
   async (error) => {
     if (isAxiosError(error)) {
-      console.log('error.response?.data',error.response?.data.message)
       switch (error.response?.data.message) {
         case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
@@ -58,7 +57,6 @@ authInstance.interceptors.response.use(
     const { config } = error;
 
     if (isAxiosError(error)) {
-      console.log('error.response?.data',error.response?.data.message)
       switch (error.response?.data.message) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
