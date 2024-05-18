@@ -7,6 +7,7 @@ import SunIcon from '@/assets/icon/SunIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
+import STORAGE_KEYS from '@/constants/storageKeys';
 import useToast from '@/hooks/useToast';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
@@ -14,13 +15,14 @@ const GuestDetailPage = () => {
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(seedOptions.detailTargetWithoutAuth(Number(id)));
   const toast = useToast();
+  const isMember = !!localStorage.getItem(STORAGE_KEYS.accessToken);
 
-  //누구누구의 씨앗이라는 것을 말해주면 좋겠다
+  //TODO: 누구누구의 씨앗이라는 것을 말해주면 좋겠다
   return (
     <>
       <Header>
         <Header.Logo />
-        <Link to={'/'}>
+        <Link to={isMember ? '/mypage' : '/'}>
           <Profile width={32} />
         </Link>
       </Header>
