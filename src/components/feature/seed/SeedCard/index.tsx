@@ -64,18 +64,18 @@ const Header = ({
  * @description SeedCard Body UI를 표현하기 위한 컴포넌트
  */
 const Body = ({
-  seed,
+  seedName,
   routineInfos,
   seedState,
   className,
   ...props
-}: Pick<PreviewSeedType, 'seed' | 'routineInfos' | 'seedState'> &
+}: Pick<PreviewSeedType, 'seedName' | 'routineInfos' | 'seedState'> &
   HTMLAttributes<HTMLSpanElement>) => {
   return (
     <div className={cn(`flex w-full h-full py-2`, className)} {...props}>
       <div className="flex flex-col justify-evenly w-[70%]">
         <Typography type="heading2" className="overflow-hidden whitespace-nowrap truncate">
-          {seed}
+          {seedName}
         </Typography>
         <div>
           {routineInfos.map((routine, index) => {

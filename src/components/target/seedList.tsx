@@ -20,10 +20,10 @@ const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boo
                 key={seed.id}
                 onClick={() => navigate(`/seed/${seed.id}`)}
               >
-                <SeedCard.Header endDate="2024-05-20" />
+                <SeedCard.Header endDate={seed.endDate} />
                 <SeedCard.Background />
                 <SeedCard.Body
-                  seed={seed.seedName}
+                  seedName={seed.seedName}
                   routineInfos={seed.routineInfos}
                   seedState={seed.seedState}
                 />
