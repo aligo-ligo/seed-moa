@@ -38,12 +38,15 @@ export const routerChildrenInfo = [
     path: ROUTER_PATHS.MYPAGE,
     element: <Mypage />,
   },
+  {
+    path: '*',
+    element: <NotFoundPage />,
+  },
 ];
 export const routerInfo = [
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFoundPage />,
     children: routerChildrenInfo,
   },
 ];

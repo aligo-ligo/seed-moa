@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
 import { createContext, HTMLAttributes, useContext } from 'react';
 
+import CloseIcon from '@/assets/icon/CloseIcon';
 import Droplet from '@/assets/icon/Droplet';
 import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
 import StemStage from '@/assets/icon/StemStage';
 import TreeStage from '@/assets/icon/TreeStage';
-import CloseSign from '@/assets/images/close.png';
 import FruitsDetailStage from '@/assets/images/FruitsDetailStage';
 import StemDetailStage from '@/assets/images/StemDetailStage';
 import TreeDetailStage from '@/assets/images/TreeDetailStage';
@@ -113,7 +113,7 @@ const Background = ({ className, ...props }: HTMLAttributes<HTMLSpanElement>) =>
           )}
           {...props}
         >
-          <img src={CloseSign} alt="close" />
+          <CloseIcon width={100} />
         </div>
       ) : null}
     </>

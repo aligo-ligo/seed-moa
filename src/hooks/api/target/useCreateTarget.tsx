@@ -22,7 +22,7 @@ const useCreateSeedMutation = () => {
         refetchType: 'all',
       });
       show('createToast');
-      navigate('/target');
+      navigate('/seed');
       toast({ message: 'SEED_CREATE_SUCCESS' });
     },
     onError: () => {
