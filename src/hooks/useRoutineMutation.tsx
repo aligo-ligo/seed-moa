@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import seedAPI from '@/api/seed/apis';
-import targetOptions from '@/api/seed/queryOptions';
+import seedOptions from '@/api/seed/queryOptions';
 import useToast from './useToast';
 
 const useRoutineMutation = (seedId: number) => {
@@ -12,11 +12,11 @@ const useRoutineMutation = (seedId: number) => {
     mutationFn: seedAPI.patchRoutineDone,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: targetOptions.detailTarget(seedId).queryKey,
+        queryKey: seedOptions.detailTarget(seedId).queryKey,
         refetchType: 'all',
       });
       await queryClient.invalidateQueries({
-        queryKey: targetOptions.all,
+        queryKey: seedOptions.all,
         refetchType: 'all',
       });
       toast({ message: 'SEED_ROUTINE_STATE_SUCCESS' });

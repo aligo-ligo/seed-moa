@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import targetOptions from '@/api/seed/queryOptions';
+import seedOptions from '@/api/seed/queryOptions';
 import Logo from '@/assets/logo/Logo';
 import ReversedLogo from '@/assets/logo/ReversedLogo';
 import KakaoLoginButton from '@/components/auth/KakaoLoginButton';
@@ -9,7 +9,7 @@ import SkeletonElement from '@/components/layout/Skeleton';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const LandingPage = () => {
-  const { data: seed, isLoading } = useQuery(targetOptions.totalInfo());
+  const { data: seed, isLoading } = useQuery(seedOptions.totalInfo());
 
   const APP_KEY = import.meta.env.VITE_KAKAO_CLIENT_ID;
   const REDIRECT_URI = `${window.location.origin}${ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO}`;

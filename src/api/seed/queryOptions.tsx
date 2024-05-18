@@ -4,17 +4,17 @@ import commonAPI from '@/api/common/apis';
 import { GetAllPaginatedTargetRequest } from '@/types/target/type';
 import seedAPI from './apis';
 
-const targetOptions = {
+const seedOptions = {
   all: ['seed'] as const,
 
   targets: ({ page, size }: GetAllPaginatedTargetRequest) =>
     queryOptions({
-      queryKey: [...targetOptions.all] as const,
+      queryKey: [...seedOptions.all] as const,
       queryFn: () => seedAPI.getAllPaginatedTargets({ page, size }),
     }),
   detailTarget: (seedId: number, callQueryFn?: boolean) => {
     return queryOptions({
-      queryKey: [...targetOptions.all, seedId] as const,
+      queryKey: [...seedOptions.all, seedId] as const,
       queryFn: callQueryFn ? () => seedAPI.getSeedDetails(seedId) : undefined,
     });
   },
@@ -30,6 +30,12 @@ const targetOptions = {
       queryKey: ['my'],
       queryFn: seedAPI.getMyInfo,
     }),
+  detailTargetWithoutAuth: (seedId: number) => {
+    return queryOptions({
+      queryKey: [...seedOptions.all, seedId, 'guest'] as const,
+      queryFn: () => seedAPI.getDetailSeedAsGuest(seedId),
+    });
+  },
 };
 
-export default targetOptions;
+export default seedOptions;

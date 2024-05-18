@@ -1,5 +1,5 @@
 import { API_PATHS } from '@/constants/routerPath';
-import { authInstance } from '@/libs/api';
+import { authInstance, baseInstance } from '@/libs/api';
 import {
   DetailSeedType,
   GetAllPaginatedTargetRequest,
@@ -59,6 +59,11 @@ getSeedDetails: async (seedId: number) => {
     return data;
   },
 
+  /** 공유시 사용할 유저 정보 없이 상세 씨앗 정보 조회 */
+  getDetailSeedAsGuest: async (seedId: number) => {
+    const { data } = await baseInstance.get<DetailSeedType>(API_PATHS.SEED_DETAIL_NO_CREDENTIAL(seedId));
+    return data;
+  },
 
 };
 

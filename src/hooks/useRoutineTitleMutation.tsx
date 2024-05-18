@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import seedAPI from '@/api/seed/apis';
-import targetOptions from '@/api/seed/queryOptions';
+import seedOptions from '@/api/seed/queryOptions';
 import useToast from './useToast';
 
 type UpdateRoutineTitleType = {
@@ -18,7 +18,7 @@ const useRoutineTitleMutation = (seedId: number) => {
       seedAPI.patchRoutineTitle(routineId, routineTitle),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: targetOptions.detailTarget(seedId).queryKey,
+        queryKey: seedOptions.detailTarget(seedId).queryKey,
         refetchType: 'all',
       });
       toast({ message: 'SEED_ROUTINE_CONTENT_MODIFY_SUCCESS' });

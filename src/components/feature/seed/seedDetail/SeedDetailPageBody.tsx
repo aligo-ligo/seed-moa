@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import targetOptions from '@/api/seed/queryOptions';
+import seedOptions from '@/api/seed/queryOptions';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
@@ -16,7 +16,7 @@ type DetailProps = {
 };
 
 const SeedDetailPageBody = ({ seedId, isDeleted, isShared }: DetailProps) => {
-  const { data: seed } = useSuspenseQuery(targetOptions.detailTarget(Number(seedId), !isDeleted));
+  const { data: seed } = useSuspenseQuery(seedOptions.detailTarget(Number(seedId), !isDeleted));
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
   return (
