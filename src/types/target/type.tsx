@@ -12,16 +12,17 @@ export type SeedType = {
   seed: string;
   completedRoutineCount: number;
   seedState: SeedStateType;
-  cheeringCount: number;
 };
 
 export type SeedStateType = 'SEED' | 'STEM' | 'TREE' | 'FRUITS';
 
 export type PreviewSeedType = SeedType & {
+  cheeringCount: number;
   routineInfos: RoutineType[];
 };
 
 export type DetailSeedType = SeedType & {
+  cheeringCount: string[];
   routineDetails: RoutineDetailType[];
 };
 

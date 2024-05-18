@@ -17,8 +17,10 @@ type DetailProps = {
 
 const SeedDetailPageBody = ({ seedId, isDeleted, isShared }: DetailProps) => {
   const { data: seed } = useSuspenseQuery(seedOptions.detailTarget(Number(seedId), !isDeleted));
+
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
+
   return (
     <>
       <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
@@ -38,6 +40,7 @@ const SeedDetailPageBody = ({ seedId, isDeleted, isShared }: DetailProps) => {
 
           <div>{detailSeedStateObj[seed.seedState]}</div>
         </div>
+        {/* //TODO : 좋아요 UI 표현 고민해보자 */}
         <TaskList tasks={seed.routineDetails} isShared={isShared} />
       </div>
     </>
