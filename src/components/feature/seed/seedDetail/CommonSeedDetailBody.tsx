@@ -1,26 +1,20 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-
-import seedOptions from '@/api/seed/queryOptions';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
+import { DetailSeedType } from '@/types/target/type';
 import { getDateFromDiff } from '@/utils/date';
 import ObserverExitEvent from '../../detail/animatedBox/OpacityBox';
 import TaskList from '../../detail/TaskList';
 import { detailSeedStateObj } from '../SeedCard';
 
-type DetailProps = {
-  seedId: number;
-  isDeleted: boolean;
-  isShared: boolean;
+type CommonSeedDetailBodyType = {
+  seed: DetailSeedType;
 };
 
-const SeedDetailPageBody = ({ seedId, isDeleted, isShared }: DetailProps) => {
-  const { data: seed } = useSuspenseQuery(seedOptions.detailTarget(Number(seedId), !isDeleted));
-
+/** 유저와 게스트 공통으로 사용하는 컴포넌트 */
+const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
-
   return (
     <>
       <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
@@ -41,10 +35,10 @@ const SeedDetailPageBody = ({ seedId, isDeleted, isShared }: DetailProps) => {
           <div>{detailSeedStateObj[seed.seedState]}</div>
         </div>
         {/* //TODO : 좋아요 UI 표현 고민해보자 */}
-        <TaskList tasks={seed.routineDetails} isShared={isShared} />
+        <TaskList tasks={seed.routineDetails} />
       </div>
     </>
   );
 };
 
-export default SeedDetailPageBody;
+export default CommonSeedDetailBody;

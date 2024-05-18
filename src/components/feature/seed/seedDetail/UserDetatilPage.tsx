@@ -1,6 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import seedOptions from '@/api/seed/queryOptions';
 import LinkIcon from '@/assets/icon/Link';
 import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
@@ -12,18 +14,20 @@ import useToast from '@/hooks/useToast';
 import { shareLink } from '@/utils/share';
 import ConfirmBottomSheet from '../../detail/ConfirmBottomSheet';
 import RainBackGround from '../../detail/RainBackGround';
-import SeedDetailPageBody from './SeedDetailPageBody';
+import CommonSeedDetailBody from './CommonSeedDetailBody';
 
 type BottomSheetType = 'askDelete';
 
 const UserDetatilPage = () => {
-  const isShared = false;
   const { id } = useParams();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
-  const [isDeleted, setIsDeleted] = useState(false);
+
   const navigate = useNavigate();
   const { mutate } = useDeleteSeedMutation();
   const toast = useToast();
+  //씨앗 삭제 후 해당 상태를 기반으로 mutate으로 인한 리렌더링때 호출을 보내지 않도록 하기 위한 상태
+  const [isDeleted, setIsDeleted] = useState(false);
+  const { data: seed } = useSuspenseQuery(seedOptions.detailTarget(Number(id), !isDeleted));
 
   const handleCopyClipboard = async () => {
     try {
@@ -42,8 +46,8 @@ const UserDetatilPage = () => {
         </button>
       </Header>
 
-      {/* //TODO : isShared에 따라 컴포넌트 UI 및 기능 변경에 대해 처리 방법 고민 */}
-      <SeedDetailPageBody seedId={Number(id)} isDeleted={isDeleted} isShared={isShared} />
+      <CommonSeedDetailBody seed={seed} />
+
       <ConfirmBottomSheet
         isOpen={openedSheet === 'askDelete'}
         onClose={onCloseSheet}
