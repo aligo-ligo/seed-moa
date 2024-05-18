@@ -45,15 +45,20 @@ const LandingPage = () => {
             <SkeletonElement type="landing" />
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12">
-            <Typography type="heading2">전체 {seed?.totalUserCount} 명의 유저가</Typography>
-            <Typography type="heading2">총 {seed?.totalSeedCount}개의 씨앗을 심었어요!</Typography>
+          <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12 ">
+            <Typography type="heading3">
+              {seed?.totalUserCount}명의 사용자가 총 {seed?.totalSeedCount}개의 씨앗을 심었어요
+            </Typography>
+            <Typography type="heading3">동참해보세요</Typography>
           </div>
         )}
       </div>
 
       <div className="absolute bottom-5 w-full px-6">
         <KakaoLoginButton href={KAKAO_AUTH_URI} />
+        <Typography type="section1" className="text-gray-100 pt-2 text-center">
+          {`회원가입 시 서비스 이용약관과 개인정보 \n 수집 및 이용에 동의하게 됩니다.`}
+        </Typography>
       </div>
     </div>
   );
