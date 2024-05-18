@@ -20,7 +20,7 @@ const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
   return (
     <>
       <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
-        {seed.seed}
+        {seed.seedName}
       </Typography>
 
       <div className="flex flex-col w-full h-full">

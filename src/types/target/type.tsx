@@ -9,7 +9,7 @@ export type SeedType = {
   id: number;
   endDate: string;
   startDate: string;
-  seed: string;
+  seedName: string;
   completedRoutineCount: number;
   seedState: SeedStateType;
 };

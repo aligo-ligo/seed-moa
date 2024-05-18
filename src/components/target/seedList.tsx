@@ -23,7 +23,7 @@ const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boo
                 <SeedCard.Header endDate="2024-05-20" />
                 <SeedCard.Background />
                 <SeedCard.Body
-                  seed={seed.seed}
+                  seed={seed.seedName}
                   routineInfos={seed.routineInfos}
                   seedState={seed.seedState}
                 />
