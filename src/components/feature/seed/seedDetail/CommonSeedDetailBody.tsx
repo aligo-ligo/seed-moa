@@ -6,6 +6,7 @@ import { getDateFromDiff } from '@/utils/date';
 import ObserverExitEvent from '../../detail/animatedBox/OpacityBox';
 import TaskList from '../../detail/TaskList';
 import { detailSeedStateObj } from '../SeedCard';
+import { Sticker } from './Sticker';
 
 type CommonSeedDetailBodyType = {
   seed: DetailSeedType;
@@ -32,7 +33,7 @@ const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
             </div>
           </div>
 
-          <div>{detailSeedStateObj[seed.seedState]}</div>
+          <Sticker>{detailSeedStateObj[seed.seedState]}</Sticker>
         </div>
         {/* //TODO : 좋아요 UI 표현 고민해보자 */}
         <TaskList tasks={seed.routineDetails} />
