@@ -5,7 +5,6 @@ import SeedCard from '../feature/seed/SeedCard';
 import SeedEmptyCard from './SeedEmptyCard';
 
 const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
-  console.log('seeds', seeds);
   const navigate = useNavigate();
   return (
     <ul className="flex flex-col gap-6">
