@@ -22,8 +22,8 @@ const useAuth = () => {
       }
       try {
         const data = await mutateAsync(authorizeCode);
-        localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken as string);
-        localStorage.setItem(STORAGE_KEYS.refreshToken, data.refreshToken as string);
+        localStorage.setItem(STORAGE_KEYS.accessToken, data.tokenInfo.accessToken as string);
+        localStorage.setItem(STORAGE_KEYS.refreshToken, data.tokenInfo.refreshToken as string);
         setIsLoggedIn(true)
         setTimeout(() => 
         {
