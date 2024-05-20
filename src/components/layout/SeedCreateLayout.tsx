@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const TargetCreateLayout = ({ title, description, children }: Props) => {
+const SeedCreateLayout = ({ title, description, children }: Props) => {
   return (
     <div className=" flex flex-col mt-2 w-full text-white">
       <div className="mt-2 mb-16">
@@ -19,4 +19,4 @@ const TargetCreateLayout = ({ title, description, children }: Props) => {
   );
 };
 
-export default TargetCreateLayout;
+export default SeedCreateLayout;

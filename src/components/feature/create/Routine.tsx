@@ -2,11 +2,11 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import Add from '@/assets/icon/Add';
 import Remove from '@/assets/icon/Remove';
-import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from '../../constants/target';
-import Validation from '../auth/Validation';
-import Button from '../common/button/Button';
-import { Typography } from '../common/typography/Typography';
-import TargetCreateLayout from '../layout/TargetCreateLayout';
+import { ROUTINE_DESCRIPTION, ROUTINE_TITLE } from '../../../constants/target';
+import Validation from '../../auth/Validation';
+import Button from '../../common/button/Button';
+import { Typography } from '../../common/typography/Typography';
+import SeedCreateLayout from '../../layout/SeedCreateLayout';
 
 type RoutineProps = {
   toNext: () => void;
@@ -33,7 +33,7 @@ const Routine = ({ toNext }: RoutineProps) => {
   const maxRoutineCount = routineWatch.length < 3;
 
   return (
-    <TargetCreateLayout title={ROUTINE_TITLE} description={ROUTINE_DESCRIPTION}>
+    <SeedCreateLayout title={ROUTINE_TITLE} description={ROUTINE_DESCRIPTION}>
       <div className="flex items-center justify-between">
         <Typography type="heading3">열매 맺기 위한 루틴 (최대 3개)</Typography>
         {maxRoutineCount && (
@@ -86,7 +86,7 @@ const Routine = ({ toNext }: RoutineProps) => {
           다음
         </Button>
       </div>
-    </TargetCreateLayout>
+    </SeedCreateLayout>
   );
 };
 

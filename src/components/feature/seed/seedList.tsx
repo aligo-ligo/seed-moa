@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
 import { PreviewSeedType } from '@/types/target/type';
-import SeedCard from '../feature/seed/SeedCard';
-import SeedEmptyCard from '../feature/seed/SeedEmptyCard';
+import SeedCard from './SeedCard';
+import SeedEmptyCard from './SeedEmptyCard';
 
 const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
   const navigate = useNavigate();

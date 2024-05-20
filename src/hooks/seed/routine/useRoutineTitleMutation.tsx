@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import seedAPI from '@/api/seed/apis';
 import seedOptions from '@/api/seed/queryOptions';
-import useToast from './useToast';
+import useToast from '../../useToast';
 
 type UpdateRoutineTitleType = {
   routineId: number;

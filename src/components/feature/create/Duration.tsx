@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
-import useCreateSeedMutation from '@/hooks/api/target/useCreateTarget';
-import { SeedValidationInferType } from '@/pages/TargetCreatePage';
+import useCreateSeedMutation from '@/hooks/seed/create/useCreateSeedMutation';
+import { SeedValidationInferType } from '@/pages/SeedCreatePage';
 import 'react-datepicker/dist/react-datepicker.css';
-import { DURATION_DESCRIPTION, DURATION_TITLE } from '../../constants/target';
-import Validation from '../auth/Validation';
-import Button from '../common/button/Button';
-import TargetCreateLayout from '../layout/TargetCreateLayout';
+import { DURATION_DESCRIPTION, DURATION_TITLE } from '../../../constants/target';
+import Validation from '../../auth/Validation';
+import Button from '../../common/button/Button';
+import SeedCreateLayout from '../../layout/SeedCreateLayout';
 import './DatePicker/css/react-datepicker.css';
 import DatePickerComponent from './DatePicker/DatePickerComponent';
 
@@ -27,7 +27,7 @@ const Duration = () => {
   };
 
   return (
-    <TargetCreateLayout title={DURATION_TITLE} description={DURATION_DESCRIPTION}>
+    <SeedCreateLayout title={DURATION_TITLE} description={DURATION_DESCRIPTION}>
       <DatePickerComponent />
       <Validation>{errors?.endDate?.message?.toString()}</Validation>
 
@@ -42,7 +42,7 @@ const Duration = () => {
           제출하기
         </Button>
       </div>
-    </TargetCreateLayout>
+    </SeedCreateLayout>
   );
 };
 

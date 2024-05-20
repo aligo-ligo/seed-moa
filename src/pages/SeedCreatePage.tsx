@@ -3,12 +3,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { InferType } from 'yup';
 
 import ChevronLeft from '@/assets/icon/ChevronLeft';
-import Duration from '@/components/goal/Duration';
-import Seed from '@/components/goal/Seed';
-import ProgressBar from '@/components/target/animationBars/ProgressBar';
+import Duration from '@/components/feature/create/Duration';
+import ProgressBar from '@/components/feature/create/ProgressBar';
+import Seed from '@/components/feature/create/Seed';
 import { FUNNEL_LIST, seedSchema } from '@/constants/contants';
 import useFunnel from '@/hooks/seed/create/useFunnel';
-import Routine from '../components/goal/Routine';
+import Routine from '../components/feature/create/Routine';
 
 export type SeedValidationInferType = InferType<typeof seedSchema>;
 
