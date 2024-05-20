@@ -13,14 +13,16 @@ import useRoutineTitleMutation from '@/hooks/seed/routine/useRoutineTitleMutatio
 import { useInput } from '@/hooks/useInput';
 import useQueryString from '@/hooks/useQueryString';
 import useMusicStore from '@/store/useMusicStore';
+import SharedTask from './SharedTask';
 import { TaskEditInput } from './TaskEditInput';
-interface TaskProps {
+
+export type TaskProps = {
   initialIsDone?: boolean;
   routineTitle: string;
   routineId: number;
   completedRoutineToday: boolean;
   onFinishRoutine: VoidFunction;
-}
+};
 
 const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine }: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
@@ -51,9 +53,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine 
   return (
     <>
       {isShared ? (
-        <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-          <Typography type="body2">{routineTitle}</Typography>
-        </div>
+        <SharedTask routineTitle={routineTitle} />
       ) : (
         <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
           {isEditing ? (
