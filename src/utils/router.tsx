@@ -4,6 +4,7 @@ import { RoutineProvider } from '@/context/RoutineContext';
 import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import OnboardingPage from '@/pages/onboardingPage';
 import SeedDetailPage from '@/pages/seedDetailPage';
 import SeedPage from '@/pages/seedPage';
 import { default as Mypage } from '../pages/Mypage';
@@ -37,6 +38,10 @@ export const routerChildrenInfo = [
   {
     path: ROUTER_PATHS.MYPAGE,
     element: <Mypage />,
+  },
+  {
+    path: ROUTER_PATHS.ONBOARDING,
+    element: <OnboardingPage />,
   },
   {
     path: '*',
