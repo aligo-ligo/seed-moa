@@ -9,24 +9,26 @@ import Logo from '@/assets/logo/Logo';
 import { Typography } from '@/components/common/typography/Typography';
 import { DELAY_SECOND } from '@/constants/contants';
 import { useRoutineContext } from '@/context/RoutineContext';
-import { useSharedStateContext } from '@/context/SharedStateContext';
 import useRoutineTitleMutation from '@/hooks/seed/routine/useRoutineTitleMutation';
 import { useInput } from '@/hooks/useInput';
+import useQueryString from '@/hooks/useQueryString';
 import useMusicStore from '@/store/useMusicStore';
+import SharedTask from './SharedTask';
 import { TaskEditInput } from './TaskEditInput';
-interface TaskProps {
+
+export type TaskProps = {
   initialIsDone?: boolean;
   routineTitle: string;
   routineId: number;
   completedRoutineToday: boolean;
   onFinishRoutine: VoidFunction;
-}
+};
 
 const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine }: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
   const isPlaying = useMusicStore((s) => s.isPlaying);
   const { onRainBgOpen, onRainBgClose } = useRoutineContext();
-  const { isShared } = useSharedStateContext();
+  const { isShared } = useQueryString('share');
 
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
@@ -50,11 +52,8 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine 
 
   return (
     <>
-      {/* TODO : 합성 컴포넌트로 만들면 좋을 듯, 지금은 우선 Props로 최상위는 공유 됐는지 안됐는지 그리고 그 안에서 수정이 눌렸는지를 구분하고 있음 */}
       {isShared ? (
-        <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-          <Typography type="body2">{routineTitle}</Typography>
-        </div>
+        <SharedTask routineTitle={routineTitle} />
       ) : (
         <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
           {isEditing ? (

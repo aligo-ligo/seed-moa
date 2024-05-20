@@ -1,7 +1,6 @@
 import App from '@/App';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 import { RoutineProvider } from '@/context/RoutineContext';
-import { SharedStateProvider } from '@/context/SharedStateContext';
 import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -26,11 +25,9 @@ export const routerChildrenInfo = [
   {
     path: ROUTER_PATHS.TAGET_DETAIL,
     element: (
-      <SharedStateProvider>
-        <RoutineProvider>
-          <SeedDetailPage />
-        </RoutineProvider>
-      </SharedStateProvider>
+      <RoutineProvider>
+        <SeedDetailPage />
+      </RoutineProvider>
     ),
   },
   {
