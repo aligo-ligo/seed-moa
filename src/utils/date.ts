@@ -15,3 +15,9 @@ export const getKrDateName = (date: Date) => dayjs(date).format('dddd');
 export const getDateFromDiff = (endDate: string, startDate: string) => {
   return gaurdNagativeToZero(dayjs(endDate).diff(startDate, 'day') - 1);
 };
+
+export const getFutureDate = (day: number) => {
+  const futureDate = dayjs().add(day, 'day')
+  return futureDate.format('YYYY-MM-DD')
+
+}

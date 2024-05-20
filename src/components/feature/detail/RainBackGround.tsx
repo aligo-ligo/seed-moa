@@ -1,9 +1,6 @@
 import Rain from '@/components/common/rain';
-import { useRoutineContext } from '@/context/RoutineContext';
 
-const RainBackGround = () => {
-  const { isRainOpen } = useRoutineContext();
-
+const RainBackGround = ({ isRainOpen }: { isRainOpen: boolean }) => {
   return (
     <>
       {isRainOpen && (

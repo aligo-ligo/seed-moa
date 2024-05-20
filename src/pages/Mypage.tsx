@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import ChevronRight from '@/assets/icon/ChevronRight';
 import FruitsStage from '@/assets/icon/FruitsStage';
@@ -9,12 +9,14 @@ import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import UserProfile from '@/components/feature/my/userProfile/UserProfile';
 import { USER_FEEDBACK_GOOGLE_FORM_URL } from '@/constants/extarnelUrl';
+import { ROUTER_PATHS } from '@/constants/routerPath';
 import useAuth from '@/hooks/auth/useAuth';
 import useGetOwnInfo from '@/hooks/seed/create/useGetOwnInfo';
 
 const Mypage = () => {
   const { myInfo, sortedStatistics } = useGetOwnInfo();
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="relative flex flex-col px-6 h-dvh">
@@ -63,6 +65,24 @@ const Mypage = () => {
         </div>
       </div>
       {/* MyPageBody */}
+      <div className="w-full flex justify-center">
+        <div className="mt-4 px-4 py-2 w-full flex flex-col bg-white rounded-lg shadow-[0_1.001px_40px_0_rgba(197,229,255,0.3)]">
+          <button
+            className="h-12 text-left"
+            onClick={() => {
+              navigate(ROUTER_PATHS.ONBOARDING);
+            }}
+          >
+            <div className="flex justify-between items-center">
+              <div className="flex gap-2 items-center">
+                <Typography type="body2" className="text-gray-800">
+                  온보딩 페이지 다시 보기
+                </Typography>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
       <div className="w-full flex justify-center">
         <div className="mt-4 px-4 py-2 w-full flex flex-col bg-white rounded-lg shadow-[0_1.001px_40px_0_rgba(197,229,255,0.3)]">
           <button className="h-12 text-left border-b" onClick={() => {}}>

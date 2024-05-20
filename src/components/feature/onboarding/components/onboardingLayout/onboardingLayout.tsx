@@ -4,16 +4,17 @@ import { Typography } from '@/components/common/typography/Typography';
 
 export interface OnboardingLayoutProps {
   title: string | ReactNode;
+  content?: string | ReactNode;
 }
 
-export const OnboardingLayout = ({ title }: OnboardingLayoutProps) => {
+export const OnboardingLayout = ({ title, content }: OnboardingLayoutProps) => {
   return (
-    <section className="w-full h-full flex justify-center">
-      <div className="w-full">
+    <section className="relative w-full h-full flex justify-center">
+      <div className="w-[90%]">
         <Typography type="heading1" className="text-blue-50 mr-auto">
           {title}
         </Typography>
-        {/* <div className="w-full h-[60vh] flex justify-center items-center">{sticker}</div> */}
+        {content}
       </div>
     </section>
   );
