@@ -1,7 +1,7 @@
 import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 
 import { Typography } from '@/components/common/typography/Typography';
-import { monthFormatDate } from '../../../utils/formatDate';
+import { monthFormatDate } from '../../../../utils/formatDate';
 
 interface Props {
   date: Date;

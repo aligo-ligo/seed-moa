@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import useRoutineMutation from '@/hooks/useRoutineMutation';
+import useRoutineMutation from '@/hooks/seed/routine/useRoutineMutation';
 import { RoutineDetailType } from '@/types/target/type';
 import Task from './Task';
 

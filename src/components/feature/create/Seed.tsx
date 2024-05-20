@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 
-import { GOAL_DESCRIPTION, GOAL_TITLE } from '../../constants/target';
-import Validation from '../auth/Validation';
-import Button from '../common/button/Button';
-import TargetCreateLayout from '../layout/TargetCreateLayout';
+import { GOAL_DESCRIPTION, GOAL_TITLE } from '../../../constants/target';
+import Validation from '../../auth/Validation';
+import Button from '../../common/button/Button';
+import SeedCreateLayout from '../../layout/SeedCreateLayout';
 
 type SeedProps = {
   toNext: () => void;
@@ -17,7 +17,7 @@ const Seed = ({ toNext }: SeedProps) => {
   } = useFormContext();
 
   return (
-    <TargetCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
+    <SeedCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
       <input
         type="text"
         className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
@@ -40,7 +40,7 @@ const Seed = ({ toNext }: SeedProps) => {
           다음
         </Button>
       </div>
-    </TargetCreateLayout>
+    </SeedCreateLayout>
   );
 };
 

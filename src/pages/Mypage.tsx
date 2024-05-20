@@ -9,8 +9,8 @@ import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import UserProfile from '@/components/feature/my/userProfile/UserProfile';
 import { USER_FEEDBACK_GOOGLE_FORM_URL } from '@/constants/extarnelUrl';
-import useGetOwnInfo from '@/hooks/api/target/useGetOwnInfo';
 import useAuth from '@/hooks/auth/useAuth';
+import useGetOwnInfo from '@/hooks/seed/create/useGetOwnInfo';
 
 const Mypage = () => {
   const { myInfo, sortedStatistics } = useGetOwnInfo();
