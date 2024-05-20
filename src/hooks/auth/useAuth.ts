@@ -25,10 +25,8 @@ const useAuth = () => {
         localStorage.setItem(STORAGE_KEYS.accessToken, data.tokenInfo.accessToken as string);
         localStorage.setItem(STORAGE_KEYS.refreshToken, data.tokenInfo.refreshToken as string);
         setIsLoggedIn(true);
-        console.log('ONBOARDING',data.isFirst)
-        // 테스트를 위한 임시 변수
-        const isFirst = true
-        if (isFirst) {
+
+        if (data.isFirst) {
           navigate(ROUTER_PATHS.ONBOARDING)
           return
         }
