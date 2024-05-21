@@ -8,14 +8,18 @@ import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import STORAGE_KEYS from '@/constants/storageKeys';
-import useToast from '@/hooks/useToast';
+import useMusicStore from '@/store/useMusicStore';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
 const GuestDetailPage = () => {
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(seedOptions.detailTargetWithoutAuth(Number(id)));
-  const toast = useToast();
+  const toggleMusicPlaying = useMusicStore((s) => s.toggleSunPlaying);
   const isMember = !!localStorage.getItem(STORAGE_KEYS.accessToken);
+
+  const clickHandler = () => {
+    toggleMusicPlaying();
+  };
 
   //TODO: 누구누구의 씨앗이라는 것을 말해주면 좋겠다
   return (
@@ -34,9 +38,7 @@ const GuestDetailPage = () => {
           <div className="flex size-[60px] justify-center gap-3 mt-3">
             <Button
               width="full"
-              onClick={() => {
-                toast({ type: 'default', message: '기능 준비중입니다!' });
-              }}
+              onClick={clickHandler}
               Icon={<SunIcon width={60} height={60} />}
               iconOnly
               className="rounded-[100%] bg-gray-10"

@@ -25,8 +25,8 @@ export type TaskProps = {
 };
 
 const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine }: TaskProps) => {
-  const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
-  const isPlaying = useMusicStore((s) => s.isPlaying);
+  const toggleMusicPlaying = useMusicStore((s) => s.toggleRainPlaying);
+  const isPlaying = useMusicStore((s) => s.isRainPlaying);
   const { onRainBgOpen, onRainBgClose } = useRoutineContext();
   const { isShared } = useQueryString('share');
 
