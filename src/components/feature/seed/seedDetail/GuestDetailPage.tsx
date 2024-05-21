@@ -15,10 +15,15 @@ const GuestDetailPage = () => {
   const { id } = useParams();
   const { data: seed } = useSuspenseQuery(seedOptions.detailTargetWithoutAuth(Number(id)));
   const toggleMusicPlaying = useMusicStore((s) => s.toggleSunPlaying);
+  const isPlaying = useMusicStore((s) => s.isSunPlaying);
   const isMember = !!localStorage.getItem(STORAGE_KEYS.accessToken);
 
   const clickHandler = () => {
+    if (isPlaying) return;
     toggleMusicPlaying();
+    setTimeout(() => {
+      toggleMusicPlaying();
+    }, 5000);
   };
 
   //TODO: 누구누구의 씨앗이라는 것을 말해주면 좋겠다
