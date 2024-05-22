@@ -24,8 +24,6 @@ const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
 
-  console.log(seed.endDate, seed.startDate);
-  console.log('totalRoutineCount', totalRoutineCount);
   return (
     <>
       <Typography type="heading1" className="pointer-events-none text-white text-left w-full">

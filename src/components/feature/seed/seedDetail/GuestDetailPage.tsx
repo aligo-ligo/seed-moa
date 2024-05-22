@@ -44,8 +44,6 @@ const GuestDetailPage = () => {
         toggleMusicPlaying();
         onSunBgClose();
       }, 5000);
-
-      console.log(id);
     } catch {
       toast({ type: 'default', message: '로그인 후 응원할 수 있어요' });
     }
