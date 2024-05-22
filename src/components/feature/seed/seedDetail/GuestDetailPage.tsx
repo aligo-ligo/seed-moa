@@ -21,7 +21,7 @@ const GuestDetailPage = () => {
   const toggleMusicPlaying = useMusicStore((s) => s.toggleSunPlaying);
   const isPlaying = useMusicStore((s) => s.isSunPlaying);
   const isMember = !!localStorage.getItem(STORAGE_KEYS.accessToken);
-  const { onSunBgOpen, onSunBgClose } = useCheerContext();
+  const { isSunOpen, onSunBgOpen, onSunBgClose } = useCheerContext();
   const { likes } = useCheerMutation(Number(id));
   const toast = useToast();
 
@@ -65,7 +65,7 @@ const GuestDetailPage = () => {
         </div>
       </div>
 
-      <SunBackground />
+      <SunBackground isOpen={isSunOpen} />
     </>
   );
 };
