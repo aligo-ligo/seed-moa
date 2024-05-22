@@ -8,13 +8,8 @@ interface CheerUpButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const CheerUpButton = ({ onOpen, ...props }: CheerUpButtonProps) => {
-  const handleOpenComments = () => {
-    // open(({ isOpen, close }) => <CommentsBottomSheet open={isOpen} onClose={close} goalId={targetGoalId} />);
-    onOpen();
-  };
-
   return (
-    <Button className="items-center bg-gray-10" onClick={handleOpenComments} {...props}>
+    <Button className="items-center bg-gray-10" onClick={onOpen} {...props}>
       <SunIcon width={30} height={30} />
     </Button>
   );

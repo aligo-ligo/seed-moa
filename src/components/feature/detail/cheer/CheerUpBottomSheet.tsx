@@ -15,7 +15,6 @@ type Props = {
 const CheerUpBottomSheet = ({ isOpen, onClose: closeSheetHandler }: Props) => {
   const { id } = useParams();
   const { data } = useSuspenseQuery(seedOptions.getCheeringUserList(Number(id)));
-  console.log(data);
 
   return (
     <BottomSheet open={isOpen} onDismiss={closeSheetHandler}>
