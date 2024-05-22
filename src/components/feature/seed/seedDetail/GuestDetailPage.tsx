@@ -1,12 +1,14 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { Link, useBeforeUnload, useParams } from 'react-router-dom';
+import { Link, useBeforeUnload, useNavigate, useParams } from 'react-router-dom';
 
 import seedOptions from '@/api/seed/queryOptions';
+import ChevronLeft from '@/assets/icon/ChevronLeft';
 import Profile from '@/assets/icon/Profile';
 import SunIcon from '@/assets/icon/SunIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
+import { ROUTER_PATHS } from '@/constants/routerPath';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { useCheerContext } from '@/context/CheerContext';
 import useCheerMutation from '@/hooks/like/useCheerMutation';
@@ -17,6 +19,7 @@ import CommonSeedDetailBody from './CommonSeedDetailBody';
 
 const GuestDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: seed } = useSuspenseQuery(seedOptions.detailTargetWithoutAuth(Number(id)));
   const toggleMusicPlaying = useMusicStore((s) => s.toggleSunPlaying);
   const isPlaying = useMusicStore((s) => s.isSunPlaying);
@@ -51,7 +54,13 @@ const GuestDetailPage = () => {
   return (
     <>
       <Header>
-        <Header.Logo />
+        {isMember ? (
+          <Button variant="empty" onClick={() => navigate(ROUTER_PATHS.TARGET)}>
+            <ChevronLeft width={20} height={20} color="white" />
+          </Button>
+        ) : (
+          <Header.Logo />
+        )}
         <Link to={isMember ? '/mypage' : '/'}>
           <Profile width={32} />
         </Link>
