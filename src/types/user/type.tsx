@@ -16,7 +16,7 @@ type StateStatisticsListType = {
 };
 
 export type CheerUserResponseType = {
-  cheerUsers: CheerUserListType;
+  cheerUsers: CheerUserListType[];
   cheerCount: number;
 };
 
