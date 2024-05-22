@@ -8,6 +8,7 @@ import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import STORAGE_KEYS from '@/constants/storageKeys';
+import useRoutineMutation from '@/hooks/like/useLikesMutation';
 import useMusicStore from '@/store/useMusicStore';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
@@ -17,14 +18,28 @@ const GuestDetailPage = () => {
   const toggleMusicPlaying = useMusicStore((s) => s.toggleSunPlaying);
   const isPlaying = useMusicStore((s) => s.isSunPlaying);
   const isMember = !!localStorage.getItem(STORAGE_KEYS.accessToken);
+  const { likes } = useRoutineMutation();
 
-  const clickHandler = () => {
+  const onClickHandler = () => {
     if (isPlaying) return;
     toggleMusicPlaying();
     setTimeout(() => {
       toggleMusicPlaying();
     }, 5000);
+    likes(Number(id));
   };
+
+  // const routineClickEventHandler = () => {
+  //   if (completedRoutineToday) return;
+  //   if (isPlaying) return;
+  //   toggleMusicPlaying();
+  //   onRainBgOpen();
+  //   setTimeout(() => {
+  //     toggleMusicPlaying();
+  //     onRainBgClose();
+  //   }, DELAY_SECOND);
+  //   onFinishRoutine();
+  // };
 
   //TODO: 누구누구의 씨앗이라는 것을 말해주면 좋겠다
   return (
@@ -43,7 +58,7 @@ const GuestDetailPage = () => {
           <div className="flex size-[60px] justify-center gap-3 mt-3">
             <Button
               width="full"
-              onClick={clickHandler}
+              onClick={onClickHandler}
               Icon={<SunIcon width={60} height={60} />}
               iconOnly
               className="rounded-[100%] bg-gray-10"

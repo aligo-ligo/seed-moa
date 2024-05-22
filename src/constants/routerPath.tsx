@@ -13,7 +13,7 @@ export const API_PATHS = {
   CREATE_SEED: '/api/seed',
   TARGET_SUBGOAL: 'target/update',
 
-  SEED_LIKE: (seedId: number) => `/api/seed/${seedId}/like`,
+  SEED_LIKE: (seedId: number) => `/api/seed/${seedId}/cheer`,
 
   SEED_MINE: '/api/seed/my',
 } as const;

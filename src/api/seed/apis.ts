@@ -66,10 +66,8 @@ getSeedDetails: async (seedId: number) => {
   },
 
     /** 좋아요 (응원하기) 요청 */
-    patchSeedLikes: async (seedId: number,isIncreased:boolean) => {
-      const { data } = await baseInstance.patch(API_PATHS.SEED_LIKE(seedId),{
-        isIncreased
-      });
+    patchSeedLikes: async (seedId: number) => {
+      const { data } = await authInstance.patch(API_PATHS.SEED_LIKE(seedId));
       return data;
     },
 
