@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useBeforeUnload, useParams } from 'react-router-dom';
 
 import CheckedIcon from '@/assets/icon/CheckedIcon';
 import EllipsisVerticalIcon from '@/assets/icon/EllipsisVerticalIcon';
@@ -48,11 +48,18 @@ const Task = ({
   const CheckIcon = completedRoutineToday ? CheckedIcon : UnCheckedIcon;
   const isEditedInputValue = routineTitle !== editText;
 
+  useBeforeUnload(() => {
+    if (!isPlaying) return;
+    toggleMusicPlaying();
+    onRainBgClose();
+  });
+
   const routineClickEventHandler = () => {
     if (completedRoutineToday) return;
     if (isPlaying) return;
     toggleMusicPlaying();
     onRainBgOpen();
+    // 지정된 시간 이전에 다른 페이지로 가면 왜 아래 코드는 실행이 안될까?!
     setTimeout(() => {
       toggleMusicPlaying();
       onRainBgClose();

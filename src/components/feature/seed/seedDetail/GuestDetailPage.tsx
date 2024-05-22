@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useBeforeUnload, useParams } from 'react-router-dom';
 
 import seedOptions from '@/api/seed/queryOptions';
 import Profile from '@/assets/icon/Profile';
@@ -25,6 +25,12 @@ const GuestDetailPage = () => {
   const { likes } = useCheerMutation(Number(id));
   const toast = useToast();
 
+  useBeforeUnload(() => {
+    if (!isPlaying) return;
+    toggleMusicPlaying();
+    onSunBgClose();
+  });
+
   const onClickHandler = async () => {
     if (isPlaying) return;
     try {
@@ -35,6 +41,8 @@ const GuestDetailPage = () => {
         toggleMusicPlaying();
         onSunBgClose();
       }, 5000);
+
+      console.log(id);
     } catch {
       toast({ type: 'default', message: '로그인 후 응원할 수 있어요' });
     }
