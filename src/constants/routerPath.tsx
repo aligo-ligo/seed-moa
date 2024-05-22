@@ -25,4 +25,5 @@ export const ROUTER_PATHS = {
   TARGET: '/seed',
   CREATE_TARGET: '/seed/create',
   MYPAGE: '/mypage',
+  ONBOARDING: '/onboarding',
 } as const;

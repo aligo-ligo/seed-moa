@@ -8,7 +8,6 @@ import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import Logo from '@/assets/logo/Logo';
 import { Typography } from '@/components/common/typography/Typography';
 import { DELAY_SECOND } from '@/constants/contants';
-import { useRoutineContext } from '@/context/RoutineContext';
 import useRoutineTitleMutation from '@/hooks/seed/routine/useRoutineTitleMutation';
 import { useInput } from '@/hooks/useInput';
 import useQueryString from '@/hooks/useQueryString';
@@ -17,17 +16,28 @@ import SharedTask from './SharedTask';
 import { TaskEditInput } from './TaskEditInput';
 
 export type TaskProps = {
-  initialIsDone?: boolean;
   routineTitle: string;
   routineId: number;
   completedRoutineToday: boolean;
-  onFinishRoutine: VoidFunction;
+  onDone: VoidFunction;
+  onRainBgClose: VoidFunction;
+  onRainBgOpen: VoidFunction;
+  //TODO : 다른 페이지에서 사용할때 수정이 불가해야하는 요구사항때문에 임시 추가 해당 컴포넌트는 반드시 리팩터링 필요
+  disableEditing?: boolean;
 };
 
-const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine }: TaskProps) => {
+const Task = ({
+  routineTitle,
+  routineId,
+  completedRoutineToday,
+  onDone,
+  onRainBgOpen,
+  onRainBgClose,
+  disableEditing,
+}: TaskProps) => {
   const toggleMusicPlaying = useMusicStore((s) => s.toggleRainPlaying);
   const isPlaying = useMusicStore((s) => s.isRainPlaying);
-  const { onRainBgOpen, onRainBgClose } = useRoutineContext();
+
   const { isShared } = useQueryString('share');
 
   const { id } = useParams();
@@ -47,7 +57,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine 
       toggleMusicPlaying();
       onRainBgClose();
     }, DELAY_SECOND);
-    onFinishRoutine();
+    onDone();
   };
 
   return (
@@ -97,7 +107,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine 
                         }
                       }, 0);
                     }}
-                    disabled={isShared}
+                    disabled={disableEditing}
                   >
                     <EllipsisVerticalIcon width={20} />
                   </button>
