@@ -37,6 +37,13 @@ const GuestDetailPage = () => {
   const { value: isOpen, on: open, off: close } = useStateBoolean(false);
   const backgroundRef = useRef<HTMLDivElement>(null);
 
+  // TODO : 중복된 코드이므로 빠르게 기능 확인 후, 리팩터링
+  const APP_KEY = import.meta.env.VITE_KAKAO_CLIENT_ID;
+  const REDIRECT_URI = `${window.location.origin}${ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO}`;
+
+  const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${APP_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+  // TODO : beforunload에 대해 정확히 학습한 후, 리팩터링
   useBeforeUnload(() => {
     if (!isPlaying) return;
     toggleMusicPlaying();
@@ -113,7 +120,7 @@ const GuestDetailPage = () => {
               </div>
             </div>
 
-            <KakaoLoginButton />
+            <KakaoLoginButton href={KAKAO_AUTH_URI} />
           </div>
         </section>
       </Modal>
