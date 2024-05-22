@@ -12,7 +12,7 @@ const OnboardingRain = () => {
       <div className="w-[92%] absolute bottom-20">
         <Task
           routineId={1}
-          routineTitle={'왼쪽 옵션을 누르면 비가 내려요'}
+          routineTitle={'루틴을 체크하면 비가 내려요'}
           completedRoutineToday={false}
           onDone={() => {}}
           onRainBgOpen={() => setIsOpen(true)}

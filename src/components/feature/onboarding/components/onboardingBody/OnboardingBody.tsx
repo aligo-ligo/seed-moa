@@ -13,21 +13,33 @@ import { OnboardingSwiper } from '../onboardingSwiper';
 
 const ONBOARDING_VALUES: OnboardingLayoutProps[] = [
   {
-    title: '씨앗 모아는 \n 작은 성취를 쌓아 \n 큰 성취를 얻길 원해요.',
+    title: '씨앗 모아는 \n 작은 성취를 쌓아 \n 큰 성취를 얻길 원해요',
     content: <Lottie src="/lottie/growSeed.json" />,
   },
   {
-    title: '목표와 루틴 그리고 기간을 \n 작성하여 씨앗을 심을 수 있어요. ',
+    title: '목표를 위해 \n 씨앗을 심어봐요 ',
     content: <OnboardingSeedCard />,
   },
   {
-    title: '심은 씨앗에 \n 물을 줄 수 있어요',
+    title: '물을 줘서 \n 씨앗을 키워봐요',
     content: <OnboardingRain />,
   },
   {
-    title: '친구가 공유해 준다면  \n 심은 씨앗에  응원도 \n 가능해요.',
+    title: '친구들의 씨앗도 \n  응원할 수 있다니  \n  이거 완전 럭키비키자낭!',
     content: <OnboardingSun />,
   },
+  {
+    title: '씨앗 모아는 \n결실을 맺을\n 여러분을 응원해요',
+    content: (
+      <div className="relative">
+        <Lottie src="/lottie/growSeed.json" />
+        <div className="absolute top-0">
+          <Lottie src="/lottie/bless.json" />
+        </div>
+      </div>
+    ),
+  },
+  // 열매 추가
 ];
 
 export const OnboardingBody = () => {
