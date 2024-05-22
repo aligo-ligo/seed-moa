@@ -1,6 +1,7 @@
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
+import STORAGE_KEYS from '@/constants/storageKeys';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import { DetailSeedType } from '@/types/target/type';
 import { getDateFromDiff } from '@/utils/date';
@@ -19,6 +20,7 @@ type CommonSeedDetailBodyType = {
 /** 유저와 게스트 공통으로 사용하는 컴포넌트 */
 const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
+  const isMember = localStorage.getItem(STORAGE_KEYS.accessToken);
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
 
@@ -40,23 +42,27 @@ const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
           </div>
           <Sticker>{detailSeedStateObj[seed.seedState]}</Sticker>
 
-          <div className="flex w-full justify-end">
-            <Sticker>
-              <CheerUpButton
-                onOpen={() => {
-                  onOpenSheet('checkCheerUpNameList');
-                }}
+          {isMember && (
+            <>
+              <div className="flex w-full justify-end">
+                <Sticker>
+                  <CheerUpButton
+                    onOpen={() => {
+                      onOpenSheet('checkCheerUpNameList');
+                    }}
+                  />
+                </Sticker>
+              </div>
+
+              <CheerUpBottomSheet
+                isOpen={openedSheet === 'checkCheerUpNameList'}
+                onClose={onCloseSheet}
               />
-            </Sticker>
-          </div>
+            </>
+          )}
         </div>
         {/* //TODO : 좋아요 UI 표현 고민해보자 */}
         <TaskList tasks={seed.routineDetails} />
-
-        <CheerUpBottomSheet
-          isOpen={openedSheet === 'checkCheerUpNameList'}
-          onClose={onCloseSheet}
-        />
       </div>
     </>
   );
