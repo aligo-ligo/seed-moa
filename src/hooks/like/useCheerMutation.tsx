@@ -10,13 +10,17 @@ const useCheerMutation = (seedId: number) => {
 
   const { mutateAsync: likes } = useMutation({
     mutationFn: () => seedAPI.patchSeedLikes(seedId),
-    onSuccess: async () => {
+    onSuccess: async (data) => {
       await queryClient.invalidateQueries({
         queryKey: seedOptions.getCheeringUserList(seedId).queryKey,
         refetchType: 'all',
       });
 
-      toast({ type: 'default', message: '응원 성공!' });
+      if (data.message === 'add') {
+        toast({ type: 'default', message: '햇빛을 통해 씨앗이 자랄 수 있게 응원하셨어요' });
+      } else {
+        toast({ type: 'default', message: '응원을 취소하셨어요' });
+      }
     },
   });
   return { likes };
