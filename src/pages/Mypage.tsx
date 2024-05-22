@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ChevronRight from '@/assets/icon/ChevronRight';
 import FruitsStage from '@/assets/icon/FruitsStage';
@@ -16,7 +16,6 @@ import useGetOwnInfo from '@/hooks/seed/create/useGetOwnInfo';
 const Mypage = () => {
   const { myInfo, sortedStatistics } = useGetOwnInfo();
   const { logout } = useAuth();
-  const navigate = useNavigate();
 
   return (
     <div className="relative flex flex-col px-6 h-dvh">
