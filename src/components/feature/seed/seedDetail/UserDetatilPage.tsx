@@ -13,7 +13,7 @@ import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';
 import { shareLink } from '@/utils/share';
 import ConfirmBottomSheet from '../../detail/ConfirmBottomSheet';
-import RainBackGround from '../../detail/RainBackGround';
+import RainBackground from '../../detail/background/RainBackGround';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
 export type BottomSheetType = 'askDelete' | 'checkCheerUpNameList';
@@ -87,7 +87,7 @@ const UserDetatilPage = () => {
           </div>
         </div>
       </div>
-      <RainBackGround />
+      <RainBackground />
     </>
   );
 };

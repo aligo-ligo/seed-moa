@@ -59,10 +59,7 @@ authInstance.interceptors.response.use(
           break;
         }
 
-        case ERROR_RESPONSES.authenticationEntryPoint: {
-          window.location.href = '/';
-          break
-        }
+     
         default:
           break;
       }

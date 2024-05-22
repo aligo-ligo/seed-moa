@@ -8,8 +8,11 @@ import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import STORAGE_KEYS from '@/constants/storageKeys';
-import useRoutineMutation from '@/hooks/like/useLikesMutation';
+import { useCheerContext } from '@/context/CheerContext';
+import useCheerMutation from '@/hooks/like/useCheerMutation';
+import useToast from '@/hooks/useToast';
 import useMusicStore from '@/store/useMusicStore';
+import SunBackground from '../../detail/background/SunBackGround';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
 const GuestDetailPage = () => {
@@ -18,30 +21,25 @@ const GuestDetailPage = () => {
   const toggleMusicPlaying = useMusicStore((s) => s.toggleSunPlaying);
   const isPlaying = useMusicStore((s) => s.isSunPlaying);
   const isMember = !!localStorage.getItem(STORAGE_KEYS.accessToken);
-  const { likes } = useRoutineMutation();
+  const { onSunBgOpen, onSunBgClose } = useCheerContext();
+  const { likes } = useCheerMutation(Number(id));
+  const toast = useToast();
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     if (isPlaying) return;
-    toggleMusicPlaying();
-    setTimeout(() => {
+    try {
+      await likes();
       toggleMusicPlaying();
-    }, 5000);
-    likes(Number(id));
+      onSunBgOpen();
+      setTimeout(() => {
+        toggleMusicPlaying();
+        onSunBgClose();
+      }, 5000);
+    } catch {
+      toast({ type: 'default', message: '로그인 후 응원할 수 있어요' });
+    }
   };
 
-  // const routineClickEventHandler = () => {
-  //   if (completedRoutineToday) return;
-  //   if (isPlaying) return;
-  //   toggleMusicPlaying();
-  //   onRainBgOpen();
-  //   setTimeout(() => {
-  //     toggleMusicPlaying();
-  //     onRainBgClose();
-  //   }, DELAY_SECOND);
-  //   onFinishRoutine();
-  // };
-
-  //TODO: 누구누구의 씨앗이라는 것을 말해주면 좋겠다
   return (
     <>
       <Header>
@@ -66,6 +64,8 @@ const GuestDetailPage = () => {
           </div>
         </div>
       </div>
+
+      <SunBackground />
     </>
   );
 };
