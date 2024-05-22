@@ -13,7 +13,7 @@ export const checkActiveDuration = (endDate: string): boolean => dayjs(endDate).
 export const getKrDateName = (date: Date) => dayjs(date).format('dddd');
 
 export const getDateFromDiff = (endDate: string, startDate: string) => {
-  return gaurdNagativeToZero(dayjs(endDate).diff(startDate, 'day') - 1);
+  return gaurdNagativeToZero(dayjs(endDate).diff(startDate,'day') + 1);
 };
 
 export const getFutureDate = (day: number) => {
