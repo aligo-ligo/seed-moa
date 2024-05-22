@@ -1,17 +1,12 @@
 import Rain from '@/components/common/rain';
-import { useRoutineContext } from '@/context/RoutineContext';
 
-const RainBackGround = () => {
-  const { isRainOpen } = useRoutineContext();
-
+const RainBackGround = ({ isRainOpen }: { isRainOpen: boolean }) => {
   return (
     <>
       {isRainOpen && (
         <>
-          <Rain size={10} position={{ x: 'left-[10px]', y: 'top-0' }} />
+          <Rain size={10} position={{ x: 'left-[10px]', y: 'top-[-10px]' }} />
           <Rain size={22} position={{ x: 'right-[80px]', y: 'top-[10px]' }} />
-          <Rain size={22} position={{ x: 'right-[200px]', y: 'top-[-100px]' }} />
-          <Rain size={22} position={{ x: 'left-[100px]', y: 'top-[-80px]' }} />
           <Rain size={10} position={{ x: 'left-[20px]', y: 'top-[20px]' }} />
           <Rain size={22} position={{ x: 'left-[80px]', y: 'top-[80px]' }} />
           <Rain size={4} position={{ x: 'left-[140px]', y: 'top-[50px]' }} />
@@ -21,6 +16,7 @@ const RainBackGround = () => {
           <Rain size={10} position={{ x: 'right-[150px]', y: 'top-[100px]' }} />
           <Rain size={22} position={{ x: 'left-[30px]', y: 'top-[200px]' }} />
           <Rain size={8} position={{ x: 'left-[200px]', y: 'top-[250px]' }} />
+          <Rain size={16} position={{ x: 'right-[10px]', y: 'top-[100px]' }} />
         </>
       )}
     </>
