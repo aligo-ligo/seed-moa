@@ -21,9 +21,6 @@ const Mypage = () => {
     <div className="relative flex flex-col px-6 h-dvh">
       <Header>
         <Header.Previous />
-        <Typography type="heading1" className="text-white">
-          마이페이지
-        </Typography>
         <p></p>
       </Header>
       <UserProfile name={myInfo.name} email={myInfo.email} />
