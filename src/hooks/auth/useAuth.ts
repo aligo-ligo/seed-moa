@@ -41,6 +41,7 @@ const useAuth = () => {
           sessionStorage.removeItem('savedPathBeforeLogin');
           return 
         }
+
         navigate(ROUTER_PATHS.TARGET);
         toast({ message: 'LOGIN_SUCCESS' });
       } catch {
@@ -48,7 +49,7 @@ const useAuth = () => {
         toast({ message: 'LOGIN_FAIL' });
       }
     },
-    [mutateAsync, navigate, setIsLoggedIn, toast],
+    [mutateAsync, navigate, prevPath, setIsLoggedIn, toast],
   );
 
   const handleLogout = () => {
