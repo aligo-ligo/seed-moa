@@ -76,7 +76,7 @@ const Mypage = () => {
               </div>
             </button>
           </Link>
-          <button className="h-12 text-left border-b" onClick={() => {}}>
+          <button className="h-12 text-left border-b">
             <div className="flex justify-between items-center">
               <Link to={ROUTER_PATHS.ONBOARDING} className="w-full">
                 <div className="flex gap-2 items-center">
@@ -100,9 +100,14 @@ const Mypage = () => {
       </div>
       <div className="w-full flex justify-center">
         <div className="mt-4 px-4 py-2 w-full flex flex-col bg-white rounded-lg shadow-[0_1.001px_40px_0_rgba(197,229,255,0.3)]">
-          <button className="h-12 text-left" onClick={logout}>
+          <button className="h-12 text-left border-b" onClick={logout}>
             <Typography type="body2" className="text-gray-800">
-              로그아웃
+              로그 아웃
+            </Typography>
+          </button>
+          <button className="h-12 text-left ">
+            <Typography type="body2" className="text-warning">
+              회원 탈퇴
             </Typography>
           </button>
         </div>
