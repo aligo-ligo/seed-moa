@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SwiperSlide } from 'swiper/react';
 
 import Button from '@/components/common/button/Button';
@@ -43,6 +43,20 @@ const ONBOARDING_VALUES: OnboardingLayoutProps[] = [
 ];
 
 export const OnboardingBody = () => {
+  const prevPath = sessionStorage.getItem('savedPathBeforeLogin');
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    if (prevPath?.startsWith('/') && prevPath !== '/') {
+      console.log('실행');
+      navigate(prevPath);
+      sessionStorage.removeItem('savedPathBeforeLogin');
+      return;
+    } else {
+      navigate(ROUTER_PATHS.TARGET);
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col pt-[68px]">
       <div className="h-full">
@@ -54,11 +68,15 @@ export const OnboardingBody = () => {
           ))}
         </OnboardingSwiper>
       </div>
-      <Link to={ROUTER_PATHS.TARGET}>
-        <Button width="full" variant="secondary" className={`w-full h-16 bg-none`}>
-          시작하기
-        </Button>
-      </Link>
+
+      <Button
+        width="full"
+        variant="secondary"
+        className={`w-full h-16 bg-none`}
+        onClick={onClickHandler}
+      >
+        시작하기
+      </Button>
     </div>
   );
 };
