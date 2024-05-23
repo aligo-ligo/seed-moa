@@ -13,8 +13,12 @@ const useAuth = () => {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useAuthStore();
   const { mutateAsync } = useMutation({ mutationFn: authAPI.postKakaoCode });
+  const prevPath = sessionStorage.getItem('savedPathBeforeLogin');
+
+
 
   const kakaoLogin = useCallback(
+  
     async (authorizeCode: string) => {
       if (!authorizeCode) {
         navigate(ROUTER_PATHS.ROOT);
@@ -29,6 +33,13 @@ const useAuth = () => {
         if (data.isFirst) {
           navigate(ROUTER_PATHS.ONBOARDING)
           return
+        }
+
+        if (prevPath?.startsWith('/') && prevPath !== '/') {
+          console.log('실행')
+          navigate(prevPath);
+          sessionStorage.removeItem('savedPathBeforeLogin');
+          return 
         }
         navigate(ROUTER_PATHS.TARGET);
         toast({ message: 'LOGIN_SUCCESS' });

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import RainBackGround from '../../detail/RainBackGround';
+import RainBackground from '../../detail/background/RainBackGround';
 import Task from '../../detail/Task';
 import { detailSeedStateObj } from '../../seed/SeedCard';
 
@@ -20,7 +20,7 @@ const OnboardingRain = () => {
           disableEditing={true}
         />
       </div>
-      <RainBackGround isRainOpen={isRainOpen} />
+      <RainBackground isOpen={isRainOpen} />
     </section>
   );
 };

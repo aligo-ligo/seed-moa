@@ -21,7 +21,7 @@ const Duration = () => {
   const onSubmitHandler: SubmitHandler<SeedValidationInferType> = (data) => {
     const updateEndDateData = {
       ...data,
-      endDate: dayjs(data.endDate).toISOString(),
+      endDate: dayjs.utc(data.endDate).tz('Asia/Seoul').format('YYYY-MM-DDTHH:MM:ss'),
     };
     submitSeed(updateEndDateData);
   };
