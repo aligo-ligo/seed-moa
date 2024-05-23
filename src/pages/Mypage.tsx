@@ -12,10 +12,12 @@ import { USER_FEEDBACK_GOOGLE_FORM_URL } from '@/constants/extarnelUrl';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 import useAuth from '@/hooks/auth/useAuth';
 import useGetOwnInfo from '@/hooks/seed/create/useGetOwnInfo';
+import useToast from '@/hooks/useToast';
 
 const Mypage = () => {
   const { myInfo, sortedStatistics } = useGetOwnInfo();
   const { logout } = useAuth();
+  const toast = useToast();
 
   return (
     <div className="relative flex flex-col px-6 h-dvh">
@@ -105,7 +107,12 @@ const Mypage = () => {
               로그 아웃
             </Typography>
           </button>
-          <button className="h-12 text-left ">
+          <button
+            className="h-12 text-left"
+            onClick={() => {
+              toast({ type: 'default', message: '다음 업데이트에 반영될 예정이에요!' });
+            }}
+          >
             <Typography type="body2" className="text-warning">
               회원 탈퇴
             </Typography>
