@@ -10,12 +10,12 @@ export const API_PATHS = {
   SEED_DETAIL_ROUTINE_DONE: (routineId: number) => `/api/seed/routine/end/${routineId}`,
   SEED_DETAIL_ROUTINE_TITLE: (routineId: number) => `/api/seed/routine/${routineId}`,
   SEED_DELETE: (seedId: number) => `/api/seed/${seedId}`,
-  CREATE_SEED: '/api/seed',
-  TARGET_SUBGOAL: 'target/update',
-
   SEED_LIKE: (seedId: number) => `/api/seed/${seedId}/cheer`,
+  CREATE_SEED: '/api/seed',
 
   SEED_MINE: '/api/seed/my',
+
+  MEMBER_SIGN_OUT: '/api/auth',
 } as const;
 
 export const ROUTER_PATHS = {
