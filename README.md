@@ -10,7 +10,7 @@
 
 이루고 싶은 목표를 상징하는 씨앗을 심고 하루에 한번 루틴을 누르면 물을 줄 수 있고 단계별로 씨앗을 키울 수 있어요!
 
-👉 **[씨앗 모아 바로가기](https://www.aligoligo.me/)**
+👉 **[씨앗 모아 바로가기](https://www.seedmooa.com/)**
 
 <img  src="https://github.com/aligo-ligo/aligo-oligo-frontend-latest/assets/93697790/def3fccd-8a22-48fe-8232-dd8f4d6d5e58" alt="main_page" />
 
