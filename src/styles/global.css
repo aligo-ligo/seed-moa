@@ -9,7 +9,7 @@
 
 @layer base {
   :root {
-    --layout-max-w: 410px;
+    --layout-max-w: 420px;
     --layout-min-h: 100dvh;
   }
   .layout {
@@ -19,7 +19,6 @@
 
 body {
   font-family: 'Pretendard', sans-serif;
-  background-color: rgb(244 244 245/1);
 }
 a {
   cursor: pointer;
