@@ -18,17 +18,23 @@ const Seed = ({ toNext }: SeedProps) => {
 
   return (
     <SeedCreateLayout title={GOAL_TITLE} description={GOAL_DESCRIPTION}>
+      <label htmlFor="목표" className="sr-only">
+        seed
+      </label>
       <input
+        id="목표"
         type="text"
         className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
         placeholder="씨앗(목표)를 작성해주세요"
         autoComplete="off"
         {...register('seed')}
       />
+
       <Validation>{errors?.seed?.message?.toString()}</Validation>
 
       <div className="absolute bottom-5 text-xl w-full bg-slate-50 text-white rounded-xl">
         <Button
+          type="submit"
           className=" w-full h-16 duration-300"
           variant="secondary"
           onClick={async () => {
