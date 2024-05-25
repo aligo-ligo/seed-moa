@@ -17,7 +17,9 @@ const SeedPage = () => {
       <Header>
         <Header.Logo />
         <Link to={'/mypage'}>
-          <Profile width={32} />
+          <Button Icon={<Profile width={32} />} className="bg-transparent">
+            <p className="sr-only">마이페이지</p>
+          </Button>
         </Link>
       </Header>
       <div className="flex-1">
@@ -31,9 +33,11 @@ const SeedPage = () => {
       <div className="sticky bottom-5 z-20 flex flex-col items-end pr-3xs">
         <Button
           onClick={() => navigate(ROUTER_PATHS.CREATE_TARGET)}
+          value="씨앗생성버튼"
           variant="accent"
           Icon={<Add width={20} height={20} />}
           iconOnly
+          aria-label="씨앗생성버튼"
           className="size-[56px] w-xl rounded-[100%] bg-main hover:scale-[95%] transition duration-200 hover:bg-primary-200"
         />
       </div>
