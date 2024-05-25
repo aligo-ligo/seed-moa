@@ -27,9 +27,9 @@ const SeedCard = ({
 }: { mode: SeedCardMode } & HTMLAttributes<HTMLLIElement>) => {
   return (
     <SeedCardContext.Provider value={mode}>
-      <li className={cn(seedCardVariant({ mode, className }))} {...props}>
+      <article className={cn(seedCardVariant({ mode, className }))} {...props}>
         {children}
-      </li>
+      </article>
     </SeedCardContext.Provider>
   );
 };

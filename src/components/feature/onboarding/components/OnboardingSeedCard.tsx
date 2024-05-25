@@ -40,7 +40,7 @@ const seedList = [
 
 const OnboardingSeedCard = () => {
   return (
-    <ul className="flex flex-col gap-4 mt-8">
+    <section className="flex flex-col gap-4 mt-8">
       {seedList.map((seed) => {
         return (
           <SeedCard mode={seed.mode} key={seed.id}>
@@ -55,7 +55,7 @@ const OnboardingSeedCard = () => {
           </SeedCard>
         );
       })}
-    </ul>
+    </section>
   );
 };
 
