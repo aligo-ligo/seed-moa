@@ -29,7 +29,8 @@ const Seed = ({ toNext }: SeedProps) => {
         autoComplete="off"
         onKeyDown={async (e) => {
           if (e.key === 'Enter') {
-            await trigger(['seed']);
+            const isValid = await trigger(['seed']);
+            if (!isValid) return;
             toNext();
           }
         }}

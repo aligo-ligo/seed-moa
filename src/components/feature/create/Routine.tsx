@@ -62,7 +62,8 @@ const Routine = ({ toNext }: RoutineProps) => {
             autoComplete="off"
             onKeyDown={async (e) => {
               if (e.key === 'Enter') {
-                await trigger(['routines']);
+                const isValid = await trigger(['routines']);
+                if (!isValid) return;
                 toNext();
               }
             }}
