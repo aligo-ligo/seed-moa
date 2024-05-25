@@ -43,9 +43,13 @@ const UserDetatilPage = () => {
     <>
       <Header>
         <Header.Previous />
-        <button onClick={() => onOpenSheet('askDelete')}>
-          <TrashIcon width={32} color="#fff" />
-        </button>
+        <Button
+          onClick={() => onOpenSheet('askDelete')}
+          iconOnly
+          aria-label="삭제하기버튼"
+          Icon={<TrashIcon width={32} color="#fff" />}
+          className="bg-transparent"
+        />
       </Header>
 
       <CommonSeedDetailBody seed={seed} />
