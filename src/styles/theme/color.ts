@@ -40,7 +40,7 @@ export const colors = {
   darkGray: "#525252",
   success: "#4785FF",
   skyblue: "#C9E5FE",
-  fail: "#ff3131",
+  fail: "#EE0701",
   skyRed: "#FCDDD9",
   info: "#17a2b8",
 };

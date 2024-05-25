@@ -113,7 +113,7 @@ const Mypage = () => {
               toast({ type: 'default', message: '다음 업데이트에 반영될 예정이에요!' });
             }}
           >
-            <Typography type="body2" className="text-warning">
+            <Typography type="body2" className="text-fail">
               회원 탈퇴
             </Typography>
           </button>
