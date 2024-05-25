@@ -27,6 +27,12 @@ const Seed = ({ toNext }: SeedProps) => {
         className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
         placeholder="씨앗(목표)를 작성해주세요"
         autoComplete="off"
+        onKeyDown={async (e) => {
+          if (e.key === 'Enter') {
+            await trigger(['seed']);
+            toNext();
+          }
+        }}
         {...register('seed')}
       />
 
