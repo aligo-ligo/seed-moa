@@ -31,9 +31,9 @@ const routerObject = createBrowserRouter(routerInfo);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <ToastProvider>
-      <main className="layout overflow-auto bg-white scroll-smooth">
+      <div className="layout overflow-auto bg-white scroll-smooth">
         <RouterProvider router={routerObject} />
-      </main>
+      </div>
     </ToastProvider>
     <ReactQueryDevtools />
   </QueryClientProvider>,
