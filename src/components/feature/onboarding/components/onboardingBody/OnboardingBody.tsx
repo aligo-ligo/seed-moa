@@ -71,6 +71,7 @@ export const OnboardingBody = () => {
 
       <Button
         width="full"
+        aria-label="시작하기버튼"
         variant="secondary"
         className={`w-full h-16 bg-none`}
         onClick={onClickHandler}
