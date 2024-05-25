@@ -71,14 +71,20 @@ const GuestDetailPage = () => {
     <>
       <Header>
         {isMember ? (
-          <Button variant="empty" onClick={() => navigate(ROUTER_PATHS.TARGET)}>
-            <ChevronLeft width={20} height={20} color="white" />
-          </Button>
+          <Button
+            variant="empty"
+            onClick={() => navigate(ROUTER_PATHS.TARGET)}
+            iconOnly
+            aria-label="뒤로가기버튼"
+            Icon={<ChevronLeft width={20} height={20} color="white" />}
+          />
         ) : (
           <Header.Logo />
         )}
         <Link to={isMember ? '/mypage' : '/'}>
-          <Profile width={32} />
+          <Button Icon={<Profile width={32} />} className="bg-transparent">
+            <p className="sr-only">마이페이지</p>
+          </Button>
         </Link>
       </Header>
 
@@ -89,6 +95,7 @@ const GuestDetailPage = () => {
           <div className="flex size-[60px] justify-center gap-3 mt-3">
             <Button
               width="full"
+              aria-label="햇빛주기버튼"
               onClick={onClickHandler}
               Icon={<SunIcon width={60} height={60} />}
               iconOnly
