@@ -85,6 +85,7 @@ const UserDetatilPage = () => {
           <div className="flex size-[52px] justify-center gap-3 mt-3">
             <Button
               onClick={handleCopyClipboard}
+              aria-label="공유하기버튼"
               width="full"
               Icon={<LinkIcon width={20} height={20} />}
               iconOnly
