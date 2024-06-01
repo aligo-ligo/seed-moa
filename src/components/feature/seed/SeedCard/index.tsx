@@ -27,9 +27,9 @@ const SeedCard = ({
 }: { mode: SeedCardMode } & HTMLAttributes<HTMLLIElement>) => {
   return (
     <SeedCardContext.Provider value={mode}>
-      <li className={cn(seedCardVariant({ mode, className }))} {...props}>
+      <article className={cn(seedCardVariant({ mode, className }))} {...props}>
         {children}
-      </li>
+      </article>
     </SeedCardContext.Provider>
   );
 };
@@ -51,7 +51,7 @@ const Header = ({
       </Tag>
 
       {mode === 'active' && (
-        <Typography type="section1" className="text-gray-500">
+        <Typography type="section1" className="text-gray-800">
           {fromNowOf(endDate)}
         </Typography>
       )}

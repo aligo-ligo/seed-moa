@@ -1,5 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useBeforeUnload, useNavigate, useParams } from 'react-router-dom';
 
 import seedOptions from '@/api/seed/queryOptions';
@@ -69,16 +70,31 @@ const GuestDetailPage = () => {
   console.log('backgroundRef.current', backgroundRef.current);
   return (
     <>
+      <Helmet>
+        <title>씨앗모아: 씨앗을 응원해주세요</title>
+        <meta name="description" content="친구의 씨앗에 응원을 해주세요" />
+        {/* Open Graph */}
+        <meta property="og:title" content="씨앗모아" />
+        <meta property="og:description" content="친구의 씨앗에 응원을 해주세요" />
+        <meta property="og:image" content="/ogImage.png" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header>
         {isMember ? (
-          <Button variant="empty" onClick={() => navigate(ROUTER_PATHS.TARGET)}>
-            <ChevronLeft width={20} height={20} color="white" />
-          </Button>
+          <Button
+            variant="empty"
+            onClick={() => navigate(ROUTER_PATHS.TARGET)}
+            iconOnly
+            aria-label="뒤로가기버튼"
+            Icon={<ChevronLeft width={20} height={20} color="white" />}
+          />
         ) : (
           <Header.Logo />
         )}
         <Link to={isMember ? '/mypage' : '/'}>
-          <Profile width={32} />
+          <Button Icon={<Profile width={32} />} className="bg-transparent">
+            <p className="sr-only">마이페이지</p>
+          </Button>
         </Link>
       </Header>
 
@@ -89,6 +105,7 @@ const GuestDetailPage = () => {
           <div className="flex size-[60px] justify-center gap-3 mt-3">
             <Button
               width="full"
+              aria-label="햇빛주기버튼"
               onClick={onClickHandler}
               Icon={<SunIcon width={60} height={60} />}
               iconOnly

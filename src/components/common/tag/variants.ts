@@ -4,7 +4,7 @@ export const tagVariants = cva('flex w-fit select-none items-center justify-cent
   variants: {
     variant: {
       primary: 'text-mainDeep bg-primary-100',
-      secondary: 'text-fail bg-[#FFE5E5]',
+      secondary:'bg-[#FFE5E5] text-red-700',
     },
   },
   defaultVariants: {

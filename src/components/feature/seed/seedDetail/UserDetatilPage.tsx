@@ -1,5 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import seedOptions from '@/api/seed/queryOptions';
@@ -41,11 +42,24 @@ const UserDetatilPage = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>씨앗모아: 씨앗을 꾸준히 키워봐요</title>
+        <meta name="description" content="친구의 씨앗에 응원을 해주세요" />
+        {/* Open Graph */}
+        <meta property="og:title" content="씨앗모아" />
+        <meta property="og:description" content="친구의 씨앗에 응원을 해주세요" />
+        <meta property="og:image" content="/ogImage.png" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header>
         <Header.Previous />
-        <button onClick={() => onOpenSheet('askDelete')}>
-          <TrashIcon width={32} color="#fff" />
-        </button>
+        <Button
+          onClick={() => onOpenSheet('askDelete')}
+          iconOnly
+          aria-label="삭제하기버튼"
+          Icon={<TrashIcon width={32} color="#fff" />}
+          className="bg-transparent"
+        />
       </Header>
 
       <CommonSeedDetailBody seed={seed} />
@@ -81,6 +95,7 @@ const UserDetatilPage = () => {
           <div className="flex size-[52px] justify-center gap-3 mt-3">
             <Button
               onClick={handleCopyClipboard}
+              aria-label="공유하기버튼"
               width="full"
               Icon={<LinkIcon width={20} height={20} />}
               iconOnly

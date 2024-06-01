@@ -26,9 +26,11 @@ const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
 
   return (
     <>
-      <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
-        {seed.seedName}
-      </Typography>
+      <h1>
+        <Typography type="heading1" className="pointer-events-none text-white text-left w-full">
+          {seed.seedName}
+        </Typography>
+      </h1>
 
       <div className="flex flex-col w-full h-full">
         <div className=" h-[50%] flex flex-col justify-center items-center">
