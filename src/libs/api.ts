@@ -6,7 +6,7 @@ import STORAGE_KEYS from '@/constants/storageKeys';
 import { isProd } from '@/utils/env';
 
 const DEVELOPMENT_API_URL = 'https://www.aligoligo.store:7070';
-const PRODUCTION_API_URL = 'https://www.aligoligo.store:8080';
+const PRODUCTION_API_URL = 'https://seed-moa.duckdns.org/';
 
 /** 단순한 API 요청 클라이언트 */
 export const baseInstance = axios.create({
@@ -20,16 +20,13 @@ export const authInstance = axios.create({
   timeout: 30000,
 });
 
-
 authInstance.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem(STORAGE_KEYS.accessToken);
   const result = accessToken ? `Bearer ${accessToken}` : null;
-  config.headers.Authorization = result
+  config.headers.Authorization = result;
 
   return config;
 });
-
-
 
 authInstance.interceptors.response.use(
   (response) => {
@@ -59,7 +56,6 @@ authInstance.interceptors.response.use(
           break;
         }
 
-     
         default:
           break;
       }
