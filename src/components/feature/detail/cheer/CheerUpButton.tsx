@@ -9,7 +9,12 @@ interface CheerUpButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const CheerUpButton = ({ onOpen, ...props }: CheerUpButtonProps) => {
   return (
-    <Button className="items-center bg-gray-10" onClick={onOpen} {...props}>
+    <Button
+      className="items-center bg-gray-10"
+      onClick={onOpen}
+      {...props}
+      aria-label="응원한친구목록확인버튼"
+    >
       <SunIcon width={30} height={30} />
     </Button>
   );

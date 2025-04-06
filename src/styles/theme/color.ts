@@ -13,6 +13,9 @@ export const colors = {
     900: "#23282E",
     1000: "#151719",
   },
+  soil: {
+    400 : '#74452b'
+  },
   primary: { 
     100 : "#D7E5B7",
     200 : '#BACB91',
@@ -37,7 +40,7 @@ export const colors = {
   darkGray: "#525252",
   success: "#4785FF",
   skyblue: "#C9E5FE",
-  fail: "#ff3131",
+  fail: "#EE0701",
   skyRed: "#FCDDD9",
   info: "#17a2b8",
 };

@@ -19,7 +19,7 @@ const LandingPage = () => {
   return (
     <div className="relative w-full h-dvh flex flex-col items-center justify-start p-6">
       <div className="flex flex-col w-full items-center h-[80%]">
-        <div className="w-full flex flex-col h-[80%] pt-12">
+        <section className="w-full flex flex-col h-[80%] pt-12">
           <div className="flex flex-col items-center gap-1">
             <Typography type="title1" className="text-white font-jalnan">
               씨앗 모아
@@ -34,7 +34,7 @@ const LandingPage = () => {
             <Logo width={160} className="absolute top-0 left-0" />
             <ReversedLogo className="absolute bottom-0 right-0" />
           </div>
-        </div>
+        </section>
 
         {isLoading ? (
           <div className=" mt-8 mb-4 text-lg desktop:text-xl font-semibold text-gray w-full">
@@ -51,12 +51,12 @@ const LandingPage = () => {
         )}
       </div>
 
-      <div className="absolute bottom-5 w-full px-6">
+      <section className="absolute bottom-5 w-full px-6">
         <KakaoLoginButton href={KAKAO_AUTH_URI} />
         <Typography type="section1" className="text-gray-100 pt-2 text-center">
           {`회원가입 시 서비스 이용약관과 개인정보 \n 수집 및 이용에 동의하게 됩니다.`}
         </Typography>
-      </div>
+      </section>
     </div>
   );
 };

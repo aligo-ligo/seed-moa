@@ -6,6 +6,7 @@ import EllipsisVerticalIcon from '@/assets/icon/EllipsisVerticalIcon';
 import Submit from '@/assets/icon/Submit';
 import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import Logo from '@/assets/logo/Logo';
+import Button from '@/components/common/button/Button';
 import { Typography } from '@/components/common/typography/Typography';
 import { DELAY_SECOND } from '@/constants/contants';
 import useRoutineTitleMutation from '@/hooks/seed/routine/useRoutineTitleMutation';
@@ -90,13 +91,14 @@ const Task = ({
             </>
           ) : (
             <>
-              <button
+              <Button
                 onClick={routineClickEventHandler}
-                className="w-[24px] h-[24px]"
+                className="w-[24px] h-[24px] bg-transparent"
+                aria-label="루틴체크박스"
                 disabled={isShared}
               >
                 <CheckIcon width={24} height={24} />
-              </button>
+              </Button>
               <div className="flex w-full justify-between items-center">
                 <Typography
                   type="body2"
@@ -105,7 +107,9 @@ const Task = ({
                   {routineTitle}
                 </Typography>
                 {!completedRoutineToday && (
-                  <button
+                  <Button
+                    className="bg-transparent"
+                    aria-label="수정하기버튼"
                     onClick={() => {
                       setIsEditing(true);
                       setTimeout(() => {
@@ -117,7 +121,7 @@ const Task = ({
                     disabled={disableEditing}
                   >
                     <EllipsisVerticalIcon width={20} />
-                  </button>
+                  </Button>
                 )}
               </div>
             </>

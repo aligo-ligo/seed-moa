@@ -33,6 +33,7 @@ const OnboardingSun = () => {
           <div className=" flex size-[60px] justify-center gap-3 mt-3">
             <Button
               width="full"
+              aria-label="햇빛주기버튼"
               onClick={onClickHandler}
               Icon={<SunIcon width={60} height={60} />}
               iconOnly

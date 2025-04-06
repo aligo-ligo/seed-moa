@@ -11,7 +11,7 @@ export const OnboardingLayout = ({ title, content }: OnboardingLayoutProps) => {
   return (
     <section className="relative w-full h-full flex justify-center">
       <div className="w-[90%]">
-        <Typography type="heading1" className="text-blue-50 mr-auto">
+        <Typography type="heading1" className="text-white mr-auto">
           {title}
         </Typography>
         {content}

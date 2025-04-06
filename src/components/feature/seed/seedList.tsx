@@ -7,7 +7,7 @@ import SeedEmptyCard from './SeedEmptyCard';
 const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
   const navigate = useNavigate();
   return (
-    <ul className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6">
       {seeds?.length === 0 ? (
         <SeedEmptyCard isActive={isActive} />
       ) : (
@@ -32,7 +32,7 @@ const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boo
           })}
         </>
       )}
-    </ul>
+    </section>
   );
 };
 

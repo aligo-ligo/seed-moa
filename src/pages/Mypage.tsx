@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 import ChevronRight from '@/assets/icon/ChevronRight';
@@ -21,6 +22,9 @@ const Mypage = () => {
 
   return (
     <div className="relative flex flex-col px-6 h-dvh">
+      <Helmet>
+        <title>씨앗모아: 씨앗 현황을 살펴볼 수 있어요</title>
+      </Helmet>
       <Header>
         <Header.Previous />
         <p></p>
@@ -113,7 +117,7 @@ const Mypage = () => {
               toast({ type: 'default', message: '다음 업데이트에 반영될 예정이에요!' });
             }}
           >
-            <Typography type="body2" className="text-warning">
+            <Typography type="body2" className="text-fail">
               회원 탈퇴
             </Typography>
           </button>

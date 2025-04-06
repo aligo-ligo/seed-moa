@@ -37,35 +37,48 @@ const Routine = ({ toNext }: RoutineProps) => {
       <div className="flex items-center justify-between">
         <Typography type="heading3">열매 맺기 위한 루틴 (최대 3개)</Typography>
         {maxRoutineCount && (
-          <button
-            className="text-2xl text-mainDeep pl-4"
+          <Button
+            className="text-2xl text-mainDeep pl-4 bg-transparent"
+            aria-label="루틴추가버튼"
             type="button"
+            iconOnly
             onClick={() => {
               routineAppend({});
             }}
-          >
-            <Add width={16} height={16} color="#ffffff" />
-          </button>
+            Icon={<Add width={16} height={16} color="#ffffff" />}
+          />
         )}
       </div>
       {routines.map((routine, index) => (
         <div className="flex items-center justify-center mt-5" key={routine.id}>
+          <label htmlFor={`목표${index}`} className="sr-only">
+            seed
+          </label>
           <input
+            id={`목표${index}`}
             type="text"
             className="placeholder:text-s placeholder:text-gray-100 w-full h-10 outline-none text-white border-b border-gray-200 bg-transparent"
             placeholder="루틴을 작성해보세요"
             autoComplete="off"
+            onKeyDown={async (e) => {
+              if (e.key === 'Enter') {
+                const isValid = await trigger(['routines']);
+                if (!isValid) return;
+                toNext();
+              }
+            }}
             {...register(`routines.${index}.value` as const)}
           />
 
           {!minRoutineCount && (
-            <button
-              className="text-2xl text-mainDeep"
+            <Button
+              className="text-2xl text-mainDeep bg-transparent"
               type="button"
+              aria-label="루틴삭제버튼"
               onClick={() => routineRemove(index)}
-            >
-              <Remove width={16} height={16} color="#ffffff" />
-            </button>
+              iconOnly
+              Icon={<Remove width={16} height={16} color="#ffffff" />}
+            />
           )}
         </div>
       ))}
