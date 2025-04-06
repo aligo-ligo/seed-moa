@@ -18,7 +18,7 @@ jobs:
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.AUTO_SECRET_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.NEW_AUTO_SECRET_KEY }}
         with:
           source-directory: 'output'
           destination-github-username: 'CodyMan0'
